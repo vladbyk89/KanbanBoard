@@ -18,7 +18,7 @@ class User {
 
 const preMadeList: User[] = [
   new User(
-    "vladi",
+    "vladislav",
     "bykanov",
     "male",
     "vladb89",

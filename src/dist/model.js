@@ -15,7 +15,7 @@ var User = /** @class */ (function () {
     return User;
 }());
 var preMadeList = [
-    new User("vladi", "bykanov", "male", "vladb89", "12345678", "vladi@gmail.com", "0548155232"),
+    new User("vladislav", "bykanov", "male", "vladb89", "12345678", "vladi@gmail.com", "0548155232"),
     new User("itai", "Gelberg", "male", "itaiG", "abcdefgh", "itaiGel@gmail.com", "0541234567"),
     new User("itai", "Amosi", "male", "itaiA", "87654321", "itaiAmosi@gmail.com", "0540987654"),
 ];
