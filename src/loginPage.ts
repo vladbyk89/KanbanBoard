@@ -35,3 +35,5 @@ function checkIfUserExists(userName: string, password: string) {
 }
 
 console.table(checkIfUserExists("vladb89", "12345678"));
+
+

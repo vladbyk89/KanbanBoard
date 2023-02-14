@@ -5,12 +5,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kanban Board</title>
-    <link rel="stylesheet" href="./src/dist/style.css" />
+    <link rel="stylesheet" href="./src/./dist/styleRegister.css" />
     <script src="./src/dist/helpers.js" defer></script>
     <script src="./src/dist/control.js" defer></script>
     <script src="./src/dist/view.js" defer></script>
     <script src="./src/dist/model.js" defer></script>
     <script src="./src/dist/main.js" defer></script>
+    <script src="./src/dist/registerPage.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <div class="registerContainer">
+      <div class="registerContainer__title">
+        <h1>Register</h1>
+      </div>
+      <div class="registerContainer__form">
+        <form>
+          <label for="firstName">First Name:</label>
+          <input type="text" id="firstName" name="firstName" required>
+
+          <label for="lastName">Last Name:</label>
+          <input type="text" id="lastName" name="lastName" required>
+
+          <label for="userName" id="userName" name="userName">User Name:</label>
+          <input type="text" id="userName" name="userName" required>
+
+          <label for="password" id="password" name="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="phoneNumber">PhoneNumber:</label>
+          <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+          <label for="gender">Gender:</label>
+          <select name="gender" id="gender">
+            <option value="male">male</option>
+            <option value="female">female</option>
+            <option value="other">other</option>
+          </select>
+          
+          <button class="registerBtn" type="submit">Register</button>
+        </form>
+      </div>
+    </div>
+  </body>
 </html>
