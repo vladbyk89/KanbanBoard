@@ -1,4 +1,5 @@
 const loginContainer = document.querySelector('.loginContainer') as HTMLDivElement;
-const loginInputField = document.querySelectorAll('.loginInputField') as NodeListOf<HTMLInputElement>;
+const loginUserName = document.querySelector('#loginUserName') as HTMLInputElement;
+const loginPassword = document.querySelector('#loginPassword') as HTMLInputElement;
 
 

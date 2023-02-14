@@ -1,2 +1,3 @@
 var loginContainer = document.querySelector('.loginContainer');
-var loginInputField = document.querySelectorAll('.loginInputField');
+var loginUserName = document.querySelector('#loginUserName');
+var loginPassword = document.querySelector('#loginPassword');

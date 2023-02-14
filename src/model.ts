@@ -9,7 +9,7 @@ class User {
     public email: string,
     public phoneNumber: string
   ) {
-    this.uid = new Date().getTime().toString();
+    this.uid = Math.random().toString(36).slice(2);
   }
   getuid() {
     return this.uid;
@@ -32,7 +32,7 @@ const preMadeList: User[] = [
     "male",
     "itaiG",
     "abcdefgh",
-    "itai@gmail.com",
+    "itaiGel@gmail.com",
     "0541234567"
   ),
   new User(
@@ -41,7 +41,7 @@ const preMadeList: User[] = [
     "male",
     "itaiA",
     "87654321",
-    "vladi@gmail.com",
+    "itaiAmosi@gmail.com",
     "0540987654"
   ),
 ];

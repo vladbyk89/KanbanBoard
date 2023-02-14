@@ -5,17 +5,24 @@ loginContainer.addEventListener("click", function (e) {
         window.location.href = "register.html";
     }
     if (target.className == "loginBtn") {
-        checkInput();
-    }
-});
-function checkInput() {
-    loginInputField.forEach(function (input) {
-        if (input.value == "") {
-            return alert("missing input field");
+        if (loginUserName.value === "" || loginPassword.value === "") {
+            return alert("missing input");
         }
-        else {
-            input.value = "";
+        if (checkIfUserExists(loginUserName.value, loginPassword.value)) {
+            loginUserName.value = "";
+            loginPassword.value = "";
             window.location.href = "index.html";
         }
-    });
+        else {
+            alert("user not in database");
+        }
+    }
+});
+function checkIfUserExists(userName, password) {
+    var getLocalStorage = localStorage.getItem("signedUpUsers");
+    if (getLocalStorage) {
+        var userListFromStorage = JSON.parse(getLocalStorage);
+        return userListFromStorage.find(function (user) { return user.userName === userName && user.password === password; });
+    }
 }
+// console.table(checkIfUserExists("vladb89", "12345678"));

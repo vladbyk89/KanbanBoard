@@ -5,17 +5,27 @@ loginContainer.addEventListener("click", (e) => {
     window.location.href = "register.html";
   }
   if (target.className == "loginBtn") {
-    checkInput();
+    if (loginUserName.value === "" || loginPassword.value === "") {
+      return alert("missing input");
+    }
+    if (checkIfUserExists(loginUserName.value, loginPassword.value)) {
+      loginUserName.value = "";
+      loginPassword.value = "";
+      window.location.href = "index.html";
+    } else {
+      alert("user not in database");
+    }
   }
 });
 
-function checkInput() {
-  loginInputField.forEach((input) => {
-    if (input.value == "") {
-      return alert("missing input field");
-    } else {
-      input.value = "";
-      window.location.href = "index.html";
-    }
-  });
+function checkIfUserExists(userName: string, password: string) {
+  const getLocalStorage = localStorage.getItem("signedUpUsers");
+  if (getLocalStorage) {
+    const userListFromStorage: User[] = JSON.parse(getLocalStorage);
+    return userListFromStorage.find(
+      (user) => user.userName === userName && user.password === password
+    );
+  }
 }
+
+// console.table(checkIfUserExists("vladb89", "12345678"));

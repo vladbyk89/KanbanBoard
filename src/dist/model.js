@@ -7,7 +7,7 @@ var User = /** @class */ (function () {
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.uid = new Date().getTime().toString();
+        this.uid = Math.random().toString(36).slice(2);
     }
     User.prototype.getuid = function () {
         return this.uid;
@@ -16,7 +16,7 @@ var User = /** @class */ (function () {
 }());
 var preMadeList = [
     new User("vladi", "bykanov", "male", "vladb89", "12345678", "vladi@gmail.com", "0548155232"),
-    new User("itai", "Gelberg", "male", "itaiG", "abcdefgh", "itai@gmail.com", "0541234567"),
-    new User("itai", "Amosi", "male", "itaiA", "87654321", "vladi@gmail.com", "0540987654"),
+    new User("itai", "Gelberg", "male", "itaiG", "abcdefgh", "itaiGel@gmail.com", "0541234567"),
+    new User("itai", "Amosi", "male", "itaiA", "87654321", "itaiAmosi@gmail.com", "0540987654"),
 ];
 localStorage.setItem('signedUpUsers', JSON.stringify(preMadeList));
