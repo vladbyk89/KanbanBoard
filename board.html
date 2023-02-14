@@ -5,12 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kanban Board</title>
-    <link rel="stylesheet" href="./src/dist/style.css" />
+    <link rel="stylesheet" href="./src/dist/boardStyle.css" />
     <script src="./src/dist/helpers.js" defer></script>
     <script src="./src/dist/control.js" defer></script>
     <script src="./src/dist/view.js" defer></script>
     <script src="./src/dist/model.js" defer></script>
     <script src="./src/dist/main.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <di class="boardContainer">
+      <div class="boardContainer__list">
+        <div class="boardContainer__list__title">Not started</div>
+        <div class="boardContainer__cards">
+          <div contenteditable class="boardContainer__card-input">To Do</div>
+          <div class="boardContainer__dropZone"></div>
+        </div>
+        <div class="boardContainer__add-cards"><button>+ add</button></div>
+      </div>
+    </div>
+  </body>
 </html>
