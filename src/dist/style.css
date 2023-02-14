@@ -93,3 +93,12 @@ body {
   box-shadow: #d6d6e7 0 3px 7px inset;
   transform: translateX(0.1em);
 }
+
+.boardContainer {
+  display: flex;
+  padding: 30px;
+  width: 570vmax;
+  background-color: blue;
+  border-radius: 5px;
+  align-items: none;
+}

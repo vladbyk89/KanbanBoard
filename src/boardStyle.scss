@@ -1,0 +1,61 @@
+.boardContainer * {
+    font-family: cursive;
+}
+
+.boardContainer{
+    display: flex;
+    padding: 30px;
+    width: 750px;
+    background-color: blue;
+    border-radius: 5px;
+    align-items: none;
+    
+&__list{
+
+}
+&__list:not(:last-child){
+margin-left: 30px;
+
+}
+&__list__title{
+    margin-bottom: 20px;
+    font-size: 30px;
+    color: red;
+    user-select: none;
+}
+
+&__card-input{
+    width: 250px;
+padding: 10px 15px;
+box-sizing: border-box;
+background: white;
+border-radius: 5px;
+cursor: pointer;
+
+}
+&__dropZone{
+    height: 10px;
+    transition: background 0.15s, height 0.15s;
+}
+&__dropZone--active {
+    height: 20px;
+    background: rgba(0, 0, 0, 0.25);
+}
+button{
+   width: 100%;
+   padding: 10px 0; 
+   font-size: 16px;
+   color: rgb(91, 214, 150);
+   background-color: rgb(16, 88, 232);
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+
+}
+    
+    
+    
+    
+    
+    
+}

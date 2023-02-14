@@ -36,11 +36,11 @@ const preMadeList: User[] = [
     "0541234567"
   ),
   new User(
-    "itai",
+    "itay",
     "Amosi",
     "male",
-    "itaiA",
-    "87654321",
+    "itayA",
+    "144322",
     "itaiAmosi@gmail.com",
     "0540987654"
   ),
