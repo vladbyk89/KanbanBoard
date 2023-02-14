@@ -16,7 +16,7 @@ class User {
   }
 }
 
-const userList: User[] = [
+const preMadeList: User[] = [
   new User(
     "vladi",
     "bykanov",
@@ -46,4 +46,4 @@ const userList: User[] = [
   ),
 ];
 
-localStorage.setItem('signedUpUsers', JSON.stringify(userList))
+localStorage.setItem('signedUpUsers', JSON.stringify(preMadeList))
