@@ -1,5 +1,13 @@
-// "use strict";
-// import type * as KanbanAPI from "./api/dist/KanbanAPI";
-// console.log(KanbanAPI.getitems(1));
-profileBtn.addEventListener("click", function () { return (profileWindow.style.display = "flex"); });
-backToMain.addEventListener("click", function () { return (profileWindow.style.display = "none"); });
+"use strict";
+exports.__esModule = true;
+var kanbanAPI_1 = require("./kanbanAPI");
+var x = new kanbanAPI_1.KanbanAPI;
+console.log(x.getItems(1));
+// profileBtn.addEventListener(
+//   "click",
+//   () => (profileWindow.style.display = "flex")
+// );
+// backToMain.addEventListener(
+//   "click",
+//   () => (profileWindow.style.display = "none")
+// );

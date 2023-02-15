@@ -1,14 +1,13 @@
-// "use strict";
-// import type * as KanbanAPI from "./api/dist/KanbanAPI";
+import {KanbanAPI} from "./kanbanAPI";
+const x = new KanbanAPI
+console.log(x.getItems(1));
 
-// console.log(KanbanAPI.getitems(1));
+// profileBtn.addEventListener(
+//   "click",
+//   () => (profileWindow.style.display = "flex")
+// );
 
-profileBtn.addEventListener(
-  "click",
-  () => (profileWindow.style.display = "flex")
-);
-
-backToMain.addEventListener(
-  "click",
-  () => (profileWindow.style.display = "none")
-);
+// backToMain.addEventListener(
+//   "click",
+//   () => (profileWindow.style.display = "none")
+// );

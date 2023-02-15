@@ -1,75 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kanban Board</title>
-    <link rel="stylesheet" href="./src/dist/boardStyle.css" />
-    <script src="./src/dist/helpers.js" defer></script>
-    <script src="./src/dist/control.js" defer></script>
-    <script src="./src/dist/view.js" defer></script>
-    <script src="./src/dist/model.js" defer></script>
-    <script src="./src/dist/main.js" defer></script>
-    <script
-      src="https://kit.fontawesome.com/0d9e773bea.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <div class="boardContainer">
-      <nav class="boardContainer__topNav">
-        <div class="boardContainer__topNav__logo">LOGO</div>
-        <div class="boardContainer__topNav__rightSideDiv">
-          <input
-            type="text"
-            class="boardContainer__topNav__rightSideDiv__search"
-            placeholder="&#xF002; Search"
-          />
-          <i
-            class="fa-solid fa-bell boardContainer__topNav__rightSideDiv__notifications"
-          ></i>
-          <i
-            class="fa-solid fa-user boardContainer__topNav__rightSideDiv__profile profileBtn"
-          ></i>
-        </div>
-      </nav>
-      <main class="boardContainer__main">
-        <div class="boardContainer__main__list">
-          <div class="boardContainer__main__list__header">
-            <h3>Done</h3>
-            <i class="fa-solid fa-ellipsis"></i>
-          </div>
-          <div class="boardContainer__main__list__card">
-            <p>Create Element</p>
-            <i class="fa-regular fa-pen-to-square"></i>
-          </div>
-          <div class="boardContainer__main__list__card">
-            <p>Buy Itay Chocolate</p>
-            <i class="fa-regular fa-pen-to-square"></i>
-          </div>
-          <div class="boardContainer__main__list__card">
-            <p>Something else...</p>
-            <i class="fa-regular fa-pen-to-square"></i>
-          </div>
-          <div class="boardContainer__main__list__card--addCard">
-            <button class="addCardBtn"><i class="fa-solid fa-plus">Add Card</i></button>
-          </div>
 
-        </div>
-      </main>
-      <div class="profileWindow">
-        <i class="fa-solid fa-arrow-right-from-bracket backToMain"></i>
-        <ul>
-          <h1>About you</h1>
-          <li>Name:</li>
-          <li>Gender:</li>
-          <li>Email:</li>
-          <li>Phone Number:</li>
-          <li>User Name:</li>
-          <li>Password:</li>
-        </ul>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kanban Board</title>
+  <link rel="stylesheet" href="./src/dist/boardStyle.css" />
+  <script src="./src/dist/helpers.js" defer></script>
+  <script src="./src/dist/control.js" defer></script>
+  <script src="./src/dist/view.js" defer></script>
+  <script src="./src/dist/model.js" defer></script>
+  <script src="./src/dist/main.js" defer></script>
+  <script src="https://kit.fontawesome.com/0d9e773bea.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="boardContainer">
+    <nav class="boardContainer__topNav">
+      <div class="boardContainer__topNav__logo">LOGO</div>
+      <div class="boardContainer__topNav__rightSideDiv">
+        <input type="text" class="boardContainer__topNav__rightSideDiv__search" placeholder="&#xF002; Search" />
+        <i class="fa-solid fa-bell boardContainer__topNav__rightSideDiv__notifications"></i>
+        <i class="fa-solid fa-user boardContainer__topNav__rightSideDiv__profile profileBtn"></i>
       </div>
+    </nav>
+    <main class="boardContainer__main">
+      <div class="boardContainer__main__list">
+        <div class="boardContainer__main__list__header">
+          <h3 contenteditable>Done</h3>
+          <i class="fa-solid fa-ellipsis"></i>
+        </div>
+        <div class="boardContainer__main__list__card">
+          <p>Create Element</p>
+          <i class="fa-regular fa-pen-to-square"></i>
+        </div>
+        <div class="boardContainer__main__list__card">
+          <p>Buy Itay Chocolate</p>
+          <i class="fa-regular fa-pen-to-square"></i>
+        </div>
+        <div class="boardContainer__main__list__card">
+          <p>Something else...</p>
+          <i class="fa-regular fa-pen-to-square"></i>
+        </div>
+        <div class="boardContainer__main__list__card--addCard">
+          <button class="addCardBtn"><i class="fa-solid fa-plus">Add Card</i></button>
+        </div>
+
+      </div>
+    </main>
+    <div class="profileWindow">
+      <i class="fa-solid fa-arrow-right-from-bracket backToMain"></i>
+      <ul>
+        <h1>About you</h1>
+        <li>Name:</li>
+        <li>Gender:</li>
+        <li>Email:</li>
+        <li>Phone Number:</li>
+        <li>User Name:</li>
+        <li>Password:</li>
+      </ul>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

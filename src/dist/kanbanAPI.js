@@ -1,18 +1,19 @@
 "use strict";
 exports.__esModule = true;
+exports.KanbanAPI = void 0;
 var KanbanAPI = /** @class */ (function () {
     function KanbanAPI() {
     }
-    KanbanAPI.getItems = function (listId) {
+    KanbanAPI.prototype.getItems = function (listId) {
         var list = readLocalStorage().find(function (list) { return list.id === listId; });
         if (!list) {
-            throw new Error("cant find list");
+            return [];
         }
         return list.items;
     };
     return KanbanAPI;
 }());
-exports["default"] = KanbanAPI;
+exports.KanbanAPI = KanbanAPI;
 function readLocalStorage() {
     var json = localStorage.getItem("board-data");
     if (!json) {
