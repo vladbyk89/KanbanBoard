@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script
-      src="https://kit.fontawesome.com/0d9e773bea.js"
-      crossorigin="anonymous"
-    ></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,6 +11,10 @@
     <script src="./src/dist/view.js" defer></script>
     <script src="./src/dist/model.js" defer></script>
     <script src="./src/dist/main.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/0d9e773bea.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <div class="mainpageContainer">
@@ -43,7 +43,7 @@
         <h1 class="mainpageContainer__main__welcomeMessage">Hello and welcome to our new task management application</h1>
         <div class="mainpageContainer__main__feed">
           <h2>Recently Viewed</h2>
-          <div class="boardArea">
+          <div class="mainpageContainer__main__feed__boardArea">
             <div class="board"></div>
             <div class="board"></div>
             <div class="board"></div>
@@ -51,13 +51,24 @@
         </div>
         <div class="mainpageContainer__main__feed">
           <h3>Your Boards</h3>
-          <div class="boardArea">
+          <div class="mainpageContainer__main__feed__boardArea">
             <div class="board"></div>
             <div class="board"></div>
             <div class="board"></div>
           </div>
         </div>
       </main>
+      <div class="profileWindow">
+        <ul>
+          <h1>About you</h1>
+          <li>Name: </li>
+          <li>Gender: </li>
+          <li>Email: </li>
+          <li>Phone Number: </li>
+          <li>User Name: </li>
+          <li>Password: </li>
+        </ul>
+      </div>
     </div>
   </body>
 </html>
