@@ -6,19 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kanban Board</title>
+  <script src="https://kit.fontawesome.com/0d9e773bea.js" crossorigin="anonymous" defer></script>
   <link rel="stylesheet" href="./src/dist/boardStyle.css" />
   <script src="./src/dist/helpers.js" defer></script>
   <script src="./src/dist/control.js" defer></script>
   <script src="./src/dist/view.js" defer></script>
   <script src="./src/dist/model.js" defer></script>
   <script src="./src/dist/main.js" defer></script>
-  <script src="https://kit.fontawesome.com/0d9e773bea.js" crossorigin="anonymous"></script>
+  <script src="./src/dist/kanbanAPI.js" defer></script>
+
 </head>
 
 <body>
   <div class="boardContainer">
     <nav class="boardContainer__topNav">
       <div class="boardContainer__topNav__logo">LOGO</div>
+      <button class="boardContainer__topNav__addList">+ add list</button>
       <div class="boardContainer__topNav__rightSideDiv">
         <input type="text" class="boardContainer__topNav__rightSideDiv__search" placeholder="&#xF002; Search" />
         <i class="fa-solid fa-bell boardContainer__topNav__rightSideDiv__notifications"></i>
@@ -26,20 +29,20 @@
       </div>
     </nav>
     <main class="boardContainer__main">
-      <div class="boardContainer__main__list">
+      <div class="boardContainer__main__list" draggable="true">
         <div class="boardContainer__main__list__header">
           <h3 contenteditable>Done</h3>
           <i class="fa-solid fa-ellipsis"></i>
         </div>
-        <div class="boardContainer__main__list__card">
+        <div class="boardContainer__main__list__card" draggable="true">
           <p>Create Element</p>
           <i class="fa-regular fa-pen-to-square"></i>
         </div>
-        <div class="boardContainer__main__list__card">
+        <div class="boardContainer__main__list__card" draggable="true">
           <p>Buy Itay Chocolate</p>
           <i class="fa-regular fa-pen-to-square"></i>
         </div>
-        <div class="boardContainer__main__list__card">
+        <div class="boardContainer__main__list__card" draggable="true">
           <p>Something else...</p>
           <i class="fa-regular fa-pen-to-square"></i>
         </div>
@@ -48,6 +51,29 @@
         </div>
 
       </div>
+      <div class="boardContainer__main__list" draggable="true">
+        <div class="boardContainer__main__list__header">
+          <h3 contenteditable>Done</h3>
+          <i class="fa-solid fa-ellipsis"></i>
+        </div>
+        <div class="boardContainer__main__list__card" draggable="true">
+          <p>to do</p>
+          <i class="fa-regular fa-pen-to-square"></i>
+        </div>
+        <div class="boardContainer__main__list__card" draggable="true">
+          <p>Buy Itay gut</p>
+          <i class="fa-regular fa-pen-to-square"></i>
+        </div>
+        <div class="boardContainer__main__list__card" draggable="true">
+          <p>hi is test</p>
+          <i class="fa-regular fa-pen-to-square"></i>
+        </div>
+        <div class="boardContainer__main__list__card--addCard">
+          <button class="addCardBtn"><i class="fa-solid fa-plus">Add Card</i></button>
+        </div>
+
+      </div>
+      <!-- <div class="boardContainer__main__dropzone"></div> -->
     </main>
     <div class="profileWindow">
       <i class="fa-solid fa-arrow-right-from-bracket backToMain"></i>
