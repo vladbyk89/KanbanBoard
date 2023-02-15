@@ -3,12 +3,12 @@
 
 // console.log(KanbanAPI.getitems(1));
 
-// profileBtn.addEventListener(
-//   "click",
-//   () => (profileWindow.style.display = "flex")
-// );
+profileBtn.addEventListener(
+  "click",
+  () => (profileWindow.style.display = "flex")
+);
 
-// backToMain.addEventListener(
-//   "click",
-//   () => (profileWindow.style.display = "none")
-// );
+backToMain.addEventListener(
+  "click",
+  () => (profileWindow.style.display = "none")
+);

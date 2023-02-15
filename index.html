@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kanban Board Main</title>
-    tre
     <link rel="stylesheet" href="./src/dist/style.css" />
     <script src="./src/dist/helpers.js" defer></script>
     <script src="./src/dist/control.js" defer></script>
@@ -20,7 +19,12 @@
   <body>
     <div class="mainpageContainer">
       <nav class="mainpageContainer__topNav">
-        <div class="mainpageContainer__topNav__logo">LOGO</div>
+        <div class="mainpageContainer__topNav__logo">
+          LOGO
+          <button class="mainpageContainer__sideNav__btn createBoardBtn">
+            Create Board
+          </button>
+        </div>
         <div class="mainpageContainer__topNav__rightSideDiv">
           <input
             type="text"
@@ -34,11 +38,6 @@
             class="fa-solid fa-user mainpageContainer__topNav__rightSideDiv__profile profileBtn"
           ></i>
         </div>
-      </nav>
-      <nav class="mainpageContainer__sideNav">
-        <button class="mainpageContainer__sideNav__btn createBoardBtn">
-          Create Board
-        </button>
       </nav>
       <main class="mainpageContainer__main">
         <h1 class="mainpageContainer__main__welcomeMessage">

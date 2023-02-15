@@ -17,9 +17,8 @@ body {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 0.3fr 1.8fr 1fr;
-  grid-template-rows: 0.3fr 1.6fr 1fr;
-  grid-template-areas: "top top top" "side main main" "side main main";
+  grid-template-rows: 5rem 1fr;
+  grid-template-areas: "top top" "main main" "main main";
 }
 .boardContainer__topNav {
   border: 1px solid black;
@@ -61,54 +60,6 @@ body {
 .boardContainer__topNav__rightSideDiv i:hover {
   text-shadow: 0 0 5px black;
 }
-.boardContainer__sideNav {
-  border: 1px solid black;
-  grid-area: side;
-  display: flex;
-  flex-direction: column;
-  padding: 0.5em;
-}
-.boardContainer__sideNav button {
-  align-items: center;
-  background-clip: padding-box;
-  background-color: #fa6400;
-  border: 1px solid transparent;
-  border-radius: 0.25rem;
-  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: inline-flex;
-  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  justify-content: center;
-  line-height: 1.25;
-  margin: 0;
-  min-height: 3rem;
-  padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
-  position: relative;
-  text-decoration: none;
-  transition: all 250ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: baseline;
-  width: auto;
-}
-.boardContainer__sideNav button:hover,
-.boardContainer__sideNav button:focus {
-  background-color: #fb8332;
-  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-}
-.boardContainer__sideNav button:hover {
-  transform: translateY(-1px);
-}
-.boardContainer__sideNav button:active {
-  background-color: #c85000;
-  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
-  transform: translateY(0);
-}
 .boardContainer__main {
   border: 1px solid black;
   grid-area: main;
@@ -121,7 +72,7 @@ body {
   width: 20%;
   height: auto;
   padding: 1em;
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
 .boardContainer__main__list__header {
   display: flex;
