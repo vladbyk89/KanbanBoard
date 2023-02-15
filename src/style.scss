@@ -250,6 +250,13 @@ body {
     display: flex;
     padding: 10%;
     display: none;
+    i{
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-size: 3rem;
+      cursor: pointer;
+    }
     ul {
       display: flex;
       flex-direction: column;

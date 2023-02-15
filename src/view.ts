@@ -26,9 +26,10 @@ const registerButton = document.querySelector(
 ) as HTMLFormElement;
 
 // Main page elements
-// const profileBtn = document.querySelector(
-//   ".mainpageContainer__topNav__rightSideDiv__profile"
-// ) as HTMLElement;
-// const profileWindow = document.querySelector(
-//   ".profileWindow"
-// ) as HTMLDivElement;
+const profileBtn = document.querySelector(
+  ".mainpageContainer__topNav__rightSideDiv__profile"
+) as HTMLElement;
+const profileWindow = document.querySelector(
+  ".profileWindow"
+) as HTMLDivElement;
+const backToMain = document.querySelector('.backToMain') as HTMLElement;

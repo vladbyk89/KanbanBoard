@@ -234,6 +234,13 @@ body {
   padding: 10%;
   display: none;
 }
+.mainpageContainer .profileWindow i {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: 3rem;
+  cursor: pointer;
+}
 .mainpageContainer .profileWindow ul {
   display: flex;
   flex-direction: column;

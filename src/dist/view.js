@@ -14,9 +14,6 @@ var gender = document.querySelector("#gender");
 var form = document.querySelector("form");
 var registerButton = document.querySelector(".registerBtn");
 // Main page elements
-// const profileBtn = document.querySelector(
-//   ".mainpageContainer__topNav__rightSideDiv__profile"
-// ) as HTMLElement;
-// const profileWindow = document.querySelector(
-//   ".profileWindow"
-// ) as HTMLDivElement;
+var profileBtn = document.querySelector(".mainpageContainer__topNav__rightSideDiv__profile");
+var profileWindow = document.querySelector(".profileWindow");
+var backToMain = document.querySelector('.backToMain');
