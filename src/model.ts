@@ -33,8 +33,8 @@ class List {
 
 const preMadeList: User[] = [
   new User(
-    "vladislav",
-    "bykanov",
+    "Vladislav",
+    "Bykanov",
     "male",
     "vladb89",
     "12345678",
@@ -42,7 +42,7 @@ const preMadeList: User[] = [
     "0548155232"
   ),
   new User(
-    "itai",
+    "Itai",
     "Gelberg",
     "male",
     "itaiG",
@@ -51,7 +51,7 @@ const preMadeList: User[] = [
     "0541234567"
   ),
   new User(
-    "itay",
+    "Itay",
     "Amosi",
     "male",
     "itayA",
