@@ -8,27 +8,39 @@
 body {
   height: 100vh;
   width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: url("http://clevertechie.com/img/bnet-bg.jpg") #a6c2df no-repeat center top;
 }
 
 .registerContainer {
-  height: 80%;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .registerContainer__title {
-  padding-bottom: 20%;
+  padding: 3em;
 }
 .registerContainer__form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 50%;
+  height: 100%;
   width: 100%;
-  aspect-ratio: 3/6;
+  font-size: 1.5rem;
+}
+.registerContainer__form input {
+  margin-bottom: 1rem;
+  width: 30%;
+  font-size: 1.5rem;
+  padding: 0.3em;
+}
+.registerContainer__form select {
+  padding: 0.1em;
+  font-size: 1.5rem;
 }
 .registerContainer button {
+  margin-top: 2em;
   align-items: center;
   appearance: none;
   background-color: #fcfcfd;

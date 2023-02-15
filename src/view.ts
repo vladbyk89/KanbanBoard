@@ -10,5 +10,5 @@ const password = document.querySelector('#password') as HTMLInputElement;
 const email = document.querySelector('#email') as HTMLInputElement;
 const phoneNumber = document.querySelector('#phoneNumber') as HTMLInputElement;
 const gender = document.querySelector('#gender') as HTMLSelectElement;
-const form = document.querySelector('form');
+const form = document.querySelector('form') as HTMLFormElement;
 const registerButton = form.querySelector('button[type="submit"]')as HTMLFormElement; 
