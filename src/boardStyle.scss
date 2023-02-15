@@ -78,6 +78,9 @@ body {
         justify-content: space-between;
         align-items: center;
         cursor: pointer;
+        i{
+          font-size: 1.5rem;
+        }
       }
       &__card {
         border: 1px solid black;
