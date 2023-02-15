@@ -255,12 +255,17 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 2rem;
+  font-size: 2rem;
 }
 .newBoardWindow .input {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1em;
+}
+.newBoardWindow .input input {
+  width: 40vh;
+  height: 3rem;
 }
 .newBoardWindow button {
   padding: 1em;
