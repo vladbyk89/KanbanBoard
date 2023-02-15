@@ -16,10 +16,25 @@ class User {
   }
 }
 
+class Board {
+  constructor(
+    public name: string,
+    public backgroundColor: string,
+    public lists: List[]
+  ) {}
+}
+
+class List {
+  constructor(
+    public name: string, 
+    public items: string
+    ) {}
+}
+
 const preMadeList: User[] = [
   new User(
-    "vladislav",
-    "bykanov",
+    "Vladislav",
+    "Bykanov",
     "male",
     "vladb89",
     "12345678",
@@ -27,7 +42,7 @@ const preMadeList: User[] = [
     "0548155232"
   ),
   new User(
-    "itai",
+    "Itai",
     "Gelberg",
     "male",
     "itaiG",
@@ -36,7 +51,7 @@ const preMadeList: User[] = [
     "0541234567"
   ),
   new User(
-    "itay",
+    "Itay",
     "Amosi",
     "male",
     "itayA",
@@ -46,4 +61,4 @@ const preMadeList: User[] = [
   ),
 ];
 
-localStorage.setItem('signedUpUsers', JSON.stringify(preMadeList))
+localStorage.setItem("signedUpUsers", JSON.stringify(preMadeList));

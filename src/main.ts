@@ -1,11 +1,13 @@
+profileBtn.addEventListener("click", () => {
+  displayUser(preMadeList[1])
+});
 
+backToMain.addEventListener(
+  "click",
+  () => (profileWindow.style.display = "none")
+);
 
-// profileBtn.addEventListener(
-//   "click",
-//   () => (profileWindow.style.display = "flex")
-// );
+createBoardBtn.addEventListener("click", () =>
+  console.log("Create board clicked")
+);
 
-// backToMain.addEventListener(
-//   "click",
-//   () => (profileWindow.style.display = "none")
-// );

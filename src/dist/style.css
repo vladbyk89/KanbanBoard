@@ -189,29 +189,36 @@ body {
   grid-area: main;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 5%;
-  padding: 5rem;
+  padding: 2rem 0 0 2rem;
 }
 .mainpageContainer__main__welcomeMessage {
   font-family: "Times New Roman", Times, serif;
 }
 .mainpageContainer__main__feed {
   border: 1px solid black;
-  height: 40%;
+  height: auto;
+  width: 90%;
+  max-width: 1400px;
   padding: 2rem;
+}
+.mainpageContainer__main__feed h3 {
+  font-size: 2rem;
+  margin-bottom: 2em;
 }
 .mainpageContainer__main__feed__boardArea {
   width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
 }
 .mainpageContainer__main__feed__boardArea .board {
   border: 1px solid black;
   border-radius: 10px;
-  width: 30%;
-  height: 60%;
+  width: 60%;
+  aspect-ratio: 1/1;
   cursor: pointer;
 }
 .mainpageContainer__main__feed__boardArea .board:hover {
@@ -242,4 +249,34 @@ body {
 }
 .mainpageContainer .profileWindow ul li {
   display: block;
+}
+
+.newBoardWindow {
+  position: absolute;
+  background-color: darkolivegreen;
+  height: 70vh;
+  aspect-ratio: 1/1;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  font-size: 2rem;
+  display: none;
+}
+.newBoardWindow .input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+.newBoardWindow .input input {
+  width: 40vh;
+  height: 3rem;
+}
+.newBoardWindow button {
+  padding: 1em;
+  font-size: 1.5rem;
+  margin: 1em;
 }

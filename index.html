@@ -43,17 +43,21 @@
         <h1 class="mainpageContainer__main__welcomeMessage">
           Hello and welcome to our new task management application
         </h1>
-        <div class="mainpageContainer__main__feed">
+        <!-- <div class="mainpageContainer__main__feed">
           <h2>Recently Viewed</h2>
           <div class="mainpageContainer__main__feed__boardArea">
             <div class="board"></div>
             <div class="board"></div>
             <div class="board"></div>
           </div>
-        </div>
+        </div> -->
         <div class="mainpageContainer__main__feed">
           <h3>Your Boards</h3>
           <div class="mainpageContainer__main__feed__boardArea">
+            <div class="board"></div>
+            <div class="board"></div>
+            <div class="board"></div>
+            <div class="board"></div>
             <div class="board"></div>
             <div class="board"></div>
             <div class="board"></div>
@@ -62,15 +66,23 @@
       </main>
       <div class="profileWindow">
         <i class="fa-solid fa-arrow-right-from-bracket backToMain"></i>
-        <ul>
-          <h1>About you</h1>
-          <li>Name:</li>
-          <li>Gender:</li>
-          <li>Email:</li>
-          <li>Phone Number:</li>
-          <li>User Name:</li>
-          <li>Password:</li>
-        </ul>
+        <div class="profile">
+        </div>
+      </div>
+    </div>
+    <div class="newBoardWindow">
+      <h1>Create New Board</h1>
+      <div class="input">
+        <label for="boardName">Name of your new board:</label>
+        <input type="text" name="boardName" id="boardName" />
+      </div>
+      <div class="input">
+        <label for="boardColor">Backround Color:</label>
+        <input type="color" name="boardColor" id="boardColor" />
+      </div>
+      <div class="btnDiv">
+        <button>CREATE</button>
+        <button>CANCEL</button>
       </div>
     </div>
   </body>

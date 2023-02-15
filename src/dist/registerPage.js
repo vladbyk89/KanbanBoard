@@ -10,13 +10,13 @@ function handleSubmit(e) {
     var email = this.elements.email.value;
     var phone = this.elements.phoneNumber.value;
     var arr = [gender, firstName, lastName, password, userName, email, phone];
-    if (arr.some(function (ele) { return ele == ''; }))
-        return alert('missing field');
+    if (arr.some(function (ele) { return ele == ""; }))
+        return alert("missing field");
     var newUser = new User(firstName, lastName, gender, userName, password, email, phone);
-    var signedUpUsers = JSON.parse(localStorage.getItem('signedUpUsers') || '[]');
+    var signedUpUsers = JSON.parse(localStorage.getItem("signedUpUsers") || "[]");
     signedUpUsers.push(newUser);
-    localStorage.setItem('signedUpUsers', JSON.stringify(signedUpUsers));
-    location.href = 'index.html';
+    localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
+    location.href = "index.html";
     console.table(signedUpUsers);
     e.target.reset();
 }
