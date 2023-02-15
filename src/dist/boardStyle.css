@@ -1,47 +1,185 @@
-.boardContainer * {
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
   font-family: cursive;
 }
 
-.boardContainer {
+body {
+  height: 100vh;
+  width: 100vw;
   display: flex;
-  padding: 30px;
-  width: 750px;
-  background-color: blue;
-  border-radius: 5px;
-  align-items: none;
+  align-items: center;
+  justify-content: center;
 }
-.boardContainer__list:not(:last-child) {
-  margin-left: 30px;
-}
-.boardContainer__list__title {
-  margin-bottom: 20px;
-  font-size: 30px;
-  color: red;
-  user-select: none;
-}
-.boardContainer__card-input {
-  width: 250px;
-  padding: 10px 15px;
-  box-sizing: border-box;
-  background: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.boardContainer__dropZone {
-  height: 10px;
-  transition: background 0.15s, height 0.15s;
-}
-.boardContainer__dropZone--active {
-  height: 20px;
-  background: rgba(0, 0, 0, 0.25);
-}
-.boardContainer button {
+
+.boardContainer {
   width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
-  color: #5bd696;
-  background-color: #1058e8;
-  border: none;
-  border-radius: 5px;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 0.3fr 1.8fr 1fr;
+  grid-template-rows: 0.3fr 1.6fr 1fr;
+  grid-template-areas: "top top top" "side main main" "side main main";
+}
+.boardContainer__topNav {
+  border: 1px solid black;
+  grid-area: top;
+  display: flex;
+  justify-content: space-between;
+}
+.boardContainer__topNav__logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  font-size: 2rem;
+}
+.boardContainer__topNav__rightSideDiv {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 0 1em;
+  gap: 3rem;
+  width: 40%;
+  font-size: 2rem;
+}
+.boardContainer__topNav__rightSideDiv__search {
+  width: 50%;
+  font-size: 1.3rem;
+  padding: 0.3em;
+  margin-right: auto;
+  font-family: sans-serif, FontAwesome;
+}
+.boardContainer__topNav__rightSideDiv__notifications {
   cursor: pointer;
+  color: #fa6400;
+}
+.boardContainer__topNav__rightSideDiv__profile {
+  cursor: pointer;
+  color: #fa6400;
+}
+.boardContainer__topNav__rightSideDiv i:hover {
+  text-shadow: 0 0 5px black;
+}
+.boardContainer__sideNav {
+  border: 1px solid black;
+  grid-area: side;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+}
+.boardContainer__sideNav button {
+  align-items: center;
+  background-clip: padding-box;
+  background-color: #fa6400;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+.boardContainer__sideNav button:hover,
+.boardContainer__sideNav button:focus {
+  background-color: #fb8332;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+.boardContainer__sideNav button:hover {
+  transform: translateY(-1px);
+}
+.boardContainer__sideNav button:active {
+  background-color: #c85000;
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  transform: translateY(0);
+}
+.boardContainer__main {
+  border: 1px solid black;
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  padding: 5rem;
+}
+.boardContainer__main__list {
+  border: 1px solid black;
+  width: 20%;
+  height: auto;
+  padding: 1em;
+  font-size: 1.3rem;
+}
+.boardContainer__main__list__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.boardContainer__main__list__card {
+  border: 1px solid black;
+  position: relative;
+  padding: 0.5em;
+  margin: 1em 0;
+  height: auto;
+  cursor: pointer;
+}
+.boardContainer__main__list__card i {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+}
+.boardContainer__main__list__card--addCard {
+  display: flex;
+}
+.boardContainer__main__list__card--addCard button {
+  border: none;
+  width: 100%;
+  height: 2rem;
+  cursor: pointer;
+}
+.boardContainer__main__list__card--addCard button:hover {
+  background-color: #36395a3e;
+}
+.boardContainer__main__list__card:hover {
+  box-shadow: 0 0 5px black;
+}
+.boardContainer .profileWindow {
+  background-color: #36395a;
+  color: whitesmoke;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  padding: 10%;
+  display: none;
+}
+.boardContainer .profileWindow i {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: 3rem;
+  cursor: pointer;
+}
+.boardContainer .profileWindow ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 2rem;
+}
+.boardContainer .profileWindow ul li {
+  display: block;
 }
