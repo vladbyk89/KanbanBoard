@@ -78,7 +78,7 @@ body {
         justify-content: space-between;
         align-items: center;
         cursor: pointer;
-        i{
+        i {
           font-size: 1.5rem;
         }
       }
@@ -110,7 +110,7 @@ body {
           }
         }
       }
-      &__card:hover{
+      &__card:hover {
         box-shadow: 0 0 5px black;
       }
     }

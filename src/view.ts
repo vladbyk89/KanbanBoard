@@ -21,4 +21,8 @@ const profileBtn = document.querySelector(
 const profileWindow = document.querySelector(
   ".profileWindow"
 ) as HTMLDivElement;
-const backToMain = document.querySelector('.backToMain') as HTMLElement;
+const backToMain = document.querySelector(".backToMain") as HTMLElement;
+
+const createBoardBtn = document.querySelector(
+  ".createBoardBtn"
+) as HTMLButtonElement;

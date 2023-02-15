@@ -8,4 +8,5 @@ var form = document.querySelector("form");
 // Main page elements
 var profileBtn = document.querySelector(".mainpageContainer__topNav__rightSideDiv__profile");
 var profileWindow = document.querySelector(".profileWindow");
-var backToMain = document.querySelector('.backToMain');
+var backToMain = document.querySelector(".backToMain");
+var createBoardBtn = document.querySelector(".createBoardBtn");

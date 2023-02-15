@@ -243,3 +243,27 @@ body {
 .mainpageContainer .profileWindow ul li {
   display: block;
 }
+
+.newBoardWindow {
+  position: absolute;
+  background-color: darkolivegreen;
+  height: 70vh;
+  aspect-ratio: 1/1;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+}
+.newBoardWindow .input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+.newBoardWindow button {
+  padding: 1em;
+  font-size: 1.5rem;
+  margin: 1em;
+}
