@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script
+      src="https://kit.fontawesome.com/0d9e773bea.js"
+      crossorigin="anonymous"
+    ></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,6 +17,47 @@
     <script src="./src/dist/main.js" defer></script>
   </head>
   <body>
-    <h1>main page</h1>
+    <div class="mainpageContainer">
+      <nav class="mainpageContainer__topNav">
+        <div class="mainpageContainer__topNav__logo">LOGO</div>
+        <div class="mainpageContainer__topNav__rightSideDiv">
+          <input
+            type="text"
+            class="mainpageContainer__topNav__rightSideDiv__search"
+            placeholder="&#xF002 Search"
+          />
+          <i
+            class="fa-solid fa-bell mainpageContainer__topNav__rightSideDiv__notifications"
+          ></i>
+          <i
+            class="fa-solid fa-user mainpageContainer__topNav__rightSideDiv__profile"
+          ></i>
+        </div>
+      </nav>
+      <nav class="mainpageContainer__sideNav">
+        <button class="mainpageContainer__sideNav__btn createBoardBtn">
+          Create Board
+        </button>
+      </nav>
+      <main class="mainpageContainer__main">
+        <h1 class="mainpageContainer__main__welcomeMessage">Hello and welcome to our new task management application</h1>
+        <div class="mainpageContainer__main__feed">
+          <h2>Recently Viewed</h2>
+          <div class="boardArea">
+            <div class="board"></div>
+            <div class="board"></div>
+            <div class="board"></div>
+          </div>
+        </div>
+        <div class="mainpageContainer__main__feed">
+          <h3>Your Boards</h3>
+          <div class="boardArea">
+            <div class="board"></div>
+            <div class="board"></div>
+            <div class="board"></div>
+          </div>
+        </div>
+      </main>
+    </div>
   </body>
 </html>
