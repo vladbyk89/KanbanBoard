@@ -16,6 +16,21 @@ class User {
   }
 }
 
+class Board {
+  constructor(
+    public name: string,
+    public backgroundColor: string,
+    public lists: List[]
+  ) {}
+}
+
+class List {
+  constructor(
+    public name: string, 
+    public items: string
+    ) {}
+}
+
 const preMadeList: User[] = [
   new User(
     "vladislav",
@@ -46,4 +61,4 @@ const preMadeList: User[] = [
   ),
 ];
 
-localStorage.setItem('signedUpUsers', JSON.stringify(preMadeList))
+localStorage.setItem("signedUpUsers", JSON.stringify(preMadeList));
