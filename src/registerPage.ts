@@ -23,7 +23,7 @@ function handleSubmit(e) {
     const signedUpUsers = JSON.parse(localStorage.getItem('signedUpUsers') || '[]') as User[];
     signedUpUsers.push(newUser);
     localStorage.setItem('signedUpUsers', JSON.stringify(signedUpUsers));
-//     // location.href='index.html';
+    location.href='index.html';
       console.table(signedUpUsers)
     e.target.reset();
   }

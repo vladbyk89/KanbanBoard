@@ -80,6 +80,9 @@ body {
   align-items: center;
   cursor: pointer;
 }
+.boardContainer__main__list__header i {
+  font-size: 1.5rem;
+}
 .boardContainer__main__list__card {
   border: 1px solid black;
   position: relative;
