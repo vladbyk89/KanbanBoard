@@ -101,7 +101,7 @@ body {
   grid-template-areas: "top top" "main main" "main main";
 }
 .mainpageContainer__topNav {
-  border: 1px solid black;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.272);
   grid-area: top;
   display: flex;
   justify-content: space-between;
@@ -113,11 +113,15 @@ body {
   text-shadow: 0 0 10px red;
 }
 .mainpageContainer__topNav__search {
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.249);
+  outline: none;
   width: 30%;
   font-size: 1.3rem;
   padding: 0.3em;
   font-family: sans-serif, FontAwesome;
+}
+.mainpageContainer__topNav__search:focus::placeholder {
+  color: transparent;
 }
 .mainpageContainer__topNav__notifications {
   cursor: pointer;
@@ -172,7 +176,6 @@ body {
   transform: translateY(0);
 }
 .mainpageContainer__main {
-  border: 1px solid black;
   grid-area: main;
   display: flex;
   flex-direction: column;
