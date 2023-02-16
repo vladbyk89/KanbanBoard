@@ -19,25 +19,21 @@
   <body onload="checkIfCurrentUserExists()">
     <div class="mainpageContainer">
       <nav class="mainpageContainer__topNav">
-        <div class="mainpageContainer__topNav__logo">
-          LOGO
-          <button class="mainpageContainer__topNav__btn createBoardWindowBtn">
-            Create Board
-          </button>
-        </div>
-        <div class="mainpageContainer__topNav__rightSideDiv">
-          <input
-            type="text"
-            class="mainpageContainer__topNav__rightSideDiv__search"
-            placeholder="&#xF002; Search"
-          />
-          <i
-            class="fa-solid fa-bell mainpageContainer__topNav__rightSideDiv__notifications"
-          ></i>
-          <i
-            class="fa-solid fa-user mainpageContainer__topNav__rightSideDiv__profile profileBtn"
-          ></i>
-        </div>
+        <div class="mainpageContainer__topNav__logo">LOGO</div>
+        <button class="mainpageContainer__topNav__btn createBoardWindowBtn">
+          Create Board
+        </button>
+        <input
+          type="text"
+          class="mainpageContainer__topNav__search"
+          placeholder="&#xF002; Search"
+        />
+        <i
+          class="fa-solid fa-bell mainpageContainer__topNav__notifications"
+        ></i>
+        <i
+          class="fa-solid fa-user mainpageContainer__topNav__profile profileBtn"
+        ></i>
       </nav>
       <main class="mainpageContainer__main">
         <h1>Hello and welcome to our new task management application</h1>
@@ -52,10 +48,6 @@
         <div class="mainpageContainer__main__boards">
           <h3>Your Boards</h3>
           <div class="mainpageContainer__main__boards__boardArea">
-            <div class="board"></div>
-            <div class="board"></div>
-            <div class="board"></div>
-            <div class="board"></div>
             <div class="board"></div>
             <div class="board"></div>
             <div class="board"></div>
@@ -79,7 +71,7 @@
       </div>
       <div>
         <button class="createBoardBtn">CREATE</button>
-        <button>CANCEL</button>
+        <button class="cancelCreateBoardBtn">CANCEL</button>
       </div>
     </div>
   </body>
