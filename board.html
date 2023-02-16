@@ -18,7 +18,7 @@
 </head>
 
 <body>
-  <div class="boardContainer">
+  <!-- <div class="boardContainer">
     <nav class="boardContainer__topNav">
       <div class="boardContainer__topNav__logo">LOGO</div>
       <button class="boardContainer__topNav__addList">+ add list</button>
@@ -73,7 +73,6 @@
         </div>
 
       </div>
-      <!-- <div class="boardContainer__main__dropzone"></div> -->
     </main>
     <div class="profileWindow">
       <i class="fa-solid fa-arrow-right-from-bracket backToMain"></i>
@@ -87,7 +86,37 @@
         <li>Password:</li>
       </ul>
     </div>
-  </div>
+  </div> -->
+
+<div class="board">
+  <form id="todo-form">
+    <input type="text" placeholder="New TODO" id="todo-input">
+    <button type="submit">Add +</button>
+  </form>
+<div class="lanes">
+<div class="swim-lane" id="todo-lane" draggable="true">
+  <h3>ToDo</h3>
+  <p class="task" draggable="true">get dog</p>
+  <p class="task" draggable="true">love cat</p>
+  <p class="task" draggable="true">new todo</p>
+</div>
+<div class="swim-lane" id="todo-lane">
+  <h3>new tasking</h3>
+  <p class="task" draggable="true">by food</p>
+
+</div>
+<div class="swim-lane" id="todo-lane">
+  <h3>ToDo in bad</h3>
+  <p class="task" draggable="true">get sleep</p>
+  <p class="task" draggable="true">love to sleep</p>
+
+</div>
+</div>
+</div>
+
+
+
+
 </body>
 
 </html>
