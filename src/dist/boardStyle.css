@@ -43,8 +43,14 @@ h3 {
   width: 10%;
   height: 2rem;
   cursor: pointer;
-  margin-right: 40%;
   border: 2px solid #fa6400;
+}
+.boardContainer__topNav__boardName {
+  display: flex;
+  width: 20rem;
+  font-size: 2rem;
+  align-items: center;
+  margin-left: 20%;
 }
 .boardContainer__topNav__rightSideDiv {
   display: flex;
