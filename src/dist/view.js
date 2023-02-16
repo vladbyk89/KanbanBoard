@@ -8,6 +8,10 @@ var form = document.querySelector("form");
 // Main page elements
 var profileBtn = document.querySelector(".mainpageContainer__topNav__rightSideDiv__profile");
 var profileWindow = document.querySelector(".profileWindow");
-var profileDiv = document.querySelector('.profile');
+var profileDiv = document.querySelector(".profile");
 var backToMain = document.querySelector(".backToMain");
+var createBoardWindowBtn = document.querySelector(".createBoardWindowBtn");
 var createBoardBtn = document.querySelector(".createBoardBtn");
+var newBoardWindow = document.querySelector(".newBoardWindow");
+var boardName = document.querySelector("#boardName");
+var boardColor = document.querySelector("#boardColor");

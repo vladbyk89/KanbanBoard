@@ -1,3 +1,6 @@
+
+
+
 class User {
   private uid: string;
   constructor(
@@ -7,7 +10,8 @@ class User {
     public userName: string,
     public password: string,
     public email: string,
-    public phoneNumber: string
+    public phoneNumber: string,
+    public boardList: Board[] = []
   ) {
     this.uid = Math.random().toString(36).slice(2);
   }
@@ -20,7 +24,7 @@ class Board {
   constructor(
     public name: string,
     public backgroundColor: string,
-    public lists: List[]
+    public lists: List[] = []
   ) {}
 }
 
@@ -62,3 +66,5 @@ const preMadeList: User[] = [
 ];
 
 localStorage.setItem("signedUpUsers", JSON.stringify(preMadeList));
+
+let currentUser: User = preMadeList[0];

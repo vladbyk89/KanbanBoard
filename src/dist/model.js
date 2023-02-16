@@ -1,5 +1,6 @@
 var User = /** @class */ (function () {
-    function User(firstName, lastName, gender, userName, password, email, phoneNumber) {
+    function User(firstName, lastName, gender, userName, password, email, phoneNumber, boardList) {
+        if (boardList === void 0) { boardList = []; }
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -7,6 +8,7 @@ var User = /** @class */ (function () {
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.boardList = boardList;
         this.uid = Math.random().toString(36).slice(2);
     }
     User.prototype.getuid = function () {
@@ -16,6 +18,7 @@ var User = /** @class */ (function () {
 }());
 var Board = /** @class */ (function () {
     function Board(name, backgroundColor, lists) {
+        if (lists === void 0) { lists = []; }
         this.name = name;
         this.backgroundColor = backgroundColor;
         this.lists = lists;
@@ -35,3 +38,4 @@ var preMadeList = [
     new User("Itay", "Amosi", "male", "itayA", "144322", "itaiAmosi@gmail.com", "0540987654"),
 ];
 localStorage.setItem("signedUpUsers", JSON.stringify(preMadeList));
+var currentUser = preMadeList[0];

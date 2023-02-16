@@ -12,3 +12,16 @@ function displayUser(user: User) {
       </ul>
       `);
 }
+
+function addNewBoardToUserInLocalStorage(updatedUser: User, board: Board) {
+  const getLocalStorage = localStorage.getItem("signedUpUsers");
+  if (getLocalStorage) {
+    const usersList = JSON.parse(getLocalStorage) as User[];
+    const addBoardToThisUser = usersList.find(
+      (user) => user.userName === updatedUser.userName
+    );
+    if (addBoardToThisUser) addBoardToThisUser.boardList.push(board);
+    localStorage.setItem('signedUpUsers', JSON.stringify(usersList))
+    console.log(addBoardToThisUser);
+  }
+}
