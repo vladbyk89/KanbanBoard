@@ -51,3 +51,27 @@ function currentUserFromStorage() {
     if (getUser)
         return JSON.parse(getUser);
 }
+function renderBoardsToMain(listOFBoards) {
+    boardArea.innerHTML = "";
+    listOFBoards.forEach(function (board) {
+        var boardDiv = document.createElement("div");
+        boardDiv.className = "board";
+        boardDiv.style.backgroundColor = board.backgroundColor;
+        boardDiv.textContent = board.name;
+        boardArea.appendChild(boardDiv);
+    });
+}
+function createBoard() {
+    console.log("createBoard() running");
+    if (boardName.value && boardColor.value) {
+        if (!currentUser)
+            return alert("not signed in");
+        var newBoard = new Board(boardName.value, boardColor.value);
+        addNewBoardToUserInLocalStorage(currentUser, newBoard);
+        location.href = "board.html";
+        console.table(preMadeUserList);
+    }
+    else {
+        alert("missing field");
+    }
+}
