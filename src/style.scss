@@ -112,7 +112,7 @@ body {
     "main main"
     "main main";
   &__topNav {
-    border: 1px solid black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.272);
     grid-area: top;
     display: flex;
     justify-content: space-between;
@@ -125,11 +125,15 @@ body {
     }
 
     &__search {
-      border: 1px solid black;
+      border: 1px solid rgba(0, 0, 0, 0.249);
+      outline: none;
       width: 30%;
       font-size: 1.3rem;
       padding: 0.3em;
       font-family: sans-serif, FontAwesome;
+    }
+    &__search:focus::placeholder{
+      color: transparent;
     }
     &__notifications {
       cursor: pointer;
@@ -191,7 +195,7 @@ body {
     }
   }
   &__main {
-    border: 1px solid black;
+    // border: 1px solid black;
     grid-area: main;
     display: flex;
     flex-direction: column;
@@ -225,7 +229,6 @@ body {
           width: 60%;
           aspect-ratio: 1/1;
           cursor: pointer;
-          // margin: auto;
         }
         .board:hover {
           box-shadow: 0 0 10px black;
@@ -233,30 +236,64 @@ body {
       }
     }
   }
-  .profileWindow {
-    background-color: #36395a;
-    color: whitesmoke;
-    height: 100%;
-    width: 100%;
+}
+
+
+.profileWindow {
+  background-color: #36395a;
+  color: whitesmoke;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  padding: 10%;
+  display: none;
+  .button-42 {
+    background-color: initial;
+    background-image: linear-gradient(-180deg, #FF7E31, #E62C03);
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+    height: 5%;
+    line-height: 40px;
+    outline: 0;
+    overflow: hidden;
+    pointer-events: auto;
     position: absolute;
+    text-align: center;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: top;
+    white-space: nowrap;
+    right: 15%;
+    bottom: 22%;
+    width: 15%;
+    z-index: 9;
+    border: 0;
+    transition: box-shadow .2s;
+  }
+  
+  .button-42:hover {
+    box-shadow: rgba(253, 76, 0, 0.5) 0 3px 8px;
+  }
+  i {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 3rem;
+    cursor: pointer;
+  }
+  ul {
     display: flex;
-    padding: 10%;
-    display: none;
-    i {
-      position: absolute;
-      top: 2rem;
-      right: 2rem;
-      font-size: 3rem;
-      cursor: pointer;
-    }
-    ul {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      font-size: 2rem;
-      li {
-        display: block;
-      }
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 2rem;
+    li {
+      display: block;
     }
   }
 }

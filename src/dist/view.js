@@ -16,3 +16,4 @@ var cancelCreateBoardBtn = document.querySelector(".cancelCreateBoardBtn");
 var newBoardWindow = document.querySelector(".newBoardWindow");
 var boardName = document.querySelector("#boardName");
 var boardColor = document.querySelector("#boardColor");
+var signOutBtn = document.getElementById("signOutbtn");

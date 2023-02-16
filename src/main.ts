@@ -25,8 +25,13 @@ function createBoard() {
     const newBoard = new Board(boardName.value, boardColor.value);
     addNewBoardToUserInLocalStorage(currentUser, newBoard);
     location.href = "board.html";
-    console.table(preMadeList);
+    console.table(preMadeUserList);
   } else {
     alert("missing field");
   }
 }
+
+signOutBtn.addEventListener("click", () => {
+  localStorage.removeItem("currentUser");
+  window.location.href = "login.html"
+})

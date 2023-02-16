@@ -27,15 +27,34 @@ var Board = /** @class */ (function () {
     return Board;
 }());
 var List = /** @class */ (function () {
-    function List(name, items) {
+    function List(name, cards) {
+        if (cards === void 0) { cards = []; }
         this.name = name;
-        this.items = items;
+        this.cards = cards;
     }
     return List;
 }());
-var preMadeList = [
+var preMadeUserList = [
     new User("Vladislav", "Bykanov", "male", "vladb89", "12345678", "vladi@gmail.com", "0548155232"),
     new User("Itai", "Gelberg", "male", "itaiG", "abcdefgh", "itaiGel@gmail.com", "0541234567"),
     new User("Itay", "Amosi", "male", "itayz1e", "144322", "itayAmosi@gmail.com", "0540987654"),
 ];
-localStorage.setItem("signedUpUsers", JSON.stringify(preMadeList));
+localStorage.setItem("signedUpUsers", JSON.stringify(preMadeUserList));
+var preMadeBoardList = [
+    new Board("Golden Board", "darkgoldenrod"),
+    new Board("Cyan Board", "darkcyan"),
+    new Board("Magenta Board", "darkmagenta"),
+    new Board("Salmon Board", "darksalmon"),
+    new Board("SlateBlue Board", "darkslateblue"),
+];
+var preMadeListList = [
+    new List("To Do", ["buy chocolate", "write a song", "go for a jog"]),
+    new List("Design", ["Design html page", "Create logo"]),
+    new List("Backlog", ["Register", "Accessibility", "CRUD Lists", "Login"]),
+    new List("Finish", [
+        "open repo",
+        "Create Main Page",
+        "Create Login Page",
+        "Create Sign Up page",
+    ]),
+];
