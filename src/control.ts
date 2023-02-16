@@ -34,8 +34,12 @@ function addNewBoardToUserInLocalStorage(updatedUser: User, board: Board) {
     const addBoardToThisUser = usersList.find(
       (user) => user.userName === updatedUser.userName
     );
-    if (addBoardToThisUser) addBoardToThisUser.boardList.push(board);
+    if (addBoardToThisUser) {
+      addBoardToThisUser.boardList.push(board);
+      currentUser.boardList.push(board);
+    }
     localStorage.setItem("signedUpUsers", JSON.stringify(usersList));
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
     console.log(addBoardToThisUser);
   }
 }
@@ -88,14 +92,17 @@ function renderBoardsToMain(listOFBoards: Board[]) {
   });
 }
 
-
 function createBoard() {
   console.log("createBoard() running");
   if (boardName.value && boardColor.value) {
     if (!currentUser) return alert("not signed in");
     const newBoard = new Board(boardName.value, boardColor.value);
     addNewBoardToUserInLocalStorage(currentUser, newBoard);
-    location.href = "board.html";
+    // location.href = "board.html";
+    boardName.value = '';
+    boardColor.value = '';
+    newBoardWindow.style.display = "none"
+    renderBoardsToMain(currentUser.boardList);
     console.table(preMadeUserList);
   } else {
     alert("missing field");

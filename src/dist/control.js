@@ -11,9 +11,12 @@ function addNewBoardToUserInLocalStorage(updatedUser, board) {
     if (getLocalStorage) {
         var usersList = JSON.parse(getLocalStorage);
         var addBoardToThisUser = usersList.find(function (user) { return user.userName === updatedUser.userName; });
-        if (addBoardToThisUser)
+        if (addBoardToThisUser) {
             addBoardToThisUser.boardList.push(board);
+            currentUser.boardList.push(board);
+        }
         localStorage.setItem("signedUpUsers", JSON.stringify(usersList));
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
         console.log(addBoardToThisUser);
     }
 }
@@ -68,7 +71,11 @@ function createBoard() {
             return alert("not signed in");
         var newBoard = new Board(boardName.value, boardColor.value);
         addNewBoardToUserInLocalStorage(currentUser, newBoard);
-        location.href = "board.html";
+        // location.href = "board.html";
+        boardName.value = '';
+        boardColor.value = '';
+        newBoardWindow.style.display = "none";
+        renderBoardsToMain(currentUser.boardList);
         console.table(preMadeUserList);
     }
     else {
