@@ -21,50 +21,40 @@
 //   function sevelocalStorage(data) {
 //     localStorage.setItem("board-data", JSON.stringify(data));
 //   }
-var draggables = document.querySelectorAll(".boardContainer__main__list__card");
+var draggables = document.querySelectorAll(".task");
+var drappables = document.querySelectorAll(".swim-lane");
 draggables.forEach(function (task) {
     task.addEventListener("dragstart", function () {
-        console.log(task);
         task.classList.add("is-dragging");
     });
     task.addEventListener("dragend", function () {
-        console.log(task);
         task.classList.remove("is-dragging");
     });
 });
-var draggablesList = document.querySelectorAll(".boardContainer__main__list");
-draggablesList.forEach(function (task) {
-    task.addEventListener("dragstart", function () {
-        console.log(task);
-        task.classList.add("is-draggingList");
-    });
-    task.addEventListener("dragend", function () {
-        console.log(task);
-        task.classList.remove("is-draggingList");
-    });
-});
-var draggablesAll = document.querySelectorAll("boardContainer__main__list__card");
-draggablesAll.forEach(function (zone) {
-    zone.addEventListener("dragstart", function (e) {
+drappables.forEach(function (zone) {
+    zone.addEventListener("dragover", function (e) {
         e.preventDefault();
-        var bottomTask = insertAboveTask(zone, e.clientY); //${e.screenY}
-        var curCard = document.querySelector("is-draggingList");
+        var bottomTask = insertAboveTask(zone, e.clientY); //e.screenY //pageY
+        var curTask = document.querySelector(".is-dragging");
         if (!bottomTask) {
-            zone.appendChild(curCard);
+            zone.appendChild(curTask);
+        }
+        else {
+            zone.insertBefore(curTask, bottomTask);
         }
     });
 });
 var insertAboveTask = function (zone, mouseY) {
-    var els = zone.querySelectorAll(".boardContainer__main__list__card:not(.is-dragging)");
-    var closestCard = null;
+    var els = zone.querySelectorAll(".task:not(.is-dragging)");
+    var closestTask = null;
     var closestOffset = Number.NEGATIVE_INFINITY;
-    els.forEach(function (card) {
-        var top = card.getBoundingClientRect().top;
+    els.forEach(function (task) {
+        var top = task.getBoundingClientRect().top;
         var offset = mouseY - top;
         if (offset < 0 && offset > closestOffset) {
             closestOffset = offset;
-            closestCard = card;
+            closestTask = task;
         }
     });
-    return closestCard;
+    return closestTask;
 };
