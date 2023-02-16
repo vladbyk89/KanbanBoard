@@ -113,11 +113,15 @@ body {
   text-shadow: 0 0 10px red;
 }
 .mainpageContainer__topNav__search {
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.099);
+  outline: none;
   width: 30%;
   font-size: 1.3rem;
   padding: 0.3em;
   font-family: sans-serif, FontAwesome;
+}
+.mainpageContainer__topNav__search:focus::placeholder {
+  color: transparent;
 }
 .mainpageContainer__topNav__notifications {
   cursor: pointer;

@@ -28,10 +28,10 @@ class Board {
 }
 
 class List {
-  constructor(public name: string, public items: string) {}
+  constructor(public name: string, public cards: string[] = []) {}
 }
 
-const preMadeList: User[] = [
+const preMadeUserList: User[] = [
   new User(
     "Vladislav",
     "Bykanov",
@@ -61,4 +61,24 @@ const preMadeList: User[] = [
   ),
 ];
 
-localStorage.setItem("signedUpUsers", JSON.stringify(preMadeList));
+localStorage.setItem("signedUpUsers", JSON.stringify(preMadeUserList));
+
+const preMadeBoardList: Board[] = [
+  new Board("Golden Board", "darkgoldenrod"),
+  new Board("Cyan Board", "darkcyan"),
+  new Board("Magenta Board", "darkmagenta"),
+  new Board("Salmon Board", "darksalmon"),
+  new Board("SlateBlue Board", "darkslateblue"),
+];
+
+const preMadeListList = [
+  new List("To Do", ["buy chocolate", "write a song", "go for a jog"]),
+  new List("Design", ["Design html page", "Create logo"]),
+  new List("Backlog", ["Register", "Accessibility", "CRUD Lists", "Login"]),
+  new List("Finish", [
+    "open repo",
+    "Create Main Page",
+    "Create Login Page",
+    "Create Sign Up page",
+  ]),
+];
