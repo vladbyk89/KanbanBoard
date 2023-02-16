@@ -9,4 +9,4 @@ signOutBtn.addEventListener("click", function () {
     localStorage.removeItem("currentUser");
     window.location.href = "login.html";
 });
-renderBoardsToMain(preMadeBoardList);
+renderBoardsToMain(currentUser.boardList);
