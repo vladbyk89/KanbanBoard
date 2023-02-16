@@ -181,6 +181,9 @@ body {
   padding: 2rem 0 0 2rem;
   overflow-y: auto;
 }
+.mainpageContainer__main h1 {
+  font-size: calc((5vh + 5vw) / 3);
+}
 .mainpageContainer__main__boards {
   height: auto;
   width: 90%;

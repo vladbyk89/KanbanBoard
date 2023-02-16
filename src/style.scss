@@ -199,6 +199,9 @@ body {
     gap: 5%;
     padding: 2rem 0 0 2rem;
     overflow-y: auto;
+    h1{
+      font-size: calc((5vh + 5vw) / 3);
+    }
     &__boards {
       // border: 1px solid black;
       height: auto;
