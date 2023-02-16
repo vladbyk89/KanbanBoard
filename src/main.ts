@@ -1,5 +1,5 @@
 profileBtn.addEventListener("click", () => {
-  displayUser(preMadeList[1]);
+  displayUser(currentUser);
 });
 
 backToMain.addEventListener(

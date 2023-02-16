@@ -1,5 +1,4 @@
-
-
+let currentUser: User = currentUserFromStorage();
 
 class User {
   private uid: string;
@@ -29,10 +28,7 @@ class Board {
 }
 
 class List {
-  constructor(
-    public name: string, 
-    public items: string
-    ) {}
+  constructor(public name: string, public items: string) {}
 }
 
 const preMadeList: User[] = [
@@ -66,5 +62,3 @@ const preMadeList: User[] = [
 ];
 
 localStorage.setItem("signedUpUsers", JSON.stringify(preMadeList));
-
-let currentUser: User = preMadeList[0];

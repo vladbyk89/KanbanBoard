@@ -1,3 +1,4 @@
+var currentUser = currentUserFromStorage();
 var User = /** @class */ (function () {
     function User(firstName, lastName, gender, userName, password, email, phoneNumber, boardList) {
         if (boardList === void 0) { boardList = []; }
@@ -38,4 +39,3 @@ var preMadeList = [
     new User("Itay", "Amosi", "male", "itayA", "144322", "itaiAmosi@gmail.com", "0540987654"),
 ];
 localStorage.setItem("signedUpUsers", JSON.stringify(preMadeList));
-var currentUser = preMadeList[0];

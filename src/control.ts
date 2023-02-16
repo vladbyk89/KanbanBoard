@@ -21,7 +21,44 @@ function addNewBoardToUserInLocalStorage(updatedUser: User, board: Board) {
       (user) => user.userName === updatedUser.userName
     );
     if (addBoardToThisUser) addBoardToThisUser.boardList.push(board);
-    localStorage.setItem('signedUpUsers', JSON.stringify(usersList))
+    localStorage.setItem("signedUpUsers", JSON.stringify(usersList));
     console.log(addBoardToThisUser);
   }
+}
+
+function findUser(userName: string) {
+  const getLocalStorage = localStorage.getItem("signedUpUsers");
+  if (getLocalStorage) {
+    const usersList = JSON.parse(getLocalStorage) as User[];
+    const findUser = usersList.find((user) => user.userName === userName);
+    if (findUser) return findUser;
+    return false;
+  }
+}
+
+function checkIfUserExists(userName: string, password: string) {
+  try {
+    const getLocalStorage = localStorage.getItem("signedUpUsers");
+    if (getLocalStorage) {
+      const userListFromStorage: User[] = JSON.parse(getLocalStorage);
+      return userListFromStorage.find(
+        (user) => user.userName === userName && user.password === password
+      );
+    }
+    return false;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function setCurrentUser(userName: string) {
+  if (findUser(userName)) {
+    currentUser = findUser(userName) as User;
+    localStorage.setItem("currentUser", JSON.stringify(findUser(userName)));
+  }
+}
+
+function currentUserFromStorage() {
+  const getUser = localStorage.getItem("currentUser");
+  if (getUser) return JSON.parse(getUser);
 }

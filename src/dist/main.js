@@ -1,5 +1,5 @@
 profileBtn.addEventListener("click", function () {
-    displayUser(preMadeList[1]);
+    displayUser(currentUser);
 });
 backToMain.addEventListener("click", function () { return (profileWindow.style.display = "none"); });
 createBoardWindowBtn.addEventListener("click", function () {
