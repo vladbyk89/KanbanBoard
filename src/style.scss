@@ -229,6 +229,11 @@ body {
           width: 60%;
           aspect-ratio: 1/1;
           cursor: pointer;
+          font-size: medium;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
         }
         .board:hover {
           box-shadow: 0 0 10px black;

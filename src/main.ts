@@ -35,3 +35,11 @@ signOutBtn.addEventListener("click", () => {
   localStorage.removeItem("currentUser");
   window.location.href = "login.html"
 })
+
+preMadeBoardList.forEach((board) => {
+  const boardDiv = document.createElement("div");
+  boardDiv.className = "board";
+  boardDiv.style.backgroundColor = board.backgroundColor;
+  boardDiv.textContent = board.name;
+  boardArea?.appendChild(boardDiv);
+});

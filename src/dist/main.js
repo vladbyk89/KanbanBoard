@@ -23,3 +23,10 @@ signOutBtn.addEventListener("click", function () {
     localStorage.removeItem("currentUser");
     window.location.href = "login.html";
 });
+preMadeBoardList.forEach(function (board) {
+    var boardDiv = document.createElement("div");
+    boardDiv.className = "board";
+    boardDiv.style.backgroundColor = board.backgroundColor;
+    boardDiv.textContent = board.name;
+    boardArea === null || boardArea === void 0 ? void 0 : boardArea.appendChild(boardDiv);
+});
