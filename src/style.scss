@@ -20,10 +20,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  &__header {
-    // border: 1px solid black;
-    font-size: 10vh;
-  }
+  font-size: 5vh;
   &__form {
     // border: 1px solid black;
     height: 50%;
@@ -209,13 +206,8 @@ body {
     // justify-content: space-around;
     gap: 5%;
     padding: 2rem 0 0 2rem;
-    &__welcomeMessage {
+    &__boards {
       // border: 1px solid black;
-      font-family: "Times New Roman", Times, serif;
-      // text-align: center;
-    }
-    &__feed {
-      border: 1px solid black;
       height: auto;
       width: 90%;
       max-width: 1400px;

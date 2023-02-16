@@ -21,9 +21,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-}
-.loginContainer__header {
-  font-size: 10vh;
+  font-size: 5vh;
 }
 .loginContainer__form {
   height: 50%;
@@ -193,35 +191,31 @@ body {
   gap: 5%;
   padding: 2rem 0 0 2rem;
 }
-.mainpageContainer__main__welcomeMessage {
-  font-family: "Times New Roman", Times, serif;
-}
-.mainpageContainer__main__feed {
-  border: 1px solid black;
+.mainpageContainer__main__boards {
   height: auto;
   width: 90%;
   max-width: 1400px;
   padding: 2rem;
 }
-.mainpageContainer__main__feed h3 {
+.mainpageContainer__main__boards h3 {
   font-size: 2rem;
   margin-bottom: 2em;
 }
-.mainpageContainer__main__feed__boardArea {
+.mainpageContainer__main__boards__boardArea {
   width: 100%;
   height: auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 3rem;
 }
-.mainpageContainer__main__feed__boardArea .board {
+.mainpageContainer__main__boards__boardArea .board {
   border: 1px solid black;
   border-radius: 10px;
   width: 60%;
   aspect-ratio: 1/1;
   cursor: pointer;
 }
-.mainpageContainer__main__feed__boardArea .board:hover {
+.mainpageContainer__main__boards__boardArea .board:hover {
   box-shadow: 0 0 10px black;
 }
 .mainpageContainer .profileWindow {
