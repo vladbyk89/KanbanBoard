@@ -233,30 +233,32 @@ body {
       }
     }
   }
-  .profileWindow {
-    background-color: #36395a;
-    color: whitesmoke;
-    height: 100%;
-    width: 100%;
+}
+
+
+.profileWindow {
+  background-color: #36395a;
+  color: whitesmoke;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  padding: 10%;
+  display: none;
+  i {
     position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 3rem;
+    cursor: pointer;
+  }
+  ul {
     display: flex;
-    padding: 10%;
-    display: none;
-    i {
-      position: absolute;
-      top: 2rem;
-      right: 2rem;
-      font-size: 3rem;
-      cursor: pointer;
-    }
-    ul {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      font-size: 2rem;
-      li {
-        display: block;
-      }
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 2rem;
+    li {
+      display: block;
     }
   }
 }
