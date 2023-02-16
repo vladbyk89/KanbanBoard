@@ -17,3 +17,4 @@ var newBoardWindow = document.querySelector(".newBoardWindow");
 var boardName = document.querySelector("#boardName");
 var boardColor = document.querySelector("#boardColor");
 var signOutBtn = document.getElementById("signOutbtn");
+var boardArea = document.querySelector(".mainpageContainer__main__boards__boardArea");

@@ -11,9 +11,12 @@ function addNewBoardToUserInLocalStorage(updatedUser, board) {
     if (getLocalStorage) {
         var usersList = JSON.parse(getLocalStorage);
         var addBoardToThisUser = usersList.find(function (user) { return user.userName === updatedUser.userName; });
-        if (addBoardToThisUser)
+        if (addBoardToThisUser) {
             addBoardToThisUser.boardList.push(board);
+            currentUser.boardList.push(board);
+        }
         localStorage.setItem("signedUpUsers", JSON.stringify(usersList));
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
         console.log(addBoardToThisUser);
     }
 }
@@ -50,4 +53,32 @@ function currentUserFromStorage() {
     var getUser = localStorage.getItem("currentUser");
     if (getUser)
         return JSON.parse(getUser);
+}
+function renderBoardsToMain(listOFBoards) {
+    boardArea.innerHTML = "";
+    listOFBoards.forEach(function (board) {
+        var boardDiv = document.createElement("div");
+        boardDiv.className = "board";
+        boardDiv.style.backgroundColor = board.backgroundColor;
+        boardDiv.textContent = board.name;
+        boardArea.appendChild(boardDiv);
+    });
+}
+function createBoard() {
+    console.log("createBoard() running");
+    if (boardName.value && boardColor.value) {
+        if (!currentUser)
+            return alert("not signed in");
+        var newBoard = new Board(boardName.value, boardColor.value);
+        addNewBoardToUserInLocalStorage(currentUser, newBoard);
+        // location.href = "board.html";
+        boardName.value = '';
+        boardColor.value = '';
+        newBoardWindow.style.display = "none";
+        renderBoardsToMain(currentUser.boardList);
+        console.table(preMadeUserList);
+    }
+    else {
+        alert("missing field");
+    }
 }

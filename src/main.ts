@@ -18,20 +18,11 @@ cancelCreateBoardBtn.addEventListener(
 );
 createBoardBtn.addEventListener("click", createBoard);
 
-function createBoard() {
-  console.log("createBoard() running");
-  if (boardName.value && boardColor.value) {
-    if (!currentUser) return alert("not signed in");
-    const newBoard = new Board(boardName.value, boardColor.value);
-    addNewBoardToUserInLocalStorage(currentUser, newBoard);
-    location.href = "board.html";
-    console.table(preMadeUserList);
-  } else {
-    alert("missing field");
-  }
-}
 
 signOutBtn.addEventListener("click", () => {
   localStorage.removeItem("currentUser");
-  window.location.href = "login.html"
-})
+  window.location.href = "login.html";
+});
+
+renderBoardsToMain(preMadeBoardList);
+

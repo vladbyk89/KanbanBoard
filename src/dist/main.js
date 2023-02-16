@@ -5,21 +5,8 @@ backToMain.addEventListener("click", function () { return (profileWindow.style.d
 createBoardWindowBtn.addEventListener("click", function () { return (newBoardWindow.style.display = "flex"); });
 cancelCreateBoardBtn.addEventListener("click", function () { return (newBoardWindow.style.display = "none"); });
 createBoardBtn.addEventListener("click", createBoard);
-function createBoard() {
-    console.log("createBoard() running");
-    if (boardName.value && boardColor.value) {
-        if (!currentUser)
-            return alert("not signed in");
-        var newBoard = new Board(boardName.value, boardColor.value);
-        addNewBoardToUserInLocalStorage(currentUser, newBoard);
-        location.href = "board.html";
-        console.table(preMadeUserList);
-    }
-    else {
-        alert("missing field");
-    }
-}
 signOutBtn.addEventListener("click", function () {
     localStorage.removeItem("currentUser");
     window.location.href = "login.html";
 });
+renderBoardsToMain(preMadeBoardList);
