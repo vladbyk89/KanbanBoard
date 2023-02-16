@@ -30,3 +30,8 @@ function createBoard() {
     alert("missing field");
   }
 }
+
+signOutBtn.addEventListener("click", () => {
+  localStorage.removeItem("currentUser");
+  window.location.href = "login.html"
+})

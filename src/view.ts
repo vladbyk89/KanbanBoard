@@ -39,3 +39,4 @@ const newBoardWindow = document.querySelector(
 ) as HTMLDivElement;
 const boardName = document.querySelector("#boardName") as HTMLInputElement;
 const boardColor = document.querySelector("#boardColor") as HTMLInputElement;
+const signOutBtn = document.getElementById("signOutbtn") as HTMLButtonElement;

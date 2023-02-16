@@ -19,3 +19,7 @@ function createBoard() {
         alert("missing field");
     }
 }
+signOutBtn.addEventListener("click", function () {
+    localStorage.removeItem("currentUser");
+    window.location.href = "login.html";
+});
