@@ -16,9 +16,7 @@ function handleSubmit(e) {
     var signedUpUsers = JSON.parse(localStorage.getItem("signedUpUsers") || "[]");
     signedUpUsers.push(newUser);
     localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
-    var newUsername = newUser.userName;
-    localStorage.setItem("currentUser", newUsername);
-    currentUser = newUser;
+    localStorage.setItem("currentUser", JSON.stringify(newUser));
     location.href = "index.html";
     console.table(signedUpUsers);
     e.target.reset();
