@@ -1,6 +1,7 @@
 function displayUser(user: User) {
-  profileWindow.style.display = "flex";
-  return (profileDiv.innerHTML = `
+  if (user) {
+    profileWindow.style.display = "flex";
+    return (profileDiv.innerHTML = `
       <ul>
         <h1>About you</h1>
         <li>Name: ${user.firstName} ${user.lastName}</li>
@@ -11,6 +12,19 @@ function displayUser(user: User) {
         <li>Password: ${user.password}</li>
       </ul>
       `);
+  }
+  profileWindow.style.display = "flex";
+  return (profileDiv.innerHTML = `
+    <ul>
+      <h1>About you</h1>
+      <li>Name: EMPTY</li>
+      <li>Gender: EMPTY</li>
+      <li>Email: EMPTY</li>
+      <li>Phone Number: EMPTY</li>
+      <li>User Name: EMPTY</li>
+      <li>Password: EMPTY</li>
+    </ul>
+    `);
 }
 
 function addNewBoardToUserInLocalStorage(updatedUser: User, board: Board) {
