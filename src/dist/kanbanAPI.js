@@ -1,26 +1,8 @@
-//   function readLocalStorage() {
-//     const json = localStorage.getItem("board-data");
-//     if (!json) {
-//       return [
-//         {
-//           id: 1,
-//           items: [],
-//         },
-//         {
-//           id: 2,
-//           items: [],
-//         },
-//         {
-//           id: 3,
-//           items: [],
-//         },
-//       ];
-//     }
-//     return JSON.parse(json);
-//   }
-//   function sevelocalStorage(data) {
-//     localStorage.setItem("board-data", JSON.stringify(data));
-//   }
+function readLocalStorage() {
+}
+function sevelocalStorage(data) {
+    localStorage.setItem("board-data", JSON.stringify(data));
+}
 var draggables = document.querySelectorAll(".task");
 var drappables = document.querySelectorAll(".swim-lane");
 draggables.forEach(function (task) {

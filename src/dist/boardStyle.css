@@ -2,84 +2,163 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  font-family: cursive;
 }
 
-*::-webkit-scrollbar {
-  display: none;
-}
-
-.board {
-  width: 100%;
+body {
   height: 100vh;
-  overflow: scroll;
-  background-image: url(https://www.w3schools.com/howto/img_forest.jpg);
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h3 {
+  background-color: wheat;
+}
+
+.boardContainer {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 5rem 1fr;
+  grid-template-areas: "top top" "main main" "main main";
+}
+.boardContainer__topNav {
+  border: 1px solid black;
+  grid-area: top;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.boardContainer__topNav__logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  font-size: 2rem;
+}
+.boardContainer__topNav__addList {
+  border: none;
+  width: 10%;
+  height: 2rem;
+  cursor: pointer;
+  margin-right: 40%;
+  border: 2px solid #fa6400;
+}
+.boardContainer__topNav__rightSideDiv {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 0 1em;
+  gap: 3rem;
+  width: 40%;
+  font-size: 2rem;
+}
+.boardContainer__topNav__rightSideDiv__search {
+  width: 50%;
+  font-size: 1.3rem;
+  padding: 0.3em;
+  margin-right: auto;
+  font-family: sans-serif, FontAwesome;
+  margin-left: 25%;
+  border: 2px solid #fa6400;
+}
+.boardContainer__topNav__rightSideDiv__notifications {
+  cursor: pointer;
+  color: #fa6400;
+}
+.boardContainer__topNav__rightSideDiv__profile {
+  cursor: pointer;
+  color: #fa6400;
+}
+.boardContainer__topNav__rightSideDiv i:hover {
+  text-shadow: 0 0 5px black;
+}
+.boardContainer__main {
+  border: 1px solid black;
+  grid-area: main;
+  display: flex;
+  flex-direction: row;
+  padding: 5rem;
+  align-items: start;
+  background-color: #a8aa31;
   background-position: center;
   background-size: cover;
+  gap: 2rem;
 }
-
-#todo-form input {
-  padding: 12px;
-  margin-right: 12px;
-  width: 225px;
-  border-radius: 4px;
-  border: none;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
-  font-size: 14px;
-  outline: none;
+.boardContainer__main__list {
+  border: 1px solid black;
+  width: 20%;
+  height: auto;
+  padding: 1em;
+  font-size: 1rem;
+  background-color: #4854d7;
 }
-
-#todo-form button {
-  padding: 12px 32px;
-  border-radius: 4px;
-  border: none;
-  background-color: white;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
-  color: black;
-  font-size: 14px;
-  font-weight: bold;
+.boardContainer__main__list__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   cursor: pointer;
 }
-
-.lanes {
+.boardContainer__main__list__header i {
+  font-size: 1.5rem;
+}
+.boardContainer__main__list__card {
+  border: 1px solid black;
+  position: relative;
+  padding: 0.5em;
+  margin: 1em 0;
+  height: auto;
+  cursor: pointer;
+}
+.boardContainer__main__list__card i {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+}
+.boardContainer__main__list__card__addCard {
   display: flex;
-  align-items: flex-start;
-  justify-content: start;
-  gap: 16px;
-  padding: 24px 32px;
-  overflow: scroll;
+  background-color: #fa6400;
+  margin-top: 5%;
+}
+.boardContainer__main__list__card__addCard button {
+  border: none;
+  width: 100%;
+  height: 2rem;
+  cursor: pointer;
+}
+.boardContainer__main__list__card__addCard button:hover {
+  background-color: #36395a3e;
+}
+.boardContainer__main__list__card:hover {
+  box-shadow: 0 0 5px black;
+}
+.boardContainer .profileWindow {
+  background-color: #36395a;
+  color: whitesmoke;
   height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  padding: 10%;
+  display: none;
 }
-
-.heading {
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 8px;
+.boardContainer .profileWindow i {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: 3rem;
+  cursor: pointer;
 }
-
-.swim-lane {
+.boardContainer .profileWindow ul {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  background-color: whitesmoke;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
-  padding: 12px;
-  border-radius: 4px;
-  width: 225px;
-  min-height: 120px;
-  flex-shrink: 0;
+  gap: 1rem;
+  font-size: 2rem;
 }
-
-.task {
-  background-color: white;
-  color: black;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-  padding: 12px;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: move;
+.boardContainer .profileWindow ul li {
+  display: block;
 }
 
 .is-dragging {
