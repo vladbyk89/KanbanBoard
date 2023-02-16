@@ -6,12 +6,13 @@ var loginPassword = document.querySelector("#loginPassword");
 var registerContainer = document.querySelector(".registerContainer");
 var form = document.querySelector("form");
 // Main page elements
-var profileBtn = document.querySelector(".mainpageContainer__topNav__rightSideDiv__profile");
+var profileBtn = document.querySelector(".profileBtn");
 var profileWindow = document.querySelector(".profileWindow");
 var profileDiv = document.querySelector(".profile");
 var backToMain = document.querySelector(".backToMain");
 var createBoardWindowBtn = document.querySelector(".createBoardWindowBtn");
 var createBoardBtn = document.querySelector(".createBoardBtn");
+var cancelCreateBoardBtn = document.querySelector(".cancelCreateBoardBtn");
 var newBoardWindow = document.querySelector(".newBoardWindow");
 var boardName = document.querySelector("#boardName");
 var boardColor = document.querySelector("#boardColor");

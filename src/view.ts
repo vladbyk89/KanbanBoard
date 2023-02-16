@@ -17,7 +17,7 @@ const form = document.querySelector("form") as HTMLFormElement;
 
 // Main page elements
 const profileBtn = document.querySelector(
-  ".mainpageContainer__topNav__rightSideDiv__profile"
+  ".profileBtn"
 ) as HTMLElement;
 const profileWindow = document.querySelector(
   ".profileWindow"
@@ -30,6 +30,9 @@ const createBoardWindowBtn = document.querySelector(
 ) as HTMLButtonElement;
 const createBoardBtn = document.querySelector(
   ".createBoardBtn"
+) as HTMLButtonElement;
+const cancelCreateBoardBtn = document.querySelector(
+  ".cancelCreateBoardBtn"
 ) as HTMLButtonElement;
 const newBoardWindow = document.querySelector(
   ".newBoardWindow"

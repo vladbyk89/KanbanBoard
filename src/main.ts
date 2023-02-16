@@ -7,20 +7,26 @@ backToMain.addEventListener(
   () => (profileWindow.style.display = "none")
 );
 
-createBoardWindowBtn.addEventListener("click", () => {
-  newBoardWindow.style.display = "flex";
-});
+createBoardWindowBtn.addEventListener(
+  "click",
+  () => (newBoardWindow.style.display = "flex")
+);
 
+cancelCreateBoardBtn.addEventListener(
+  "click",
+  () => (newBoardWindow.style.display = "none")
+);
 createBoardBtn.addEventListener("click", createBoard);
 
 function createBoard() {
-  console.log("clicked");
+  console.log("createBoard() running");
   if (boardName.value && boardColor.value) {
-    console.log("object");
+    if (!currentUser) return alert("not signed in");
     const newBoard = new Board(boardName.value, boardColor.value);
     addNewBoardToUserInLocalStorage(currentUser, newBoard);
     location.href = "board.html";
     console.table(preMadeList);
+  } else {
+    alert("missing field");
   }
 }
-
