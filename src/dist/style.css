@@ -188,24 +188,22 @@ body {
   font-size: calc((5vh + 5vw) / 3);
 }
 .mainpageContainer__main__boards {
-  border: 1px solid black;
   height: auto;
   width: 90%;
   max-width: 1200px;
-  padding: 2rem;
 }
 .mainpageContainer__main__boards__boardArea {
-  border: 10px solid black;
   width: 100%;
   height: auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 3rem;
+  gap: 2rem;
+  margin-top: 2em;
 }
 .mainpageContainer__main__boards__boardArea .board {
   border: 1px solid black;
   border-radius: 10px;
-  width: 70%;
+  width: 60%;
   max-width: 300px;
   aspect-ratio: 1/1;
   cursor: pointer;
