@@ -109,3 +109,5 @@ function createBoard() {
     alert("missing field");
   }
 }
+
+

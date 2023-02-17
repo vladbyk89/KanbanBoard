@@ -4,9 +4,9 @@ function sevelocalStorage(data) {
   localStorage.setItem("board-data", JSON.stringify(data));
 }
 
-const draggables = document.querySelectorAll(".task");
+const grabCard = document.querySelectorAll(".task");
 const drappables = document.querySelectorAll(".swim-lane");
-draggables.forEach((task) => {
+grabCard.forEach((task) => {
   task.addEventListener("dragstart", () => {
     task.classList.add("is-dragging");
   });

@@ -1,5 +1,6 @@
 renderBoardsToMain(currentUser.boardList);
 
+
 createBoardWindowBtn.addEventListener(
   "click",
   () => (newBoardWindow.style.display = "flex")
@@ -29,4 +30,8 @@ searchBar.addEventListener("keyup", () => {
   } else {
     renderBoardsToMain(currentUser.boardList);
   }
+});
+
+window.addEventListener("click", (e) =>{
+console.log(e.target);
 });

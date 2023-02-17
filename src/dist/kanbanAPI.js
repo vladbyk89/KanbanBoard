@@ -2,9 +2,9 @@ function readLocalStorage() { }
 function sevelocalStorage(data) {
     localStorage.setItem("board-data", JSON.stringify(data));
 }
-var draggables = document.querySelectorAll(".task");
+var grabCard = document.querySelectorAll(".task");
 var drappables = document.querySelectorAll(".swim-lane");
-draggables.forEach(function (task) {
+grabCard.forEach(function (task) {
     task.addEventListener("dragstart", function () {
         task.classList.add("is-dragging");
     });
