@@ -21,6 +21,7 @@ var boardArea = document.querySelector(".mainpageContainer__main__boards__boardA
 var searchBar = document.querySelector(".mainpageContainer__topNav__search");
 window.addEventListener("click", function (e) {
     var target = e.target;
+    console.log(target.innerHTML);
     if (target.classList.contains("profileBtn")) {
         displayUser(currentUser);
     }

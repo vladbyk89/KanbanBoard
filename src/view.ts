@@ -52,6 +52,7 @@ const searchBar = document.querySelector(
 
 window.addEventListener("click", (e) => {
   const target = e.target as HTMLElement;
+  console.log(target.innerHTML);
   if (target.classList.contains("profileBtn")) {
     displayUser(currentUser);
   }

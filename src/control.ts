@@ -94,7 +94,6 @@ function renderBoardsToMain(listOFBoards: Board[]) {
 }
 
 function createBoard() {
-  console.log("createBoard() running");
   if (boardName.value && boardColor.value) {
     if (!currentUser) return alert("not signed in");
     const newBoard = new Board(boardName.value, boardColor.value);

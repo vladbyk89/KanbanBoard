@@ -61,7 +61,6 @@ function renderBoardsToMain(listOFBoards) {
     });
 }
 function createBoard() {
-    console.log("createBoard() running");
     if (boardName.value && boardColor.value) {
         if (!currentUser)
             return alert("not signed in");
