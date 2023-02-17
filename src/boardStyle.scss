@@ -13,10 +13,6 @@ body {
   justify-content: center;
 }
 
-h3 {
-  background-color: wheat;
-}
-
 .boardContainer {
   width: 100%;
   height: 100%;
@@ -26,7 +22,6 @@ h3 {
     "top top"
     "main main"
     "main main";
-
   &__topNav {
     border: 1px solid black;
     grid-area: top;
@@ -93,7 +88,6 @@ h3 {
         text-shadow: 0 0 5px black;
       }
     }
-
   }
 
   &__main {
@@ -121,7 +115,9 @@ h3 {
         justify-content: space-between;
         align-items: center;
         cursor: pointer;
-
+        h3 {
+          background-color: wheat;
+        }
         i {
           font-size: 1.5rem;
         }
@@ -204,7 +200,6 @@ h3 {
       }
     }
   }
-
 }
 
 .is-dragging {
@@ -213,8 +208,6 @@ h3 {
   background: rgb(50, 50, 50);
   color: white;
 }
-
-
 
 //  *{
 //   padding: 0;

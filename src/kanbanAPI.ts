@@ -1,10 +1,8 @@
-  function readLocalStorage() {
+function readLocalStorage() {}
 
-  }
-
-  function sevelocalStorage(data) {
-    localStorage.setItem("board-data", JSON.stringify(data));
-  }
+function sevelocalStorage(data) {
+  localStorage.setItem("board-data", JSON.stringify(data));
+}
 
 const draggables = document.querySelectorAll(".task");
 const drappables = document.querySelectorAll(".swim-lane");
@@ -17,13 +15,12 @@ draggables.forEach((task) => {
   });
 });
 
-
 drappables.forEach((zone) => {
   zone.addEventListener("dragover", (e) => {
     e.preventDefault();
 
     const bottomTask = insertAboveTask(zone, e.clientY); //e.screenY //pageY
-    const curTask:any = document.querySelector(".is-dragging");
+    const curTask: any = document.querySelector(".is-dragging");
 
     if (!bottomTask) {
       zone.appendChild(curTask);
@@ -39,7 +36,7 @@ const insertAboveTask = (zone, mouseY) => {
   let closestOffset = Number.NEGATIVE_INFINITY;
 
   els.forEach((task) => {
-    const  {top}  = task.getBoundingClientRect();
+    const { top } = task.getBoundingClientRect();
     const offset = mouseY - top;
     if (offset < 0 && offset > closestOffset) {
       closestOffset = offset;
@@ -49,4 +46,3 @@ const insertAboveTask = (zone, mouseY) => {
 
   return closestTask;
 };
-

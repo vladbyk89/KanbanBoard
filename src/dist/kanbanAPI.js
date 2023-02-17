@@ -1,5 +1,4 @@
-function readLocalStorage() {
-}
+function readLocalStorage() { }
 function sevelocalStorage(data) {
     localStorage.setItem("board-data", JSON.stringify(data));
 }
