@@ -41,10 +41,17 @@ const signOutBtn = document.getElementById("signOutbtn") as HTMLButtonElement;
 const boardArea = document.querySelector(
   ".mainpageContainer__main__boards__boardArea"
 ) as HTMLDivElement;
+const searchBar = document.querySelector(
+  ".mainpageContainer__topNav__search"
+) as HTMLInputElement;
+
+
+
+
+
 
 window.addEventListener("click", (e) => {
   const target = e.target as HTMLElement;
-  console.log(target);
   if (target.classList.contains("profileBtn")) {
     displayUser(currentUser);
   }

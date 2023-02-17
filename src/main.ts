@@ -15,3 +15,18 @@ signOutBtn.addEventListener("click", () => {
   localStorage.removeItem("currentUser");
   window.location.href = "login.html";
 });
+
+searchBar.addEventListener("keyup", () => {
+  if (searchBar.value != "") {
+    boardArea.innerHTML = "";
+    const listToDisplay: Board[] | boolean = findProductName(
+      searchBar.value,
+      currentUser.boardList
+    );
+    if (listToDisplay !== false) {
+      renderBoardsToMain(listToDisplay);
+    }
+  } else {
+    renderBoardsToMain(currentUser.boardList);
+  }
+});

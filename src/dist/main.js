@@ -6,3 +6,15 @@ signOutBtn.addEventListener("click", function () {
     localStorage.removeItem("currentUser");
     window.location.href = "login.html";
 });
+searchBar.addEventListener("keyup", function () {
+    if (searchBar.value != "") {
+        boardArea.innerHTML = "";
+        var listToDisplay = findProductName(searchBar.value, currentUser.boardList);
+        if (listToDisplay !== false) {
+            renderBoardsToMain(listToDisplay);
+        }
+    }
+    else {
+        renderBoardsToMain(currentUser.boardList);
+    }
+});
