@@ -188,14 +188,11 @@ body {
   font-size: calc((5vh + 5vw) / 3);
 }
 .mainpageContainer__main__boards {
+  border: 1px solid black;
   height: auto;
   width: 90%;
-  max-width: 1400px;
+  max-width: 1200px;
   padding: 2rem;
-}
-.mainpageContainer__main__boards h3 {
-  font-size: 2rem;
-  margin-bottom: 2em;
 }
 .mainpageContainer__main__boards__boardArea {
   border: 10px solid black;

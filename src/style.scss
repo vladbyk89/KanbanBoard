@@ -207,15 +207,11 @@ body {
       font-size: calc((5vh + 5vw) / 3);
     }
     &__boards {
-      // border: 1px solid black;
+      border: 1px solid black;
       height: auto;
       width: 90%;
-      max-width: 1400px;
+      max-width: 1200px;
       padding: 2rem;
-      h3 {
-        font-size: 2rem;
-        margin-bottom: 2em;
-      }
       &__boardArea {
         border: 10px solid black;
         width: 100%;
