@@ -87,7 +87,7 @@ function renderBoardsToMain(listOFBoards: Board[]) {
     boardArea.innerHTML += `
     <div class='board' 
     style='background-color: ${board.backgroundColor}'>
-    <h2>${board.name}</h2>
+    <h2 class="boardClick">${board.name}</h2>
     </div>
     `;
   });
@@ -109,4 +109,18 @@ function createBoard() {
   }
 }
 
+function returnBoard(boardName: string) {
+  const findBoard = currentUser.boardList.find(
+    (board) => board.name === boardName
+  );
+  if (findBoard) {
+    return findBoard;
+  }
+  return false;
+}
 
+
+function openBoard(board: Board) {
+boardTitle.textContent = board.name;
+window.location.href = "board.html";
+}

@@ -18,6 +18,3 @@ searchBar.addEventListener("keyup", function () {
         renderBoardsToMain(currentUser.boardList);
     }
 });
-window.addEventListener("click", function (e) {
-    console.log(e.target);
-});

@@ -57,7 +57,7 @@ function currentUserFromStorage() {
 function renderBoardsToMain(listOFBoards) {
     boardArea.innerHTML = "";
     listOFBoards.forEach(function (board) {
-        boardArea.innerHTML += "\n    <div class='board' \n    style='background-color: " + board.backgroundColor + "'>\n    <h2>" + board.name + "</h2>\n    </div>\n    ";
+        boardArea.innerHTML += "\n    <div class='board' \n    style='background-color: " + board.backgroundColor + "'>\n    <h2 class=\"boardClick\">" + board.name + "</h2>\n    </div>\n    ";
     });
 }
 function createBoard() {
@@ -76,4 +76,15 @@ function createBoard() {
     else {
         alert("missing field");
     }
+}
+function returnBoard(boardName) {
+    var findBoard = currentUser.boardList.find(function (board) { return board.name === boardName; });
+    if (findBoard) {
+        return findBoard;
+    }
+    return false;
+}
+function openBoard(board) {
+    boardTitle.textContent = board.name;
+    window.location.href = "board.html";
 }

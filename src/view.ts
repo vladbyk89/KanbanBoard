@@ -45,19 +45,25 @@ const searchBar = document.querySelector(
   ".mainpageContainer__topNav__search"
 ) as HTMLInputElement;
 
-
-
+//Board page
+const boardTitle = document.querySelector(
+  ".boardContainer__topNav__boardName"
+) as HTMLDivElement;
 
 
 
 window.addEventListener("click", (e) => {
   const target = e.target as HTMLElement;
-  console.log(target.innerHTML);
+  console.log(returnBoard(target.innerHTML));
   if (target.classList.contains("profileBtn")) {
     displayUser(currentUser);
   }
 
   if (target.classList.contains("backToMain")) {
     profileWindow.style.display = "none";
+  }
+  if(target.classList.contains("boardClick")){
+    const board = returnBoard(target.innerHTML)as Board;
+    openBoard(board);
   }
 });

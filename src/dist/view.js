@@ -19,13 +19,19 @@ var boardColor = document.querySelector("#boardColor");
 var signOutBtn = document.getElementById("signOutbtn");
 var boardArea = document.querySelector(".mainpageContainer__main__boards__boardArea");
 var searchBar = document.querySelector(".mainpageContainer__topNav__search");
+//Board page
+var boardTitle = document.querySelector(".boardContainer__topNav__boardName");
 window.addEventListener("click", function (e) {
     var target = e.target;
-    console.log(target.innerHTML);
+    console.log(returnBoard(target.innerHTML));
     if (target.classList.contains("profileBtn")) {
         displayUser(currentUser);
     }
     if (target.classList.contains("backToMain")) {
         profileWindow.style.display = "none";
+    }
+    if (target.classList.contains("boardClick")) {
+        var board = returnBoard(target.innerHTML);
+        openBoard(board);
     }
 });
