@@ -84,11 +84,12 @@ function currentUserFromStorage() {
 function renderBoardsToMain(listOFBoards: Board[]) {
   boardArea.innerHTML = "";
   listOFBoards.forEach((board) => {
-    const boardDiv = document.createElement("div");
-    boardDiv.className = "board";
-    boardDiv.style.backgroundColor = board.backgroundColor;
-    boardDiv.textContent = board.name;
-    boardArea.appendChild(boardDiv);
+    boardArea.innerHTML += `
+    <div class='board' 
+    style='background-color: ${board.backgroundColor}'>
+    <h2>${board.name}</h2>
+    </div>
+    `;
   });
 }
 
@@ -99,9 +100,9 @@ function createBoard() {
     const newBoard = new Board(boardName.value, boardColor.value);
     addNewBoardToUserInLocalStorage(currentUser, newBoard);
     // location.href = "board.html";
-    boardName.value = '';
-    boardColor.value = '';
-    newBoardWindow.style.display = "none"
+    boardName.value = "";
+    boardColor.value = "";
+    newBoardWindow.style.display = "none";
     renderBoardsToMain(currentUser.boardList);
     console.table(preMadeUserList);
   } else {
