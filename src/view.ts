@@ -16,9 +16,7 @@ const registerContainer = document.querySelector(
 const form = document.querySelector("form") as HTMLFormElement;
 
 // Main page elements
-const profileBtn = document.querySelector(
-  ".profileBtn"
-) as HTMLElement;
+const profileBtn = document.querySelector(".profileBtn") as HTMLElement;
 const profileWindow = document.querySelector(
   ".profileWindow"
 ) as HTMLDivElement;
@@ -40,4 +38,18 @@ const newBoardWindow = document.querySelector(
 const boardName = document.querySelector("#boardName") as HTMLInputElement;
 const boardColor = document.querySelector("#boardColor") as HTMLInputElement;
 const signOutBtn = document.getElementById("signOutbtn") as HTMLButtonElement;
-const boardArea = document.querySelector(".mainpageContainer__main__boards__boardArea") as HTMLDivElement;
+const boardArea = document.querySelector(
+  ".mainpageContainer__main__boards__boardArea"
+) as HTMLDivElement;
+
+window.addEventListener("click", (e) => {
+  const target = e.target as HTMLElement;
+  console.log(target);
+  if (target.classList.contains("profileBtn")) {
+    displayUser(currentUser);
+  }
+
+  if (target.classList.contains("backToMain")) {
+    profileWindow.style.display = "none";
+  }
+});

@@ -1,96 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kanban Board</title>
+    <link rel="icon" type="image/png" href="./img/kanban3.png" />
+    <script
+      src="https://kit.fontawesome.com/0d9e773bea.js"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <link rel="stylesheet" href="./src/dist/boardStyle.css" />
+    <script src="./src/dist/helpers.js" defer></script>
+    <script src="./src/dist/control.js" defer></script>
+    <script src="./src/dist/view.js" defer></script>
+    <script src="./src/dist/model.js" defer></script>
+    <!-- <script src="./src/dist/main.js" defer></script> -->
+    <script src="./src/dist/kanbanAPI.js" defer></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kanban Board</title>
-  <link rel="icon" type="image/png" href="./img/kanban3.png">
-  <script src="https://kit.fontawesome.com/0d9e773bea.js" crossorigin="anonymous" defer></script>
-  <link rel="stylesheet" href="./src/dist/boardStyle.css" />
-  <script src="./src/dist/helpers.js" defer></script>
-  <script src="./src/dist/control.js" defer></script>
-  <script src="./src/dist/view.js" defer></script>
-  <script src="./src/dist/model.js" defer></script>
-  <!-- <script src="./src/dist/main.js" defer></script> -->
-  <script src="./src/dist/kanbanAPI.js" defer></script>
-
-</head>
-
-<body>
-   <div class="boardContainer">
-    <nav class="boardContainer__topNav">
-      <div class="boardContainer__topNav__logo">LOGO</div>
-      <button class="boardContainer__topNav__addList">+ add list</button>
-      <div contenteditable class="boardContainer__topNav__boardName">Board Name</div>
-      <div class="boardContainer__topNav__rightSideDiv">
-        <input type="text" class="boardContainer__topNav__rightSideDiv__search" placeholder="&#xF002; Search" />
-        <i class="fa-solid fa-bell boardContainer__topNav__rightSideDiv__notifications"></i>
-        <i class="fa-solid fa-user boardContainer__topNav__rightSideDiv__profile profileBtn"></i>
+  <body>
+    <div class="boardContainer">
+      <nav class="boardContainer__topNav">
+        <div class="boardContainer__topNav__logo">LOGO</div>
+        <button class="boardContainer__topNav__addList">+ add list</button>
+        <div contenteditable class="boardContainer__topNav__boardName">
+          Board Name
+        </div>
+        <div class="boardContainer__topNav__rightSideDiv">
+          <input
+            type="text"
+            class="boardContainer__topNav__rightSideDiv__search"
+            placeholder="&#xF002; Search"
+          />
+          <i
+            class="fa-solid fa-bell boardContainer__topNav__rightSideDiv__notifications"
+          ></i>
+          <i
+            class="fa-solid fa-user boardContainer__topNav__rightSideDiv__profile profileBtn"
+          ></i>
+        </div>
+      </nav>
+      <main class="boardContainer__main">
+        <div class="boardContainer__main__list swim-lane" draggable="true">
+          <div class="boardContainer__main__list__header">
+            <h3 contenteditable>Done</h3>
+            <i class="fa-solid fa-ellipsis"></i>
+          </div>
+          <div class="boardContainer__main__list__card__addCard">
+            <button class="addCardBtn">
+              <i class="fa-solid fa-plus">Add Card</i>
+            </button>
+          </div>
+          <div class="boardContainer__main__list__card task" draggable="true">
+            <p>Create Element</p>
+            <i class="fa-regular fa-pen-to-square"></i>
+          </div>
+          <div class="boardContainer__main__list__card task" draggable="true">
+            <p>Buy Itay Chocolate</p>
+            <i class="fa-regular fa-pen-to-square"></i>
+          </div>
+          <div class="boardContainer__main__list__card task" draggable="true">
+            <p>Something else...</p>
+            <i class="fa-regular fa-pen-to-square"></i>
+          </div>
+        </div>
+        <div class="boardContainer__main__list swim-lane" draggable="true">
+          <div class="boardContainer__main__list__header">
+            <h3 contenteditable>Done</h3>
+            <i class="fa-solid fa-ellipsis"></i>
+          </div>
+          <div class="boardContainer__main__list__card__addCard">
+            <button class="addCardBtn">
+              <i class="fa-solid fa-plus">Add Card</i>
+            </button>
+          </div>
+          <div class="boardContainer__main__list__card task" draggable="true">
+            <p>to ssafasdado</p>
+            <i class="fa-regular fa-pen-to-square"></i>
+          </div>
+          <div class="boardContainer__main__list__card task" draggable="true">
+            <p>Buy Itay gut</p>
+            <i class="fa-regular fa-pen-to-square"></i>
+          </div>
+          <div class="boardContainer__main__list__card task" draggable="true">
+            <p>hi is test</p>
+            <i class="fa-regular fa-pen-to-square"></i>
+          </div>
+        </div>
+      </main>
+      <div class="profileWindow">
+        <i class="fa-solid fa-arrow-right-from-bracket backToMain"></i>
+        <button class="button-42" id="signOutbtn">Sign out</button>
+        <div class="profile"></div>
       </div>
-    </nav>
-    <main class="boardContainer__main">
-      <div class="boardContainer__main__list swim-lane" draggable="true">
-        <div class="boardContainer__main__list__header">
-          <h3 contenteditable>Done</h3>
-          <i class="fa-solid fa-ellipsis"></i>
-        </div>
-        <div class="boardContainer__main__list__card__addCard">
-          <button class="addCardBtn"><i class="fa-solid fa-plus">Add Card</i></button>
-        </div>
-        <div class="boardContainer__main__list__card task" draggable="true">
-          <p>Create Element</p>
-          <i class="fa-regular fa-pen-to-square"></i>
-        </div>
-        <div class="boardContainer__main__list__card task" draggable="true">
-          <p">Buy Itay Chocolate</p>
-          <i class="fa-regular fa-pen-to-square"></i>
-        </div>
-        <div class="boardContainer__main__list__card task" draggable="true">
-          <p>Something else...</p>
-          <i class="fa-regular fa-pen-to-square"></i>
-        </div>
-
-      </div>
-      <div class="boardContainer__main__list swim-lane" draggable="true">
-        <div class="boardContainer__main__list__header">
-          <h3 contenteditable>Done</h3>
-          <i class="fa-solid fa-ellipsis"></i>
-        </div>
-        <div class="boardContainer__main__list__card__addCard">
-          <button class="addCardBtn"><i class="fa-solid fa-plus">Add Card</i></button>
-        </div>
-        <div class="boardContainer__main__list__card task" draggable="true">
-          <p>to ssafasdado</p>
-          <i class="fa-regular fa-pen-to-square"></i>
-        </div>
-        <div class="boardContainer__main__list__card task" draggable="true">
-          <p">Buy Itay gut</p>
-          <i class="fa-regular fa-pen-to-square"></i>
-        </div>
-        <div class="boardContainer__main__list__card task" draggable="true">
-          <p">hi is test</p>
-          <i class="fa-regular fa-pen-to-square"></i>
-        </div>
-
-      </div>
-    </main>
-    <div class="profileWindow">
-      <i class="fa-solid fa-arrow-right-from-bracket backToMain"></i>
-      <ul>
-        <h1>About you</h1>
-        <li>Name:</li>
-        <li>Gender:</li>
-        <li>Email:</li>
-        <li>Phone Number:</li>
-        <li>User Name:</li>
-        <li>Password:</li>
-      </ul>
     </div>
-  </div>
 
-<!-- <div class="board">
+    <!-- <div class="board">
   <form id="todo-form">
     <input type="text" placeholder="New TODO" id="todo-input">
     <button type="submit">Add +</button>
@@ -115,8 +122,5 @@
 </div>
 </div>
 </div> -->
-
-
-</body>
-
+  </body>
 </html>

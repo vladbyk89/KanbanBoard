@@ -1,11 +1,4 @@
-profileBtn.addEventListener("click", () => {
-  displayUser(currentUser);
-});
-
-backToMain.addEventListener(
-  "click",
-  () => (profileWindow.style.display = "none")
-);
+renderBoardsToMain(currentUser.boardList);
 
 createBoardWindowBtn.addEventListener(
   "click",
@@ -18,11 +11,7 @@ cancelCreateBoardBtn.addEventListener(
 );
 createBoardBtn.addEventListener("click", createBoard);
 
-
 signOutBtn.addEventListener("click", () => {
   localStorage.removeItem("currentUser");
   window.location.href = "login.html";
 });
-
-renderBoardsToMain(currentUser.boardList);
-
