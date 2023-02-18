@@ -27,19 +27,20 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-.boardContainer__topNav__logo {
+.boardContainer__topNav #formList {
+  width: 50%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 10%;
-  font-size: 2rem;
+  margin-left: 5%;
 }
-.boardContainer__topNav__addList {
+.boardContainer__topNav #input {
+  padding: 12px;
+  margin-right: 12px;
+  width: 225px;
+  border-radius: 4px;
   border: none;
-  width: 10%;
-  height: 2rem;
-  cursor: pointer;
-  border: 2px solid #fa6400;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+  font-size: 14px;
+  outline: none;
 }
 .boardContainer__topNav__boardName {
   display: flex;
@@ -124,13 +125,19 @@ body {
 }
 .boardContainer__main__list__card__addCard {
   display: flex;
-  background-color: #fa6400;
   margin-top: 5%;
+  justify-content: center;
+}
+.boardContainer__main__list__card__addCard #todo-input {
+  width: 100%;
+  height: 50%;
+  cursor: pointer;
+  text-align: center;
+  border: 2px solid #fa6400;
 }
 .boardContainer__main__list__card__addCard button {
   border: none;
   width: 100%;
-  height: 2rem;
   cursor: pointer;
 }
 .boardContainer__main__list__card__addCard button:hover {

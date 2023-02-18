@@ -39,3 +39,24 @@ var insertAboveTask = function (zone, mouseY) {
     });
     return closestTask;
 };
+var formCard = document.getElementById("todo-form");
+var input = document.getElementById("todo-input");
+var todoLane = document.getElementById("todo-lane");
+formCard.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var value = input.value;
+    if (!value)
+        return;
+    var newTask = document.createElement("p");
+    newTask.classList.add("task");
+    newTask.setAttribute("draggable", "true");
+    newTask.innerText = value;
+    newTask.addEventListener("dragstart", function () {
+        newTask.classList.add("is-dragging");
+    });
+    newTask.addEventListener("dragend", function () {
+        newTask.classList.remove("is-dragging");
+    });
+    todoLane.appendChild(newTask);
+    input.value = "";
+});

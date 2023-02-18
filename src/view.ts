@@ -54,7 +54,7 @@ const boardTitle = document.querySelector(
 
 window.addEventListener("click", (e) => {
   const target = e.target as HTMLElement;
-  console.log(returnBoard(target.innerHTML));
+  // console.log(returnBoard(target.innerHTML));
   if (target.classList.contains("profileBtn")) {
     displayUser(currentUser);
   }

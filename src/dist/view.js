@@ -23,7 +23,7 @@ var searchBar = document.querySelector(".mainpageContainer__topNav__search");
 var boardTitle = document.querySelector(".boardContainer__topNav__boardName");
 window.addEventListener("click", function (e) {
     var target = e.target;
-    console.log(returnBoard(target.innerHTML));
+    // console.log(returnBoard(target.innerHTML));
     if (target.classList.contains("profileBtn")) {
         displayUser(currentUser);
     }
