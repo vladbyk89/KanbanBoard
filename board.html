@@ -31,26 +31,26 @@
         <div contenteditable class="boardContainer__topNav__boardName">
           Board Name
         </div>
-        <form id="todo-form">
-          <input type="text" placeholder="New TODO" id="todo-input">
-          <button type="submit">Add +</button>
-        </form>
         <div class="boardContainer__topNav__rightSideDiv">
           <!-- <input
             type="text"
             class="boardContainer__topNav__rightSideDiv__search"
             placeholder="&#xF002; Search"
-          /> -->
-          <i
+            /> -->
+            <i
             class="fa-solid fa-bell boardContainer__topNav__rightSideDiv__notifications"
-          ></i>
-          <i
+            ></i>
+            <i
             class="fa-solid fa-user boardContainer__topNav__rightSideDiv__profile profileBtn"
-          ></i>
-        </div>
-      </nav>
-      <main class="boardContainer__main">
-        <div class="boardContainer__main__list swim-lane" draggable="true">
+            ></i>
+          </div>
+        </nav>
+        <main class="boardContainer__main">
+        <form id="todo-form">
+          <input type="text" placeholder="New list" id="todo-input">
+          <button type="submit">Add +</button>
+        </form>
+        <!-- <div class="boardContainer__main__list swim-lane" draggable="true">
           <div class="boardContainer__main__list__header">
             <h3 contenteditable>Done</h3>
             <i class="fa-solid fa-ellipsis"></i>
@@ -75,34 +75,12 @@
             <p class="p1" draggable="true">Something else...</p>
             <i class="fa-regular fa-pen-to-square"></i>
           </div>
-        </div>
+        </div> -->
+        <div id="title"></div>
 
 
 
 
-        <div class="boardContainer__main__list swim-lane" draggable="true">
-          <div class="boardContainer__main__list__header">
-            <h3 contenteditable>Done</h3>
-            <i class="fa-solid fa-ellipsis"></i>
-          </div>
-          <div class="boardContainer__main__list__card__addCard">
-            <button class="addCardBtn">
-              <i class="fa-solid fa-plus">Add Card</i>
-            </button>
-          </div>
-          <div class="boardContainer__main__list__card task">
-            <p draggable="true">to ssafasdado</p>
-            <i class="fa-regular fa-pen-to-square"></i>
-          </div>
-          <div class="boardContainer__main__list__card task">
-            <p  draggable="true">Buy Itay gut</p>
-            <i class="fa-regular fa-pen-to-square"></i>
-          </div>
-          <div class="boardContainer__main__list__card task">
-            <p draggable="true">hi is test">i love PC</p>
-            <i class="fa-regular fa-pen-to-square"></i>
-          </div>
-        </div>
       </main>
       <div class="profileWindow">
         <i class="fa-solid fa-arrow-right-from-bracket backToMain"></i>
