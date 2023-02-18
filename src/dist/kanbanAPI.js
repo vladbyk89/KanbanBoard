@@ -3,6 +3,7 @@ var input = document.getElementById("todo-input");
 var todoLane = document.getElementById("todo-lane");
 var title = document.querySelector("#title");
 renderBoard();
+backToMainBtn.addEventListener("click", function () { return (window.location.href = "index.html"); });
 formCard.addEventListener("submit", function (e) {
     e.preventDefault();
     if (title) {

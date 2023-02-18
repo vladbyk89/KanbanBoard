@@ -5,6 +5,11 @@ const title: HTMLHeadingElement | null = document.querySelector("#title");
 
 renderBoard();
 
+backToMainBtn.addEventListener(
+  "click",
+  () => (window.location.href = "index.html")
+);
+
 formCard.addEventListener("submit", (e) => {
   e.preventDefault();
   if (title) {

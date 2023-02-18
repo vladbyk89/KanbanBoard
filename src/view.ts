@@ -49,6 +49,7 @@ const searchBar = document.querySelector(
 const boardTitle = document.querySelector(
   ".boardContainer__topNav__boardName"
 ) as HTMLDivElement;
+const backToMainBtn = document.querySelector('.boardContainer__topNav__iconDiv__backToMain') as HTMLElement;
 
 window.addEventListener("click", (e) => {
   const target = e.target as HTMLElement;

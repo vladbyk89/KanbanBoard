@@ -21,6 +21,7 @@ var boardArea = document.querySelector(".mainpageContainer__main__boards__boardA
 var searchBar = document.querySelector(".mainpageContainer__topNav__search");
 //Board page
 var boardTitle = document.querySelector(".boardContainer__topNav__boardName");
+var backToMainBtn = document.querySelector('.boardContainer__topNav__iconDiv__backToMain');
 window.addEventListener("click", function (e) {
     var target = e.target;
     // console.log(returnBoard(target.innerHTML));
