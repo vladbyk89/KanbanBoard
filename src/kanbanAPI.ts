@@ -1,6 +1,6 @@
-const formList = document.getElementById("todo-form");
-const input = document.getElementById("todo-input");
-const todoLane = document.getElementById("todo-lane");
+const formList = document.getElementById("todo-form")as HTMLElement;//from
+const input = document.getElementById("todo-input")as HTMLElement;//input
+const todoLane = document.getElementById("todo-lane") as HTMLElement;
 const rootList: HTMLHeadingElement | null = document.querySelector("#rootList");
 
 renderBoard();
@@ -11,8 +11,8 @@ backToMainBtn.addEventListener(
 );
 
 formList.addEventListener("submit", (e) => {
-  console.log(formList)
   e.preventDefault();
+
   if (rootList) {
     rootList.innerHTML += ` <div class="boardContainer__main__list swim-lane" draggable="true">
     <div class="boardContainer__main__list__header">
@@ -53,6 +53,7 @@ formList.addEventListener("submit", (e) => {
   //     return ;
   //   }
   // }
+  e.stopImmediatePropagation();
   const grabCard = document.querySelectorAll(".task");
   const drappables = document.querySelectorAll(".swim-lane");
   grabCard.forEach((task) => {
@@ -130,16 +131,18 @@ formList.addEventListener("submit", (e) => {
 //   }
 // });
 const addTask = document.getElementById("#Listrender");
-const formTask:any = document.getElementById("#addCardBtn");//form
-formTask.addEventListener("submit", (event) => {
-  event.preventDefault();
-  if (addTask) {
-    addTask.innerHTML += `<div class="boardContainer__main__list__card task p1">
-    <p class="p1" draggable="true">Create Element</p>
+const formTask = document.getElementById("#lolo")as HTMLElement;
+
+formTask.addEventListener("submit", (e) =>{
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  if(addTask){
+    addTask.innerHTML = `<div class="boardContainer__main__list__card task p1">
+    <p class="p1" draggable="true">Create lol</p>
     <i class="fa-regular fa-pen-to-square p1"></i>
   </div>`;
-console.log(event.preventDefault())
   }
 });
 
-// boardContainer__main__list__card__addCard
+//חסר לתפוס איפות 
+//
