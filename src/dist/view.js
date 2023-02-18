@@ -16,27 +16,9 @@ var cancelCreateBoardBtn = document.querySelector(".cancelCreateBoardBtn");
 var newBoardWindow = document.querySelector(".newBoardWindow");
 var boardName = document.querySelector("#boardName");
 var boardColor = document.querySelector("#boardColor");
-var signOutBtn = document.getElementById("signOutbtn");
+var signOutBtn = document.querySelector(".signOutbtn");
 var boardArea = document.querySelector(".mainpageContainer__main__boards__boardArea");
 var searchBar = document.querySelector(".mainpageContainer__topNav__search");
 //Board page
 var boardTitle = document.querySelector(".boardContainer__topNav__boardName");
-var backToMainBtn = document.querySelector('.boardContainer__topNav__iconDiv__backToMain');
-window.addEventListener("click", function (e) {
-    var target = e.target;
-    // console.log(returnBoard(target.innerHTML));
-    if (target.classList.contains("profileBtn")) {
-        displayUser(currentUser);
-    }
-    if (target.classList.contains("signOutbtn")) {
-        localStorage.removeItem("currentUser");
-        window.location.href = "login.html";
-    }
-    if (target.classList.contains("backToMain")) {
-        profileWindow.style.display = "none";
-    }
-    if (target.classList.contains("boardClick")) {
-        setCurrentBoard(target.innerHTML);
-        window.location.href = "board.html";
-    }
-});
+var backToMainBtn = document.querySelector(".boardContainer__topNav__iconDiv__backToMain");

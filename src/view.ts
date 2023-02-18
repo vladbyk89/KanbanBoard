@@ -37,7 +37,7 @@ const newBoardWindow = document.querySelector(
 ) as HTMLDivElement;
 const boardName = document.querySelector("#boardName") as HTMLInputElement;
 const boardColor = document.querySelector("#boardColor") as HTMLInputElement;
-const signOutBtn = document.getElementById("signOutbtn") as HTMLButtonElement;
+const signOutBtn = document.querySelector(".signOutbtn") as HTMLButtonElement;
 const boardArea = document.querySelector(
   ".mainpageContainer__main__boards__boardArea"
 ) as HTMLDivElement;
@@ -49,25 +49,7 @@ const searchBar = document.querySelector(
 const boardTitle = document.querySelector(
   ".boardContainer__topNav__boardName"
 ) as HTMLDivElement;
-const backToMainBtn = document.querySelector('.boardContainer__topNav__iconDiv__backToMain') as HTMLElement;
+const backToMainBtn = document.querySelector(
+  ".boardContainer__topNav__iconDiv__backToMain"
+) as HTMLElement;
 
-window.addEventListener("click", (e) => {
-  const target = e.target as HTMLElement;
-  // console.log(returnBoard(target.innerHTML));
-  if (target.classList.contains("profileBtn")) {
-    displayUser(currentUser);
-  }
-
-  if (target.classList.contains("signOutbtn")) {
-    localStorage.removeItem("currentUser");
-    window.location.href = "login.html";
-  }
-
-  if (target.classList.contains("backToMain")) {
-    profileWindow.style.display = "none";
-  }
-  if (target.classList.contains("boardClick")) {
-    setCurrentBoard(target.innerHTML);
-    window.location.href = "board.html";
-  }
-});

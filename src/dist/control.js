@@ -17,7 +17,6 @@ function addNewBoardToUserInLocalStorage(updatedUser, board) {
         }
         localStorage.setItem("signedUpUsers", JSON.stringify(usersList));
         localStorage.setItem("currentUser", JSON.stringify(currentUser));
-        console.log(addBoardToThisUser);
     }
 }
 function findUser(userName) {
@@ -44,42 +43,66 @@ function checkIfUserExists(userName, password) {
     }
 }
 function setCurrentUser(userName) {
-    if (findUser(userName)) {
-        currentUser = findUser(userName);
-        localStorage.setItem("currentUser", JSON.stringify(findUser(userName)));
+    try {
+        if (findUser(userName)) {
+            currentUser = findUser(userName);
+            localStorage.setItem("currentUser", JSON.stringify(findUser(userName)));
+        }
+    }
+    catch (error) {
+        console.log(error);
     }
 }
 function currentUserFromStorage() {
-    var getUser = localStorage.getItem("currentUser");
-    if (getUser)
-        return JSON.parse(getUser);
+    try {
+        var getUser = localStorage.getItem("currentUser");
+        if (getUser)
+            return JSON.parse(getUser);
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
 function currentBoardFromStorage() {
-    var getBoard = localStorage.getItem("currentBoard");
-    if (getBoard)
-        return JSON.parse(getBoard);
+    try {
+        var getBoard = localStorage.getItem("currentBoard");
+        if (getBoard)
+            return JSON.parse(getBoard);
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
 function renderBoardsToMain(listOFBoards) {
-    boardArea.innerHTML = "";
-    listOFBoards.forEach(function (board) {
-        boardArea.innerHTML += "\n    <div class='board' \n    style='background-color: " + board.backgroundColor + "'>\n    <h2 class=\"boardClick\">" + board.name + "</h2>\n    </div>\n    ";
-    });
+    try {
+        boardArea.innerHTML = "";
+        listOFBoards.forEach(function (board) {
+            boardArea.innerHTML += "\n      <div class='board' \n      style='background-color: " + board.backgroundColor + "'>\n      <h2 class=\"boardClick\">" + board.name + "</h2>\n      </div>\n      ";
+        });
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
 function createBoard() {
-    if (boardName.value && boardColor.value) {
-        if (!currentUser)
-            return alert("not signed in");
-        var newBoard = new Board(boardName.value, boardColor.value);
-        addNewBoardToUserInLocalStorage(currentUser, newBoard);
-        // location.href = "board.html";
-        boardName.value = "";
-        boardColor.value = "";
-        newBoardWindow.style.display = "none";
-        renderBoardsToMain(currentUser.boardList);
-        console.table(preMadeUserList);
+    try {
+        if (boardName.value && boardColor.value) {
+            if (!currentUser)
+                return alert("not signed in");
+            var newBoard = new Board(boardName.value, boardColor.value);
+            addNewBoardToUserInLocalStorage(currentUser, newBoard);
+            // location.href = "board.html";
+            boardName.value = "";
+            boardColor.value = "";
+            newBoardWindow.style.display = "none";
+            renderBoardsToMain(currentUser.boardList);
+        }
+        else {
+            alert("missing field");
+        }
     }
-    else {
-        alert("missing field");
+    catch (error) {
+        console.log(error);
     }
 }
 // function returnBoard(boardName: string) {
@@ -92,10 +115,20 @@ function createBoard() {
 //   return false;
 // }
 function setCurrentBoard(boardName) {
-    var findBoard = currentUser.boardList.find(function (board) { return board.name === boardName; });
-    localStorage.setItem("currentBoard", JSON.stringify(findBoard));
+    try {
+        var findBoard = currentUser.boardList.find(function (board) { return board.name === boardName; });
+        localStorage.setItem("currentBoard", JSON.stringify(findBoard));
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
 function renderBoard() {
-    currentBoard = currentBoardFromStorage();
-    boardTitle.textContent = currentBoard.name;
+    try {
+        currentBoard = currentBoardFromStorage();
+        boardTitle.textContent = currentBoard.name;
+    }
+    catch (error) {
+        console.log(error);
+    }
 }

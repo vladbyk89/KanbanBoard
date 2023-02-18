@@ -1,6 +1,11 @@
 function checkIfCurrentUserExists() {
-    if (!localStorage.getItem("currentUser")) {
-        window.location.href = "login.html";
+    try {
+        if (!localStorage.getItem("currentUser")) {
+            window.location.href = "login.html";
+        }
+    }
+    catch (error) {
+        console.log(error);
     }
 }
 var findProductName = function (input, arr) {

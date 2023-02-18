@@ -18,5 +18,3 @@ loginContainer.addEventListener("click", function (e) {
         }
     }
 });
-// console.table(checkIfUserExists("vladb89", "12345678"));
-console.log(findUser("vladb89"));

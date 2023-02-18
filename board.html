@@ -16,11 +16,11 @@
     <script src="./src/dist/control.js" defer></script>
     <script src="./src/dist/view.js" defer></script>
     <script src="./src/dist/model.js" defer></script>
-    <!-- <script src="./src/dist/main.js" defer></script> -->
+    <script src="./src/dist/main.js" defer></script>
     <script src="./src/dist/kanbanAPI.js" defer></script>
   </head>
 
-  <body>
+  <body onload="checkIfCurrentUserExists()">
     <div class="boardContainer">
       <nav class="boardContainer__topNav">
         <img

@@ -40,7 +40,6 @@ function addNewBoardToUserInLocalStorage(updatedUser: User, board: Board) {
     }
     localStorage.setItem("signedUpUsers", JSON.stringify(usersList));
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
-    console.log(addBoardToThisUser);
   }
 }
 
@@ -70,47 +69,66 @@ function checkIfUserExists(userName: string, password: string) {
 }
 
 function setCurrentUser(userName: string) {
-  if (findUser(userName)) {
-    currentUser = findUser(userName) as User;
-    localStorage.setItem("currentUser", JSON.stringify(findUser(userName)));
+  try {
+    if (findUser(userName)) {
+      currentUser = findUser(userName) as User;
+      localStorage.setItem("currentUser", JSON.stringify(findUser(userName)));
+    }
+  } catch (error) {
+    console.log(error);
   }
 }
 
 function currentUserFromStorage() {
-  const getUser = localStorage.getItem("currentUser");
-  if (getUser) return JSON.parse(getUser);
+  try {
+    const getUser = localStorage.getItem("currentUser");
+    if (getUser) return JSON.parse(getUser);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function currentBoardFromStorage() {
-  const getBoard = localStorage.getItem("currentBoard");
-  if (getBoard) return JSON.parse(getBoard);
+  try {
+    const getBoard = localStorage.getItem("currentBoard");
+    if (getBoard) return JSON.parse(getBoard);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function renderBoardsToMain(listOFBoards: Board[]) {
-  boardArea.innerHTML = "";
-  listOFBoards.forEach((board) => {
-    boardArea.innerHTML += `
-    <div class='board' 
-    style='background-color: ${board.backgroundColor}'>
-    <h2 class="boardClick">${board.name}</h2>
-    </div>
-    `;
-  });
+  try {
+    boardArea.innerHTML = "";
+    listOFBoards.forEach((board) => {
+      boardArea.innerHTML += `
+      <div class='board' 
+      style='background-color: ${board.backgroundColor}'>
+      <h2 class="boardClick">${board.name}</h2>
+      </div>
+      `;
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function createBoard() {
-  if (boardName.value && boardColor.value) {
-    if (!currentUser) return alert("not signed in");
-    const newBoard = new Board(boardName.value, boardColor.value);
-    addNewBoardToUserInLocalStorage(currentUser, newBoard);
-    // location.href = "board.html";
-    boardName.value = "";
-    boardColor.value = "";
-    newBoardWindow.style.display = "none";
-    renderBoardsToMain(currentUser.boardList);
-    console.table(preMadeUserList);
-  } else {
-    alert("missing field");
+  try {
+    if (boardName.value && boardColor.value) {
+      if (!currentUser) return alert("not signed in");
+      const newBoard = new Board(boardName.value, boardColor.value);
+      addNewBoardToUserInLocalStorage(currentUser, newBoard);
+      // location.href = "board.html";
+      boardName.value = "";
+      boardColor.value = "";
+      newBoardWindow.style.display = "none";
+      renderBoardsToMain(currentUser.boardList);
+    } else {
+      alert("missing field");
+    }
+  } catch (error) {
+    console.log(error);
   }
 }
 
@@ -125,13 +143,21 @@ function createBoard() {
 // }
 
 function setCurrentBoard(boardName: string) {
-  const findBoard = currentUser.boardList.find(
-    (board) => board.name === boardName
-  );
-  localStorage.setItem("currentBoard", JSON.stringify(findBoard));
+  try {
+    const findBoard = currentUser.boardList.find(
+      (board) => board.name === boardName
+    );
+    localStorage.setItem("currentBoard", JSON.stringify(findBoard));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-function renderBoard(){
-  currentBoard = currentBoardFromStorage();
-  boardTitle.textContent = currentBoard.name;
+function renderBoard() {
+  try {
+    currentBoard = currentBoardFromStorage();
+    boardTitle.textContent = currentBoard.name;
+  } catch (error) {
+    console.log(error);
+  }
 }
