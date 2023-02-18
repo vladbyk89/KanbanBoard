@@ -100,7 +100,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: url("http://clevertechie.com/img/bnet-bg.jpg") #a6c2df no-repeat center top;
+  color: white;
+  background: url("https://png.pngtree.com/thumb_back/fw800/background/20210320/pngtree-abstract-geometric-neon-graphic-background-image_589965.jpg") #a6c2df no-repeat center top;
+  background-size: cover;
 }
 .registerContainer__title {
   padding: 1em;
@@ -113,18 +115,40 @@ body {
   height: 100%;
   width: 100%;
   font-size: 1.5rem;
+  border-radius: 5%;
   overflow-y: auto;
+  color: white;
 }
 .registerContainer__form input {
   margin-bottom: 1rem;
   width: 30%;
   font-size: 1.2rem;
+  border-radius: 100px;
   padding: 0.3em;
+}
+.registerContainer__form label {
+  background-color: rgba(128, 0, 128, 0.641);
+  color: aqua;
+  border-radius: 15%;
 }
 .registerContainer__form select {
   padding: 0.1em;
   font-size: 1.2rem;
   margin-bottom: 1em;
+  border-radius: 200px;
+}
+.registerContainer__form #submit {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10rem;
+  color: black;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.15rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 .registerContainer button {
   margin-top: 2em;
