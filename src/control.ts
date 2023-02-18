@@ -118,9 +118,3 @@ function returnBoard(boardName: string) {
   }
   return false;
 }
-
-
-function openBoard(board: Board) {
-boardTitle.textContent = board.name;
-window.location.href = "board.html";
-}

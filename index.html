@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kanban Board Main</title>
-    <link rel="icon" type="image/png" href="./img/kanban3.png">
+    <link rel="icon" type="image/png" href="./img/kanban3.png" />
     <link rel="stylesheet" href="./src/dist/style.css" />
     <script src="./src/dist/helpers.js" defer></script>
     <script src="./src/dist/control.js" defer></script>
@@ -16,12 +16,15 @@
       src="https://kit.fontawesome.com/0d9e773bea.js"
       crossorigin="anonymous"
     ></script>
-
   </head>
   <body onload="checkIfCurrentUserExists()">
     <div class="mainpageContainer">
       <nav class="mainpageContainer__topNav">
-        <div class="mainpageContainer__topNav__logo">LOGO</div>
+        <img
+          src="./img/WhatsApp Image 2023-02-17 at 11.20.52.jpeg"
+          alt=""
+          class="mainpageContainer__topNav__logo"
+        />
         <button class="mainpageContainer__topNav__btn createBoardWindowBtn">
           Create Board
         </button>
@@ -30,19 +33,20 @@
           class="mainpageContainer__topNav__search"
           placeholder="&#xF002; Search"
         />
-        <i
-          class="fa-solid fa-bell mainpageContainer__topNav__notifications"
-        ></i>
-        <i
-          class="fa-solid fa-user mainpageContainer__topNav__profile profileBtn"
-        ></i>
+        <div class="mainpageContainer__topNav__iconDiv">
+          <i
+            class="fa-solid fa-bell mainpageContainer__topNav__iconDiv__notifications"
+          ></i>
+          <i
+            class="fa-solid fa-user mainpageContainer__topNav__iconDiv__profile profileBtn"
+          ></i>
+        </div>
       </nav>
       <main class="mainpageContainer__main">
         <h1>Hello and welcome to our new task management application</h1>
         <div class="mainpageContainer__main__boards">
           <h3>Your Boards</h3>
-          <div class="mainpageContainer__main__boards__boardArea">
-          </div>
+          <div class="mainpageContainer__main__boards__boardArea"></div>
         </div>
       </main>
     </div>

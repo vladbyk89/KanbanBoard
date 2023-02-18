@@ -50,8 +50,6 @@ const boardTitle = document.querySelector(
   ".boardContainer__topNav__boardName"
 ) as HTMLDivElement;
 
-
-
 window.addEventListener("click", (e) => {
   const target = e.target as HTMLElement;
   // console.log(returnBoard(target.innerHTML));
@@ -62,8 +60,7 @@ window.addEventListener("click", (e) => {
   if (target.classList.contains("backToMain")) {
     profileWindow.style.display = "none";
   }
-  if(target.classList.contains("boardClick")){
-    const board = returnBoard(target.innerHTML)as Board;
-    openBoard(board);
+  if (target.classList.contains("boardClick")) {
+    window.location.href = "board.html";
   }
 });

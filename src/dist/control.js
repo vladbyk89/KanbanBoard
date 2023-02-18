@@ -84,7 +84,3 @@ function returnBoard(boardName) {
     }
     return false;
 }
-function openBoard(board) {
-    boardTitle.textContent = board.name;
-    window.location.href = "board.html";
-}

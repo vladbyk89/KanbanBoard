@@ -31,7 +31,6 @@ window.addEventListener("click", function (e) {
         profileWindow.style.display = "none";
     }
     if (target.classList.contains("boardClick")) {
-        var board = returnBoard(target.innerHTML);
-        openBoard(board);
+        window.location.href = "board.html";
     }
 });

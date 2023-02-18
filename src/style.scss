@@ -184,17 +184,15 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 1em;
     font-size: 2rem;
     &__logo {
-      // border: 1px solid black;
-      text-shadow: 0 0 10px red;
+      border: 1px solid black;
+      height: 100%;
     }
-
     &__search {
       border: 1px solid rgba(0, 0, 0, 0.249);
       outline: none;
-      width: 30%;
+      width: 20%;
       font-size: 1.3rem;
       padding: 0.3em;
       font-family: sans-serif, FontAwesome;
@@ -202,18 +200,27 @@ body {
     &__search:focus::placeholder {
       color: transparent;
     }
-    &__notifications {
-      cursor: pointer;
-      color: #fa6400;
-    }
-    &__profile {
-      cursor: pointer;
-      color: #fa6400;
-    }
-    i:hover {
-      // text-shadow: 0 0 5px black;
-      transform: scale(1.3);
-      transition: transform 0.2s;
+    &__iconDiv {
+      // border: 1px solid black;
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      padding: 0 1em;
+      gap: 3rem;
+      height: 100%;
+      &__notifications {
+        cursor: pointer;
+        color: #fa6400;
+      }
+
+      &__profile {
+        cursor: pointer;
+        color: #fa6400;
+      }
+
+      i:hover {
+        text-shadow: 0 0 5px black;
+      }
     }
     &__btn {
       align-items: center;
