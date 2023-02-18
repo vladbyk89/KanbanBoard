@@ -1,4 +1,5 @@
 var currentUser = currentUserFromStorage();
+var currentBoard;
 var User = /** @class */ (function () {
     function User(firstName, lastName, gender, userName, password, email, phoneNumber, boardList) {
         if (boardList === void 0) { boardList = []; }

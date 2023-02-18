@@ -54,6 +54,11 @@ function currentUserFromStorage() {
     if (getUser)
         return JSON.parse(getUser);
 }
+function currentBoardFromStorage() {
+    var getBoard = localStorage.getItem("currentBoard");
+    if (getBoard)
+        return JSON.parse(getBoard);
+}
 function renderBoardsToMain(listOFBoards) {
     boardArea.innerHTML = "";
     listOFBoards.forEach(function (board) {
@@ -77,10 +82,20 @@ function createBoard() {
         alert("missing field");
     }
 }
-function returnBoard(boardName) {
+// function returnBoard(boardName: string) {
+//   const findBoard = currentUser.boardList.find(
+//     (board) => board.name === boardName
+//   );
+//   if (findBoard) {
+//     return findBoard;
+//   }
+//   return false;
+// }
+function setCurrentBoard(boardName) {
     var findBoard = currentUser.boardList.find(function (board) { return board.name === boardName; });
-    if (findBoard) {
-        return findBoard;
-    }
-    return false;
+    localStorage.setItem("currentBoard", JSON.stringify(findBoard));
+}
+function renderBoard() {
+    currentBoard = currentBoardFromStorage();
+    boardTitle.textContent = currentBoard.name;
 }

@@ -61,6 +61,7 @@ window.addEventListener("click", (e) => {
     profileWindow.style.display = "none";
   }
   if (target.classList.contains("boardClick")) {
+    setCurrentBoard(target.innerHTML);
     window.location.href = "board.html";
   }
 });

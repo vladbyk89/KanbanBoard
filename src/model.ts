@@ -1,5 +1,5 @@
 let currentUser: User = currentUserFromStorage();
-
+let currentBoard: Board;
 class User {
   private uid: string;
   constructor(

@@ -81,6 +81,11 @@ function currentUserFromStorage() {
   if (getUser) return JSON.parse(getUser);
 }
 
+function currentBoardFromStorage() {
+  const getBoard = localStorage.getItem("currentBoard");
+  if (getBoard) return JSON.parse(getBoard);
+}
+
 function renderBoardsToMain(listOFBoards: Board[]) {
   boardArea.innerHTML = "";
   listOFBoards.forEach((board) => {
@@ -109,12 +114,24 @@ function createBoard() {
   }
 }
 
-function returnBoard(boardName: string) {
+// function returnBoard(boardName: string) {
+//   const findBoard = currentUser.boardList.find(
+//     (board) => board.name === boardName
+//   );
+//   if (findBoard) {
+//     return findBoard;
+//   }
+//   return false;
+// }
+
+function setCurrentBoard(boardName: string) {
   const findBoard = currentUser.boardList.find(
     (board) => board.name === boardName
   );
-  if (findBoard) {
-    return findBoard;
-  }
-  return false;
+  localStorage.setItem("currentBoard", JSON.stringify(findBoard));
+}
+
+function renderBoard(){
+  currentBoard = currentBoardFromStorage();
+  boardTitle.textContent = currentBoard.name;
 }

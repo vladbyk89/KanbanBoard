@@ -2,6 +2,7 @@ var formCard = document.getElementById("todo-form");
 var input = document.getElementById("todo-input");
 var todoLane = document.getElementById("todo-lane");
 var title = document.querySelector("#title");
+renderBoard();
 formCard.addEventListener("submit", function (e) {
     e.preventDefault();
     if (title) {
