@@ -145,7 +145,7 @@ body {
   display: flex;
   padding: 10%;
   display: none;
-  #signOutbtn {
+  .signOutbtn {
     background-color: initial;
     background-image: linear-gradient(-180deg, #ff7e31, #e62c03);
     border-radius: 6px;
@@ -175,7 +175,7 @@ body {
     transition: box-shadow 0.2s;
   }
 
-  #signOutbtn:hover {
+  .signOutbtn:hover {
     box-shadow: rgba(253, 76, 0, 0.5) 0 3px 8px;
   }
   i {

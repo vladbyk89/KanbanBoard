@@ -12,10 +12,10 @@ cancelCreateBoardBtn.addEventListener(
 );
 createBoardBtn.addEventListener("click", createBoard);
 
-signOutBtn.addEventListener("click", () => {
-  localStorage.removeItem("currentUser");
-  window.location.href = "login.html";
-});
+// signOutBtn.addEventListener("click", () => {
+//   localStorage.removeItem("currentUser");
+//   window.location.href = "login.html";
+// });
 
 searchBar.addEventListener("keyup", () => {
   if (searchBar.value != "") {

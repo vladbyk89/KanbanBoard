@@ -27,6 +27,10 @@ window.addEventListener("click", function (e) {
     if (target.classList.contains("profileBtn")) {
         displayUser(currentUser);
     }
+    if (target.classList.contains("signOutbtn")) {
+        localStorage.removeItem("currentUser");
+        window.location.href = "login.html";
+    }
     if (target.classList.contains("backToMain")) {
         profileWindow.style.display = "none";
     }
