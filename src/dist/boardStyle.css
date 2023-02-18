@@ -33,15 +33,9 @@ body {
   font-size: 2rem;
 }
 .boardContainer__topNav__logo {
-  border: 1px solid black;
   height: 100%;
 }
-.boardContainer__topNav__boardName {
-  border: 1px solid black;
-  display: flex;
-}
 .boardContainer__topNav__iconDiv {
-  border: 1px solid black;
   display: flex;
   justify-content: end;
   align-items: center;
@@ -49,13 +43,9 @@ body {
   gap: 3rem;
   height: 100%;
 }
-.boardContainer__topNav__iconDiv__notifications {
+.boardContainer__topNav__iconDiv i {
   cursor: pointer;
-  color: #fa6400;
-}
-.boardContainer__topNav__iconDiv__profile {
-  cursor: pointer;
-  color: #fa6400;
+  color: #ff7e31;
 }
 .boardContainer__topNav__iconDiv i:hover {
   text-shadow: 0 0 5px black;

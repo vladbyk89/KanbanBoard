@@ -35,33 +35,22 @@ body {
     align-items: center;
     font-size: 2rem;
     &__logo {
-      border: 1px solid black;
+      // border: 1px solid black;
       height: 100%;
       
     }
-    &__boardName {
-      border: 1px solid black;
-      display: flex;
-    }
-
     &__iconDiv {
-      border: 1px solid black;
+      // border: 1px solid black;
       display: flex;
       justify-content: end;
       align-items: center;
       padding: 0 1em;
       gap: 3rem;
       height: 100%;
-      &__notifications {
+      i{
         cursor: pointer;
-        color: #fa6400;
+        color: #ff7e31;
       }
-
-      &__profile {
-        cursor: pointer;
-        color: #fa6400;
-      }
-
       i:hover {
         text-shadow: 0 0 5px black;
       }
