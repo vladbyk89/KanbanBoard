@@ -1,5 +1,16 @@
-#title {
+#rootList {
+  display: flex;
+  // margin-right: 50%;
   width: 250%;
+  margin-top: 3%;
+  gap: 2%;
+  margin-right: 22rem;
+  // padding-top: 2%;
+  padding: 2rem;
+  // padding-right: 15rem;
+}
+#rootTask{
+
 }
 
 * {
@@ -12,6 +23,7 @@
 body {
   height: 100vh;
   width: 100vw;
+  // overflow-x: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,6 +40,7 @@ body {
     "main main";
 
   &__topNav {
+    // width: 85%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.272);
     grid-area: top;
     display: flex;
@@ -39,14 +52,19 @@ body {
       height: 100%;
       
     }
+    &__boardName{
+      // margin-right: 50%;
+    }
     &__iconDiv {
       // border: 1px solid black;
+    
       display: flex;
       justify-content: end;
       align-items: center;
       padding: 0 1em;
       gap: 3rem;
       height: 100%;
+      // margin-right: 15%;
       i{
         cursor: pointer;
         color: #ff7e31;
@@ -76,6 +94,11 @@ body {
       padding: 1em;
       font-size: 1rem;
       background-color: rgb(33, 232, 7);
+      display: flex;
+      flex-direction: column;
+      gap: 2%;
+      // margin-right: 12%;
+
 
       &__header {
         display: flex;
@@ -109,22 +132,14 @@ body {
           margin-top: 5%;
           justify-content: center;
 
-          #todo-input {
-            width: 100%;
-            height: 50%;
-            cursor: pointer;
-            text-align: center;
-            border: 2px solid #fa6400;
-          }
-
           button {
             border: none;
-            width: 100%;
+            // width: 100%;
             cursor: pointer;
           }
 
           button:hover {
-            background-color: #36395a3e;
+            background-color: #ee30003e;
           }
         }
       }
@@ -205,7 +220,18 @@ body {
 
 #todo-form {
   display: flex;
-  // margin-left:  70px;
-  width: 150%;
+  width: 70%;
+height: 10%;
   margin: -3.8rem;
+  #todo-input {
+    width: 155%;
+    // height: 50%;
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid #dd5d08;
+  }
+  button{
+    width: 25%;
+    height: 100%;
+  }
 }

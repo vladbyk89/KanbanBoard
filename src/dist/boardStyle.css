@@ -1,5 +1,10 @@
-#title {
+#rootList {
+  display: flex;
   width: 250%;
+  margin-top: 3%;
+  gap: 2%;
+  margin-right: 22rem;
+  padding: 2rem;
 }
 
 * {
@@ -69,6 +74,9 @@ body {
   padding: 1em;
   font-size: 1rem;
   background-color: #21e807;
+  display: flex;
+  flex-direction: column;
+  gap: 2%;
 }
 .boardContainer__main__list__header {
   display: flex;
@@ -100,20 +108,12 @@ body {
   margin-top: 5%;
   justify-content: center;
 }
-.boardContainer__main__list__card__addCard #todo-input {
-  width: 100%;
-  height: 50%;
-  cursor: pointer;
-  text-align: center;
-  border: 2px solid #fa6400;
-}
 .boardContainer__main__list__card__addCard button {
   border: none;
-  width: 100%;
   cursor: pointer;
 }
 .boardContainer__main__list__card__addCard button:hover {
-  background-color: #36395a3e;
+  background-color: #ee30003e;
 }
 .boardContainer__main__list__card:hover {
   box-shadow: 0 0 5px black;
@@ -186,6 +186,17 @@ body {
 
 #todo-form {
   display: flex;
-  width: 150%;
+  width: 70%;
+  height: 10%;
   margin: -3.8rem;
+}
+#todo-form #todo-input {
+  width: 155%;
+  cursor: pointer;
+  text-align: center;
+  border: 2px solid #dd5d08;
+}
+#todo-form button {
+  width: 25%;
+  height: 100%;
 }

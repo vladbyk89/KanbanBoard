@@ -1,7 +1,7 @@
-const formCard = document.getElementById("todo-form");
+const formList = document.getElementById("todo-form");
 const input = document.getElementById("todo-input");
 const todoLane = document.getElementById("todo-lane");
-const title: HTMLHeadingElement | null = document.querySelector("#title");
+const rootList: HTMLHeadingElement | null = document.querySelector("#rootList");
 
 renderBoard();
 
@@ -10,13 +10,30 @@ backToMainBtn.addEventListener(
   () => (window.location.href = "index.html")
 );
 
-formCard.addEventListener("submit", (e) => {
+formList.addEventListener("submit", (e) => {
+  console.log(formList)
   e.preventDefault();
-  if (title) {
-    title.innerHTML = ` <div class="boardContainer__main__list swim-lane" draggable="true">
+  if (rootList) {
+    rootList.innerHTML += ` <div class="boardContainer__main__list swim-lane" draggable="true">
     <div class="boardContainer__main__list__header">
-      <h3 contenteditable>Done</h3>
-      <i class="fa-solid fa-ellipsis"></i>
+    <h3 contenteditable>${input.value}</h3>
+    <i class="fa-solid fa-ellipsis"></i>
+    </div>
+    <div class="boardContainer__main__list__card__addCard" >
+    <form todo-form>
+      <input type="text" placeholder="Add New Card" id="todo-input">
+      <button type="submit" class="addCardBtn">
+        <i class="fa-solid fa-plus">Add Card</i>
+      </form>
+    </button>
+  </div>
+    <div class="boardContainer__main__list__card task p1">
+      <p class="p1" draggable="true">Create Element</p>
+      <i class="fa-regular fa-pen-to-square p1"></i>
+    </div>
+    <div class="boardContainer__main__list__card task p1">
+      <p class="p1" draggable="true">Create Element</p>
+      <i class="fa-regular fa-pen-to-square p1"></i>
     </div>
     <div class="boardContainer__main__list__card task p1">
       <p class="p1" draggable="true">Create Element</p>
@@ -30,8 +47,12 @@ formCard.addEventListener("submit", (e) => {
       <p class="p1" draggable="true">Something else...</p>
       <i class="fa-regular fa-pen-to-square"></i>
     </div>
-  </div>`;
-  }
+  </div>`;}
+  // else{
+  //   if(!formList && input.value){
+  //     return ;
+  //   }
+  // }
   const grabCard = document.querySelectorAll(".task");
   const drappables = document.querySelectorAll(".swim-lane");
   grabCard.forEach((task) => {
@@ -95,3 +116,30 @@ formCard.addEventListener("submit", (e) => {
 
   input.value = "";
 });
+
+// const formTask = document.querySelector("#todo-formTask");
+// const addTask = document.querySelector("#addTask");
+// addTask.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   if (addTask) {
+//     rootTask.innerHTML += `<div class="boardContainer__main__list__card task p1">
+//     <p class="p1" draggable="true">Create Element</p>
+//     <i class="fa-regular fa-pen-to-square p1"></i>
+//   </div>`;
+
+//   }
+// });
+const addTask = document.getElementById("#Listrender");
+const formTask:any = document.getElementById("#addCardBtn");//form
+formTask.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (addTask) {
+    addTask.innerHTML += `<div class="boardContainer__main__list__card task p1">
+    <p class="p1" draggable="true">Create Element</p>
+    <i class="fa-regular fa-pen-to-square p1"></i>
+  </div>`;
+console.log(event.preventDefault())
+  }
+});
+
+// boardContainer__main__list__card__addCard
