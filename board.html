@@ -22,32 +22,29 @@
 
   <body>
     <div class="boardContainer">
-      <nav class="boardContainer__topNav">LOGO
-        <!-- <div class="boardContainer__topNav__logo"><img src="./img/WhatsApp Image 2023-02-17 at 11.20.52.jpeg" alt=""></div> -->
-        <form id="formList"></form>
-          <input type="text" placeholder="Add New List" id="input">
-        <button type="submit" class="boardContainer__topNav__addList">+ add list</button>
-        </form>
+      <nav class="boardContainer__topNav">
+        <img src="./img/WhatsApp Image 2023-02-17 at 11.20.52.jpeg" alt="" class="boardContainer__topNav__logo">
+        <!-- <div id="formList">
+          <input type="text" placeholder="Add New List" id="input" />
+          <button type="submit" class="boardContainer__topNav__addList">
+            + add list
+          </button>
+        </div> -->
         <div contenteditable class="boardContainer__topNav__boardName">
           Board Name
         </div>
-        <div class="boardContainer__topNav__rightSideDiv">
-          <!-- <input
-            type="text"
-            class="boardContainer__topNav__rightSideDiv__search"
-            placeholder="&#xF002; Search"
-            /> -->
-            <i
-            class="fa-solid fa-bell boardContainer__topNav__rightSideDiv__notifications"
-            ></i>
-            <i
-            class="fa-solid fa-user boardContainer__topNav__rightSideDiv__profile profileBtn"
-            ></i>
-          </div>
-        </nav>
-        <main class="boardContainer__main">
+        <div class="boardContainer__topNav__iconDiv">
+          <i
+            class="fa-solid fa-bell boardContainer__topNav__iconDiv__notifications"
+          ></i>
+          <i
+            class="fa-solid fa-user boardContainer__topNav__iconDiv__profile profileBtn"
+          ></i>
+        </div>
+      </nav>
+      <main class="boardContainer__main">
         <form id="todo-form">
-          <input type="text" placeholder="New list" id="todo-input">
+          <input type="text" placeholder="New list" id="todo-input" />
           <button type="submit">Add +</button>
         </form>
         <!-- <div class="boardContainer__main__list swim-lane" draggable="true">
@@ -77,10 +74,6 @@
           </div>
         </div> -->
         <div id="title"></div>
-
-
-
-
       </main>
       <div class="profileWindow">
         <i class="fa-solid fa-arrow-right-from-bracket backToMain"></i>

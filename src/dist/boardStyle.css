@@ -25,61 +25,39 @@ body {
   grid-template-areas: "top top" "main main" "main main";
 }
 .boardContainer__topNav {
-  border: 1px solid black;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.272);
   grid-area: top;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 2rem;
 }
-.boardContainer__topNav #formList {
-  width: 50%;
-  display: flex;
-  margin-left: 5%;
-}
-.boardContainer__topNav #input {
-  padding: 12px;
-  margin-right: 12px;
-  width: 225px;
-  border-radius: 4px;
-  border: none;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
-  font-size: 14px;
-  outline: none;
+.boardContainer__topNav__logo {
+  border: 1px solid black;
+  height: 100%;
 }
 .boardContainer__topNav__boardName {
+  border: 1px solid black;
   display: flex;
-  width: 20rem;
-  font-size: 2rem;
-  align-items: center;
-  margin-left: 20%;
 }
-.boardContainer__topNav__rightSideDiv {
+.boardContainer__topNav__iconDiv {
+  border: 1px solid black;
   display: flex;
   justify-content: end;
   align-items: center;
   padding: 0 1em;
   gap: 3rem;
-  width: 40%;
-  font-size: 2rem;
+  height: 100%;
 }
-.boardContainer__topNav__rightSideDiv__search {
-  width: 50%;
-  font-size: 1.3rem;
-  padding: 0.3em;
-  margin-right: auto;
-  font-family: sans-serif, FontAwesome;
-  margin-left: 25%;
-  border: 2px solid #fa6400;
-}
-.boardContainer__topNav__rightSideDiv__notifications {
+.boardContainer__topNav__iconDiv__notifications {
   cursor: pointer;
   color: #fa6400;
 }
-.boardContainer__topNav__rightSideDiv__profile {
+.boardContainer__topNav__iconDiv__profile {
   cursor: pointer;
   color: #fa6400;
 }
-.boardContainer__topNav__rightSideDiv i:hover {
+.boardContainer__topNav__iconDiv i:hover {
   text-shadow: 0 0 5px black;
 }
 .boardContainer__main {
