@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kanban Board Register</title>
-    <link rel="icon" type="image/png" href="./img/kanban3.png">
-    <link rel="stylesheet" href="./src/dist/style.css">
+    <link rel="icon" type="image/png" href="./img/kanban3.png" />
+    <!-- <link rel="stylesheet" href="./src/dist/styleRegister.css" /> -->
+    <link rel="stylesheet" href="./src/dist/style.css" />
     <script src="./src/dist/helpers.js" defer></script>
     <script src="./src/dist/control.js" defer></script>
     <script src="./src/dist/view.js" defer></script>
@@ -19,22 +20,58 @@
       <h1 class="registerContainer__title">Register</h1>
       <form class="registerContainer__form">
         <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" name="firstName" placeholder="Example: John" required />
+        <input
+          type="text"
+          id="firstName"
+          name="firstName"
+          placeholder="Example: John"
+          required
+        />
 
         <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" name="lastName" placeholder="Example: Doe" required />
+        <input
+          type="text"
+          id="lastName"
+          name="lastName"
+          placeholder="Example: Doe"
+          required
+        />
 
         <label for="userName">User Name:</label>
-        <input type="text" id="userName" name="userName" placeholder="Example: Johnny321" required />
+        <input
+          type="text"
+          id="userName"
+          name="userName"
+          placeholder="Example: Johnny321"
+          required
+        />
 
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Example: Jiji@D4332" required />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Example: Jiji@D4332"
+          required
+        />
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" placeholder="Example: johndoe@gmail.com" required />
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Example: johndoe@gmail.com"
+          required
+        />
 
         <label for="phoneNumber">PhoneNumber:</label>
-        <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Example: 0541234567" required />
+        <input
+          type="tel"
+          id="phoneNumber"
+          name="phoneNumber"
+          placeholder="Example: 0541234567"
+          required
+        />
 
         <label for="gender">Gender:</label>
         <select name="gender" id="gender">
@@ -44,7 +81,11 @@
           <option value="other">other</option>
         </select>
 
-        <input type="submit" value="submit" id="submitForm">
+        <input type="submit" value="submit" id="submitForm" />
+        <a href="login.html" class="tooltip"
+          >Back to Loging Page
+          <span class="tooltiptext">Back to Login Page</span>
+        </a>
       </form>
     </div>
   </body>
