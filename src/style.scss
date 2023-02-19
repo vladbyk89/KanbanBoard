@@ -440,6 +440,7 @@ body {
   padding: 2rem;
   font-size: 1.3rem;
   display: none;
+  box-shadow: 0 0 10px 1000px rgba(0, 0, 0, 0.816);
   .input {
     display: flex;
     flex-direction: column;
@@ -453,7 +454,7 @@ body {
   }
   button {
     padding: 0.5em;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin: 1em;
   }
 }
