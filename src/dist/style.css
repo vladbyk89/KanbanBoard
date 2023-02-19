@@ -366,6 +366,116 @@ body {
   display: block;
 }
 
+.boardContainer {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 5rem 1fr;
+  grid-template-areas: "top top" "main main" "main main";
+}
+.boardContainer__topNav {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.272);
+  grid-area: top;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2rem;
+}
+.boardContainer__topNav__logo {
+  height: 100%;
+}
+.boardContainer__topNav__iconDiv {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 0 1em;
+  gap: 3rem;
+  height: 100%;
+}
+.boardContainer__topNav__iconDiv i {
+  cursor: pointer;
+  color: #ff7e31;
+}
+.boardContainer__topNav__iconDiv i:hover {
+  text-shadow: 0 0 5px black;
+}
+.boardContainer__main {
+  grid-area: main;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  background-color: #3188aa;
+  gap: 1rem;
+  padding: 1rem;
+  overflow: auto;
+}
+.boardContainer__main__column {
+  background-color: #2f6028;
+  width: 10%;
+  padding: 1em;
+  border-radius: 10px;
+}
+.boardContainer__main__column__list {
+  border: 1px solid black;
+  width: 100%;
+  height: auto;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2%;
+}
+.boardContainer__main__column__list__header {
+  display: flex;
+  justify-content: center;
+}
+.boardContainer__main__column__list__header h3 {
+  text-align: center;
+  color: whitesmoke;
+  text-shadow: 0 0 10px black;
+}
+.boardContainer__main__column__list__card {
+  border: 1px solid black;
+  position: relative;
+  padding: 0.5em;
+  margin: 0.5em 0;
+  height: auto;
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+}
+.boardContainer__main__column__list__card--addCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  color: white;
+  margin-top: 1em;
+}
+.boardContainer__main__column__list__card--addCard input {
+  width: 100%;
+}
+.boardContainer__main__column__list__card--addCard button {
+  border: none;
+  width: 100%;
+  cursor: pointer;
+}
+.boardContainer__main__column__list__card--addCard button:hover {
+  background-color: #ee30003e;
+}
+.boardContainer__main__column__list__card:hover {
+  box-shadow: 0 0 5px black;
+}
+.boardContainer__main__column__list--addList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.boardContainer__main__column__list--addList input {
+  width: 100%;
+}
+
 .newBoardWindow {
   position: absolute;
   background-color: darkolivegreen;

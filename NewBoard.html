@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kanban Board</title>
+    <link rel="icon" type="image/png" href="./img/kanban3.png" />
+    <script
+      src="https://kit.fontawesome.com/0d9e773bea.js"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <!-- <link rel="stylesheet" href="./src/dist/boardStyle.css" /> -->
+    <link rel="stylesheet" href="./src/dist/style.css" />
+    <script src="./src/dist/helpers.js" defer></script>
+    <script src="./src/dist/control.js" defer></script>
+    <script src="./src/dist/view.js" defer></script>
+    <script src="./src/dist/model.js" defer></script>
+    <script src="./src/dist/main.js" defer></script>
+    <script src="./src/dist/kanbanAPI.js" defer></script>
+  </head>
+
+  <body onload="checkIfCurrentUserExists()">
+    <div class="boardContainer">
+      <nav class="boardContainer__topNav">
+        <img
+          src="./img/Screenshot 2023-02-18 230204.png"
+          alt=""
+          class="boardContainer__topNav__logo"
+        />
+        <div class="boardContainer__topNav__boardName"></div>
+        <div class="boardContainer__topNav__iconDiv">
+          <i
+            class="fa-solid fa-hand-point-left boardContainer__topNav__iconDiv__backToMain"
+          ></i>
+          <i
+            class="fa-solid fa-bell boardContainer__topNav__iconDiv__notifications"
+          ></i>
+          <i
+            class="fa-solid fa-user boardContainer__topNav__iconDiv__profile profileBtn"
+          ></i>
+        </div>
+      </nav>
+      <main class="boardContainer__main">
+        <div class="boardContainer__main__column">
+          <div class="boardContainer__main__column__list" draggable="true">
+            <div class="boardContainer__main__column__list__header">
+              <h3>List Name</h3>
+            </div>
+            <div class="boardContainer__main__column__list__card--addCard">
+                <input type="text">
+              <button>New Card</button>
+            </div>
+            <div
+              class="boardContainer__main__column__list__card"
+              draggable="true"
+            >
+              <p>Create Element</p>
+              <i class="fa-regular fa-pen-to-square p1"></i>
+            </div>
+            <div
+              class="boardContainer__main__column__list__card"
+              draggable="true"
+            >
+              <p>Task 1</p>
+              <i class="fa-regular fa-pen-to-square p1"></i>
+            </div>
+            <div
+              class="boardContainer__main__column__list__card"
+              draggable="true"
+            >
+              <p>Task 2</p>
+              <i class="fa-regular fa-pen-to-square p1"></i>
+            </div>
+            <div
+              class="boardContainer__main__column__list__card"
+              draggable="true"
+            >
+              <p>Long Text task to test look</p>
+              <i class="fa-regular fa-pen-to-square p1"></i>
+            </div>
+          </div>
+        </div>
+        <div class="boardContainer__main__column">
+            <div class="boardContainer__main__column__list--addList">
+                <input type="text">
+                <button>Add List+</button>
+            </div>
+        </div>
+      </main>
+      <div class="profileWindow">
+        <i class="fa-solid fa-arrow-right-from-bracket backToMain"></i>
+        <button class="signOutbtn">Sign out</button>
+        <div class="profile"></div>
+      </div>
+    </div>
+  </body>
+</html>
