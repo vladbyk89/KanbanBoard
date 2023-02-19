@@ -157,3 +157,9 @@ function deleteBoard(boardName: string) {
     ?.boardList.splice(boardIndex, 1);
   localStorage.setItem("signedUpUsers", JSON.stringify(userList));
 }
+
+
+
+function seveListToLocalStorage(: string) {
+
+}

@@ -1,20 +1,17 @@
 var formList = document.getElementById("todo-form");
 var input = document.getElementById("todo-input");
-var todoLane = document.getElementById("todo-lane");
+// const todoLane = document.getElementById("todo-lane") as HTMLElement;
 var rootList = document.querySelector("#rootList");
 renderBoardInBoardPage();
 backToMainBtn.addEventListener("click", function () { return (window.location.href = "index.html"); });
 formList.addEventListener("submit", function (e) {
     e.preventDefault();
+    console.log(rootList);
     if (rootList) {
-        rootList.innerHTML += " <div class=\"boardContainer__main__list swim-lane\" draggable=\"true\">\n    <div class=\"boardContainer__main__list__header\">\n    <h3 contenteditable>" + input.value + "</h3>\n    <i class=\"fa-solid fa-ellipsis\"></i>\n    </div>\n    <div class=\"boardContainer__main__list__card__addCard\" >\n    <form todo-form>\n      <input type=\"text\" placeholder=\"Add New Card\" id=\"todo-input\">\n      <button type=\"submit\" class=\"addCardBtn\">\n        <i class=\"fa-solid fa-plus\">Add Card</i>\n      </form>\n    </button>\n  </div>\n    <div class=\"boardContainer__main__list__card task p1\">\n      <p class=\"p1\" draggable=\"true\">Create Element</p>\n      <i class=\"fa-regular fa-pen-to-square p1\"></i>\n    </div>\n    <div class=\"boardContainer__main__list__card task p1\">\n      <p class=\"p1\" draggable=\"true\">Create Element</p>\n      <i class=\"fa-regular fa-pen-to-square p1\"></i>\n    </div>\n    <div class=\"boardContainer__main__list__card task p1\">\n      <p class=\"p1\" draggable=\"true\">Create Element</p>\n      <i class=\"fa-regular fa-pen-to-square p1\"></i>\n    </div>\n    <div class=\"boardContainer__main__list__card task\" id=\"todo-lane\">\n      <p class=\"p1\" draggable=\"true\">Buy Itay Chocolate</p>\n      <i class=\"fa-regular fa-pen-to-square\"></i>\n    </div>\n    <div class=\"boardContainer__main__list__card task\" id=\"todo-lane\">\n      <p class=\"p1\" draggable=\"true\">Something else...</p>\n      <i class=\"fa-regular fa-pen-to-square\"></i>\n    </div>\n  </div>";
+        var indexValue = rootList.childElementCount + 1;
+        rootList.innerHTML += "<div class=\"boardContainer__main__list swim-lane\" draggable=\"true\">\n    <div class=\"boardContainer__main__list__header\">\n    <h3 contenteditable>" + input.value + "</h3>\n    <i class=\"fa-solid fa-ellipsis\"></i>\n    </div>\n    <div class=\"boardContainer__main__list__card__addCard\" >\n    <form id=\"formList\" onsubmit=\"return fixture(" + indexValue + ")\">\n      <input type=\"text\" placeholder=\"Add New Card\" id=\"addTask_" + indexValue + "\">\n      <button id=\"addCardBtn\">\n        <i class=\"fa-solid fa-plus\">Add Card</i>\n        </button>\n        </form>\n  </div><div id=\"rootTask_" + indexValue + "\"></div>";
     }
-    // else{
-    //   if(!formList && input.value){
-    //     return ;
-    //   }
-    // }
-    e.stopImmediatePropagation();
+    input.value = "";
     var grabCard = document.querySelectorAll(".task");
     var drappables = document.querySelectorAll(".swim-lane");
     grabCard.forEach(function (task) {
@@ -68,25 +65,13 @@ formList.addEventListener("submit", function (e) {
     todoLane.appendChild(newTask);
     input.value = "";
 });
-// const formTask = document.querySelector("#todo-formTask");
-// const addTask = document.querySelector("#addTask");
-// addTask.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   if (addTask) {
-//     rootTask.innerHTML += `<div class="boardContainer__main__list__card task p1">
-//     <p class="p1" draggable="true">Create Element</p>
-//     <i class="fa-regular fa-pen-to-square p1"></i>
-//   </div>`;
-//   }
-// });
-var addTask = document.getElementById("#Listrender");
-var formTask = document.getElementById("#lolo");
-formTask.addEventListener("submit", function (e) {
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    if (addTask) {
-        addTask.innerHTML = "<div class=\"boardContainer__main__list__card task p1\">\n    <p class=\"p1\" draggable=\"true\">Create lol</p>\n    <i class=\"fa-regular fa-pen-to-square p1\"></i>\n  </div>";
+var fixture = function (indexValue) {
+    var rootTask = document.querySelector("#rootTask_" + indexValue);
+    var todo_input = document.getElementById("addTask_" + indexValue);
+    console.log(todo_input);
+    if (rootTask) {
+        rootTask.innerHTML += "<div class=\"boardContainer__main__list__card task p1\">\n          <p class=\"p1\" draggable=\"true\">" + todo_input.value + "</p>\n          <i class=\"fa-regular fa-pen-to-square p1\"></i>\n        </div>";
     }
-});
-//חסר לתפוס איפות
-//
+    input.value = "";
+    return false;
+};

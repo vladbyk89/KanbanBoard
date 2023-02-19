@@ -48,24 +48,23 @@
         </div>
       </nav>
       <main class="boardContainer__main">
-        <form id="todo-form">
-          <input type="text" placeholder="New list" id="todo-input" />
+        <form id="todo-form" onsubmit="return false">
+          <input type="text" placeholder="New list" id="todo-input" required/>
           <button type="submit">Add +</button>
         </form>
         <div id="rootList">
           <div id="rootTask"></div>
         </div>
-        <form id="lol">
-          <input type="text">
-        <button id="lolo" type="submit">hii</button>
-      </form>
 
 
         
-        <div id="Listrender" class="boardContainer__main__list swim-lane" draggable="true">
+        <div class="boardContainer__main__list swim-lane" draggable="true" id="Listrender" >
           <div class="boardContainer__main__list__header">
-            <button id="btn" type="submit">Done!</button>
-            <i class="fa-solid fa-ellipsis"></i>
+            <form id="formTask">
+              <form id="formTask">
+                <input id="addTask" type="text" placeholder="New list" required/>
+                <button type="submit">Add +</button>
+              </form>
           </div>
           <div id="boardContainer__main__list__card__addCard" class="boardContainer__main__list__card__addCard" >
 
