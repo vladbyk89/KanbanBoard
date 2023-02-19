@@ -379,7 +379,6 @@ body {
     box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
     color: #ffffff;
     cursor: pointer;
-    display: inline-block;
     font-family: Inter, -apple-system, system-ui, Roboto, "Helvetica Neue",
       Arial, sans-serif;
     height: 5%;
@@ -388,14 +387,13 @@ body {
     overflow: hidden;
     pointer-events: auto;
     position: absolute;
-    text-align: center;
     touch-action: manipulation;
     user-select: none;
     -webkit-user-select: none;
     vertical-align: top;
     white-space: nowrap;
-    right: 15%;
-    bottom: 22%;
+    right: 10%;
+    bottom: 10%;
     width: 15%;
     border: 0;
     transition: box-shadow 0.2s;
