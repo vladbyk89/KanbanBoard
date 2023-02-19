@@ -91,6 +91,7 @@ function renderBoardsToMain(listOFBoards: Board[]) {
       </div>
       `;
     });
+    localStorage.removeItem('currentBoard');
   } catch (error) {
     console.log(error);
   }
@@ -159,7 +160,3 @@ function deleteBoard(boardName: string) {
 }
 
 
-
-function seveListToLocalStorage(: string) {
-
-}

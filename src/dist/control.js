@@ -59,6 +59,7 @@ function renderBoardsToMain(listOFBoards) {
         listOFBoards.forEach(function (board) {
             boardArea.innerHTML += "\n      <div class='board' \n      style='background-color: " + board.backgroundColor + "'>\n      <h2 class=\"boardClick\">" + board.name + "</h2>\n      <button class=\"removeBoard\" data-name=\"" + board.name + "\">DELETE</button>\n      </div>\n      ";
         });
+        localStorage.removeItem('currentBoard');
     }
     catch (error) {
         console.log(error);
@@ -119,6 +120,4 @@ function deleteBoard(boardName) {
     (_a = userList
         .find(function (user) { return user.userName === currentUser.userName; })) === null || _a === void 0 ? void 0 : _a.boardList.splice(boardIndex, 1);
     localStorage.setItem("signedUpUsers", JSON.stringify(userList));
-}
-function seveListToLocalStorage(string) {
 }
