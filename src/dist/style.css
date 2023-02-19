@@ -295,8 +295,8 @@ body {
   height: auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 2em;
+  gap: 3rem;
+  margin-top: 3em;
 }
 .mainpageContainer__main__boards__boardArea .board {
   border: 1px solid black;
@@ -305,6 +305,7 @@ body {
   max-width: 300px;
   aspect-ratio: 1/1;
   cursor: pointer;
+  position: relative;
 }
 .mainpageContainer__main__boards__boardArea .board h2 {
   border: 1px solid black;
@@ -318,6 +319,16 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+.mainpageContainer__main__boards__boardArea .board button {
+  position: absolute;
+  top: -15%;
+  border: 1px solid rgba(0, 0, 0, 0.182);
+  padding: 0.3em;
+  border-radius: 5px;
+}
+.mainpageContainer__main__boards__boardArea .board button:hover {
+  background-color: red;
 }
 .mainpageContainer__main__boards__boardArea .board:hover {
   box-shadow: 0 0 10px black;

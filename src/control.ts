@@ -36,7 +36,7 @@ function addNewBoardToUserInLocalStorage(updatedUser: User, board: Board) {
     );
     if (addBoardToThisUser) {
       addBoardToThisUser.boardList.push(board);
-      currentUser.boardList.push(board);
+      currentUser.boardList.unshift(board);
     }
     localStorage.setItem("signedUpUsers", JSON.stringify(usersList));
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
@@ -105,6 +105,7 @@ function renderBoardsToMain(listOFBoards: Board[]) {
       <div class='board' 
       style='background-color: ${board.backgroundColor}'>
       <h2 class="boardClick">${board.name}</h2>
+      <button class="removeBoard" data-name="${board.name}">DELETE</button>
       </div>
       `;
     });
@@ -132,15 +133,15 @@ function createBoard() {
   }
 }
 
-// function returnBoard(boardName: string) {
-//   const findBoard = currentUser.boardList.find(
-//     (board) => board.name === boardName
-//   );
-//   if (findBoard) {
-//     return findBoard;
-//   }
-//   return false;
-// }
+function returnBoard(boardName: string) {
+  const findBoard = currentUser.boardList.find(
+    (board) => board.name === boardName
+  );
+  if (findBoard) {
+    return findBoard;
+  }
+  return false;
+}
 
 function setCurrentBoard(boardName: string) {
   try {
@@ -153,11 +154,19 @@ function setCurrentBoard(boardName: string) {
   }
 }
 
-function renderBoard() {
+function renderBoardInBoardPage() {
   try {
     currentBoard = currentBoardFromStorage();
     boardTitle.textContent = currentBoard.name;
   } catch (error) {
     console.log(error);
   }
+}
+
+function deleteBoard(boardName: string) {
+  const boardIndex = currentUser.boardList.findIndex(
+    (board) => board.name === boardName
+  );
+  currentUser.boardList.splice(boardIndex, 1);
+  localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }

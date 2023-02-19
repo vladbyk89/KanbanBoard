@@ -1,9 +1,9 @@
-const formList = document.getElementById("todo-form")as HTMLElement;//from
-const input = document.getElementById("todo-input")as HTMLElement;//input
+const formList = document.getElementById("todo-form") as HTMLFormElement;
+const input = document.getElementById("todo-input") as HTMLInputElement;
 const todoLane = document.getElementById("todo-lane") as HTMLElement;
 const rootList: HTMLHeadingElement | null = document.querySelector("#rootList");
 
-renderBoard();
+renderBoardInBoardPage();
 
 backToMainBtn.addEventListener(
   "click",
@@ -47,7 +47,8 @@ formList.addEventListener("submit", (e) => {
       <p class="p1" draggable="true">Something else...</p>
       <i class="fa-regular fa-pen-to-square"></i>
     </div>
-  </div>`;}
+  </div>`;
+  }
   // else{
   //   if(!formList && input.value){
   //     return ;
@@ -131,12 +132,12 @@ formList.addEventListener("submit", (e) => {
 //   }
 // });
 const addTask = document.getElementById("#Listrender");
-const formTask = document.getElementById("#lolo")as HTMLElement;
+const formTask = document.getElementById("#lolo") as HTMLElement;
 
-formTask.addEventListener("submit", (e) =>{
+formTask.addEventListener("submit", (e) => {
   e.preventDefault();
   e.stopImmediatePropagation();
-  if(addTask){
+  if (addTask) {
     addTask.innerHTML = `<div class="boardContainer__main__list__card task p1">
     <p class="p1" draggable="true">Create lol</p>
     <i class="fa-regular fa-pen-to-square p1"></i>
@@ -144,5 +145,5 @@ formTask.addEventListener("submit", (e) =>{
   }
 });
 
-//חסר לתפוס איפות 
+//חסר לתפוס איפות
 //

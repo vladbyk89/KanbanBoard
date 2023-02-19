@@ -30,6 +30,12 @@ if (window.location.pathname.endsWith("index.html")) {
       renderBoardsToMain(currentUser.boardList);
     }
   });
+
+  boardArea.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+    if (target.dataset.name) deleteBoard(target.dataset.name);
+    renderBoardsToMain(currentUser.boardList);
+  });
 }
 
 window.addEventListener("click", (e) => {
@@ -51,30 +57,4 @@ window.addEventListener("click", (e) => {
     setCurrentBoard(target.innerHTML);
     window.location.href = "board.html";
   }
-
-  // if (target.classList.contains("createBoardBtn")) {
-  //   createBoard();
-  // }
-  // if (target.classList.contains("cancelCreateBoardBtn")) {
-  //   newBoardWindow.style.display = "none";
-  // }
-  // if (target.classList.contains("createBoardWindowBtn")) {
-  //   newBoardWindow.style.display = "flex";
-  // }
-  // if (target.classList.contains("mainpageContainer__topNav__search")) {
-  //   searchBar.addEventListener("keyup", () => {
-  //     if (searchBar.value != "") {
-  //       boardArea.innerHTML = "";
-  //       const listToDisplay: Board[] | boolean = findProductName(
-  //         searchBar.value,
-  //         currentUser.boardList
-  //       );
-  //       if (listToDisplay !== false) {
-  //         renderBoardsToMain(listToDisplay);
-  //       }
-  //     } else {
-  //       renderBoardsToMain(currentUser.boardList);
-  //     }
-  //   });
-  // }
 });

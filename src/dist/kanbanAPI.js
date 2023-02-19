@@ -1,8 +1,8 @@
-var formList = document.getElementById("todo-form"); //from
-var input = document.getElementById("todo-input"); //input
+var formList = document.getElementById("todo-form");
+var input = document.getElementById("todo-input");
 var todoLane = document.getElementById("todo-lane");
 var rootList = document.querySelector("#rootList");
-renderBoard();
+renderBoardInBoardPage();
 backToMainBtn.addEventListener("click", function () { return (window.location.href = "index.html"); });
 formList.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -88,5 +88,5 @@ formTask.addEventListener("submit", function (e) {
         addTask.innerHTML = "<div class=\"boardContainer__main__list__card task p1\">\n    <p class=\"p1\" draggable=\"true\">Create lol</p>\n    <i class=\"fa-regular fa-pen-to-square p1\"></i>\n  </div>";
     }
 });
-//חסר לתפוס איפות 
+//חסר לתפוס איפות
 //

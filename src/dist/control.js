@@ -13,7 +13,7 @@ function addNewBoardToUserInLocalStorage(updatedUser, board) {
         var addBoardToThisUser = usersList.find(function (user) { return user.userName === updatedUser.userName; });
         if (addBoardToThisUser) {
             addBoardToThisUser.boardList.push(board);
-            currentUser.boardList.push(board);
+            currentUser.boardList.unshift(board);
         }
         localStorage.setItem("signedUpUsers", JSON.stringify(usersList));
         localStorage.setItem("currentUser", JSON.stringify(currentUser));
@@ -77,7 +77,7 @@ function renderBoardsToMain(listOFBoards) {
     try {
         boardArea.innerHTML = "";
         listOFBoards.forEach(function (board) {
-            boardArea.innerHTML += "\n      <div class='board' \n      style='background-color: " + board.backgroundColor + "'>\n      <h2 class=\"boardClick\">" + board.name + "</h2>\n      </div>\n      ";
+            boardArea.innerHTML += "\n      <div class='board' \n      style='background-color: " + board.backgroundColor + "'>\n      <h2 class=\"boardClick\">" + board.name + "</h2>\n      <button class=\"removeBoard\" data-name=\"" + board.name + "\">DELETE</button>\n      </div>\n      ";
         });
     }
     catch (error) {
@@ -105,15 +105,13 @@ function createBoard() {
         console.log(error);
     }
 }
-// function returnBoard(boardName: string) {
-//   const findBoard = currentUser.boardList.find(
-//     (board) => board.name === boardName
-//   );
-//   if (findBoard) {
-//     return findBoard;
-//   }
-//   return false;
-// }
+function returnBoard(boardName) {
+    var findBoard = currentUser.boardList.find(function (board) { return board.name === boardName; });
+    if (findBoard) {
+        return findBoard;
+    }
+    return false;
+}
 function setCurrentBoard(boardName) {
     try {
         var findBoard = currentUser.boardList.find(function (board) { return board.name === boardName; });
@@ -123,7 +121,7 @@ function setCurrentBoard(boardName) {
         console.log(error);
     }
 }
-function renderBoard() {
+function renderBoardInBoardPage() {
     try {
         currentBoard = currentBoardFromStorage();
         boardTitle.textContent = currentBoard.name;
@@ -131,4 +129,9 @@ function renderBoard() {
     catch (error) {
         console.log(error);
     }
+}
+function deleteBoard(boardName) {
+    var boardIndex = currentUser.boardList.findIndex(function (board) { return board.name === boardName; });
+    currentUser.boardList.splice(boardIndex, 1);
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }

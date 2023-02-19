@@ -111,9 +111,9 @@ body {
   flex-direction: column;
   align-items: center;
   color: white;
-  background: url("https://png.pngtree.com/thumb_back/fw800/background/20210320/pngtree-abstract-geometric-neon-graphic-background-image_589965.jpg") #a6c2df 
-   no-repeat center top;
-   background-size: cover;
+  background: url("https://png.pngtree.com/thumb_back/fw800/background/20210320/pngtree-abstract-geometric-neon-graphic-background-image_589965.jpg")
+    #a6c2df no-repeat center top;
+  background-size: cover;
   &__title {
     padding: 1em;
   }
@@ -136,7 +136,7 @@ body {
       border-radius: 100px;
       padding: 0.3em;
     }
-    label{
+    label {
       background-color: rgba(128, 0, 128, 0.641);
       color: aqua;
       border-radius: 15%;
@@ -147,19 +147,18 @@ body {
       margin-bottom: 1em;
       border-radius: 200px;
     }
-    #submit{
+    #submit {
       display: inline-block;
-      padding: .75rem 1.25rem;
+      padding: 0.75rem 1.25rem;
       border-radius: 10rem;
       color: black;
       text-transform: uppercase;
       font-size: 1rem;
-      letter-spacing: .15rem;
-      transition: all .3s;
+      letter-spacing: 0.15rem;
+      transition: all 0.3s;
       position: relative;
       overflow: hidden;
       z-index: 1;
-      
     }
   }
   button {
@@ -322,8 +321,8 @@ body {
         height: auto;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-        margin-top: 2em;
+        gap: 3rem;
+        margin-top: 3em;
         .board {
           border: 1px solid black;
           border-radius: 10px;
@@ -331,6 +330,7 @@ body {
           max-width: 300px;
           aspect-ratio: 1/1;
           cursor: pointer;
+          position: relative;
           h2 {
             border: 1px solid black;
             color: #fff;
@@ -343,6 +343,16 @@ body {
             align-items: center;
             justify-content: center;
             text-align: center;
+          }
+          button {
+            position: absolute;
+            top: -15%;
+            border: 1px solid rgba(0, 0, 0, 0.182);
+            padding: .3em;
+            border-radius: 5px;
+          }
+          button:hover{
+            background-color: red;
           }
         }
         .board:hover {
