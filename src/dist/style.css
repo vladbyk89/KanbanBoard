@@ -406,7 +406,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem;
+  padding: 2rem 0;
   font-size: 1.3rem;
   display: none;
   box-shadow: 0 0 10px 1000px rgba(0, 0, 0, 0.816);
@@ -420,10 +420,14 @@ body {
 .newBoardWindow .input input {
   width: 40vh;
   height: 3rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
+  padding: 0.3rem;
+  outline: none;
 }
 .newBoardWindow button {
+  border: 1px solid black;
   padding: 0.5em;
   font-size: 1.2rem;
-  margin: 1em;
+  margin: 1em 3em;
+  cursor: pointer;
 }
