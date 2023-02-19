@@ -33,17 +33,18 @@ body {
     font-size: 2rem;
     &__inputDiv {
       // border: 1px solid black;
-      width: 70%;
+      width: 100%;
       display: flex;
       justify-content: space-between;
-
+      padding: 0 1em;
+      margin-bottom: 10vh;
       input {
-        margin-bottom: 10vh;
         font-size: 2rem;
         outline: none;
         padding: 0.1em 1em;
         border: 1px solid rgba(0, 0, 0, 0.345);
         border-radius: 5px;
+        width: 60%;
       }
     }
     &__buttons {
@@ -114,6 +115,7 @@ body {
   background: url("https://png.pngtree.com/thumb_back/fw800/background/20210320/pngtree-abstract-geometric-neon-graphic-background-image_589965.jpg")
     #a6c2df no-repeat center top;
   background-size: cover;
+  overflow-y: auto;
   &__title {
     padding: 1em;
   }
@@ -127,7 +129,6 @@ body {
     width: 100%;
     font-size: 1.5rem;
     border-radius: 5%;
-    overflow-y: auto;
     color: white;
     input {
       margin-bottom: 1rem;
@@ -140,6 +141,7 @@ body {
       background-color: rgba(128, 0, 128, 0.641);
       color: aqua;
       border-radius: 15%;
+      margin-bottom: .2em;
     }
     select {
       padding: 0.1em;
@@ -157,8 +159,9 @@ body {
       letter-spacing: 0.15rem;
       transition: all 0.3s;
       position: relative;
-      overflow: hidden;
+      // overflow: hidden;
       z-index: 1;
+      cursor: pointer;
     }
   }
   button {
@@ -348,10 +351,10 @@ body {
             position: absolute;
             top: -2rem;
             border: 1px solid rgba(0, 0, 0, 0.182);
-            padding: .3em;
+            padding: 0.3em;
             border-radius: 5px;
           }
-          button:hover{
+          button:hover {
             background-color: red;
           }
         }

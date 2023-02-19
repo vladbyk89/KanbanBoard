@@ -34,17 +34,19 @@ body {
   font-size: 2rem;
 }
 .loginContainer__form__inputDiv {
-  width: 70%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  padding: 0 1em;
+  margin-bottom: 10vh;
 }
 .loginContainer__form__inputDiv input {
-  margin-bottom: 10vh;
   font-size: 2rem;
   outline: none;
   padding: 0.1em 1em;
   border: 1px solid rgba(0, 0, 0, 0.345);
   border-radius: 5px;
+  width: 60%;
 }
 .loginContainer__form__buttons {
   width: 100%;
@@ -103,6 +105,7 @@ body {
   color: white;
   background: url("https://png.pngtree.com/thumb_back/fw800/background/20210320/pngtree-abstract-geometric-neon-graphic-background-image_589965.jpg") #a6c2df no-repeat center top;
   background-size: cover;
+  overflow-y: auto;
 }
 .registerContainer__title {
   padding: 1em;
@@ -116,7 +119,6 @@ body {
   width: 100%;
   font-size: 1.5rem;
   border-radius: 5%;
-  overflow-y: auto;
   color: white;
 }
 .registerContainer__form input {
@@ -130,6 +132,7 @@ body {
   background-color: rgba(128, 0, 128, 0.641);
   color: aqua;
   border-radius: 15%;
+  margin-bottom: 0.2em;
 }
 .registerContainer__form select {
   padding: 0.1em;
@@ -147,8 +150,8 @@ body {
   letter-spacing: 0.15rem;
   transition: all 0.3s;
   position: relative;
-  overflow: hidden;
   z-index: 1;
+  cursor: pointer;
 }
 .registerContainer button {
   margin-top: 2em;
