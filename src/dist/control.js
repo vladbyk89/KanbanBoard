@@ -120,3 +120,5 @@ function deleteBoard(boardName) {
         .find(function (user) { return user.userName === currentUser.userName; })) === null || _a === void 0 ? void 0 : _a.boardList.splice(boardIndex, 1);
     localStorage.setItem("signedUpUsers", JSON.stringify(userList));
 }
+function seveListToLocalStorage(string) {
+}

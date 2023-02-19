@@ -85,6 +85,8 @@ body {
     background-position: center;
     background-size: cover;
     gap: 2rem;
+    height: 100%;
+    overflow: auto;
 
     &__list {
       border: 1px solid black;
@@ -96,6 +98,7 @@ body {
       display: flex;
       flex-direction: column;
       gap: 2%;
+      // overflow: auto;
       // margin-right: 12%;
 
 
@@ -229,7 +232,7 @@ height: 10%;
   margin: -3.8rem;
   #todo-input {
     width: 155%;
-    // height: 50%;
+font-size: 25px;
     cursor: pointer;
     text-align: center;
     border: 2px solid #dd5d08;
@@ -238,4 +241,13 @@ height: 10%;
     width: 25%;
     height: 100%;
   }
+}
+
+
+#div{
+  color: #e92f06;
+  font-size: 100px;
+  width: 150px;
+  height: 150px;
+  background-color: #e62c03;
 }
