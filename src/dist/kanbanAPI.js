@@ -1,17 +1,6 @@
-var formList = document.getElementById("todo-form");
-var input = document.getElementById("todo-input");
-// const todoLane = document.getElementById("todo-lane") as HTMLElement;
-var rootList = document.querySelector("#rootList");
 renderBoardInBoardPage();
 backToMainBtn.addEventListener("click", function () { return (window.location.href = "index.html"); });
-formList.addEventListener("submit", function (e) {
-    e.preventDefault();
-    console.log(rootList);
-    if (rootList) {
-        var indexValue = rootList.childElementCount + 1;
-        rootList.innerHTML += "<div class=\"boardContainer__main__list swim-lane\" draggable=\"true\">\n    <div class=\"boardContainer__main__list__header\">\n    <h3 contenteditable>" + input.value + "</h3>\n    <i class=\"fa-solid fa-ellipsis\"></i>\n    </div>\n    <div class=\"boardContainer__main__list__card__addCard\" >\n    <form id=\"formList\" onsubmit=\"return fixture(" + indexValue + ")\">\n      <input type=\"text\" placeholder=\"Add New Card\" id=\"addTask_" + indexValue + "\">\n      <button id=\"addCardBtn\">\n        <i class=\"fa-solid fa-plus\">Add Card</i>\n        </button>\n        </form>\n  </div><div id=\"rootTask_" + indexValue + "\"></div>";
-    }
-    input.value = "";
+function movement() {
     var grabCard = document.querySelectorAll(".task");
     var drappables = document.querySelectorAll(".swim-lane");
     grabCard.forEach(function (task) {
@@ -64,6 +53,20 @@ formList.addEventListener("submit", function (e) {
     });
     todoLane.appendChild(newTask);
     input.value = "";
+}
+var formList = document.getElementById("todo-form");
+var input = document.getElementById("todo-input");
+var rootList = document.querySelector("#rootList");
+formList.addEventListener("submit", function (e) {
+    e.preventDefault();
+    console.log(rootList);
+    if (rootList) {
+        var indexValue = rootList.childElementCount + 1;
+        rootList.innerHTML += "<div class=\"boardContainer__main__list swim-lane\" draggable=\"true\">\n    <div class=\"boardContainer__main__list__header\">\n    <h3 contenteditable>" + input.value + "</h3>\n    <i class=\"fa-solid fa-ellipsis\"></i>\n    </div>\n    <div class=\"boardContainer__main__list__card__addCard\" >\n    <form id=\"formList\" onsubmit=\"return fixture(" + indexValue + ")\">\n    <input type=\"text\" placeholder=\"Add New Card\" id=\"addTask_" + indexValue + "\">\n    <button id=\"addCardBtn\">\n    <i class=\"fa-solid fa-plus\">Add Card</i>\n    </button>\n    </form>\n    </div>\n    <div id=\"rootTask_" + indexValue + "\"></div>\n  ";
+    }
+    input.value = "";
+    movement();
+    fixture;
 });
 var fixture = function (indexValue) {
     var rootTask = document.querySelector("#rootTask_" + indexValue);
@@ -72,6 +75,7 @@ var fixture = function (indexValue) {
     if (rootTask) {
         rootTask.innerHTML += "<div class=\"boardContainer__main__list__card task p1\">\n          <p class=\"p1\" draggable=\"true\">" + todo_input.value + "</p>\n          <i class=\"fa-regular fa-pen-to-square p1\"></i>\n        </div>";
     }
+    movement();
     input.value = "";
     return false;
 };

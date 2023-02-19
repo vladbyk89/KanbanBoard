@@ -12,7 +12,7 @@
       defer
     ></script>
     <link rel="stylesheet" href="./src/dist/boardStyle.css" />
-    <link rel="stylesheet" href="./src/dist/style.css">
+    <link rel="stylesheet" href="./src/dist/style.css" />
     <script src="./src/dist/helpers.js" defer></script>
     <script src="./src/dist/control.js" defer></script>
     <script src="./src/dist/view.js" defer></script>
@@ -25,16 +25,11 @@
     <div class="boardContainer">
       <nav class="boardContainer__topNav">
         <img
-        src="./img/Screenshot 2023-02-18 230204.png"
-        alt=""
+          src="./img/Screenshot 2023-02-18 230204.png"
+          alt=""
           class="boardContainer__topNav__logo"
         />
-        <!-- <div id="formList">
-          <input type="text" placeholder="Add New List" id="input" />
-          <button type="submit" class="boardContainer__topNav__addList">
-            + add list
-          </button>
-        </div> -->
+
         <div class="boardContainer__topNav__boardName"></div>
         <div class="boardContainer__topNav__iconDiv">
           <i
@@ -50,39 +45,11 @@
       </nav>
       <main class="boardContainer__main">
         <form id="todo-form" onsubmit="return false">
-          <input type="text" placeholder="New list" id="todo-input" required/>
+          <input type="text" placeholder="New list" id="todo-input" required />
           <button type="submit">Add +</button>
         </form>
         <div id="rootList">
           <div id="rootTask"></div>
-        </div>
-
-
-        
-        <div class="boardContainer__main__list swim-lane" draggable="true" id="Listrender" >
-          <div class="boardContainer__main__list__header">
-            <form id="formTask">
-              <form id="formTask">
-                <input id="addTask" type="text" placeholder="New list" required/>
-                <button type="submit">Add +</button>
-              </form>
-          </div>
-          <div id="boardContainer__main__list__card__addCard" class="boardContainer__main__list__card__addCard" >
-
-            </button>
-          </div>
-          <div class="boardContainer__main__list__card task p1">
-            <p class="p1" draggable="true">Create Element</p>
-            <i class="fa-regular fa-pen-to-square p1"></i>
-          </div>
-          <div class="boardContainer__main__list__card task" id="todo-lane">
-            <p class="p1" draggable="true">Buy Itay Chocolate</p>
-            <i class="fa-regular fa-pen-to-square"></i>
-          </div>
-          <div class="boardContainer__main__list__card task" id="todo-lane">
-            <p class="p1" draggable="true">Something else...</p>
-            <i class="fa-regular fa-pen-to-square"></i>
-          </div>
         </div>
       </main>
       <div class="profileWindow">
