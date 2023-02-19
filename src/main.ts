@@ -1,6 +1,6 @@
 userList = userListFromStorage();
 
-if (window.location.pathname.endsWith("register.html")) {
+if (window.location.pathname.endsWith("login.html")) {
   loginContainer.addEventListener("click", (e) => {
     const target = e.target as HTMLElement;
     if (target.className === "newUserBtn") {

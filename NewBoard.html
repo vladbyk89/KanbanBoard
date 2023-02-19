@@ -11,8 +11,8 @@
       crossorigin="anonymous"
       defer
     ></script>
-    <link rel="stylesheet" href="./src/dist/boardStyle.css" />
-    <link rel="stylesheet" href="./src/dist/style.css">
+    <!-- <link rel="stylesheet" href="./src/dist/boardStyle.css" /> -->
+    <link rel="stylesheet" href="./src/dist/style.css" />
     <script src="./src/dist/helpers.js" defer></script>
     <script src="./src/dist/control.js" defer></script>
     <script src="./src/dist/view.js" defer></script>
@@ -29,7 +29,6 @@
           alt=""
           class="boardContainer__topNav__logo"
         />
-
         <div class="boardContainer__topNav__boardName"></div>
         <div class="boardContainer__topNav__iconDiv">
           <i
@@ -44,12 +43,50 @@
         </div>
       </nav>
       <main class="boardContainer__main">
-        <form id="todo-form" onsubmit="return false">
-          <input type="text" placeholder="New list" id="todo-input" required />
-          <button type="submit">Add +</button>
-        </form>
-        <div id="rootList">
-          <div id="rootTask"></div>
+        <div class="boardContainer__main__column">
+          <div class="boardContainer__main__column__list" draggable="true">
+            <div class="boardContainer__main__column__list__header">
+              <h3>List Name</h3>
+            </div>
+            <div class="boardContainer__main__column__list__card--addCard">
+                <input type="text">
+              <button>New Card</button>
+            </div>
+            <div
+              class="boardContainer__main__column__list__card"
+              draggable="true"
+            >
+              <p>Create Element</p>
+              <i class="fa-regular fa-pen-to-square p1"></i>
+            </div>
+            <div
+              class="boardContainer__main__column__list__card"
+              draggable="true"
+            >
+              <p>Task 1</p>
+              <i class="fa-regular fa-pen-to-square p1"></i>
+            </div>
+            <div
+              class="boardContainer__main__column__list__card"
+              draggable="true"
+            >
+              <p>Task 2</p>
+              <i class="fa-regular fa-pen-to-square p1"></i>
+            </div>
+            <div
+              class="boardContainer__main__column__list__card"
+              draggable="true"
+            >
+              <p>Long Text task to test look</p>
+              <i class="fa-regular fa-pen-to-square p1"></i>
+            </div>
+          </div>
+        </div>
+        <div class="boardContainer__main__column">
+            <div class="boardContainer__main__column__list--addList">
+                <input type="text">
+                <button>Add List+</button>
+            </div>
         </div>
       </main>
       <div class="profileWindow">
