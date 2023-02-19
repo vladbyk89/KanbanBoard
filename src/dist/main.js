@@ -1,3 +1,4 @@
+userList = userListFromStorage();
 if (window.location.pathname.endsWith("index.html")) {
     renderBoardsToMain(currentUser.boardList);
     createBoardWindowBtn.addEventListener("click", function () { return (newBoardWindow.style.display = "flex"); });
@@ -10,7 +11,7 @@ if (window.location.pathname.endsWith("index.html")) {
     searchBar.addEventListener("keyup", function () {
         if (searchBar.value != "") {
             boardArea.innerHTML = "";
-            var listToDisplay = findProductName(searchBar.value, currentUser.boardList);
+            var listToDisplay = findBoard(searchBar.value, currentUser.boardList);
             if (listToDisplay !== false) {
                 renderBoardsToMain(listToDisplay);
             }

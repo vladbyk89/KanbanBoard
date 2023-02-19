@@ -79,24 +79,6 @@ function setCurrentUser(userName: string) {
   }
 }
 
-function currentUserFromStorage() {
-  try {
-    const getUser = localStorage.getItem("currentUser");
-    if (getUser) return JSON.parse(getUser);
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-function currentBoardFromStorage() {
-  try {
-    const getBoard = localStorage.getItem("currentBoard");
-    if (getBoard) return JSON.parse(getBoard);
-  } catch (error) {
-    console.log(error);
-  }
-}
-
 function renderBoardsToMain(listOFBoards: Board[]) {
   try {
     boardArea.innerHTML = "";
@@ -170,4 +152,8 @@ function deleteBoard(boardName: string) {
   );
   currentUser.boardList.splice(boardIndex, 1);
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  userList
+    .find((user) => user.userName === currentUser.userName)
+    ?.boardList.splice(boardIndex, 1);
+  localStorage.setItem("signedUpUsers", JSON.stringify(userList));
 }

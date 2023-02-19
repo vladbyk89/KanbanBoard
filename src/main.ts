@@ -1,3 +1,6 @@
+userList = userListFromStorage();
+
+
 if (window.location.pathname.endsWith("index.html")) {
   renderBoardsToMain(currentUser.boardList);
   createBoardWindowBtn.addEventListener(
@@ -19,7 +22,7 @@ if (window.location.pathname.endsWith("index.html")) {
   searchBar.addEventListener("keyup", () => {
     if (searchBar.value != "") {
       boardArea.innerHTML = "";
-      const listToDisplay: Board[] | boolean = findProductName(
+      const listToDisplay: Board[] | boolean = findBoard(
         searchBar.value,
         currentUser.boardList
       );
