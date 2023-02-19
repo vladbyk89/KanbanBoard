@@ -52,3 +52,4 @@ const boardTitle = document.querySelector(
 const backToMainBtn = document.querySelector(
   ".boardContainer__topNav__iconDiv__backToMain"
 ) as HTMLElement;
+const boardPage = document.querySelector('.boardContainer__main') as HTMLElement;

@@ -125,6 +125,7 @@ function renderBoardInBoardPage() {
     try {
         currentBoard = currentBoardFromStorage();
         boardTitle.textContent = currentBoard.name;
+        boardPage.style.backgroundColor = currentBoard.backgroundColor;
     }
     catch (error) {
         console.log(error);
