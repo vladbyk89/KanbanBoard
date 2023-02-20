@@ -22,8 +22,14 @@ if (window.location.pathname.endsWith("login.html")) {
   });
 }
 
+if (window.location.pathname.endsWith("register.html")) {
+  form.addEventListener("submit", handleFormSubmit);
+}
+
+//  index.html events
 if (window.location.pathname.endsWith("index.html")) {
   renderBoardsToMain(currentUser.boardList);
+
   createBoardWindowBtn.addEventListener(
     "click",
     () => (newBoardWindow.style.display = "flex")
@@ -59,14 +65,19 @@ if (window.location.pathname.endsWith("index.html")) {
     const target = e.target as HTMLElement;
     if (target.dataset.name) deleteBoard(target.dataset.name);
     renderBoardsToMain(currentUser.boardList);
+
+    if (target.classList.contains("boardClick")) {
+      setCurrentBoard(target.innerHTML);
+      window.location.href = "board.html";
+    }
   });
 }
 
+// all windows event listener
 window.addEventListener("click", (e) => {
   const target = e.target as HTMLElement;
-  // console.log(returnBoard(target.innerHTML));
   if (target.classList.contains("profileBtn")) {
-    displayUser(currentUser);
+    displayProfile(currentUser);
   }
 
   if (target.classList.contains("signOutbtn")) {
@@ -76,9 +87,5 @@ window.addEventListener("click", (e) => {
 
   if (target.classList.contains("backToMain")) {
     profileWindow.style.display = "none";
-  }
-  if (target.classList.contains("boardClick")) {
-    setCurrentBoard(target.innerHTML);
-    window.location.href = "board.html";
   }
 });
