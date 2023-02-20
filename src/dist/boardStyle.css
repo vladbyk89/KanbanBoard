@@ -72,7 +72,7 @@ body {
 .boardContainer__main__list {
   border: 1px solid black;
   width: 20%;
-  height: auto;
+  height: 0%;
   padding: 1em;
   font-size: 1rem;
   background-color: #21e807;

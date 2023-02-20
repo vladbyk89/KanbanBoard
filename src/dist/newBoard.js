@@ -35,3 +35,57 @@ function createNewCard(cardName, list) {
     var cardTitle = list.querySelector(".boardContainer__mainNew__column__list__header");
     list.insertBefore(card, cardTitle.nextSibling);
 }
+window.addEventListener("click", function () {
+    var grabCard = document.querySelectorAll(".boardContainer__mainNew__column__list__card");
+    var drappables = document.querySelectorAll(".boardContainer__mainNew__column__list");
+    grabCard.forEach(function (task) {
+        task.addEventListener("dragstart", function () {
+            task.classList.add("is-dragging");
+        });
+        task.addEventListener("dragend", function () {
+            task.classList.remove("is-dragging");
+        });
+    });
+    drappables.forEach(function (zone) {
+        zone.addEventListener("dragover", function (e) {
+            e.preventDefault();
+            var bottomTask = insertAboveTask(zone, e.clientY); //e.screenY //pageY
+            var curTask = document.querySelector(".is-dragging");
+            if (!bottomTask) {
+                zone.appendChild(curTask);
+            }
+            else {
+                zone.insertBefore(curTask, bottomTask);
+            }
+        });
+    });
+    var insertAboveTask = function (zone, mouseY) {
+        var els = zone.querySelectorAll(".task:not(.is-dragging)");
+        var closestTask = null;
+        var closestOffset = Number.NEGATIVE_INFINITY;
+        els.forEach(function (task) {
+            var top = task.getBoundingClientRect().top;
+            var offset = mouseY - top;
+            if (offset < 0 && offset > closestOffset) {
+                closestOffset = offset;
+                closestTask = task;
+            }
+        });
+        return closestTask;
+    };
+    var value = input.value;
+    if (!value)
+        return;
+    var newTask = document.createElement("p");
+    newTask.classList.add("task");
+    newTask.setAttribute("draggable", "true");
+    newTask.innerText = value;
+    newTask.addEventListener("dragstart", function () {
+        newTask.classList.add("is-dragging");
+    });
+    newTask.addEventListener("dragend", function () {
+        newTask.classList.remove("is-dragging");
+    });
+    todoLane.appendChild(newTask);
+    input.value = "";
+});
