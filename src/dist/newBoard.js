@@ -24,7 +24,7 @@ addListBtn.addEventListener("click", function () {
 function createNewColumn(list) {
     var column = document.createElement("div");
     column.classList.add("boardContainer__mainNew__column");
-    column.innerHTML = "\n  <div class=\"boardContainer__mainNew__column__list\" draggable=\"true\">\n  <div class=\"boardContainer__mainNew__column__list__header\">\n    <h2>" + list.name + "</h2>\n\n  </div>\n    <div class=\"boardContainer__mainNew__column__list__card--addCard\">\n      <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"3\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n    </div>\n  </div>";
+    column.innerHTML = "\n  <div class=\"boardContainer__mainNew__column__list\" draggable=\"true\">\n  <div class=\"boardContainer__mainNew__column__list__header\">\n    <h2>" + list.name + "</h2>\n    <div class=\"boardContainer__mainNew__column__list__card--addCard\">\n      <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"3\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n    </div>\n  </div>\n\n  </div>";
     return column;
 }
 function createNewCard(cardName, list) {
@@ -60,7 +60,7 @@ window.addEventListener("click", function () {
         });
     });
     var insertAboveTask = function (zone, mouseY) {
-        var els = zone.querySelectorAll(".task:not(.is-dragging)");
+        var els = zone.querySelectorAll(".boardContainer__mainNew__column__list__card:not(.is-dragging)");
         var closestTask = null;
         var closestOffset = Number.NEGATIVE_INFINITY;
         els.forEach(function (task) {
@@ -73,19 +73,42 @@ window.addEventListener("click", function () {
         });
         return closestTask;
     };
-    var value = input.value;
-    if (!value)
-        return;
-    var newTask = document.createElement("p");
-    newTask.classList.add("task");
-    newTask.setAttribute("draggable", "true");
-    newTask.innerText = value;
-    newTask.addEventListener("dragstart", function () {
-        newTask.classList.add("is-dragging");
-    });
-    newTask.addEventListener("dragend", function () {
-        newTask.classList.remove("is-dragging");
-    });
-    todoLane.appendChild(newTask);
-    input.value = "";
 });
+// window.addEventListener("click", () => {
+//   const grabCard = document.querySelectorAll(".boardContainer__mainNew__column__list");
+//   const drappables = document.querySelectorAll(".boardContainer__mainNew__column");
+//   grabCard.forEach((task) => {
+//     task.addEventListener("dragstart", () => {
+//       task.classList.add("is-dragging");
+//     });
+//     task.addEventListener("dragend", () => {
+//       task.classList.remove("is-dragging");
+//     });
+//   });
+//   drappables.forEach((zone) => {
+//     zone.addEventListener("dragover", (e) => {
+//       e.preventDefault();
+//       const bottomTask = insertAboveTask(zone, e.clientY); //e.screenY //pageY
+//       const curTask: any = document.querySelector(".is-dragging");
+//       if (!bottomTask) {
+//         zone.appendChild(curTask);
+//       } else {
+//         zone.insertBefore(curTask, bottomTask);
+//       }
+//     });
+//   });
+//   const insertAboveTask = (zone, mouseY) => {
+//     const els = zone.querySelectorAll(".boardContainer__mainNew__column:not(.is-dragging)");
+//     let closestTask = null;
+//     let closestOffset = Number.NEGATIVE_INFINITY;
+//     els.forEach((task) => {
+//       const { top } = task.getBoundingClientRect();
+//       const offset = mouseY - top;
+//       if (offset < 0 && offset > closestOffset) {
+//         closestOffset = offset;
+//         closestTask = task;
+//       }
+//     });
+//     return closestTask;
+//   };
+// });

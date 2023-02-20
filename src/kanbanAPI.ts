@@ -103,7 +103,34 @@ const fixture = (indexValue) => {
           <i class="fa-regular fa-pen-to-square p1"></i>
         </div>`;
   }
+  movementList();
   movement();
   input.value = "";
   return false;
 };
+
+
+function movementList() {
+  const grabCard = document.querySelectorAll(".swim-lane");
+  const drappables = document.querySelectorAll(".boardContainer__main");swim-lane
+  grabCard.forEach((task) => {
+    task.addEventListener("dragstart", () => {
+      task.classList.add("is-dragging");
+    });
+    task.addEventListener("dragend", () => {
+      task.classList.remove("is-dragging");
+    });
+  });
+
+  drappables.forEach((zone) => {
+    zone.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      const bottomTask = insertAboveTask(zone, e.clientY); //e.screenY //pageY
+      const curTask: any = document.querySelector(".is-dragging");
+      if (!bottomTask) {
+        zone.appendChild(curTask);
+      } else {
+        zone.insertBefore(curTask, bottomTask);
+      }
+    });
+  });

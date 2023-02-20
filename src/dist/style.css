@@ -461,12 +461,15 @@ body {
 }
 .boardContainer__mainNew__column__list {
   width: 100%;
-  height: auto;
+  height: 0%;
   font-size: 1rem;
   display: flex;
   flex-direction: column;
   gap: 2%;
   cursor: grab;
+}
+.boardContainer__mainNew__column__list__header {
+  background-color: rgba(0, 0, 0, 0.25);
 }
 .boardContainer__mainNew__column__list__header h2 {
   color: #fff;
@@ -486,6 +489,12 @@ body {
   display: flex;
   justify-content: space-between;
   gap: 1em;
+}
+.boardContainer__mainNew__column__list .is-dragging {
+  scale: 1.05;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+  background: rgba(50, 50, 50, 0.37);
+  color: white;
 }
 .boardContainer__mainNew__column__list__card--addCard {
   display: flex;

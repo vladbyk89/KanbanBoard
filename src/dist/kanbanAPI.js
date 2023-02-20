@@ -78,7 +78,34 @@ var fixture = function (indexValue) {
     if (rootTask) {
         rootTask.innerHTML += "<div class=\"boardContainer__main__list__card task p1\">\n          <p class=\"p1\" draggable=\"true\">" + todo_input.value + "</p>\n          <i class=\"fa-regular fa-pen-to-square p1\"></i>\n        </div>";
     }
+    movementList();
     movement();
     input.value = "";
     return false;
 };
+function movementList() {
+    var grabCard = document.querySelectorAll(".swim-lane");
+    var drappables = document.querySelectorAll(".boardContainer__main");
+    swim - lane;
+    grabCard.forEach(function (task) {
+        task.addEventListener("dragstart", function () {
+            task.classList.add("is-dragging");
+        });
+        task.addEventListener("dragend", function () {
+            task.classList.remove("is-dragging");
+        });
+    });
+    drappables.forEach(function (zone) {
+        zone.addEventListener("dragover", function (e) {
+            e.preventDefault();
+            var bottomTask = insertAboveTask(zone, e.clientY); //e.screenY //pageY
+            var curTask = document.querySelector(".is-dragging");
+            if (!bottomTask) {
+                zone.appendChild(curTask);
+            }
+            else {
+                zone.insertBefore(curTask, bottomTask);
+            }
+        });
+    });
+}

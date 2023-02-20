@@ -46,13 +46,14 @@ function createNewColumn(list: List) {
   <div class="boardContainer__mainNew__column__list" draggable="true">
   <div class="boardContainer__mainNew__column__list__header">
     <h2>${list.name}</h2>
-
-  </div>
     <div class="boardContainer__mainNew__column__list__card--addCard">
       <textarea maxlength="30" class="newCardTextArea" cols="30" rows="3"></textarea>
       <button class="newCardBtn">New Card</button>
     </div>
+  </div>
+
   </div>`;
+
   return column;
 }
 
@@ -99,7 +100,7 @@ window.addEventListener("click", () => {
   });
 
   const insertAboveTask = (zone, mouseY) => {
-    const els = zone.querySelectorAll(".task:not(.is-dragging)");
+    const els = zone.querySelectorAll(".boardContainer__mainNew__column__list__card:not(.is-dragging)");
     let closestTask = null;
     let closestOffset = Number.NEGATIVE_INFINITY;
     els.forEach((task) => {
@@ -112,19 +113,46 @@ window.addEventListener("click", () => {
     });
     return closestTask;
   };
-
-  const value = input.value;
-  if (!value) return;
-  const newTask = document.createElement("p");
-  newTask.classList.add("task");
-  newTask.setAttribute("draggable", "true");
-  newTask.innerText = value;
-  newTask.addEventListener("dragstart", () => {
-    newTask.classList.add("is-dragging");
-  });
-  newTask.addEventListener("dragend", () => {
-    newTask.classList.remove("is-dragging");
-  });
-  todoLane.appendChild(newTask);
-  input.value = "";
 });
+
+
+// window.addEventListener("click", () => {
+//   const grabCard = document.querySelectorAll(".boardContainer__mainNew__column__list");
+//   const drappables = document.querySelectorAll(".boardContainer__mainNew__column");
+//   grabCard.forEach((task) => {
+//     task.addEventListener("dragstart", () => {
+//       task.classList.add("is-dragging");
+//     });
+//     task.addEventListener("dragend", () => {
+//       task.classList.remove("is-dragging");
+//     });
+//   });
+
+//   drappables.forEach((zone) => {
+//     zone.addEventListener("dragover", (e) => {
+//       e.preventDefault();
+//       const bottomTask = insertAboveTask(zone, e.clientY); //e.screenY //pageY
+//       const curTask: any = document.querySelector(".is-dragging");
+//       if (!bottomTask) {
+//         zone.appendChild(curTask);
+//       } else {
+//         zone.insertBefore(curTask, bottomTask);
+//       }
+//     });
+//   });
+
+//   const insertAboveTask = (zone, mouseY) => {
+//     const els = zone.querySelectorAll(".boardContainer__mainNew__column:not(.is-dragging)");
+//     let closestTask = null;
+//     let closestOffset = Number.NEGATIVE_INFINITY;
+//     els.forEach((task) => {
+//       const { top } = task.getBoundingClientRect();
+//       const offset = mouseY - top;
+//       if (offset < 0 && offset > closestOffset) {
+//         closestOffset = offset;
+//         closestTask = task;
+//       }
+//     });
+//     return closestTask;
+//   };
+// });

@@ -500,7 +500,7 @@ body {
       &__list {
         // border: 1px solid black;
         width: 100%;
-        height: auto;
+        height: 0%;
         font-size: 1rem;
         display: flex;
         flex-direction: column;
@@ -509,11 +509,13 @@ body {
 
         &__header {
           // border: 1px solid black;
+          background-color: rgba(0, 0, 0, 0.25);
           h2 {
             color: #fff;
             mix-blend-mode: difference;
             font-weight: bold;
             text-align: center;
+
           }
         }
         &__card {
@@ -528,9 +530,17 @@ body {
           display: flex;
           justify-content: space-between;
           gap: 1em;
+
+        }
+        .is-dragging {
+          scale: 1.05;
+          box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+          background: rgba(50, 50, 50, 0.37);
+          color: white;
         }
 
         &__card--addCard {
+
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -589,3 +599,7 @@ body {
     cursor: pointer;
   }
 }
+
+
+
+
