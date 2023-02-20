@@ -195,9 +195,10 @@ function renderLists() {
   currentBoard.lists.forEach((list) => {
     const columnElement = createNewColumn(list);
     const ListElement = columnElement.querySelector('.boardContainer__mainNew__column__list') as HTMLDivElement;
-    mainContaier.append(columnElement);
+    
     list.cards.forEach(card => {
       createNewCard(card, ListElement);
+      mainContaier.append(columnElement);
     })
   });
 }

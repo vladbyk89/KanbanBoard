@@ -147,9 +147,9 @@ function renderLists() {
     currentBoard.lists.forEach(function (list) {
         var columnElement = createNewColumn(list);
         var ListElement = columnElement.querySelector('.boardContainer__mainNew__column__list');
-        mainContaier.append(columnElement);
         list.cards.forEach(function (card) {
             createNewCard(card, ListElement);
+            mainContaier.append(columnElement);
         });
     });
 }

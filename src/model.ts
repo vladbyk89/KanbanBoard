@@ -62,7 +62,6 @@ const preMadeUserList: User[] = [
   ),
 ];
 
-
 const preMadeBoardList: Board[] = [
   new Board("Golden Board", "darkgoldenrod"),
   new Board("Cyan Board", "darkcyan"),
@@ -83,9 +82,10 @@ const preMadeListList = [
   ]),
 ];
 
-preMadeUserList[0].boardList.push(...preMadeBoardList)
-preMadeUserList[0].boardList[0].lists.push(...preMadeListList)
-
-
-if (!localStorage.getItem("signedUpUsers"))
+if (!localStorage.getItem("signedUpUsers")) {
+  preMadeBoardList[0].lists.push(...preMadeListList)
+  preMadeUserList[0].boardList.push(...preMadeBoardList);
+  preMadeUserList[1].boardList.push(...preMadeBoardList);
+  preMadeUserList[2].boardList.push(...preMadeBoardList);
   localStorage.setItem("signedUpUsers", JSON.stringify(preMadeUserList));
+}
