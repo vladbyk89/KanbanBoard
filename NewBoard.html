@@ -13,15 +13,16 @@
     ></script>
     <!-- <link rel="stylesheet" href="./src/dist/boardStyle.css" /> -->
     <link rel="stylesheet" href="./src/dist/style.css" />
-    <script src="./src/dist/helpers.js" defer></script>
+    <!-- <script src="./src/dist/helpers.js" defer></script>
     <script src="./src/dist/control.js" defer></script>
     <script src="./src/dist/view.js" defer></script>
     <script src="./src/dist/model.js" defer></script>
     <script src="./src/dist/main.js" defer></script>
-    <script src="./src/dist/kanbanAPI.js" defer></script>
+    <script src="./src/dist/kanbanAPI.js" defer></script> -->
+    <script src="./src/dist/newBoard.js" defer></script>
   </head>
-
-  <body onload="checkIfCurrentUserExists()">
+  <!-- onload="checkIfCurrentUserExists()" -->
+  <body>
     <div class="boardContainer">
       <nav class="boardContainer__topNav">
         <img
@@ -29,7 +30,12 @@
           alt=""
           class="boardContainer__topNav__logo"
         />
-        <div class="boardContainer__topNav__boardName"></div>
+
+        <div class="boardContainer__topNav__addList">
+          <input id="newListInput" type="text" maxlength="15" required />
+          <button id="addListBtn">Add List+</button>
+        </div>
+        <div class="boardContainer__topNav__boardName">Board Name</div>
         <div class="boardContainer__topNav__iconDiv">
           <i
             class="fa-solid fa-hand-point-left boardContainer__topNav__iconDiv__backToMain"
@@ -46,11 +52,7 @@
         <div class="boardContainer__main__column">
           <div class="boardContainer__main__column__list" draggable="true">
             <div class="boardContainer__main__column__list__header">
-              <h3>List Name</h3>
-            </div>
-            <div class="boardContainer__main__column__list__card--addCard">
-                <input type="text">
-              <button>New Card</button>
+              <h2>List Name</h2>
             </div>
             <div
               class="boardContainer__main__column__list__card"
@@ -80,13 +82,16 @@
               <p>Long Text task to test look</p>
               <i class="fa-regular fa-pen-to-square p1"></i>
             </div>
-          </div>
-        </div>
-        <div class="boardContainer__main__column">
-            <div class="boardContainer__main__column__list--addList">
-                <input type="text">
-                <button>Add List+</button>
+            <div class="boardContainer__main__column__list__card--addCard">
+              <textarea
+                maxlength="30"
+                class="newCardTextArea"
+                cols="30"
+                rows="3"
+              ></textarea>
+              <button class="newCardBtn">New Card</button>
             </div>
+          </div>
         </div>
       </main>
       <div class="profileWindow">
