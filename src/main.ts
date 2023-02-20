@@ -19,6 +19,21 @@ if (window.location.pathname.endsWith("login.html")) {
         alert("user not in database");
       }
     }
+    window.addEventListener("keydown", ({ key }) => {
+      if (key == "Enter") {
+        if (loginUserName.value === "" || loginPassword.value === "") {
+          return alert("missing input");
+        }
+        if (checkIfUserExists(loginUserName.value, loginPassword.value)) {
+          setCurrentUser(loginUserName.value);
+          loginUserName.value = "";
+          loginPassword.value = "";
+          window.location.href = "index.html";
+        } else {
+          alert("user not in database");
+        }
+      }
+    });
   });
 }
 
@@ -68,7 +83,7 @@ if (window.location.pathname.endsWith("index.html")) {
 
     if (target.classList.contains("boardClick")) {
       setCurrentBoard(target.innerHTML);
-      window.location.href = "board.html";
+      window.location.href = "NewBoard.html";
     }
   });
 }
