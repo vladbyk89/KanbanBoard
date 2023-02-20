@@ -19,6 +19,23 @@ if (window.location.pathname.endsWith("login.html")) {
                 alert("user not in database");
             }
         }
+        window.addEventListener("keydown", function (_a) {
+            var key = _a.key;
+            if (key == "Enter") {
+                if (loginUserName.value === "" || loginPassword.value === "") {
+                    return alert("missing input");
+                }
+                if (checkIfUserExists(loginUserName.value, loginPassword.value)) {
+                    setCurrentUser(loginUserName.value);
+                    loginUserName.value = "";
+                    loginPassword.value = "";
+                    window.location.href = "index.html";
+                }
+                else {
+                    alert("user not in database");
+                }
+            }
+        });
     });
 }
 if (window.location.pathname.endsWith("register.html")) {
@@ -53,9 +70,13 @@ if (window.location.pathname.endsWith("index.html")) {
         renderBoardsToMain(currentUser.boardList);
         if (target.classList.contains("boardClick")) {
             setCurrentBoard(target.innerHTML);
-            window.location.href = "board.html";
+            window.location.href = "NewBoard.html";
         }
     });
+}
+// Board Page
+if (window.location.pathname.endsWith("NewBoard.html")) {
+    renderLists();
 }
 // all windows event listener
 window.addEventListener("click", function (e) {

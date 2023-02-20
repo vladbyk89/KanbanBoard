@@ -49,7 +49,11 @@ const searchBar = document.querySelector(
 const boardTitle = document.querySelector(
   ".boardContainer__topNav__boardName"
 ) as HTMLDivElement;
+const boardTitleNew = document.querySelector(
+  ".boardContainer__topNav__boardNameNew"
+) as HTMLDivElement;
 const backToMainBtn = document.querySelector(
   ".boardContainer__topNav__iconDiv__backToMain"
 ) as HTMLElement;
 const boardPage = document.querySelector('.boardContainer__main') as HTMLElement;
+const boardPageNew = document.querySelector('.boardContainer__mainNew') as HTMLElement;

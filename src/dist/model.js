@@ -1,3 +1,4 @@
+var _a, _b;
 var currentUser = currentUserFromStorage();
 var currentBoard;
 var userList;
@@ -41,8 +42,6 @@ var preMadeUserList = [
     new User("Itai", "Gelberg", "male", "itaiG", "abcdefgh", "itaiGel@gmail.com", "0541234567"),
     new User("Itay", "Amosi", "male", "itayz1e", "144322", "itayAmosi@gmail.com", "0540987654"),
 ];
-if (!localStorage.getItem("signedUpUsers"))
-    localStorage.setItem("signedUpUsers", JSON.stringify(preMadeUserList));
 var preMadeBoardList = [
     new Board("Golden Board", "darkgoldenrod"),
     new Board("Cyan Board", "darkcyan"),
@@ -61,3 +60,7 @@ var preMadeListList = [
         "Create Sign Up page",
     ]),
 ];
+(_a = preMadeUserList[0].boardList).push.apply(_a, preMadeBoardList);
+(_b = preMadeUserList[0].boardList[0].lists).push.apply(_b, preMadeListList);
+if (!localStorage.getItem("signedUpUsers"))
+    localStorage.setItem("signedUpUsers", JSON.stringify(preMadeUserList));

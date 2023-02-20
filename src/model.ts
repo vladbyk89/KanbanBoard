@@ -62,8 +62,6 @@ const preMadeUserList: User[] = [
   ),
 ];
 
-if (!localStorage.getItem("signedUpUsers"))
-  localStorage.setItem("signedUpUsers", JSON.stringify(preMadeUserList));
 
 const preMadeBoardList: Board[] = [
   new Board("Golden Board", "darkgoldenrod"),
@@ -84,3 +82,10 @@ const preMadeListList = [
     "Create Sign Up page",
   ]),
 ];
+
+preMadeUserList[0].boardList.push(...preMadeBoardList)
+preMadeUserList[0].boardList[0].lists.push(...preMadeListList)
+
+
+if (!localStorage.getItem("signedUpUsers"))
+  localStorage.setItem("signedUpUsers", JSON.stringify(preMadeUserList));

@@ -482,21 +482,20 @@ body {
     }
   }
 
-  &__main {
+  &__mainNew {
     // border: 10px solid black;
     grid-area: main;
     display: flex;
     flex-direction: row;
     align-items: start;
-    background-color: rgb(49, 136, 170);
     gap: 1rem;
-    // padding: 1rem;
+    margin: 0 10px;
     overflow: auto;
     &__column {
-      border-right: 1px solid black;
+      border-right: 10px solid white;
       width: 10%;
       min-width: 200px;
-      height: 100%;
+      min-height: 100%;
       padding: 1em;
       &__list {
         // border: 1px solid black;
@@ -509,7 +508,7 @@ body {
         cursor: grab;
 
         &__header {
-          border: 1px solid black;
+          // border: 1px solid black;
           h2 {
             color: #fff;
             mix-blend-mode: difference;
@@ -537,7 +536,7 @@ body {
           justify-content: center;
           gap: 5px;
           color: white;
-          margin-top: 50%;
+          margin-top: 2em;
         }
         &__card:hover {
           box-shadow: 0 0 5px black;

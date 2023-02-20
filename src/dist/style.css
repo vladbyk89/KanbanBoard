@@ -443,23 +443,23 @@ body {
 .boardContainer__topNav__iconDiv i:hover {
   text-shadow: 0 0 5px black;
 }
-.boardContainer__main {
+.boardContainer__mainNew {
   grid-area: main;
   display: flex;
   flex-direction: row;
   align-items: start;
-  background-color: #3188aa;
   gap: 1rem;
+  margin: 0 10px;
   overflow: auto;
 }
-.boardContainer__main__column {
-  border-right: 1px solid black;
+.boardContainer__mainNew__column {
+  border-right: 10px solid white;
   width: 10%;
   min-width: 200px;
-  height: 100%;
+  min-height: 100%;
   padding: 1em;
 }
-.boardContainer__main__column__list {
+.boardContainer__mainNew__column__list {
   width: 100%;
   height: auto;
   font-size: 1rem;
@@ -468,16 +468,13 @@ body {
   gap: 2%;
   cursor: grab;
 }
-.boardContainer__main__column__list__header {
-  border: 1px solid black;
-}
-.boardContainer__main__column__list__header h2 {
+.boardContainer__mainNew__column__list__header h2 {
   color: #fff;
   mix-blend-mode: difference;
   font-weight: bold;
   text-align: center;
 }
-.boardContainer__main__column__list__card {
+.boardContainer__mainNew__column__list__card {
   border: 1px solid black;
   background-color: whitesmoke;
   position: relative;
@@ -490,23 +487,23 @@ body {
   justify-content: space-between;
   gap: 1em;
 }
-.boardContainer__main__column__list__card--addCard {
+.boardContainer__mainNew__column__list__card--addCard {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
   color: white;
-  margin-top: 50%;
+  margin-top: 2em;
 }
-.boardContainer__main__column__list__card:hover {
+.boardContainer__mainNew__column__list__card:hover {
   box-shadow: 0 0 5px black;
 }
-.boardContainer__main__column__list--addList {
+.boardContainer__mainNew__column__list--addList {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.boardContainer__main__column__list--addList input {
+.boardContainer__mainNew__column__list--addList input {
   width: 100%;
 }
 

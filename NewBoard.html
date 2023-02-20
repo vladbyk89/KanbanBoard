@@ -13,16 +13,16 @@
     ></script>
     <!-- <link rel="stylesheet" href="./src/dist/boardStyle.css" /> -->
     <link rel="stylesheet" href="./src/dist/style.css" />
-    <!-- <script src="./src/dist/helpers.js" defer></script>
-    <script src="./src/dist/control.js" defer></script>
     <script src="./src/dist/view.js" defer></script>
+    <script src="./src/dist/helpers.js" defer></script>
+    <script src="./src/dist/control.js" defer></script>
     <script src="./src/dist/model.js" defer></script>
-    <script src="./src/dist/main.js" defer></script>
-    <script src="./src/dist/kanbanAPI.js" defer></script> -->
     <script src="./src/dist/newBoard.js" defer></script>
+    <script src="./src/dist/main.js" defer></script>
+    <!-- <script src="./src/dist/kanbanAPI.js" defer></script> -->
   </head>
-  <!-- onload="checkIfCurrentUserExists()" -->
-  <body>
+  
+  <body onload="checkIfCurrentUserExists()">
     <div class="boardContainer">
       <nav class="boardContainer__topNav">
         <img
@@ -35,7 +35,7 @@
           <input id="newListInput" type="text" maxlength="15" required />
           <button id="addListBtn">Add List+</button>
         </div>
-        <div class="boardContainer__topNav__boardName">Board Name</div>
+        <div class="boardContainer__topNav__boardNameNew">Board Name</div>
         <div class="boardContainer__topNav__iconDiv">
           <i
             class="fa-solid fa-hand-point-left boardContainer__topNav__iconDiv__backToMain"
@@ -48,41 +48,41 @@
           ></i>
         </div>
       </nav>
-      <main class="boardContainer__main">
-        <div class="boardContainer__main__column">
-          <div class="boardContainer__main__column__list" draggable="true">
-            <div class="boardContainer__main__column__list__header">
+      <main class="boardContainer__mainNew">
+        <!-- <div class="boardContainer__mainNew__column">
+          <div class="boardContainer__mainNew__column__list" draggable="true">
+            <div class="boardContainer__mainNew__column__list__header" id="cardName">
               <h2>List Name</h2>
             </div>
             <div
-              class="boardContainer__main__column__list__card"
+              class="boardContainer__mainNew__column__list__card"
               draggable="true"
             >
               <p>Create Element</p>
               <i class="fa-regular fa-pen-to-square p1"></i>
             </div>
             <div
-              class="boardContainer__main__column__list__card"
+              class="boardContainer__mainNew__column__list__card"
               draggable="true"
             >
               <p>Task 1</p>
               <i class="fa-regular fa-pen-to-square p1"></i>
             </div>
             <div
-              class="boardContainer__main__column__list__card"
+              class="boardContainer__mainNew__column__list__card"
               draggable="true"
             >
               <p>Task 2</p>
               <i class="fa-regular fa-pen-to-square p1"></i>
             </div>
             <div
-              class="boardContainer__main__column__list__card"
+              class="boardContainer__mainNew__column__list__card"
               draggable="true"
             >
               <p>Long Text task to test look</p>
               <i class="fa-regular fa-pen-to-square p1"></i>
             </div>
-            <div class="boardContainer__main__column__list__card--addCard">
+            <div class="boardContainer__mainNew__column__list__card--addCard">
               <textarea
                 maxlength="30"
                 class="newCardTextArea"
@@ -92,7 +92,7 @@
               <button class="newCardBtn">New Card</button>
             </div>
           </div>
-        </div>
+        </div> -->
       </main>
       <div class="profileWindow">
         <i class="fa-solid fa-arrow-right-from-bracket backToMain"></i>

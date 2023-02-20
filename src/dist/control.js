@@ -94,7 +94,7 @@ function createBoard() {
             var newBoard = new Board(boardName.value, boardColor.value);
             updateUserBoardList(currentUser, newBoard);
             localStorage.setItem("currentBoard", JSON.stringify(newBoard));
-            location.href = "board.html";
+            location.href = "NewBoard.html";
             boardName.value = "";
             boardColor.value = "";
             newBoardWindow.style.display = "none";
@@ -127,8 +127,8 @@ function setCurrentBoard(boardName) {
 function renderBoardInBoardPage() {
     try {
         currentBoard = currentBoardFromStorage();
-        boardTitle.textContent = currentBoard.name;
-        boardPage.style.backgroundColor = currentBoard.backgroundColor;
+        boardTitleNew.textContent = currentBoard.name;
+        boardPageNew.style.backgroundColor = currentBoard.backgroundColor;
     }
     catch (error) {
         console.log(error);
@@ -142,4 +142,14 @@ function deleteBoard(boardName) {
     (_a = userList
         .find(function (user) { return user.userName === currentUser.userName; })) === null || _a === void 0 ? void 0 : _a.boardList.splice(boardIndex, 1);
     localStorage.setItem("signedUpUsers", JSON.stringify(userList));
+}
+function renderLists() {
+    currentBoard.lists.forEach(function (list) {
+        var columnElement = createNewColumn(list);
+        var ListElement = columnElement.querySelector('.boardContainer__mainNew__column__list');
+        mainContaier.append(columnElement);
+        list.cards.forEach(function (card) {
+            createNewCard(card, ListElement);
+        });
+    });
 }

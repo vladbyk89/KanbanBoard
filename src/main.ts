@@ -88,6 +88,10 @@ if (window.location.pathname.endsWith("index.html")) {
   });
 }
 
+// Board Page
+if (window.location.pathname.endsWith("NewBoard.html")){
+  renderLists();
+}
 // all windows event listener
 window.addEventListener("click", (e) => {
   const target = e.target as HTMLElement;
@@ -104,3 +108,5 @@ window.addEventListener("click", (e) => {
     profileWindow.style.display = "none";
   }
 });
+
+
