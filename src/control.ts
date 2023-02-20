@@ -1,4 +1,4 @@
-function handleFormSubmit(e) {
+function handleFormSubmit(e: Event) {
   e.preventDefault();
   // e.stopPropagation();
   const gender = this.elements.gender.value;
@@ -27,7 +27,7 @@ function handleFormSubmit(e) {
   localStorage.setItem("currentUser", JSON.stringify(newUser));
   location.href = "index.html";
   console.table(signedUpUsers);
-  e.target.reset();
+  this.reset();
 }
 
 function displayProfile(user: User) {

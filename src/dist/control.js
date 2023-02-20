@@ -18,7 +18,7 @@ function handleFormSubmit(e) {
     localStorage.setItem("currentUser", JSON.stringify(newUser));
     location.href = "index.html";
     console.table(signedUpUsers);
-    e.target.reset();
+    this.reset();
 }
 function displayProfile(user) {
     if (user) {
