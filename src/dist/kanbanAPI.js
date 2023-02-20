@@ -1,5 +1,8 @@
 renderBoardInBoardPage();
-backToMainBtn.addEventListener("click", function () { return (window.location.href = "index.html"); });
+backToMainBtn.addEventListener("click", function () {
+    localStorage.removeItem("currentBoard");
+    window.location.href = "index.html";
+});
 function movement() {
     var grabCard = document.querySelectorAll(".task");
     var drappables = document.querySelectorAll(".swim-lane");

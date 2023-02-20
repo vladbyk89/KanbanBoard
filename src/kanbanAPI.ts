@@ -1,9 +1,9 @@
 renderBoardInBoardPage();
 
-backToMainBtn.addEventListener(
-  "click",
-  () => (window.location.href = "index.html")
-);
+backToMainBtn.addEventListener("click", () => {
+  localStorage.removeItem("currentBoard");
+  window.location.href = "index.html";
+});
 
 function movement() {
   const grabCard = document.querySelectorAll(".task");

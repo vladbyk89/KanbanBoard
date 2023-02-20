@@ -1,4 +1,36 @@
-function displayUser(user: User) {
+function handleFormSubmit(e) {
+  e.preventDefault();
+  // e.stopPropagation();
+  const gender = this.elements.gender.value;
+  const firstName = this.elements.firstName.value;
+  const lastName = this.elements.lastName.value;
+  const password = this.elements.password.value;
+  const userName = this.elements.userName.value;
+  const email = this.elements.email.value;
+  const phone = this.elements.phoneNumber.value;
+  const arr = [gender, firstName, lastName, password, userName, email, phone];
+  if (arr.some((ele) => ele == "")) return alert("missing field");
+  const newUser = new User(
+    firstName,
+    lastName,
+    gender,
+    userName,
+    password,
+    email,
+    phone
+  );
+  const signedUpUsers = JSON.parse(
+    localStorage.getItem("signedUpUsers") || "[]"
+  ) as User[];
+  signedUpUsers.push(newUser);
+  localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
+  localStorage.setItem("currentUser", JSON.stringify(newUser));
+  location.href = "index.html";
+  console.table(signedUpUsers);
+  e.target.reset();
+}
+
+function displayProfile(user: User) {
   if (user) {
     profileWindow.style.display = "flex";
     return (profileDiv.innerHTML = `
@@ -27,7 +59,7 @@ function displayUser(user: User) {
     `);
 }
 
-function addNewBoardToUserInLocalStorage(updatedUser: User, board: Board) {
+function updateUserBoardList(updatedUser: User, board: Board) {
   const getLocalStorage = localStorage.getItem("signedUpUsers");
   if (getLocalStorage) {
     const usersList = JSON.parse(getLocalStorage) as User[];
@@ -91,7 +123,6 @@ function renderBoardsToMain(listOFBoards: Board[]) {
       </div>
       `;
     });
-    localStorage.removeItem('currentBoard');
   } catch (error) {
     console.log(error);
   }
@@ -102,8 +133,9 @@ function createBoard() {
     if (boardName.value && boardColor.value) {
       if (!currentUser) return alert("not signed in");
       const newBoard = new Board(boardName.value, boardColor.value);
-      addNewBoardToUserInLocalStorage(currentUser, newBoard);
-      // location.href = "board.html";
+      updateUserBoardList(currentUser, newBoard);
+      localStorage.setItem("currentBoard", JSON.stringify(newBoard));
+      location.href = "board.html";
       boardName.value = "";
       boardColor.value = "";
       newBoardWindow.style.display = "none";

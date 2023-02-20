@@ -1,4 +1,26 @@
-function displayUser(user) {
+function handleFormSubmit(e) {
+    e.preventDefault();
+    // e.stopPropagation();
+    var gender = this.elements.gender.value;
+    var firstName = this.elements.firstName.value;
+    var lastName = this.elements.lastName.value;
+    var password = this.elements.password.value;
+    var userName = this.elements.userName.value;
+    var email = this.elements.email.value;
+    var phone = this.elements.phoneNumber.value;
+    var arr = [gender, firstName, lastName, password, userName, email, phone];
+    if (arr.some(function (ele) { return ele == ""; }))
+        return alert("missing field");
+    var newUser = new User(firstName, lastName, gender, userName, password, email, phone);
+    var signedUpUsers = JSON.parse(localStorage.getItem("signedUpUsers") || "[]");
+    signedUpUsers.push(newUser);
+    localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
+    localStorage.setItem("currentUser", JSON.stringify(newUser));
+    location.href = "index.html";
+    console.table(signedUpUsers);
+    e.target.reset();
+}
+function displayProfile(user) {
     if (user) {
         profileWindow.style.display = "flex";
         return (profileDiv.innerHTML = "\n      <ul>\n        <h1>About you</h1>\n        <li>Name: " + user.firstName + " " + user.lastName + "</li>\n        <li>Gender: " + user.gender + "</li>\n        <li>Email: " + user.email + "</li>\n        <li>Phone Number: " + user.phoneNumber + "</li>\n        <li>User Name: " + user.userName + "</li>\n        <li>Password: " + user.password + "</li>\n      </ul>\n      ");
@@ -6,7 +28,7 @@ function displayUser(user) {
     profileWindow.style.display = "flex";
     return (profileDiv.innerHTML = "\n    <ul>\n      <h1>About you</h1>\n      <li>Name: EMPTY</li>\n      <li>Gender: EMPTY</li>\n      <li>Email: EMPTY</li>\n      <li>Phone Number: EMPTY</li>\n      <li>User Name: EMPTY</li>\n      <li>Password: EMPTY</li>\n    </ul>\n    ");
 }
-function addNewBoardToUserInLocalStorage(updatedUser, board) {
+function updateUserBoardList(updatedUser, board) {
     var getLocalStorage = localStorage.getItem("signedUpUsers");
     if (getLocalStorage) {
         var usersList = JSON.parse(getLocalStorage);
@@ -59,7 +81,6 @@ function renderBoardsToMain(listOFBoards) {
         listOFBoards.forEach(function (board) {
             boardArea.innerHTML += "\n      <div class='board' \n      style='background-color: " + board.backgroundColor + "'>\n      <h2 class=\"boardClick\">" + board.name + "</h2>\n      <button class=\"removeBoard\" data-name=\"" + board.name + "\">DELETE</button>\n      </div>\n      ";
         });
-        localStorage.removeItem('currentBoard');
     }
     catch (error) {
         console.log(error);
@@ -71,8 +92,9 @@ function createBoard() {
             if (!currentUser)
                 return alert("not signed in");
             var newBoard = new Board(boardName.value, boardColor.value);
-            addNewBoardToUserInLocalStorage(currentUser, newBoard);
-            // location.href = "board.html";
+            updateUserBoardList(currentUser, newBoard);
+            localStorage.setItem("currentBoard", JSON.stringify(newBoard));
+            location.href = "board.html";
             boardName.value = "";
             boardColor.value = "";
             newBoardWindow.style.display = "none";
