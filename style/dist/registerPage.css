@@ -1,0 +1,95 @@
+.registerContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  background: url("https://png.pngtree.com/thumb_back/fw800/background/20210320/pngtree-abstract-geometric-neon-graphic-background-image_589965.jpg") #a6c2df no-repeat center top;
+  background-size: cover;
+  overflow-y: auto;
+}
+.registerContainer__title {
+  padding: 1em;
+  text-align: center;
+}
+.registerContainer__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: auto;
+  width: 100%;
+  font-size: 1.5rem;
+  color: white;
+}
+.registerContainer__form input {
+  margin-bottom: 1rem;
+  width: 30%;
+  font-size: 1.2rem;
+  border-radius: 100px;
+  padding: 0.3em;
+  outline: none;
+}
+.registerContainer__form label {
+  background-color: rgba(128, 0, 128, 0.641);
+  color: aqua;
+  border-radius: 15%;
+  margin-bottom: 0.2em;
+}
+.registerContainer__form select {
+  padding: 0.1em;
+  font-size: 1.2rem;
+  margin-bottom: 1em;
+  border-radius: 200px;
+}
+.registerContainer__form #submitForm {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10rem;
+  color: black;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.15rem;
+  transition: all 0.3s;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+}
+.registerContainer__form #submitForm:hover {
+  background-color: #a6c2df;
+}
+.registerContainer .tooltip {
+  position: relative;
+  display: inline-block;
+}
+.registerContainer .tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: purple;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.registerContainer .tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+.registerContainer .tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
