@@ -92,6 +92,24 @@ if (window.location.pathname.endsWith("index.html")) {
 
 // if user is in NewBoard.html run this
 if (window.location.pathname.endsWith("NewBoard.html")) {
-  renderLists();
-}
+  renderBoardInBoardPage();
+  addListBtn.addEventListener("click", () => {
+    const newList = new List(newListInput.value);
 
+    mainContaier.append(createNewColumn(newList));
+  });
+
+  window.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+    if (target.className === "newCardBtn") {
+      const listElement = target.closest(
+        ".boardContainer__mainNew__column__list"
+      ) as HTMLDivElement;
+      const newCardTextArea = target.parentNode?.querySelector(
+        ".newCardTextArea"
+      ) as HTMLTextAreaElement;
+      createNewCard(newCardTextArea.value, listElement);
+      newCardTextArea.value = "";
+    }
+  });
+}

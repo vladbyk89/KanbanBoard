@@ -78,5 +78,19 @@ if (window.location.pathname.endsWith("index.html")) {
 }
 // if user is in NewBoard.html run this
 if (window.location.pathname.endsWith("NewBoard.html")) {
-    renderLists();
+    renderBoardInBoardPage();
+    addListBtn.addEventListener("click", function () {
+        var newList = new List(newListInput.value);
+        mainContaier.append(createNewColumn(newList));
+    });
+    window.addEventListener("click", function (e) {
+        var _a;
+        var target = e.target;
+        if (target.className === "newCardBtn") {
+            var listElement = target.closest(".boardContainer__mainNew__column__list");
+            var newCardTextArea = (_a = target.parentNode) === null || _a === void 0 ? void 0 : _a.querySelector(".newCardTextArea");
+            createNewCard(newCardTextArea.value, listElement);
+            newCardTextArea.value = "";
+        }
+    });
 }

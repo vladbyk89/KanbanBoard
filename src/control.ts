@@ -26,7 +26,6 @@ function handleFormSubmit(e: Event) {
   localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
   localStorage.setItem("currentUser", JSON.stringify(newUser));
   location.href = "index.html";
-  console.table(signedUpUsers);
   this.reset();
 }
 
@@ -174,6 +173,7 @@ function renderBoardInBoardPage() {
     currentBoard = currentBoardFromStorage();
     boardTitleNew.textContent = currentBoard.name;
     boardPageNew.style.backgroundColor = currentBoard.backgroundColor;
+    renderLists();
   } catch (error) {
     console.log(error);
   }
@@ -194,11 +194,13 @@ function deleteBoard(boardName: string) {
 function renderLists() {
   currentBoard.lists.forEach((list) => {
     const columnElement = createNewColumn(list);
-    const ListElement = columnElement.querySelector('.boardContainer__mainNew__column__list') as HTMLDivElement;
-    
-    list.cards.forEach(card => {
+    const ListElement = columnElement.querySelector(
+      ".boardContainer__mainNew__column__list"
+    ) as HTMLDivElement;
+
+    list.cards.forEach((card) => {
       createNewCard(card, ListElement);
       mainContaier.append(columnElement);
-    })
+    });
   });
 }

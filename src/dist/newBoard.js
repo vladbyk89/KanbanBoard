@@ -1,22 +1,3 @@
-renderBoardInBoardPage();
-var mainContaier = document.querySelector(".boardContainer__mainNew");
-var addListBtn = document.querySelector("#addListBtn");
-var newListInput = document.querySelector("#newListInput");
-var newCardButtons = document.querySelectorAll(".newCardBtn");
-window.addEventListener("click", function (e) {
-    var _a;
-    var target = e.target;
-    if (target.className === "newCardBtn") {
-        var listElement = target.closest(".boardContainer__mainNew__column__list");
-        var newCardTextArea = (_a = target.parentNode) === null || _a === void 0 ? void 0 : _a.querySelector(".newCardTextArea");
-        createNewCard(newCardTextArea.value, listElement);
-        newCardTextArea.value = "";
-    }
-});
-addListBtn.addEventListener("click", function () {
-    var newList = new List(newListInput.value);
-    mainContaier.append(createNewColumn(newList));
-});
 function createNewColumn(list) {
     var column = document.createElement("div");
     column.classList.add("boardContainer__mainNew__column");
@@ -44,7 +25,8 @@ window.addEventListener("click", function () {
     });
     drappables.forEach(function (zone) {
         zone.addEventListener("dragover", function (e) {
-            e.preventDefault();
+            // e.preventDefault();
+            console.log(e);
             var bottomTask = insertAboveTask(zone, e.clientY); //e.screenY //pageY
             var curTask = document.querySelector(".is-dragging");
             if (!bottomTask) {
@@ -57,7 +39,7 @@ window.addEventListener("click", function () {
     });
     var insertAboveTask = function (zone, mouseY) {
         var els = zone.querySelectorAll(".boardContainer__mainNew__column__list__card:not(.is-dragging)");
-        var closestTask = null;
+        var closestTask;
         var closestOffset = Number.NEGATIVE_INFINITY;
         els.forEach(function (task) {
             var top = task.getBoundingClientRect().top;

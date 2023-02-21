@@ -1,39 +1,3 @@
-renderBoardInBoardPage();
-
-const mainContaier = document.querySelector(
-  ".boardContainer__mainNew"
-) as HTMLDivElement;
-
-const addListBtn = document.querySelector("#addListBtn") as HTMLButtonElement;
-
-const newListInput = document.querySelector(
-  "#newListInput"
-) as HTMLInputElement;
-
-const newCardButtons = document.querySelectorAll(
-  ".newCardBtn"
-) as NodeListOf<HTMLButtonElement>;
-
-window.addEventListener("click", (e) => {
-  const target = e.target as HTMLElement;
-  if (target.className === "newCardBtn") {
-    const listElement = target.closest(
-      ".boardContainer__mainNew__column__list"
-    ) as HTMLDivElement;
-    const newCardTextArea = target.parentNode?.querySelector(
-      ".newCardTextArea"
-    ) as HTMLTextAreaElement;
-    createNewCard(newCardTextArea.value, listElement);
-    newCardTextArea.value = "";
-  }
-});
-
-addListBtn.addEventListener("click", () => {
-  const newList = new List(newListInput.value);
-
-  mainContaier.append(createNewColumn(newList));
-});
-
 function createNewColumn(list: List) {
   const column = document.createElement("div");
   column.classList.add("boardContainer__mainNew__column");
@@ -84,9 +48,10 @@ window.addEventListener("click", () => {
 
   drappables.forEach((zone) => {
     zone.addEventListener("dragover", (e) => {
-      e.preventDefault();
+      // e.preventDefault();
+      console.log(e);
       const bottomTask = insertAboveTask(zone, e.clientY); //e.screenY //pageY
-      const curTask: any = document.querySelector(".is-dragging");
+      const curTask = document.querySelector(".is-dragging") as HTMLDivElement;
       if (!bottomTask) {
         zone.appendChild(curTask);
       } else {
@@ -98,8 +63,8 @@ window.addEventListener("click", () => {
   const insertAboveTask = (zone, mouseY) => {
     const els = zone.querySelectorAll(
       ".boardContainer__mainNew__column__list__card:not(.is-dragging)"
-    );
-    let closestTask = null;
+    ) as NodeListOf<HTMLDivElement>;
+    let closestTask;
     let closestOffset = Number.NEGATIVE_INFINITY;
     els.forEach((task) => {
       const { top } = task.getBoundingClientRect();

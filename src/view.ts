@@ -21,7 +21,9 @@ const profileWindow = document.querySelector(
   ".profileWindow"
 ) as HTMLDivElement;
 const profileDiv = document.querySelector(".profile") as HTMLDivElement;
-const exitProfilePage = document.querySelector(".exitProfilePage") as HTMLElement;
+const exitProfilePage = document.querySelector(
+  ".exitProfilePage"
+) as HTMLElement;
 
 const createBoardWindowBtn = document.querySelector(
   ".createBoardWindowBtn"
@@ -55,5 +57,23 @@ const boardTitleNew = document.querySelector(
 const backToMainBtn = document.querySelector(
   ".boardContainer__topNav__iconDiv__backToMain"
 ) as HTMLElement;
-const boardPage = document.querySelector('.boardContainer__main') as HTMLElement;
-const boardPageNew = document.querySelector('.boardContainer__mainNew') as HTMLElement;
+const boardPage = document.querySelector(
+  ".boardContainer__main"
+) as HTMLElement;
+const boardPageNew = document.querySelector(
+  ".boardContainer__mainNew"
+) as HTMLElement;
+
+const mainContaier = document.querySelector(
+  ".boardContainer__mainNew"
+) as HTMLDivElement;
+
+const addListBtn = document.querySelector("#addListBtn") as HTMLButtonElement;
+
+const newListInput = document.querySelector(
+  "#newListInput"
+) as HTMLInputElement;
+
+const newCardButtons = document.querySelectorAll(
+  ".newCardBtn"
+) as NodeListOf<HTMLButtonElement>;
