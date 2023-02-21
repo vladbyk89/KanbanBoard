@@ -19,6 +19,7 @@
     <script src="./src/dist/model.js" defer></script>
     <script src="./src/dist/newBoard.js" defer></script>
     <script src="./src/dist/main.js" defer></script>
+    <script src="./src/dist/icons.js" defer></script>
   </head>
   
   <body onload="checkIfCurrentUserExists()">
@@ -37,7 +38,7 @@
         <div class="boardContainer__topNav__boardNameNew">Board Name</div>
         <div class="boardContainer__topNav__iconDiv">
           <i
-            class="fa-solid fa-hand-point-left boardContainer__topNav__iconDiv__backToMain"
+            class="fa-solid fa-hand-point-left boardContainer__topNav__iconDiv__backToMain backToMainBtn"
           ></i>
           <i
             class="fa-solid fa-bell boardContainer__topNav__iconDiv__notifications"
@@ -94,7 +95,7 @@
         </div> -->
       </main>
       <div class="profileWindow">
-        <i class="fa-solid fa-arrow-right-from-bracket backToMain"></i>
+        <i class="fa-solid fa-arrow-right-from-bracket exitProfilePage"></i>
         <button class="signOutbtn">Sign out</button>
         <div class="profile"></div>
       </div>

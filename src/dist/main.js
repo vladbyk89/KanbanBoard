@@ -1,4 +1,5 @@
 userList = userListFromStorage();
+// if user is in login.html run this
 if (window.location.pathname.endsWith("login.html")) {
     loginContainer.addEventListener("click", function (e) {
         var target = e.target;
@@ -38,10 +39,11 @@ if (window.location.pathname.endsWith("login.html")) {
         });
     });
 }
+// if user is in register.html run this
 if (window.location.pathname.endsWith("register.html")) {
     form.addEventListener("submit", handleFormSubmit);
 }
-//  index.html events
+// if user is in index.html run this
 if (window.location.pathname.endsWith("index.html")) {
     renderBoardsToMain(currentUser.boardList);
     createBoardWindowBtn.addEventListener("click", function () { return (newBoardWindow.style.display = "flex"); });
@@ -74,21 +76,7 @@ if (window.location.pathname.endsWith("index.html")) {
         }
     });
 }
-// Board Page
+// if user is in NewBoard.html run this
 if (window.location.pathname.endsWith("NewBoard.html")) {
     renderLists();
 }
-// all windows event listener
-window.addEventListener("click", function (e) {
-    var target = e.target;
-    if (target.classList.contains("profileBtn")) {
-        displayProfile(currentUser);
-    }
-    if (target.classList.contains("signOutbtn")) {
-        localStorage.removeItem("currentUser");
-        window.location.href = "login.html";
-    }
-    if (target.classList.contains("backToMain")) {
-        profileWindow.style.display = "none";
-    }
-});

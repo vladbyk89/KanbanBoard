@@ -1,10 +1,5 @@
 renderBoardInBoardPage();
 
-backToMainBtn.addEventListener("click", () => {
-  localStorage.removeItem("currentBoard");
-  window.location.href = "index.html";
-});
-
 const mainContaier = document.querySelector(
   ".boardContainer__mainNew"
 ) as HTMLDivElement;
@@ -35,7 +30,7 @@ window.addEventListener("click", (e) => {
 
 addListBtn.addEventListener("click", () => {
   const newList = new List(newListInput.value);
-  
+
   mainContaier.append(createNewColumn(newList));
 });
 
@@ -71,12 +66,13 @@ function createNewCard(cardName: string, list: Element) {
   list.insertBefore(card, cardTitle.nextSibling);
 }
 
-
-
-
 window.addEventListener("click", () => {
-  const grabCard = document.querySelectorAll(".boardContainer__mainNew__column__list__card");
-  const drappables = document.querySelectorAll(".boardContainer__mainNew__column__list");
+  const grabCard = document.querySelectorAll(
+    ".boardContainer__mainNew__column__list__card"
+  );
+  const drappables = document.querySelectorAll(
+    ".boardContainer__mainNew__column__list"
+  );
   grabCard.forEach((task) => {
     task.addEventListener("dragstart", () => {
       task.classList.add("is-dragging");
@@ -100,7 +96,9 @@ window.addEventListener("click", () => {
   });
 
   const insertAboveTask = (zone, mouseY) => {
-    const els = zone.querySelectorAll(".boardContainer__mainNew__column__list__card:not(.is-dragging)");
+    const els = zone.querySelectorAll(
+      ".boardContainer__mainNew__column__list__card:not(.is-dragging)"
+    );
     let closestTask = null;
     let closestOffset = Number.NEGATIVE_INFINITY;
     els.forEach((task) => {
@@ -114,7 +112,6 @@ window.addEventListener("click", () => {
     return closestTask;
   };
 });
-
 
 // window.addEventListener("click", () => {
 //   const grabCard = document.querySelectorAll(".boardContainer__mainNew__column__list");

@@ -1,8 +1,4 @@
 renderBoardInBoardPage();
-backToMainBtn.addEventListener("click", function () {
-    localStorage.removeItem("currentBoard");
-    window.location.href = "index.html";
-});
 var mainContaier = document.querySelector(".boardContainer__mainNew");
 var addListBtn = document.querySelector("#addListBtn");
 var newListInput = document.querySelector("#newListInput");
