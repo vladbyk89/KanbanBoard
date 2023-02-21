@@ -1,18 +1,49 @@
 function createNewColumn(list) {
     var column = document.createElement("div");
     column.classList.add("boardContainer__mainNew__column");
-    column.innerHTML = "\n  <div class=\"boardContainer__mainNew__column__list\" draggable=\"true\">\n  <div class=\"boardContainer__mainNew__column__list__header\">\n    <h2>" + list.name + "</h2>\n    <div class=\"boardContainer__mainNew__column__list__card--addCard\">\n      <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"3\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n    </div>\n  </div>\n\n  </div>";
+    var listContainer = document.createElement("div");
+    listContainer.classList.add("boardContainer__mainNew__column__list");
+    listContainer.setAttribute("draggable", "true");
+    listContainer.setAttribute("id", list.name + "_container");
+    listContainer.addEventListener("dragstart", function (e) {
+        var _a, _b;
+        (_a = e.dataTransfer) === null || _a === void 0 ? void 0 : _a.setData("text/plain", (_b = e.target) === null || _b === void 0 ? void 0 : _b.id);
+    });
+    var header = document.createElement("div");
+    header.classList.add("boardContainer__mainNew__column__list__header");
+    header.setAttribute("id", list.name + "_header");
+    header.innerHTML = "\n    <h2>" + list.name + "</h2>\n    <div class=\"boardContainer__mainNew__column__list__card--addCard\">\n      <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"3\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n    </div>\n  ";
+    listContainer.appendChild(header);
+    column.appendChild(listContainer);
+    var dropZones = document.querySelectorAll(".boardContainer__mainNew__column");
+    dropZones.forEach(function (dropZone) {
+        dropZone.addEventListener("dragover", function (e) {
+            e.preventDefault();
+            dropZone.classList.add("dragover");
+        });
+        dropZone.addEventListener("dragenter", function (e) {
+            e.preventDefault();
+            dropZone.classList.add("dragover");
+        });
+        dropZone.addEventListener("dragleave", function (e) {
+            dropZone.classList.remove("dragover");
+        });
+        dropZone.addEventListener("drop", function (e) {
+            var _a;
+            e.preventDefault();
+            var draggedItemId = e.dataTransfer.getData("text/plain");
+            if (!draggedItemId) {
+                return;
+            }
+            var draggedItem = document.getElementById(draggedItemId);
+            (_a = draggedItem === null || draggedItem === void 0 ? void 0 : draggedItem.parentElement) === null || _a === void 0 ? void 0 : _a.appendChild(dropZone.firstElementChild);
+            dropZone.appendChild(draggedItem);
+            dropZone.classList.remove("dragover");
+        });
+    });
     return column;
 }
-function createNewCard(cardName, list) {
-    var card = document.createElement("div");
-    card.classList.add("boardContainer__mainNew__column__list__card");
-    card.setAttribute("draggable", "true");
-    card.innerHTML = "\n  <p>" + cardName + "</p>\n  <i class=\"fa-regular fa-pen-to-square p1\"></i>\n  ";
-    var cardTitle = list.querySelector(".boardContainer__mainNew__column__list__header");
-    list.insertBefore(card, cardTitle.nextSibling);
-}
-window.addEventListener("click", function () {
+var cardMovement = function () {
     var grabCard = document.querySelectorAll(".boardContainer__mainNew__column__list__card");
     var drappables = document.querySelectorAll(".boardContainer__mainNew__column__list");
     grabCard.forEach(function (task) {
@@ -25,8 +56,6 @@ window.addEventListener("click", function () {
     });
     drappables.forEach(function (zone) {
         zone.addEventListener("dragover", function (e) {
-            // e.preventDefault();
-            console.log(e);
             var bottomTask = insertAboveTask(zone, e.clientY); //e.screenY //pageY
             var curTask = document.querySelector(".is-dragging");
             if (!bottomTask) {
@@ -51,42 +80,13 @@ window.addEventListener("click", function () {
         });
         return closestTask;
     };
-});
-// window.addEventListener("click", () => {
-//   const grabCard = document.querySelectorAll(".boardContainer__mainNew__column__list");
-//   const drappables = document.querySelectorAll(".boardContainer__mainNew__column");
-//   grabCard.forEach((task) => {
-//     task.addEventListener("dragstart", () => {
-//       task.classList.add("is-dragging");
-//     });
-//     task.addEventListener("dragend", () => {
-//       task.classList.remove("is-dragging");
-//     });
-//   });
-//   drappables.forEach((zone) => {
-//     zone.addEventListener("dragover", (e) => {
-//       e.preventDefault();
-//       const bottomTask = insertAboveTask(zone, e.clientY); //e.screenY //pageY
-//       const curTask: any = document.querySelector(".is-dragging");
-//       if (!bottomTask) {
-//         zone.appendChild(curTask);
-//       } else {
-//         zone.insertBefore(curTask, bottomTask);
-//       }
-//     });
-//   });
-//   const insertAboveTask = (zone, mouseY) => {
-//     const els = zone.querySelectorAll(".boardContainer__mainNew__column:not(.is-dragging)");
-//     let closestTask = null;
-//     let closestOffset = Number.NEGATIVE_INFINITY;
-//     els.forEach((task) => {
-//       const { top } = task.getBoundingClientRect();
-//       const offset = mouseY - top;
-//       if (offset < 0 && offset > closestOffset) {
-//         closestOffset = offset;
-//         closestTask = task;
-//       }
-//     });
-//     return closestTask;
-//   };
-// });
+};
+function createNewCard(cardName, list) {
+    var card = document.createElement("div");
+    card.classList.add("boardContainer__mainNew__column__list__card");
+    card.setAttribute("draggable", "true");
+    card.innerHTML = "\n  <p>" + cardName + "</p>\n  <i class=\"fa-regular fa-pen-to-square p1\"></i>\n  ";
+    card.addEventListener("dragstart", cardMovement);
+    var cardTitle = list.querySelector(".boardContainer__mainNew__column__list__header");
+    list.insertBefore(card, cardTitle.nextSibling);
+}
