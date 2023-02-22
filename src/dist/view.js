@@ -1,14 +1,22 @@
 // Login page elements
-var loginContainer = document.querySelector(".loginContainer");
-var loginUserName = document.querySelector("#loginUserName");
-var loginPassword = document.querySelector("#loginPassword");
+// const loginContainer = document.querySelector(
+//   ".loginContainer"
+// ) as HTMLDivElement;
+// const loginUserName = document.querySelector(
+//   "#loginUserName"
+// ) as HTMLInputElement;
+// const loginPassword = document.querySelector(
+//   "#loginPassword"
+// ) as HTMLInputElement;
 var loginForm = document.querySelector("#loginForm");
 var container = document.querySelector(".mainContainer");
 var signUpButton = document.querySelector("#signUp");
 var signInButton = document.querySelector("#signIn");
 // Register page element
-var registerContainer = document.querySelector(".registerContainer");
-var form = document.querySelector("form");
+// const registerContainer = document.querySelector(
+//   ".registerContainer"
+// ) as HTMLDivElement;
+// const form = document.querySelector("form") as HTMLFormElement;
 var newForm = document.querySelector("#signUpForm");
 // Main page elements
 var profileBtn = document.querySelector(".profileBtn");
@@ -21,7 +29,6 @@ var cancelCreateBoardBtn = document.querySelector(".cancelCreateBoardBtn");
 var newBoardWindow = document.querySelector(".newBoardWindow");
 var boardName = document.querySelector("#boardName");
 var boardColor = document.querySelector("#boardColor");
-var signOutBtn = document.querySelector(".signOutbtn");
 var boardArea = document.querySelector(".mainpageContainer__main__boards__boardArea");
 var searchBar = document.querySelector(".mainpageContainer__topNav__search");
 //Board page

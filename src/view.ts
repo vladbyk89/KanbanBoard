@@ -1,23 +1,23 @@
 // Login page elements
-const loginContainer = document.querySelector(
-  ".loginContainer"
-) as HTMLDivElement;
-const loginUserName = document.querySelector(
-  "#loginUserName"
-) as HTMLInputElement;
-const loginPassword = document.querySelector(
-  "#loginPassword"
-) as HTMLInputElement;
+// const loginContainer = document.querySelector(
+//   ".loginContainer"
+// ) as HTMLDivElement;
+// const loginUserName = document.querySelector(
+//   "#loginUserName"
+// ) as HTMLInputElement;
+// const loginPassword = document.querySelector(
+//   "#loginPassword"
+// ) as HTMLInputElement;
 const loginForm = document.querySelector("#loginForm") as HTMLFormElement;
 const container = document.querySelector(".mainContainer") as HTMLDivElement;
 const signUpButton = document.querySelector("#signUp") as HTMLButtonElement;
 const signInButton = document.querySelector("#signIn") as HTMLButtonElement;
 
 // Register page element
-const registerContainer = document.querySelector(
-  ".registerContainer"
-) as HTMLDivElement;
-const form = document.querySelector("form") as HTMLFormElement;
+// const registerContainer = document.querySelector(
+//   ".registerContainer"
+// ) as HTMLDivElement;
+// const form = document.querySelector("form") as HTMLFormElement;
 const newForm = document.querySelector("#signUpForm") as HTMLFormElement;
 
 // Main page elements
@@ -44,7 +44,6 @@ const newBoardWindow = document.querySelector(
 ) as HTMLDivElement;
 const boardName = document.querySelector("#boardName") as HTMLInputElement;
 const boardColor = document.querySelector("#boardColor") as HTMLInputElement;
-const signOutBtn = document.querySelector(".signOutbtn") as HTMLButtonElement;
 const boardArea = document.querySelector(
   ".mainpageContainer__main__boards__boardArea"
 ) as HTMLDivElement;

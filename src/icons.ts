@@ -7,7 +7,7 @@ window.addEventListener("click", (e) => {
 
   if (target.classList.contains("signOutbtn")) {
     localStorage.removeItem("currentUser");
-    window.location.href = "login.html";
+    window.location.href = "entryPage.html";
   }
 
   if (target.classList.contains("exitProfilePage")) {

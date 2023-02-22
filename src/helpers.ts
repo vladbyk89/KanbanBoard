@@ -1,7 +1,7 @@
 function checkIfCurrentUserExists() {
   try {
     if (!localStorage.getItem("currentUser")) {
-      window.location.href = "login.html";
+      window.location.href = "entryPage.html";
     }
   } catch (error) {
     console.log(error);
