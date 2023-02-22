@@ -37,7 +37,6 @@
           </select>
           <input
             type="text"
-            id="firstName"
             name="firstName"
             placeholder="Example: John"
             required
@@ -45,7 +44,6 @@
 
           <input
             type="text"
-            id="lastName"
             name="lastName"
             placeholder="Example: Doe"
             required
@@ -53,7 +51,6 @@
 
           <input
             type="text"
-            id="userName"
             name="userName"
             placeholder="Example: Johnny321"
             required
@@ -61,7 +58,6 @@
 
           <input
             type="password"
-            id="password"
             name="password"
             placeholder="Example: Jiji@D4332"
             required
@@ -69,7 +65,6 @@
 
           <input
             type="email"
-            id="email"
             name="email"
             placeholder="Example: johndoe@gmail.com"
             required
@@ -77,12 +72,11 @@
 
           <input
             type="tel"
-            id="phoneNumber"
             name="phoneNumber"
             placeholder="Example: 0541234567"
             required
           />
-          <button id="submitForm" type="submit">Sign Up</button>
+          <button type="submit">Sign Up</button>
         </form>
       </div>
       <!-- --------------New Container-------------- -->
@@ -99,14 +93,18 @@
             name="userName"
             type="text"
             placeholder="User Name"
+            id="userNameInput"
+            required
           />
           <input
             name="password"
             type="text"
             placeholder="Password"
+            id="passwordInput"
+            required
           />
           <a href="#">Forgot your password?</a>
-          <button type="submit">Sign In</button>
+          <button id="signInBtn">Sign In</button>
         </form>
       </div>
       <!-- --------------New Container-------------- -->
@@ -117,12 +115,12 @@
             <p>
               To keep connected with us please login with your personal info
             </p>
-            <button id="signIn">Sign In</button>
+            <button id="signInPanel">Sign In</button>
           </div>
           <div class="panel signUp">
             <h1>Hello, Friend!</h1>
             <p>Enter your personal details and start journey with us</p>
-            <button id="signUp">Sign Up</button>
+            <button id="signUpPanel">Sign Up</button>
           </div>
         </div>
       </div>

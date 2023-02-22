@@ -1,25 +1,20 @@
-// Login page elements
-// const loginContainer = document.querySelector(
-//   ".loginContainer"
-// ) as HTMLDivElement;
-// const loginUserName = document.querySelector(
-//   "#loginUserName"
-// ) as HTMLInputElement;
-// const loginPassword = document.querySelector(
-//   "#loginPassword"
-// ) as HTMLInputElement;
+// Entry Page elements
 const loginForm = document.querySelector("#loginForm") as HTMLFormElement;
 const container = document.querySelector(".mainContainer") as HTMLDivElement;
-const signUpButton = document.querySelector("#signUp") as HTMLButtonElement;
-const signInButton = document.querySelector("#signIn") as HTMLButtonElement;
-
-// Register page element
-// const registerContainer = document.querySelector(
-//   ".registerContainer"
-// ) as HTMLDivElement;
-// const form = document.querySelector("form") as HTMLFormElement;
+const signUpPanelBtn = document.querySelector(
+  "#signUpPanel"
+) as HTMLButtonElement;
+const signInPanelBtn = document.querySelector(
+  "#signInPanel"
+) as HTMLButtonElement;
+const signInBtn = document.querySelector("#signInBtn") as HTMLButtonElement;
 const newForm = document.querySelector("#signUpForm") as HTMLFormElement;
-
+const userNameInput = document.querySelector(
+  "#userNameInput"
+) as HTMLInputElement;
+const passwordInput = document.querySelector(
+  "#passwordInput"
+) as HTMLInputElement;
 // Main page elements
 const profileBtn = document.querySelector(".profileBtn") as HTMLElement;
 const profileWindow = document.querySelector(

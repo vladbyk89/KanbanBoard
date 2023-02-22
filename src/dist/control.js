@@ -23,9 +23,8 @@ function handleSignUp(e) {
 function handleSignIn(e) {
     e.preventDefault();
     // e.stopPropagation();
-    var target = e.target;
-    var userName = loginForm.elements.userName.value;
-    var password = loginForm.elements.password.value;
+    var userName = userNameInput.value;
+    var password = passwordInput.value;
     if (checkIfUserExists(userName, password)) {
         setCurrentUser(userName);
         loginForm.reset();

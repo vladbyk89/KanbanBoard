@@ -33,9 +33,8 @@ function handleSignUp(e: Event) {
 function handleSignIn(e: Event) {
   e.preventDefault();
   // e.stopPropagation();
-  const target = e.target as HTMLElement;
-  const userName = loginForm.elements.userName.value;
-  const password = loginForm.elements.password.value;
+  const userName = userNameInput.value;
+  const password = passwordInput.value;
 
   if (checkIfUserExists(userName, password)) {
     setCurrentUser(userName);

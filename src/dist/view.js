@@ -1,23 +1,12 @@
-// Login page elements
-// const loginContainer = document.querySelector(
-//   ".loginContainer"
-// ) as HTMLDivElement;
-// const loginUserName = document.querySelector(
-//   "#loginUserName"
-// ) as HTMLInputElement;
-// const loginPassword = document.querySelector(
-//   "#loginPassword"
-// ) as HTMLInputElement;
+// Entry Page elements
 var loginForm = document.querySelector("#loginForm");
 var container = document.querySelector(".mainContainer");
-var signUpButton = document.querySelector("#signUp");
-var signInButton = document.querySelector("#signIn");
-// Register page element
-// const registerContainer = document.querySelector(
-//   ".registerContainer"
-// ) as HTMLDivElement;
-// const form = document.querySelector("form") as HTMLFormElement;
+var signUpPanelBtn = document.querySelector("#signUpPanel");
+var signInPanelBtn = document.querySelector("#signInPanel");
+var signInBtn = document.querySelector("#signInBtn");
 var newForm = document.querySelector("#signUpForm");
+var userNameInput = document.querySelector("#userNameInput");
+var passwordInput = document.querySelector("#passwordInput");
 // Main page elements
 var profileBtn = document.querySelector(".profileBtn");
 var profileWindow = document.querySelector(".profileWindow");

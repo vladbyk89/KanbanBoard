@@ -1,9 +1,9 @@
 
 
-signUpButton.addEventListener("click", () => {
+signUpPanelBtn.addEventListener("click", () => {
   container.classList.add("active");
 });
 
-signInButton.addEventListener("click", () => {
+signInPanelBtn.addEventListener("click", () => {
   container.classList.remove("active");
 });
