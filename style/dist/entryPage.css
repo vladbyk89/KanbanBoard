@@ -13,28 +13,22 @@ body {
   align-items: center;
 }
 
-h1 {
-  font-weight: bold;
-  margin: 0;
-}
-
 p {
-  font-size: 14px;
-  font-weight: 100;
-  line-height: 20px;
+  font-size: 1.2rem;
+  font-weight: 200;
+  line-height: 1.2rem;
   letter-spacing: 0.5px;
-  margin: 20px 0 30px;
+  margin: 1.5rem 0;
 }
 
 span {
-  font-size: 12px;
+  font-size: 0.8rem;
 }
 
 a {
   color: #333;
-  font-size: 14px;
   text-decoration: none;
-  margin: 15px 0;
+  margin: 1rem 0;
 }
 
 button {
@@ -44,7 +38,7 @@ button {
   color: #ffffff;
   font-size: 12px;
   font-weight: bold;
-  padding: 12px 45px;
+  padding: 0.8rem 3rem;
   letter-spacing: 1px;
   text-transform: uppercase;
   transition: transform 80ms ease-in;
@@ -80,25 +74,24 @@ form select {
 
 input {
   background-color: #eee;
-  border: none;
-  padding: 12px 15px;
-  margin: 8px 0;
+  border: 1px solid rgba(0, 0, 0, 0.058);
+  padding: 1vh;
+  margin: 0.5rem 0;
   width: 100%;
 }
 
 .iconsArea {
-  margin: 20px 0;
+  margin: 1.5rem 0;
 }
-
 .iconsArea a {
   border: 1px solid #dddddd;
   border-radius: 50%;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  margin: 0 5px;
-  height: 40px;
-  width: 40px;
+  margin: 0 0.5rem;
+  height: 2rem;
+  width: 2rem;
 }
 
 .mainContainer {
@@ -128,6 +121,7 @@ input {
   width: 50%;
   opacity: 0;
   z-index: 1;
+  overflow-y: auto;
 }
 .mainContainer .overlayContainer {
   position: absolute;
