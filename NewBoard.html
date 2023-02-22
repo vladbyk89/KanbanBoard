@@ -12,7 +12,7 @@
       defer
     ></script>
     <link rel="stylesheet" href="./style/dist/style.css" />
-    <link rel="stylesheet" href="./style/dist/profileWindow.css">
+    <link rel="stylesheet" href="./style/dist/profileWindow.css" />
     <script src="./src/dist/view.js" defer></script>
     <script src="./src/dist/helpers.js" defer></script>
     <script src="./src/dist/control.js" defer></script>
@@ -21,7 +21,7 @@
     <script src="./src/dist/main.js" defer></script>
     <script src="./src/dist/icons.js" defer></script>
   </head>
-  
+
   <body onload="checkIfCurrentUserExists()">
     <div class="boardContainer">
       <nav class="boardContainer__topNav">
@@ -38,62 +38,20 @@
         <div class="boardContainer__topNav__boardNameNew">Board Name</div>
         <div class="boardContainer__topNav__iconDiv">
           <i
-            class="fa-solid fa-hand-point-left boardContainer__topNav__iconDiv__backToMain backToMainBtn"title="Back To Main"
+            class="fa-solid fa-hand-point-left boardContainer__topNav__iconDiv__backToMain backToMainBtn"
+            title="Back To Main"
           ></i>
           <i
-            class="fa-solid fa-bell boardContainer__topNav__iconDiv__notifications"title="Notifications"
+            class="fa-solid fa-bell boardContainer__topNav__iconDiv__notifications"
+            title="Notifications"
           ></i>
           <i
-            class="fa-solid fa-user boardContainer__topNav__iconDiv__profile profileBtn"title="Profile Info"
+            class="fa-solid fa-user boardContainer__topNav__iconDiv__profile profileBtn"
+            title="Profile Info"
           ></i>
         </div>
       </nav>
-      <main class="boardContainer__mainNew">
-        <!-- <div class="boardContainer__mainNew__column">
-          <div class="boardContainer__mainNew__column__list" draggable="true">
-            <div class="boardContainer__mainNew__column__list__header" id="cardName">
-              <h2>List Name</h2>
-            </div>
-            <div
-              class="boardContainer__mainNew__column__list__card"
-              draggable="true"
-            >
-              <p>Create Element</p>
-              <i class="fa-regular fa-pen-to-square p1"></i>
-            </div>
-            <div
-              class="boardContainer__mainNew__column__list__card"
-              draggable="true"
-            >
-              <p>Task 1</p>
-              <i class="fa-regular fa-pen-to-square p1"></i>
-            </div>
-            <div
-              class="boardContainer__mainNew__column__list__card"
-              draggable="true"
-            >
-              <p>Task 2</p>
-              <i class="fa-regular fa-pen-to-square p1"></i>
-            </div>
-            <div
-              class="boardContainer__mainNew__column__list__card"
-              draggable="true"
-            >
-              <p>Long Text task to test look</p>
-              <i class="fa-regular fa-pen-to-square p1"></i>
-            </div>
-            <div class="boardContainer__mainNew__column__list__card--addCard">
-              <textarea
-                maxlength="30"
-                class="newCardTextArea"
-                cols="30"
-                rows="3"
-              ></textarea>
-              <button class="newCardBtn">New Card</button>
-            </div>
-          </div>
-        </div> -->
-      </main>
+      <main class="boardContainer__mainNew"></main>
       <div class="profileWindow">
         <i class="fa-solid fa-arrow-right-from-bracket exitProfilePage"></i>
         <button class="signOutbtn">Sign out</button>

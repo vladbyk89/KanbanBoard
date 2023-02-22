@@ -1,4 +1,4 @@
-function handleFormSubmit(e: Event) {
+function handleSignUp(e: Event) {
   e.preventDefault();
   // e.stopPropagation();
   const gender = this.elements.gender.value;
@@ -9,6 +9,7 @@ function handleFormSubmit(e: Event) {
   const email = this.elements.email.value;
   const phone = this.elements.phoneNumber.value;
   const arr = [gender, firstName, lastName, password, userName, email, phone];
+  console.log(arr);
   if (arr.some((ele) => ele == "")) return alert("missing field");
   const newUser = new User(
     firstName,
@@ -27,6 +28,22 @@ function handleFormSubmit(e: Event) {
   localStorage.setItem("currentUser", JSON.stringify(newUser));
   location.href = "index.html";
   this.reset();
+}
+
+function handleSignIn(e: Event) {
+  e.preventDefault();
+  // e.stopPropagation();
+  const target = e.target as HTMLElement;
+  const userName = loginForm.elements.userName.value;
+  const password = loginForm.elements.password.value;
+
+  if (checkIfUserExists(userName, password)) {
+    setCurrentUser(userName);
+    loginForm.reset();
+    window.location.href = "index.html";
+  } else {
+    alert("user not in database");
+  }
 }
 
 function displayProfile(user: User) {

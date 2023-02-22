@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kanban Board Register</title>
+    <script
+      src="https://kit.fontawesome.com/0d9e773bea.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="icon" type="image/png" href="./img/kanban3.png" />
+    <link rel="stylesheet" href="./style/dist/entryPage.css" />
+    <script src="./src/dist/helpers.js" defer></script>
+    <script src="./src/dist/control.js" defer></script>
+    <script src="./src/dist/view.js" defer></script>
+    <script src="./src/dist/model.js" defer></script>
+    <script src="./src/dist/main.js" defer></script>
+    <script src="./src/dist/entryPage.js" defer></script>
+  </head>
+  <body>
+    <div class="mainContainer">
+      <div class="signUpContainer">
+        <form id="signUpForm">
+          <h1>Create Account</h1>
+          <div class="iconsArea">
+            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+          <span>or use your email for registration</span>
+          <select name="gender" id="gender">
+            <option value="">Gender</option>
+            <option value="male">male</option>
+            <option value="female">female</option>
+            <option value="other">other</option>
+          </select>
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            placeholder="Example: John"
+            required
+          />
+
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            placeholder="Example: Doe"
+            required
+          />
+
+          <input
+            type="text"
+            id="userName"
+            name="userName"
+            placeholder="Example: Johnny321"
+            required
+          />
+
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Example: Jiji@D4332"
+            required
+          />
+
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Example: johndoe@gmail.com"
+            required
+          />
+
+          <input
+            type="tel"
+            id="phoneNumber"
+            name="phoneNumber"
+            placeholder="Example: 0541234567"
+            required
+          />
+          <button id="submitForm" type="submit">Sign Up</button>
+        </form>
+      </div>
+      <!-- --------------New Container-------------- -->
+      <div class="signInContainer">
+        <form id="loginForm">
+          <h1>Sign in</h1>
+          <div class="iconsArea">
+            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+          <span>or use your account</span>
+          <input
+            name="userName"
+            type="text"
+            placeholder="User Name"
+          />
+          <input
+            name="password"
+            type="text"
+            placeholder="Password"
+          />
+          <a href="#">Forgot your password?</a>
+          <button type="submit">Sign In</button>
+        </form>
+      </div>
+      <!-- --------------New Container-------------- -->
+      <div class="overlayContainer">
+        <div class="overlay">
+          <div class="panel signIn">
+            <h1>Welcome Back!</h1>
+            <p>
+              To keep connected with us please login with your personal info
+            </p>
+            <button id="signIn">Sign In</button>
+          </div>
+          <div class="panel signUp">
+            <h1>Hello, Friend!</h1>
+            <p>Enter your personal details and start journey with us</p>
+            <button id="signUp">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

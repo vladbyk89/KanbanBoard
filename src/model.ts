@@ -83,9 +83,9 @@ const preMadeListList = [
 ];
 
 if (!localStorage.getItem("signedUpUsers")) {
-  preMadeBoardList[0].lists.push(...preMadeListList)
+  preMadeBoardList[0].lists.push(...preMadeListList);
   preMadeUserList[0].boardList.push(...preMadeBoardList);
   preMadeUserList[1].boardList.push(...preMadeBoardList);
-  preMadeUserList[2           ].boardList.push(...preMadeBoardList);
+  preMadeUserList[2].boardList.push(...preMadeBoardList);
   localStorage.setItem("signedUpUsers", JSON.stringify(preMadeUserList));
 }

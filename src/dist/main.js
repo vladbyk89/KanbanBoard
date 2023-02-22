@@ -41,7 +41,16 @@ if (window.location.pathname.endsWith("login.html")) {
 }
 // if user is in register.html run this
 if (window.location.pathname.endsWith("register.html")) {
-    form.addEventListener("submit", handleFormSubmit);
+    form.addEventListener("submit", handleSignUp);
+}
+if (window.location.pathname.endsWith("entryPage.html")) {
+    newForm.addEventListener("submit", handleSignUp);
+    loginForm.addEventListener("submit", handleSignIn);
+    loginForm.addEventListener("keydown", function (e) {
+        if (e.key == "Enter") {
+            handleSignIn(e);
+        }
+    });
 }
 // if user is in index.html run this
 if (window.location.pathname.endsWith("index.html")) {

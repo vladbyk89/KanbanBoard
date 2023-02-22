@@ -1,4 +1,3 @@
-
 function createNewColumn(list: List) {
   const column = document.createElement("div");
   column.classList.add("boardContainer__mainNew__column");
@@ -25,7 +24,9 @@ function createNewColumn(list: List) {
   listContainer.appendChild(header);
   column.appendChild(listContainer);
 
-  const dropZones = document.querySelectorAll(".boardContainer__mainNew__column");
+  const dropZones = document.querySelectorAll(
+    ".boardContainer__mainNew__column"
+  );
   dropZones.forEach((dropZone) => {
     dropZone.addEventListener("dragover", function (e) {
       e.preventDefault();
@@ -44,11 +45,13 @@ function createNewColumn(list: List) {
     dropZone.addEventListener("drop", function (e) {
       e.preventDefault();
       const draggedItemId = e.dataTransfer.getData("text/plain");
-      if(!draggedItemId){
-        return ;
+      if (!draggedItemId) {
+        return;
       }
       const draggedItem = document.getElementById(draggedItemId) as HTMLElement;
-      draggedItem?.parentElement?.appendChild(dropZone.firstElementChild as HTMLElement);
+      draggedItem?.parentElement?.appendChild(
+        dropZone.firstElementChild as HTMLElement
+      );
 
       dropZone.appendChild(draggedItem);
       dropZone.classList.remove("dragover");
@@ -57,7 +60,8 @@ function createNewColumn(list: List) {
 
   return column;
 }
-  const cardMovement = () => {
+
+const cardMovement = () => {
   const grabCard = document.querySelectorAll(
     ".boardContainer__mainNew__column__list__card"
   );
@@ -111,10 +115,9 @@ function createNewCard(cardName: string, list: Element) {
   <p>${cardName}</p>
   <i class="fa-regular fa-pen-to-square p1"></i>
   `;
-  card.addEventListener("dragstart",cardMovement)
+  card.addEventListener("dragstart", cardMovement);
   const cardTitle = list.querySelector(
     ".boardContainer__mainNew__column__list__header"
   ) as HTMLDivElement;
   list.insertBefore(card, cardTitle.nextSibling);
 }
-

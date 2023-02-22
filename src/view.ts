@@ -8,12 +8,17 @@ const loginUserName = document.querySelector(
 const loginPassword = document.querySelector(
   "#loginPassword"
 ) as HTMLInputElement;
+const loginForm = document.querySelector("#loginForm") as HTMLFormElement;
+const container = document.querySelector(".mainContainer") as HTMLDivElement;
+const signUpButton = document.querySelector("#signUp") as HTMLButtonElement;
+const signInButton = document.querySelector("#signIn") as HTMLButtonElement;
 
 // Register page element
 const registerContainer = document.querySelector(
   ".registerContainer"
 ) as HTMLDivElement;
 const form = document.querySelector("form") as HTMLFormElement;
+const newForm = document.querySelector("#signUpForm") as HTMLFormElement;
 
 // Main page elements
 const profileBtn = document.querySelector(".profileBtn") as HTMLElement;
