@@ -1,5 +1,5 @@
 let currentUser: User = currentUserFromStorage();
-let currentBoard: Board;
+let currentBoard: Board= currentBoardFromStorage();
 let userList: User[];
 class User {
   private uid: string;
