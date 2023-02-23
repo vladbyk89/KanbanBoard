@@ -53,18 +53,17 @@ body {
       padding: 0 1em;
       gap: 3rem;
       height: 100%;
-      &__notifications {
+      i{
         cursor: pointer;
         color: #fa6400;
+        // border: 1px solid black;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.541);
+        border-radius: 5px;
+        padding: .3em;
+        
       }
-
-      &__profile {
-        cursor: pointer;
-        color: #fa6400;
-      }
-
       i:hover {
-        text-shadow: 0 0 5px black;
+        box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.541);
       }
     }
     &__btn {
@@ -159,6 +158,7 @@ body {
           aspect-ratio: 1/1;
           cursor: pointer;
           position: relative;
+          opacity: .8;
           p {
             color: #fff;
             mix-blend-mode: difference;
@@ -179,13 +179,14 @@ body {
             padding: 0.3em;
             font-size: .5rem;
             border-radius: 5px;
+            cursor: pointer;
           }
           button:hover {
-            background-color: red;
+            background-color: rgba(255, 0, 0, 0.388);
           }
         }
         .board:hover {
-          box-shadow: 0 0 10px black;
+          opacity: 1;
         }
       }
     }
