@@ -71,6 +71,7 @@ if (window.location.pathname.endsWith("NewBoard.html")) {
     const newList = new List(newListInput.value);
     saveListTolocalStorage(newList)
     mainContaier.append(createNewColumn(newList));
+    newListInput.value = "";
   });
 
   window.addEventListener("click", (e) => {
