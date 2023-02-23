@@ -1,6 +1,6 @@
 var _a, _b, _c, _d;
 var currentUser = currentUserFromStorage();
-var currentBoard;
+var currentBoard = currentBoardFromStorage();
 var userList;
 var User = /** @class */ (function () {
     function User(firstName, lastName, gender, userName, password, email, phoneNumber, boardList) {

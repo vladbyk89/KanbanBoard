@@ -51,6 +51,7 @@ if (window.location.pathname.endsWith("NewBoard.html")) {
     renderBoardInBoardPage();
     addListBtn.addEventListener("click", function () {
         var newList = new List(newListInput.value);
+        saveListTolocalStorage(newList);
         mainContaier.append(createNewColumn(newList));
     });
     window.addEventListener("click", function (e) {

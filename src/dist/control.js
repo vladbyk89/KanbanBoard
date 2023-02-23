@@ -91,10 +91,11 @@ function setCurrentUser(userName) {
 }
 function renderBoardsToMain(listOFBoards) {
     try {
-        boardArea.innerHTML = "";
-        listOFBoards.forEach(function (board) {
-            boardArea.innerHTML += "\n      <div class='board' \n      style='background-color: " + board.backgroundColor + "'>\n      <p class=\"boardClick\">" + board.name + "</p>\n      <button class=\"removeBoard\" data-name=\"" + board.name + "\">DELETE</button>\n      </div>\n      ";
-        });
+        boardArea.innerHTML = listOFBoards
+            .map(function (board) {
+            return "\n      <div class='board' \n      style='background-color: " + board.backgroundColor + "'>\n      <p class=\"boardClick\">" + board.name + "</p>\n      <button class=\"removeBoard\" data-name=\"" + board.name + "\">DELETE</button>\n      </div>\n      ";
+        })
+            .join("");
     }
     catch (error) {
         console.log(error);
@@ -167,4 +168,12 @@ function renderLists() {
             mainContaier.append(columnElement);
         });
     });
+}
+function saveListTolocalStorage(list) {
+    var _a;
+    currentBoard.lists.push(list);
+    localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
+    (_a = currentUser.boardList
+        .find(function (board) { return board.name == currentBoard.name; })) === null || _a === void 0 ? void 0 : _a.lists.push(list);
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }

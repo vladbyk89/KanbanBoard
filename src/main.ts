@@ -69,7 +69,7 @@ if (window.location.pathname.endsWith("NewBoard.html")) {
   renderBoardInBoardPage();
   addListBtn.addEventListener("click", () => {
     const newList = new List(newListInput.value);
-
+    saveListTolocalStorage(newList)
     mainContaier.append(createNewColumn(newList));
   });
 
@@ -87,3 +87,5 @@ if (window.location.pathname.endsWith("NewBoard.html")) {
     }
   });
 }
+
+
