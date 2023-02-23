@@ -231,3 +231,4 @@ function saveListTolocalStorage(list: List) {
   boardToUpdate.lists.push(list);
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }
+
