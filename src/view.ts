@@ -1,6 +1,7 @@
 // Entry Page elements
-const loginForm = document.querySelector("#loginForm") as HTMLFormElement;
-const container = document.querySelector(".mainContainer") as HTMLDivElement;
+const signInForm = document.querySelector("#signInForm") as HTMLFormElement;
+const signUpForm = document.querySelector("#signUpForm") as HTMLFormElement;
+const mainContainer = document.querySelector(".mainContainer") as HTMLDivElement;
 const signUpPanelBtn = document.querySelector(
   "#signUpPanel"
 ) as HTMLButtonElement;
@@ -8,7 +9,6 @@ const signInPanelBtn = document.querySelector(
   "#signInPanel"
 ) as HTMLButtonElement;
 const signInBtn = document.querySelector("#signInBtn") as HTMLButtonElement;
-const newForm = document.querySelector("#signUpForm") as HTMLFormElement;
 const userNameInput = document.querySelector(
   "#userNameInput"
 ) as HTMLInputElement;

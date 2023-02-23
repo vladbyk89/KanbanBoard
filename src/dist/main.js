@@ -1,8 +1,14 @@
 userList = userListFromStorage();
 if (window.location.pathname.endsWith("entryPage.html")) {
-    newForm.addEventListener("submit", handleSignUp);
-    loginForm.addEventListener("submit", handleSignIn);
-    loginForm.addEventListener("keydown", function (e) {
+    signUpPanelBtn.addEventListener("click", function () {
+        mainContainer.classList.add("active");
+    });
+    signInPanelBtn.addEventListener("click", function () {
+        mainContainer.classList.remove("active");
+    });
+    signUpForm.addEventListener("submit", handleSignUp);
+    signInForm.addEventListener("submit", handleSignIn);
+    signInForm.addEventListener("keydown", function (e) {
         if (e.key == "Enter") {
             if (userNameInput.value === "" || passwordInput.value === "") {
                 return;

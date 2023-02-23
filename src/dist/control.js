@@ -27,7 +27,7 @@ function handleSignIn(e) {
     var password = passwordInput.value;
     if (checkIfUserExists(userName, password)) {
         setCurrentUser(userName);
-        loginForm.reset();
+        signInForm.reset();
         window.location.href = "index.html";
     }
     else {

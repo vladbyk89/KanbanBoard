@@ -38,7 +38,7 @@ function handleSignIn(e: Event) {
 
   if (checkIfUserExists(userName, password)) {
     setCurrentUser(userName);
-    loginForm.reset();
+    signInForm.reset();
     window.location.href = "index.html";
   } else {
     alert("user not in database");
