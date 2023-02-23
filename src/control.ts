@@ -133,7 +133,7 @@ function renderBoardsToMain(listOFBoards: Board[]) {
       boardArea.innerHTML += `
       <div class='board' 
       style='background-color: ${board.backgroundColor}'>
-      <h2 class="boardClick">${board.name}</h2>
+      <p class="boardClick">${board.name}</p>
       <button class="removeBoard" data-name="${board.name}">DELETE</button>
       </div>
       `;

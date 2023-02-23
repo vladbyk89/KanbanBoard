@@ -93,7 +93,7 @@ function renderBoardsToMain(listOFBoards) {
     try {
         boardArea.innerHTML = "";
         listOFBoards.forEach(function (board) {
-            boardArea.innerHTML += "\n      <div class='board' \n      style='background-color: " + board.backgroundColor + "'>\n      <h2 class=\"boardClick\">" + board.name + "</h2>\n      <button class=\"removeBoard\" data-name=\"" + board.name + "\">DELETE</button>\n      </div>\n      ";
+            boardArea.innerHTML += "\n      <div class='board' \n      style='background-color: " + board.backgroundColor + "'>\n      <p class=\"boardClick\">" + board.name + "</p>\n      <button class=\"removeBoard\" data-name=\"" + board.name + "\">DELETE</button>\n      </div>\n      ";
         });
     }
     catch (error) {
