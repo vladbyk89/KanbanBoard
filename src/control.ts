@@ -231,3 +231,12 @@ function saveListTolocalStorage(list: List) {
   boardToUpdate.lists.push(list);
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }
+
+function saveCardTolocalStorage (cardName:string, listName:string){
+  const listToUpDate = currentBoard.lists.find((list)=> list.name == listName) as List;
+  listToUpDate.cards.push(cardName);
+  localStorage.setItem("currentBoard", JSON.stringify(currentBoard))
+  const boardToUpdate = currentUser.boardList.find((board) => board.name == currentBoard.name) as Board;
+  boardToUpdate.lists = currentBoard.lists;
+  localStorage.setItem("currentUser", JSON.stringify(currentUser))
+}
