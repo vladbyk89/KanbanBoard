@@ -197,7 +197,7 @@ body {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-rows: 5rem 1fr;
+  grid-template-rows: 10vh 1fr;
   grid-template-areas:
     "top top"
     "main main"
@@ -209,7 +209,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 2rem;
+    font-size: 1.2rem;
     &__logo {
       height: 100%;
     }
