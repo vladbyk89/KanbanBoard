@@ -91,10 +91,9 @@ function setCurrentUser(userName) {
 }
 function renderBoardsToMain(listOFBoards) {
     try {
-        boardArea.innerHTML = "";
-        listOFBoards.forEach(function (board) {
-            boardArea.innerHTML += "\n      <div class='board' \n      style='background-color: " + board.backgroundColor + "'>\n      <p class=\"boardClick\">" + board.name + "</p>\n      <button class=\"removeBoard\" data-name=\"" + board.name + "\">DELETE</button>\n      </div>\n      ";
-        });
+        boardArea.innerHTML = listOFBoards.map(function (board) {
+            return "\n      <div class='board' \n      style='background-color: " + board.backgroundColor + "'>\n      <p class=\"boardClick\">" + board.name + "</p>\n      <button class=\"removeBoard\" data-name=\"" + board.name + "\">DELETE</button>\n      </div>\n      ";
+        }).join("");
     }
     catch (error) {
         console.log(error);

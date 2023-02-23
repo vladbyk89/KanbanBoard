@@ -128,16 +128,15 @@ function setCurrentUser(userName: string) {
 
 function renderBoardsToMain(listOFBoards: Board[]) {
   try {
-    boardArea.innerHTML = "";
-    listOFBoards.forEach((board) => {
-      boardArea.innerHTML += `
+    boardArea.innerHTML = listOFBoards.map((board) => {
+      return `
       <div class='board' 
       style='background-color: ${board.backgroundColor}'>
       <p class="boardClick">${board.name}</p>
       <button class="removeBoard" data-name="${board.name}">DELETE</button>
       </div>
       `;
-    });
+    }).join("");
   } catch (error) {
     console.log(error);
   }
