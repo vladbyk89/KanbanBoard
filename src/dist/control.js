@@ -176,3 +176,11 @@ function saveListTolocalStorage(list) {
     boardToUpdate.lists.push(list);
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }
+function saveCardTolocalStorage(cardName, listName) {
+    var listToUpDate = currentBoard.lists.find(function (list) { return list.name == listName; });
+    listToUpDate.cards.push(cardName);
+    localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
+    var boardToUpdate = currentUser.boardList.find(function (board) { return board.name == currentBoard.name; });
+    boardToUpdate.lists = currentBoard.lists;
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+}
