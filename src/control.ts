@@ -225,8 +225,9 @@ function renderLists() {
 function saveListTolocalStorage(list: List) {
   currentBoard.lists.push(list);
   localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
-  currentUser.boardList
-    .find((board) => board.name == currentBoard.name)
-    ?.lists.push(list);
+  const boardToUpdate = currentUser.boardList.find(
+    (board) => board.name == currentBoard.name
+  ) as Board;
+  boardToUpdate.lists.push(list);
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }

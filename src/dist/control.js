@@ -170,10 +170,9 @@ function renderLists() {
     });
 }
 function saveListTolocalStorage(list) {
-    var _a;
     currentBoard.lists.push(list);
     localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
-    (_a = currentUser.boardList
-        .find(function (board) { return board.name == currentBoard.name; })) === null || _a === void 0 ? void 0 : _a.lists.push(list);
+    var boardToUpdate = currentUser.boardList.find(function (board) { return board.name == currentBoard.name; });
+    boardToUpdate.lists.push(list);
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }
