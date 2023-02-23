@@ -217,8 +217,8 @@ function renderLists() {
 
     list.cards.forEach((card) => {
       createNewCard(card, ListElement);
-      mainContaier.append(columnElement);
     });
+    mainContaier.append(columnElement);
   });
 }
 

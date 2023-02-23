@@ -165,8 +165,8 @@ function renderLists() {
         var ListElement = columnElement.querySelector(".boardContainer__mainNew__column__list");
         list.cards.forEach(function (card) {
             createNewCard(card, ListElement);
-            mainContaier.append(columnElement);
         });
+        mainContaier.append(columnElement);
     });
 }
 function saveListTolocalStorage(list) {
