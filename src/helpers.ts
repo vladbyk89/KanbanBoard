@@ -46,3 +46,15 @@ function currentBoardFromStorage() {
     console.log(error);
   }
 }
+
+
+function setCurrentUser(userName: string) {
+  try {
+    if (findUser(userName)) {
+      currentUser = findUser(userName) as User;
+      localStorage.setItem("currentUser", JSON.stringify(findUser(userName)));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}

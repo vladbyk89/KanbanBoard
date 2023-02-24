@@ -1,4 +1,3 @@
-userList = userListFromStorage();
 if (window.location.pathname.endsWith("entryPage.html")) {
     signUpPanelBtn.addEventListener("click", function () {
         mainContainer.classList.add("active");
@@ -63,6 +62,13 @@ if (window.location.pathname.endsWith("NewBoard.html")) {
             var newCardTextArea = (_a = target.parentNode) === null || _a === void 0 ? void 0 : _a.querySelector(".newCardTextArea");
             createNewCard(newCardTextArea.value, listElement);
             newCardTextArea.value = "";
+        }
+        if (target.classList.contains("editBoardBtn")) {
+            editBoard();
+            editBoardWindow.style.display = "none";
+        }
+        if (target.classList.contains("cancelEditBoardBtn")) {
+            editBoardWindow.style.display = "none";
         }
     });
 }

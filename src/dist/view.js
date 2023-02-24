@@ -16,8 +16,8 @@ var createBoardWindowBtn = document.querySelector(".createBoardWindowBtn");
 var createBoardBtn = document.querySelector(".createBoardBtn");
 var cancelCreateBoardBtn = document.querySelector(".cancelCreateBoardBtn");
 var newBoardWindow = document.querySelector(".newBoardWindow");
-var boardName = document.querySelector("#boardName");
-var boardColor = document.querySelector("#boardColor");
+var newBoardName = document.querySelector("#boardName");
+var newnBardColor = document.querySelector("#boardColor");
 var boardArea = document.querySelector(".mainpageContainer__main__boards__boardArea");
 var searchBar = document.querySelector(".mainpageContainer__topNav__search");
 //Board page
@@ -30,3 +30,6 @@ var mainContaier = document.querySelector(".boardContainer__mainNew");
 var addListBtn = document.querySelector("#addListBtn");
 var newListInput = document.querySelector("#newListInput");
 var newCardButtons = document.querySelectorAll(".newCardBtn");
+var editBoardWindow = document.querySelector(".editBoardWindow");
+var nameInputEle = document.querySelector("#updatedBoardName");
+var colorInputEle = document.querySelector("#updatedBoardColor");

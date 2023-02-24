@@ -1,7 +1,9 @@
 // Entry Page elements
 const signInForm = document.querySelector("#signInForm") as HTMLFormElement;
 const signUpForm = document.querySelector("#signUpForm") as HTMLFormElement;
-const mainContainer = document.querySelector(".mainContainer") as HTMLDivElement;
+const mainContainer = document.querySelector(
+  ".mainContainer"
+) as HTMLDivElement;
 const signUpPanelBtn = document.querySelector(
   "#signUpPanel"
 ) as HTMLButtonElement;
@@ -37,8 +39,8 @@ const cancelCreateBoardBtn = document.querySelector(
 const newBoardWindow = document.querySelector(
   ".newBoardWindow"
 ) as HTMLDivElement;
-const boardName = document.querySelector("#boardName") as HTMLInputElement;
-const boardColor = document.querySelector("#boardColor") as HTMLInputElement;
+const newBoardName = document.querySelector("#boardName") as HTMLInputElement;
+const newnBardColor = document.querySelector("#boardColor") as HTMLInputElement;
 const boardArea = document.querySelector(
   ".mainpageContainer__main__boards__boardArea"
 ) as HTMLDivElement;
@@ -76,3 +78,12 @@ const newListInput = document.querySelector(
 const newCardButtons = document.querySelectorAll(
   ".newCardBtn"
 ) as NodeListOf<HTMLButtonElement>;
+const editBoardWindow = document.querySelector(
+  ".editBoardWindow"
+) as HTMLDivElement;
+const nameInputEle = document.querySelector(
+  "#updatedBoardName"
+) as HTMLInputElement;
+const colorInputEle = document.querySelector(
+  "#updatedBoardColor"
+) as HTMLInputElement;

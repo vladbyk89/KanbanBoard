@@ -15,4 +15,18 @@ window.addEventListener("click", function (e) {
         localStorage.removeItem("currentBoard");
         window.location.href = "index.html";
     }
+    if (target.classList.contains("editBoard")) {
+        console.log("Edit board clicked");
+        editBoardWindow.style.display = "flex";
+        nameInputEle.value = currentBoard.name;
+        colorInputEle.value = currentBoard.backgroundColor;
+    }
 });
+function editBoard() {
+    currentBoard.name = nameInputEle.value;
+    currentBoard.backgroundColor = colorInputEle.value;
+    localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
+    boardTitleNew.textContent = currentBoard.name;
+    boardPageNew.style.backgroundColor = currentBoard.backgroundColor;
+    updateUserBoardList(currentUser, currentBoard);
+}

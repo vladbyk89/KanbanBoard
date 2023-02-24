@@ -1,4 +1,4 @@
-userList = userListFromStorage();
+
 
 if (window.location.pathname.endsWith("entryPage.html")) {
   signUpPanelBtn.addEventListener("click", () => {
@@ -69,7 +69,7 @@ if (window.location.pathname.endsWith("NewBoard.html")) {
   renderBoardInBoardPage();
   addListBtn.addEventListener("click", () => {
     const newList = new List(newListInput.value);
-    saveListTolocalStorage(newList)
+    saveListTolocalStorage(newList);
     mainContaier.append(createNewColumn(newList));
     newListInput.value = "";
   });
@@ -86,7 +86,12 @@ if (window.location.pathname.endsWith("NewBoard.html")) {
       createNewCard(newCardTextArea.value, listElement);
       newCardTextArea.value = "";
     }
+    if (target.classList.contains("editBoardBtn")) {
+      editBoard();
+      editBoardWindow.style.display = "none";
+    }
+    if (target.classList.contains("cancelEditBoardBtn")) {
+      editBoardWindow.style.display = "none";
+    }
   });
 }
-
-

@@ -13,6 +13,7 @@
     ></script>
     <link rel="stylesheet" href="./style/dist/style.css" />
     <link rel="stylesheet" href="./style/dist/profileWindow.css" />
+    <link rel="stylesheet" href="./style/dist/createBoardWindow.css" />
     <script src="./src/dist/view.js" defer></script>
     <script src="./src/dist/helpers.js" defer></script>
     <script src="./src/dist/control.js" defer></script>
@@ -37,8 +38,7 @@
         </div>
         <div class="boardContainer__topNav__boardNameNew">Board Name</div>
         <div class="boardContainer__topNav__iconDiv">
-          <i class="fa-solid fa-file-pen" 
-          title="Edit Board"></i>
+          <i class="fa-solid fa-file-pen editBoard" title="Edit Board"></i>
           <i
             class="fa-solid fa-hand-point-left boardContainer__topNav__iconDiv__backToMain backToMainBtn"
             title="Back To Main"
@@ -54,10 +54,25 @@
         </div>
       </nav>
       <main class="boardContainer__mainNew"></main>
-      <div class="profileWindow">
-        <i class="fa-solid fa-arrow-right-from-bracket exitProfilePage"></i>
-        <button class="signOutbtn">Sign out</button>
-        <div class="profile"></div>
+    </div>
+    <div class="profileWindow">
+      <i class="fa-solid fa-arrow-right-from-bracket exitProfilePage"></i>
+      <button class="signOutbtn">Sign out</button>
+      <div class="profile"></div>
+    </div>
+    <div class="editBoardWindow">
+      <h1>Create New Board</h1>
+      <div class="input">
+        <label for="boardName">Name your board:</label>
+        <input type="text" name="boardName" id="updatedBoardName" />
+      </div>
+      <div class="input">
+        <label for="boardColor">Backround Color:</label>
+        <input type="color" value="#ffffff" name="boardColor" id="updatedBoardColor" />
+      </div>
+      <div>
+        <button class="editBoardBtn">Edit</button>
+        <button class="cancelEditBoardBtn">CANCEL</button>
       </div>
     </div>
   </body>

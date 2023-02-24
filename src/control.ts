@@ -74,18 +74,26 @@ function displayProfile(user: User) {
     `);
 }
 
-function updateUserBoardList(updatedUser: User, board: Board) {
-  const getLocalStorage = localStorage.getItem("signedUpUsers");
-  if (getLocalStorage) {
-    const usersList = JSON.parse(getLocalStorage) as User[];
-    const addBoardToThisUser = usersList.find(
-      (user) => user.userName === updatedUser.userName
+function updateUserBoardList(updatedUser: User, updatedBoard: Board) {
+  if (userList) {
+    const findUser = userList.find(
+      (user) => user.getuid === updatedUser.getuid
     );
-    if (addBoardToThisUser) {
-      addBoardToThisUser.boardList.push(board);
-      currentUser.boardList.unshift(board);
+    if (findUser) {
+      const findBoard = findUser.boardList.find(
+        (board) => board.getuid === updatedBoard.getuid
+      );
+      if (findBoard) {
+        const boardIndex = findUser.boardList.indexOf(findBoard);
+        // const indexCurrentUser = currentUser.boardList.indexOf(findBoard);
+        findUser.boardList[boardIndex] = updatedBoard;
+        currentUser.boardList[boardIndex] = updatedBoard;
+      } else {
+        findUser.boardList.unshift(updatedBoard);
+        currentUser.boardList.unshift(updatedBoard);
+      }
     }
-    localStorage.setItem("signedUpUsers", JSON.stringify(usersList));
+    localStorage.setItem("signedUpUsers", JSON.stringify(userList));
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
   }
 }
@@ -115,17 +123,6 @@ function checkIfUserExists(userName: string, password: string) {
   }
 }
 
-function setCurrentUser(userName: string) {
-  try {
-    if (findUser(userName)) {
-      currentUser = findUser(userName) as User;
-      localStorage.setItem("currentUser", JSON.stringify(findUser(userName)));
-    }
-  } catch (error) {
-    console.log(error);
-  }
-}
-
 function renderBoardsToMain(listOFBoards: Board[]) {
   try {
     boardArea.innerHTML = listOFBoards
@@ -146,18 +143,18 @@ function renderBoardsToMain(listOFBoards: Board[]) {
 
 function createBoard() {
   try {
-    if (boardName.value && boardColor.value) {
-      if (!currentUser) return alert("not signed in");
-      const newBoard = new Board(boardName.value, boardColor.value);
+    if (newBoardName.value && newnBardColor.value) {
+      // if (!currentUser) return alert("not signed in");
+      const newBoard = new Board(newBoardName.value, newnBardColor.value);
       updateUserBoardList(currentUser, newBoard);
       localStorage.setItem("currentBoard", JSON.stringify(newBoard));
       location.href = "NewBoard.html";
-      boardName.value = "";
-      boardColor.value = "";
+      newBoardName.value = "";
+      newnBardColor.value = "";
       newBoardWindow.style.display = "none";
       renderBoardsToMain(currentUser.boardList);
     } else {
-      alert("missing field");
+      // alert("missing field");
     }
   } catch (error) {
     console.log(error);
@@ -232,11 +229,15 @@ function saveListTolocalStorage(list: List) {
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }
 
-function saveCardTolocalStorage (cardName:string, listName:string){
-  const listToUpDate = currentBoard.lists.find((list)=> list.name == listName) as List;
+function saveCardTolocalStorage(cardName: string, listName: string) {
+  const listToUpDate = currentBoard.lists.find(
+    (list) => list.name == listName
+  ) as List;
   listToUpDate.cards.push(cardName);
-  localStorage.setItem("currentBoard", JSON.stringify(currentBoard))
-  const boardToUpdate = currentUser.boardList.find((board) => board.name == currentBoard.name) as Board;
+  localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
+  const boardToUpdate = currentUser.boardList.find(
+    (board) => board.name == currentBoard.name
+  ) as Board;
   boardToUpdate.lists = currentBoard.lists;
-  localStorage.setItem("currentUser", JSON.stringify(currentUser))
+  localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }

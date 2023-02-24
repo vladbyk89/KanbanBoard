@@ -1,7 +1,7 @@
 var _a, _b, _c, _d;
 var currentUser = currentUserFromStorage();
 var currentBoard = currentBoardFromStorage();
-var userList;
+var userList = userListFromStorage();
 var User = /** @class */ (function () {
     function User(firstName, lastName, gender, userName, password, email, phoneNumber, boardList) {
         if (boardList === void 0) { boardList = []; }
@@ -26,7 +26,11 @@ var Board = /** @class */ (function () {
         this.name = name;
         this.backgroundColor = backgroundColor;
         this.lists = lists;
+        this.uid = Math.random().toString(36).slice(2);
     }
+    Board.prototype.getuid = function () {
+        return this.uid;
+    };
     return Board;
 }());
 var List = /** @class */ (function () {

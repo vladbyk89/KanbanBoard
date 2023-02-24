@@ -1,6 +1,6 @@
 let currentUser: User = currentUserFromStorage();
-let currentBoard: Board= currentBoardFromStorage();
-let userList: User[];
+let currentBoard: Board = currentBoardFromStorage();
+let userList: User[] = userListFromStorage();
 class User {
   private uid: string;
   constructor(
@@ -21,11 +21,17 @@ class User {
 }
 
 class Board {
+  private uid: string;
   constructor(
     public name: string,
     public backgroundColor: string,
     public lists: List[] = []
-  ) {}
+  ) {
+    this.uid = Math.random().toString(36).slice(2);
+  }
+  getuid() {
+    return this.uid;
+  }
 }
 
 class List {

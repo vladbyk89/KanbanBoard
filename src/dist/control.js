@@ -42,16 +42,23 @@ function displayProfile(user) {
     profileWindow.style.display = "flex";
     return (profileDiv.innerHTML = "\n    <ul>\n      <h1>About you</h1>\n      <li>Name: EMPTY</li>\n      <li>Gender: EMPTY</li>\n      <li>Email: EMPTY</li>\n      <li>Phone Number: EMPTY</li>\n      <li>User Name: EMPTY</li>\n      <li>Password: EMPTY</li>\n    </ul>\n    ");
 }
-function updateUserBoardList(updatedUser, board) {
-    var getLocalStorage = localStorage.getItem("signedUpUsers");
-    if (getLocalStorage) {
-        var usersList = JSON.parse(getLocalStorage);
-        var addBoardToThisUser = usersList.find(function (user) { return user.userName === updatedUser.userName; });
-        if (addBoardToThisUser) {
-            addBoardToThisUser.boardList.push(board);
-            currentUser.boardList.unshift(board);
+function updateUserBoardList(updatedUser, updatedBoard) {
+    if (userList) {
+        var findUser_1 = userList.find(function (user) { return user.getuid === updatedUser.getuid; });
+        if (findUser_1) {
+            var findBoard = findUser_1.boardList.find(function (board) { return board.getuid === updatedBoard.getuid; });
+            if (findBoard) {
+                var boardIndex = findUser_1.boardList.indexOf(findBoard);
+                // const indexCurrentUser = currentUser.boardList.indexOf(findBoard);
+                findUser_1.boardList[boardIndex] = updatedBoard;
+                currentUser.boardList[boardIndex] = updatedBoard;
+            }
+            else {
+                findUser_1.boardList.unshift(updatedBoard);
+                currentUser.boardList.unshift(updatedBoard);
+            }
         }
-        localStorage.setItem("signedUpUsers", JSON.stringify(usersList));
+        localStorage.setItem("signedUpUsers", JSON.stringify(userList));
         localStorage.setItem("currentUser", JSON.stringify(currentUser));
     }
 }
@@ -59,9 +66,9 @@ function findUser(userName) {
     var getLocalStorage = localStorage.getItem("signedUpUsers");
     if (getLocalStorage) {
         var usersList = JSON.parse(getLocalStorage);
-        var findUser_1 = usersList.find(function (user) { return user.userName === userName; });
-        if (findUser_1)
-            return findUser_1;
+        var findUser_2 = usersList.find(function (user) { return user.userName === userName; });
+        if (findUser_2)
+            return findUser_2;
         return false;
     }
 }
@@ -73,17 +80,6 @@ function checkIfUserExists(userName, password) {
             return userListFromStorage.find(function (user) { return user.userName === userName && user.password === password; });
         }
         return false;
-    }
-    catch (error) {
-        console.log(error);
-    }
-}
-function setCurrentUser(userName) {
-    try {
-        if (findUser(userName)) {
-            currentUser = findUser(userName);
-            localStorage.setItem("currentUser", JSON.stringify(findUser(userName)));
-        }
     }
     catch (error) {
         console.log(error);
@@ -103,20 +99,19 @@ function renderBoardsToMain(listOFBoards) {
 }
 function createBoard() {
     try {
-        if (boardName.value && boardColor.value) {
-            if (!currentUser)
-                return alert("not signed in");
-            var newBoard = new Board(boardName.value, boardColor.value);
+        if (newBoardName.value && newnBardColor.value) {
+            // if (!currentUser) return alert("not signed in");
+            var newBoard = new Board(newBoardName.value, newnBardColor.value);
             updateUserBoardList(currentUser, newBoard);
             localStorage.setItem("currentBoard", JSON.stringify(newBoard));
             location.href = "NewBoard.html";
-            boardName.value = "";
-            boardColor.value = "";
+            newBoardName.value = "";
+            newnBardColor.value = "";
             newBoardWindow.style.display = "none";
             renderBoardsToMain(currentUser.boardList);
         }
         else {
-            alert("missing field");
+            // alert("missing field");
         }
     }
     catch (error) {
