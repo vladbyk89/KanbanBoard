@@ -74,12 +74,7 @@ function findUser(userName) {
 }
 function checkIfUserExists(userName, password) {
     try {
-        var getLocalStorage = localStorage.getItem("signedUpUsers");
-        if (getLocalStorage) {
-            var userListFromStorage = JSON.parse(getLocalStorage);
-            return userListFromStorage.find(function (user) { return user.userName === userName && user.password === password; });
-        }
-        return false;
+        return userList.find(function (user) { return user.userName === userName && user.password === password; });
     }
     catch (error) {
         console.log(error);
@@ -99,19 +94,22 @@ function renderBoardsToMain(listOFBoards) {
 }
 function createBoard() {
     try {
-        if (newBoardName.value && newnBardColor.value) {
-            // if (!currentUser) return alert("not signed in");
-            var newBoard = new Board(newBoardName.value, newnBardColor.value);
+        var boardName_1 = newBoardName.value;
+        var boardColor = newnBoardColor.value;
+        if (boardName_1 && boardColor) {
+            if (currentUser.boardList.find(function (board) { return board.name === boardName_1; }))
+                return alert("There is already a board with that name");
+            var newBoard = new Board(boardName_1, boardColor);
             updateUserBoardList(currentUser, newBoard);
             localStorage.setItem("currentBoard", JSON.stringify(newBoard));
             location.href = "board.html";
-            newBoardName.value = "";
-            newnBardColor.value = "";
+            boardName_1 = "";
+            boardColor = "";
             newBoardWindow.style.display = "none";
             renderBoardsToMain(currentUser.boardList);
         }
         else {
-            // alert("missing field");
+            alert("missing field");
         }
     }
     catch (error) {
@@ -125,18 +123,9 @@ function returnBoard(boardName) {
     }
     return false;
 }
-function setCurrentBoard(boardName) {
-    try {
-        var findBoard = currentUser.boardList.find(function (board) { return board.name === boardName; });
-        localStorage.setItem("currentBoard", JSON.stringify(findBoard));
-    }
-    catch (error) {
-        console.log(error);
-    }
-}
 function renderBoardInBoardPage() {
     try {
-        currentBoard = currentBoardFromStorage();
+        // currentBoard = currentBoardFromStorage();
         boardTitleNew.textContent = currentBoard.name;
         boardPageNew.style.backgroundColor = currentBoard.backgroundColor;
         renderLists();
@@ -144,15 +133,6 @@ function renderBoardInBoardPage() {
     catch (error) {
         console.log(error);
     }
-}
-function deleteBoard(boardName) {
-    var _a;
-    var boardIndex = currentUser.boardList.findIndex(function (board) { return board.name === boardName; });
-    currentUser.boardList.splice(boardIndex, 1);
-    localStorage.setItem("currentUser", JSON.stringify(currentUser));
-    (_a = userList
-        .find(function (user) { return user.userName === currentUser.userName; })) === null || _a === void 0 ? void 0 : _a.boardList.splice(boardIndex, 1);
-    localStorage.setItem("signedUpUsers", JSON.stringify(userList));
 }
 function renderLists() {
     currentBoard.lists.forEach(function (list) {
@@ -178,4 +158,13 @@ function saveCardTolocalStorage(cardName, listName) {
     var boardToUpdate = currentUser.boardList.find(function (board) { return board.name == currentBoard.name; });
     boardToUpdate.lists = currentBoard.lists;
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
+}
+function deleteBoard(boardName) {
+    var boardIndex = currentUser.boardList.findIndex(function (board) { return board.name === boardName; });
+    currentUser.boardList.splice(boardIndex, 1);
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    var findUser = userList.find(function (user) { return user.getuid === currentUser.getuid; });
+    if (findUser)
+        findUser.boardList.splice(boardIndex, 1);
+    localStorage.setItem("signedUpUsers", JSON.stringify(userList));
 }

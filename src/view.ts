@@ -40,7 +40,7 @@ const newBoardWindow = document.querySelector(
   ".newBoardWindow"
 ) as HTMLDivElement;
 const newBoardName = document.querySelector("#boardName") as HTMLInputElement;
-const newnBardColor = document.querySelector("#boardColor") as HTMLInputElement;
+const newnBoardColor = document.querySelector("#boardColor") as HTMLInputElement;
 const boardArea = document.querySelector(
   ".mainpageContainer__main__boards__boardArea"
 ) as HTMLDivElement;

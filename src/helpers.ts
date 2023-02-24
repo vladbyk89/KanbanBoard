@@ -20,7 +20,7 @@ const findBoard = (input: string, arr: Board[]): Board[] | false => {
   }
 };
 
-function userListFromStorage(){
+function userListFromStorage() {
   const getLocalStorage = localStorage.getItem("signedUpUsers");
   if (getLocalStorage) {
     const userList: User[] = JSON.parse(getLocalStorage);
@@ -47,13 +47,23 @@ function currentBoardFromStorage() {
   }
 }
 
-
 function setCurrentUser(userName: string) {
   try {
     if (findUser(userName)) {
       currentUser = findUser(userName) as User;
       localStorage.setItem("currentUser", JSON.stringify(findUser(userName)));
     }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function setCurrentBoard(boardName: string) {
+  try {
+    const findBoard = currentUser.boardList.find(
+      (board) => board.name === boardName
+    );
+    localStorage.setItem("currentBoard", JSON.stringify(findBoard));
   } catch (error) {
     console.log(error);
   }

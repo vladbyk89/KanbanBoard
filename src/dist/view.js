@@ -17,7 +17,7 @@ var createBoardBtn = document.querySelector(".createBoardBtn");
 var cancelCreateBoardBtn = document.querySelector(".cancelCreateBoardBtn");
 var newBoardWindow = document.querySelector(".newBoardWindow");
 var newBoardName = document.querySelector("#boardName");
-var newnBardColor = document.querySelector("#boardColor");
+var newnBoardColor = document.querySelector("#boardColor");
 var boardArea = document.querySelector(".mainpageContainer__main__boards__boardArea");
 var searchBar = document.querySelector(".mainpageContainer__topNav__search");
 //Board page

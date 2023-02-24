@@ -59,3 +59,12 @@ function setCurrentUser(userName) {
         console.log(error);
     }
 }
+function setCurrentBoard(boardName) {
+    try {
+        var findBoard_1 = currentUser.boardList.find(function (board) { return board.name === boardName; });
+        localStorage.setItem("currentBoard", JSON.stringify(findBoard_1));
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
