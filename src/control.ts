@@ -202,7 +202,24 @@ function saveListTolocalStorage(list: List) {
   ) as Board;
   boardToUpdate.lists.push(list);
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+  const signedUpUsers = JSON.parse(
+    localStorage.getItem("signedUpUsers") || "[]"
+  ) as User[];
+  for (let user of signedUpUsers) {
+    if (user.userName === currentUser.userName) {
+      user.boardList
+        .find((board) => board.name === currentBoard.name)
+        ?.lists.push(list);
+      localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
+    }
+  }
 }
+
+// card => list
+// list => currentBoard
+// currentBoard => currentUser
+// currentUser => signedUpUsers
 
 function saveCardTolocalStorage(cardName: string, listName: string) {
   const listToUpDate = currentBoard.lists.find(
@@ -217,6 +234,7 @@ function saveCardTolocalStorage(cardName: string, listName: string) {
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }
 
+// delete from local storage
 function deleteBoard(boardName: string) {
   const boardIndex = currentUser.boardList.findIndex(
     (board) => board.name === boardName
