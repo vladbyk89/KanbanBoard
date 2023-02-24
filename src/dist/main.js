@@ -41,12 +41,12 @@ if (window.location.pathname.endsWith("index.html")) {
         renderBoardsToMain(currentUser.boardList);
         if (target.classList.contains("boardClick")) {
             setCurrentBoard(target.innerHTML);
-            window.location.href = "NewBoard.html";
+            window.location.href = "board.html";
         }
     });
 }
-// if user is in NewBoard.html run this
-if (window.location.pathname.endsWith("NewBoard.html")) {
+// if user is in board.html run this
+if (window.location.pathname.endsWith("board.html")) {
     renderBoardInBoardPage();
     addListBtn.addEventListener("click", function () {
         var newList = new List(newListInput.value);
@@ -58,7 +58,7 @@ if (window.location.pathname.endsWith("NewBoard.html")) {
         var _a;
         var target = e.target;
         if (target.className === "newCardBtn") {
-            var listElement = target.closest(".boardContainer__mainNew__column__list");
+            var listElement = target.closest(".boardContainer__main__column__list");
             var newCardTextArea = (_a = target.parentNode) === null || _a === void 0 ? void 0 : _a.querySelector(".newCardTextArea");
             createNewCard(newCardTextArea.value, listElement);
             newCardTextArea.value = "";

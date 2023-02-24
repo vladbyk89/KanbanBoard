@@ -59,13 +59,13 @@ if (window.location.pathname.endsWith("index.html")) {
 
     if (target.classList.contains("boardClick")) {
       setCurrentBoard(target.innerHTML);
-      window.location.href = "NewBoard.html";
+      window.location.href = "board.html";
     }
   });
 }
 
-// if user is in NewBoard.html run this
-if (window.location.pathname.endsWith("NewBoard.html")) {
+// if user is in board.html run this
+if (window.location.pathname.endsWith("board.html")) {
   renderBoardInBoardPage();
   addListBtn.addEventListener("click", () => {
     const newList = new List(newListInput.value);
@@ -78,7 +78,7 @@ if (window.location.pathname.endsWith("NewBoard.html")) {
     const target = e.target as HTMLElement;
     if (target.className === "newCardBtn") {
       const listElement = target.closest(
-        ".boardContainer__mainNew__column__list"
+        ".boardContainer__main__column__list"
       ) as HTMLDivElement;
       const newCardTextArea = target.parentNode?.querySelector(
         ".newCardTextArea"

@@ -1,9 +1,9 @@
 function createNewColumn(list: List) {
   const column = document.createElement("div");
-  column.classList.add("boardContainer__mainNew__column");
+  column.classList.add("boardContainer__main__column");
 
   const listContainer = document.createElement("div");
-  listContainer.classList.add("boardContainer__mainNew__column__list");
+  listContainer.classList.add("boardContainer__main__column__list");
   listContainer.setAttribute("draggable", "true");
   listContainer.setAttribute("id", `${list.name}_container`);
   listContainer.addEventListener("dragstart", function (e) {
@@ -11,11 +11,11 @@ function createNewColumn(list: List) {
   });
 
   const header = document.createElement("div");
-  header.classList.add("boardContainer__mainNew__column__list__header");
+  header.classList.add("boardContainer__main__column__list__header");
   header.setAttribute("id", `${list.name}_header`);
   header.innerHTML = `
     <h2>${list.name}</h2>
-    <div class="boardContainer__mainNew__column__list__card--addCard">
+    <div class="boardContainer__main__column__list__card--addCard">
       <textarea maxlength="30" class="newCardTextArea" cols="30" rows="3"></textarea>
       <button class="newCardBtn">New Card</button>
     </div>
@@ -25,7 +25,7 @@ function createNewColumn(list: List) {
   column.appendChild(listContainer);
 
   const dropZones = document.querySelectorAll(
-    ".boardContainer__mainNew__column"
+    ".boardContainer__main__column"
   );
   dropZones.forEach((dropZone) => {
     dropZone.addEventListener("dragover", function (e) {
@@ -63,10 +63,10 @@ function createNewColumn(list: List) {
 
 const cardMovement = () => {
   const grabCard = document.querySelectorAll(
-    ".boardContainer__mainNew__column__list__card"
+    ".boardContainer__main__column__list__card"
   );
   const drappables = document.querySelectorAll(
-    ".boardContainer__mainNew__column__list"
+    ".boardContainer__main__column__list"
   );
   grabCard.forEach((task) => {
     task.addEventListener("dragstart", () => {
@@ -91,7 +91,7 @@ const cardMovement = () => {
 
   const insertAboveTask = (zone, mouseY) => {
     const els = zone.querySelectorAll(
-      ".boardContainer__mainNew__column__list__card:not(.is-dragging)"
+      ".boardContainer__main__column__list__card:not(.is-dragging)"
     ) as NodeListOf<HTMLDivElement>;
     let closestTask;
     let closestOffset = Number.NEGATIVE_INFINITY;
@@ -109,7 +109,7 @@ const cardMovement = () => {
 
 function createNewCard(cardName: string, list: Element) {
   const card = document.createElement("div");
-  card.classList.add("boardContainer__mainNew__column__list__card");
+  card.classList.add("boardContainer__main__column__list__card");
   card.setAttribute("draggable", "true");
   card.innerHTML = `
   <p>${cardName}</p>
@@ -117,7 +117,7 @@ function createNewCard(cardName: string, list: Element) {
   `;
   card.addEventListener("dragstart", cardMovement);
   const cardTitle = list.querySelector(
-    ".boardContainer__mainNew__column__list__header"
+    ".boardContainer__main__column__list__header"
   ) as HTMLDivElement;
   list.insertBefore(card, cardTitle.nextSibling);
 }

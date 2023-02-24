@@ -104,7 +104,7 @@ function createBoard() {
             var newBoard = new Board(newBoardName.value, newnBardColor.value);
             updateUserBoardList(currentUser, newBoard);
             localStorage.setItem("currentBoard", JSON.stringify(newBoard));
-            location.href = "NewBoard.html";
+            location.href = "board.html";
             newBoardName.value = "";
             newnBardColor.value = "";
             newBoardWindow.style.display = "none";
@@ -157,7 +157,7 @@ function deleteBoard(boardName) {
 function renderLists() {
     currentBoard.lists.forEach(function (list) {
         var columnElement = createNewColumn(list);
-        var ListElement = columnElement.querySelector(".boardContainer__mainNew__column__list");
+        var ListElement = columnElement.querySelector(".boardContainer__main__column__list");
         list.cards.forEach(function (card) {
             createNewCard(card, ListElement);
         });

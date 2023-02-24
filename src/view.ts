@@ -62,11 +62,11 @@ const boardPage = document.querySelector(
   ".boardContainer__main"
 ) as HTMLElement;
 const boardPageNew = document.querySelector(
-  ".boardContainer__mainNew"
+  ".boardContainer__main"
 ) as HTMLElement;
 
 const mainContaier = document.querySelector(
-  ".boardContainer__mainNew"
+  ".boardContainer__main"
 ) as HTMLDivElement;
 
 const addListBtn = document.querySelector("#addListBtn") as HTMLButtonElement;

@@ -1,8 +1,8 @@
 function createNewColumn(list) {
     var column = document.createElement("div");
-    column.classList.add("boardContainer__mainNew__column");
+    column.classList.add("boardContainer__main__column");
     var listContainer = document.createElement("div");
-    listContainer.classList.add("boardContainer__mainNew__column__list");
+    listContainer.classList.add("boardContainer__main__column__list");
     listContainer.setAttribute("draggable", "true");
     listContainer.setAttribute("id", list.name + "_container");
     listContainer.addEventListener("dragstart", function (e) {
@@ -10,12 +10,12 @@ function createNewColumn(list) {
         (_a = e.dataTransfer) === null || _a === void 0 ? void 0 : _a.setData("text/plain", (_b = e.target) === null || _b === void 0 ? void 0 : _b.id);
     });
     var header = document.createElement("div");
-    header.classList.add("boardContainer__mainNew__column__list__header");
+    header.classList.add("boardContainer__main__column__list__header");
     header.setAttribute("id", list.name + "_header");
-    header.innerHTML = "\n    <h2>" + list.name + "</h2>\n    <div class=\"boardContainer__mainNew__column__list__card--addCard\">\n      <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"3\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n    </div>\n  ";
+    header.innerHTML = "\n    <h2>" + list.name + "</h2>\n    <div class=\"boardContainer__main__column__list__card--addCard\">\n      <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"3\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n    </div>\n  ";
     listContainer.appendChild(header);
     column.appendChild(listContainer);
-    var dropZones = document.querySelectorAll(".boardContainer__mainNew__column");
+    var dropZones = document.querySelectorAll(".boardContainer__main__column");
     dropZones.forEach(function (dropZone) {
         dropZone.addEventListener("dragover", function (e) {
             e.preventDefault();
@@ -44,8 +44,8 @@ function createNewColumn(list) {
     return column;
 }
 var cardMovement = function () {
-    var grabCard = document.querySelectorAll(".boardContainer__mainNew__column__list__card");
-    var drappables = document.querySelectorAll(".boardContainer__mainNew__column__list");
+    var grabCard = document.querySelectorAll(".boardContainer__main__column__list__card");
+    var drappables = document.querySelectorAll(".boardContainer__main__column__list");
     grabCard.forEach(function (task) {
         task.addEventListener("dragstart", function () {
             task.classList.add("is-dragging");
@@ -67,7 +67,7 @@ var cardMovement = function () {
         });
     });
     var insertAboveTask = function (zone, mouseY) {
-        var els = zone.querySelectorAll(".boardContainer__mainNew__column__list__card:not(.is-dragging)");
+        var els = zone.querySelectorAll(".boardContainer__main__column__list__card:not(.is-dragging)");
         var closestTask;
         var closestOffset = Number.NEGATIVE_INFINITY;
         els.forEach(function (task) {
@@ -83,10 +83,10 @@ var cardMovement = function () {
 };
 function createNewCard(cardName, list) {
     var card = document.createElement("div");
-    card.classList.add("boardContainer__mainNew__column__list__card");
+    card.classList.add("boardContainer__main__column__list__card");
     card.setAttribute("draggable", "true");
     card.innerHTML = "\n  <p>" + cardName + "</p>\n  <i class=\"fa-regular fa-pen-to-square p1\"></i>\n  ";
     card.addEventListener("dragstart", cardMovement);
-    var cardTitle = list.querySelector(".boardContainer__mainNew__column__list__header");
+    var cardTitle = list.querySelector(".boardContainer__main__column__list__header");
     list.insertBefore(card, cardTitle.nextSibling);
 }

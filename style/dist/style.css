@@ -222,7 +222,7 @@ body {
 .boardContainer__topNav__iconDiv i:hover {
   box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.541);
 }
-.boardContainer__mainNew {
+.boardContainer__main {
   grid-area: main;
   display: flex;
   flex-direction: row;
@@ -231,14 +231,14 @@ body {
   margin: 0 10px;
   overflow: auto;
 }
-.boardContainer__mainNew__column {
+.boardContainer__main__column {
   border-right: 10px solid white;
   width: 10%;
   min-width: 200px;
   min-height: 100%;
   padding: 0.5em;
 }
-.boardContainer__mainNew__column__list {
+.boardContainer__main__column__list {
   width: 100%;
   height: 0%;
   min-height: 80vh;
@@ -248,16 +248,16 @@ body {
   gap: 1rem;
   cursor: grab;
 }
-.boardContainer__mainNew__column__list__header {
+.boardContainer__main__column__list__header {
   background-color: rgba(0, 0, 0, 0.25);
 }
-.boardContainer__mainNew__column__list__header h2 {
+.boardContainer__main__column__list__header h2 {
   color: #fff;
   mix-blend-mode: difference;
   font-weight: bold;
   text-align: center;
 }
-.boardContainer__mainNew__column__list__card {
+.boardContainer__main__column__list__card {
   border: 1px solid black;
   background-color: whitesmoke;
   position: relative;
@@ -270,19 +270,19 @@ body {
   justify-content: space-between;
   gap: 1rem;
 }
-.boardContainer__mainNew__column__list .is-dragging {
+.boardContainer__main__column__list .is-dragging {
   scale: 1.05;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
   background: rgba(50, 50, 50, 0.37);
   color: white;
 }
-.boardContainer__mainNew__column__list .dragover {
+.boardContainer__main__column__list .dragover {
   scale: 1.05;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
   background: rgba(230, 12, 12, 0.37);
   color: white;
 }
-.boardContainer__mainNew__column__list__card--addCard {
+.boardContainer__main__column__list__card--addCard {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -290,14 +290,14 @@ body {
   color: white;
   margin-top: 2em;
 }
-.boardContainer__mainNew__column__list__card:hover {
+.boardContainer__main__column__list__card:hover {
   box-shadow: 0 0 5px black;
 }
-.boardContainer__mainNew__column__list--addList {
+.boardContainer__main__column__list--addList {
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
 }
-.boardContainer__mainNew__column__list--addList input {
+.boardContainer__main__column__list--addList input {
   width: 100%;
 }
