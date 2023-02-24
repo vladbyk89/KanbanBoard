@@ -11,22 +11,19 @@
       crossorigin="anonymous"
       defer
     ></script>
-    <link rel="stylesheet" href="./style/dist/boardStyle.css" />
-    <link rel="stylesheet" href="./style/dist/tooltips.css">
-    <!-- <link rel="stylesheet" href="./style/dist/style.css"> -->
-    <script src="./src/dist/helpers.js" defer></script>
-    <script src="./src/dist/control.js" defer></script>
-    <script src="./src/dist/view.js" defer></script>
-    <script src="./src/dist/model.js" defer></script>
-    <script src="./src/dist/main.js" defer></script>
-    <script src="./src/dist/kanbanAPI.js" defer></script>
+    <link rel="stylesheet" href="./dist/boardStyle.css">
+    <script src="../src/dist/view.js" defer></script>
+    <script src="../src/dist/control.js" defer></script>
+    <script src="../src/dist/helpers.js" defer></script>
+    <script src="../src/dist/model.js" defer></script>
+    <script src="../src/dist/main.js" defer></script>
+    <script src="./dist/kanbanAPI.js" defer></script>
   </head>
 
   <body onload="checkIfCurrentUserExists()">
     <div class="boardContainer">
       <nav class="boardContainer__topNav">
         <img
-          src="./img/Screenshot 2023-02-18 230204.png"
           alt=""
           class="boardContainer__topNav__logo"
         />
