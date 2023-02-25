@@ -117,8 +117,13 @@ function createNewCard(cardName: string, list: Element) {
   <i class="fa-regular fa-pen-to-square editCardBtn"></i>
   `;
   card.addEventListener("dragstart", cardMovement);
+  // saveCardToList()
   const cardTitle = list.querySelector(
     ".boardContainer__main__column__list__header"
   ) as HTMLDivElement;
   list.insertBefore(card, cardTitle.nextSibling);
 }
+
+
+
+//contenteditable function for editing name
