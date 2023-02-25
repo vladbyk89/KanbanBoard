@@ -117,6 +117,7 @@ function createNewCard(cardName: string, list: List) {
   <i class="fa-regular fa-pen-to-square editCardBtn"></i>
   `;
   card.addEventListener("dragstart", cardMovement);
+  // saveCardToList()
   const cardTitle = list.querySelector(
     ".boardContainer__main__column__list__header"
   ) as HTMLDivElement;
@@ -124,3 +125,7 @@ function createNewCard(cardName: string, list: List) {
   // saveCardTolocalStorage(card, currentBoard) // not working still
   card.addEventListener("dragstart" , cardMovement)
 }
+
+
+
+//contenteditable function for editing name
