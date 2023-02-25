@@ -116,6 +116,14 @@ function createBoard() {
         console.log(error);
     }
 }
+function createList() {
+    if (newListInput.value == "")
+        return;
+    var newList = new List(newListInput.value);
+    saveListTolocalStorage(newList);
+    boardContainer.append(createNewColumn(newList));
+    newListInput.value = "";
+}
 function returnBoard(boardName) {
     var findBoard = currentUser.boardList.find(function (board) { return board.name === boardName; });
     if (findBoard) {
@@ -125,9 +133,8 @@ function returnBoard(boardName) {
 }
 function renderBoardInBoardPage() {
     try {
-        // currentBoard = currentBoardFromStorage();
-        boardTitleNew.textContent = currentBoard.name;
-        boardPageNew.style.backgroundColor = currentBoard.backgroundColor;
+        boardTitle.textContent = currentBoard.name;
+        boardContainer.style.backgroundColor = currentBoard.backgroundColor;
         renderLists();
     }
     catch (error) {
@@ -182,7 +189,7 @@ function editBoard(board) {
     board.name = nameInputEle.value;
     board.backgroundColor = colorInputEle.value;
     localStorage.setItem("currentBoard", JSON.stringify(board));
-    boardTitleNew.textContent = board.name;
-    boardPageNew.style.backgroundColor = board.backgroundColor;
+    boardTitle.textContent = board.name;
+    boardContainer.style.backgroundColor = board.backgroundColor;
     updateUserBoardList(currentUser, board);
 }

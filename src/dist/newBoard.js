@@ -12,7 +12,7 @@ function createNewColumn(list) {
     var header = document.createElement("div");
     header.classList.add("boardContainer__main__column__list__header");
     header.setAttribute("id", list.name + "_header");
-    header.innerHTML = "\n    <h2>" + list.name + "</h2>\n    <div class=\"boardContainer__main__column__list__card--addCard\">\n      <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"3\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n    </div>\n  ";
+    header.innerHTML = "\n  <div class=\"listTitle\">\n    <h2>" + list.name + "</h2>\n    <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n    </div>\n    <div class=\"boardContainer__main__column__list__card--addCard\">\n      <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"3\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n    </div>\n  ";
     listContainer.appendChild(header);
     column.appendChild(listContainer);
     var dropZones = document.querySelectorAll(".boardContainer__main__column");
@@ -85,7 +85,7 @@ function createNewCard(cardName, list) {
     var card = document.createElement("div");
     card.classList.add("boardContainer__main__column__list__card");
     card.setAttribute("draggable", "true");
-    card.innerHTML = "\n  <p>" + cardName + "</p>\n  <i class=\"fa-regular fa-pen-to-square p1\"></i>\n  ";
+    card.innerHTML = "\n  <p>" + cardName + "</p>\n  <i class=\"fa-regular fa-pen-to-square editCardBtn\"></i>\n  ";
     card.addEventListener("dragstart", cardMovement);
     var cardTitle = list.querySelector(".boardContainer__main__column__list__header");
     list.insertBefore(card, cardTitle.nextSibling);

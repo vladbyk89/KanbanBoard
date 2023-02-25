@@ -1,3 +1,4 @@
+// if user is in entryPage.html run this
 if (window.location.pathname.endsWith("entryPage.html")) {
     signUpPanelBtn.addEventListener("click", function () {
         entryPageMainContainer.classList.add("active");
@@ -48,27 +49,27 @@ if (window.location.pathname.endsWith("index.html")) {
 // if user is in board.html run this
 if (window.location.pathname.endsWith("board.html")) {
     renderBoardInBoardPage();
-    addListBtn.addEventListener("click", function () {
-        var newList = new List(newListInput.value);
-        saveListTolocalStorage(newList);
-        boardContainer.append(createNewColumn(newList));
-        newListInput.value = "";
+    addListBtn.addEventListener("click", createList);
+    editBoardBtn.addEventListener("click", function () {
+        editBoard(currentBoard);
+        editBoardWindow.style.display = "none";
     });
     window.addEventListener("click", function (e) {
-        var _a;
         var target = e.target;
         if (target.className === "newCardBtn") {
             var listElement = target.closest(".boardContainer__main__column__list");
-            var newCardTextArea = (_a = target.parentNode) === null || _a === void 0 ? void 0 : _a.querySelector(".newCardTextArea");
+            var newCardTextArea = listElement.querySelector(".newCardTextArea");
             createNewCard(newCardTextArea.value, listElement);
             newCardTextArea.value = "";
         }
-        if (target.classList.contains("editBoardBtn")) {
-            editBoard(currentBoard);
-            editBoardWindow.style.display = "none";
-        }
         if (target.classList.contains("cancelEditBoardBtn")) {
             editBoardWindow.style.display = "none";
+        }
+        if (target.classList.contains("editListBtn")) {
+            console.log("Edit List btn is clicked");
+        }
+        if (target.classList.contains("editCardBtn")) {
+            console.log("Edit Card btn is clicked");
         }
     });
 }

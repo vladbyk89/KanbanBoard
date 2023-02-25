@@ -1,7 +1,7 @@
 // all windows event listener
 window.addEventListener("click", function (e) {
     var target = e.target;
-    if (target.classList.contains("profileBtn")) {
+    if (target.classList.contains("profileIcon")) {
         displayProfile(currentUser);
     }
     if (target.classList.contains("signOutbtn")) {
@@ -11,12 +11,11 @@ window.addEventListener("click", function (e) {
     if (target.classList.contains("exitProfilePage")) {
         profileWindow.style.display = "none";
     }
-    if (target.classList.contains("backToMainBtn")) {
+    if (target.classList.contains("backToMainIcon")) {
         localStorage.removeItem("currentBoard");
         window.location.href = "index.html";
     }
-    if (target.classList.contains("editBoard")) {
-        console.log("Edit board clicked");
+    if (target.classList.contains("editBoardIcon")) {
         editBoardWindow.style.display = "flex";
         nameInputEle.value = currentBoard.name;
         colorInputEle.value = currentBoard.backgroundColor;

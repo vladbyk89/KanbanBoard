@@ -251,11 +251,20 @@ body {
 .boardContainer__main__column__list__header {
   background-color: rgba(0, 0, 0, 0.25);
 }
-.boardContainer__main__column__list__header h2 {
+.boardContainer__main__column__list__header .listTitle {
   color: #fff;
   mix-blend-mode: difference;
   font-weight: bold;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+  height: 4rem;
+}
+.boardContainer__main__column__list__header .listTitle i:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 .boardContainer__main__column__list__card {
   border: 1px solid black;
@@ -265,10 +274,14 @@ body {
   margin: 0.5em 0;
   height: auto;
   width: 100%;
-  cursor: pointer;
+  cursor: grab;
   display: flex;
   justify-content: space-between;
   gap: 1rem;
+}
+.boardContainer__main__column__list__card i:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 .boardContainer__main__column__list .is-dragging {
   scale: 1.05;
@@ -288,10 +301,13 @@ body {
   justify-content: center;
   gap: 5px;
   color: white;
-  margin-top: 2em;
+  margin-top: 1em;
 }
 .boardContainer__main__column__list__card:hover {
   box-shadow: 0 0 5px black;
+}
+.boardContainer__main__column__list__card:active {
+  cursor: grabbing;
 }
 .boardContainer__main__column__list--addList {
   display: flex;
@@ -300,4 +316,7 @@ body {
 }
 .boardContainer__main__column__list--addList input {
   width: 100%;
+}
+.boardContainer__main__column__list:active {
+  cursor: grabbing;
 }

@@ -14,7 +14,10 @@ function createNewColumn(list: List) {
   header.classList.add("boardContainer__main__column__list__header");
   header.setAttribute("id", `${list.name}_header`);
   header.innerHTML = `
+  <div class="listTitle">
     <h2>${list.name}</h2>
+    <i class="fa-regular fa-pen-to-square editListBtn"></i>
+    </div>
     <div class="boardContainer__main__column__list__card--addCard">
       <textarea maxlength="30" class="newCardTextArea" cols="30" rows="3"></textarea>
       <button class="newCardBtn">New Card</button>
@@ -24,9 +27,7 @@ function createNewColumn(list: List) {
   listContainer.appendChild(header);
   column.appendChild(listContainer);
 
-  const dropZones = document.querySelectorAll(
-    ".boardContainer__main__column"
-  );
+  const dropZones = document.querySelectorAll(".boardContainer__main__column");
   dropZones.forEach((dropZone) => {
     dropZone.addEventListener("dragover", function (e) {
       e.preventDefault();
@@ -113,7 +114,7 @@ function createNewCard(cardName: string, list: Element) {
   card.setAttribute("draggable", "true");
   card.innerHTML = `
   <p>${cardName}</p>
-  <i class="fa-regular fa-pen-to-square p1"></i>
+  <i class="fa-regular fa-pen-to-square editCardBtn"></i>
   `;
   card.addEventListener("dragstart", cardMovement);
   const cardTitle = list.querySelector(

@@ -159,6 +159,14 @@ function createBoard() {
   }
 }
 
+function createList() {
+  if (newListInput.value == "") return;
+  const newList = new List(newListInput.value);
+  saveListTolocalStorage(newList);
+  boardContainer.append(createNewColumn(newList));
+  newListInput.value = "";
+}
+
 function returnBoard(boardName: string) {
   const findBoard = currentUser.boardList.find(
     (board) => board.name === boardName
@@ -171,9 +179,8 @@ function returnBoard(boardName: string) {
 
 function renderBoardInBoardPage() {
   try {
-    // currentBoard = currentBoardFromStorage();
-    boardTitleNew.textContent = currentBoard.name;
-    boardPageNew.style.backgroundColor = currentBoard.backgroundColor;
+    boardTitle.textContent = currentBoard.name;
+    boardContainer.style.backgroundColor = currentBoard.backgroundColor;
     renderLists();
   } catch (error) {
     console.log(error);
@@ -237,12 +244,11 @@ function deleteBoard(boardName: string) {
   localStorage.setItem("signedUpUsers", JSON.stringify(userList));
 }
 
-
-function editBoard(board:Board) {
+function editBoard(board: Board) {
   board.name = nameInputEle.value;
   board.backgroundColor = colorInputEle.value;
   localStorage.setItem("currentBoard", JSON.stringify(board));
-  boardTitleNew.textContent = board.name;
-  boardPageNew.style.backgroundColor = board.backgroundColor;
+  boardTitle.textContent = board.name;
+  boardContainer.style.backgroundColor = board.backgroundColor;
   updateUserBoardList(currentUser, board);
 }
