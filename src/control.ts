@@ -204,9 +204,7 @@ function renderLists() {
 function saveListTolocalStorage(list: List) {
   currentBoard.lists.push(list);
   localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
-  const boardToUpdate = currentUser.boardList.find(
-    (board) => board.name == currentBoard.name
-  ) as Board;
+  const boardToUpdate = currentUser.boardList.find((board) => board.name == currentBoard.name) as Board;
   boardToUpdate.lists.push(list);
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
 
@@ -215,8 +213,7 @@ function saveListTolocalStorage(list: List) {
   ) as User[];
   for (let user of signedUpUsers) {
     if (user.userName === currentUser.userName) {
-      user.boardList
-        .find((board) => board.name === currentBoard.name)
+      user.boardList.find((board) => board.name === currentBoard.name)
         ?.lists.push(list);
       localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
     }
@@ -228,9 +225,14 @@ function saveListTolocalStorage(list: List) {
 // currentBoard => currentUser
 // currentUser => signedUpUsers
 
-function saveCardTolocalStorage(cardName: string, list: List) {
-  // function body
-}
+// function saveCardTolocalStorage(card: List) {
+//  userCard.cards.push(card);
+//  localStorage.setItem("userCard", JSON.stringify(userCard));
+//  const cardBoardtoUptade = userCard.cards.find((board)=> currentBoard.cards == userCard.cards)
+//  cardBoardtoUptade?.cards.push(card);
+//  localStorage.setItem("userCard",JSON.stringify(userCard));
+//  console.log(userCard)
+// }
 
 // delete from local storage
 function deleteBoard(boardName: string) {

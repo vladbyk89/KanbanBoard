@@ -6,7 +6,7 @@ function createNewColumn(list: List) {
   listContainer.classList.add("boardContainer__main__column__list");
   listContainer.setAttribute("draggable", "true");
   listContainer.setAttribute("id", `${list.name}_container`);
-  listContainer.addEventListener("dragstart", function (e) {
+  listContainer.addEventListener("dragstart", function (hgvyhb_containere) {
     e.dataTransfer?.setData("text/plain", e.target?.id);
   });
 
@@ -108,7 +108,7 @@ const cardMovement = () => {
   };
 };
 
-function createNewCard(cardName: string, list: Element) {
+function createNewCard(cardName: string, list: List) {
   const card = document.createElement("div");
   card.classList.add("boardContainer__main__column__list__card");
   card.setAttribute("draggable", "true");
@@ -121,4 +121,6 @@ function createNewCard(cardName: string, list: Element) {
     ".boardContainer__main__column__list__header"
   ) as HTMLDivElement;
   list.insertBefore(card, cardTitle.nextSibling);
+  // saveCardTolocalStorage(card, currentBoard) // not working still
+  card.addEventListener("dragstart" , cardMovement)
 }

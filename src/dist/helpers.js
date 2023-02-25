@@ -48,6 +48,16 @@ function currentBoardFromStorage() {
         console.log(error);
     }
 }
+function userCardFromStorage() {
+    try {
+        var getCardLocalStorage = localStorage.getItem("currentBoard");
+        if (getCardLocalStorage)
+            return JSON.parse(getCardLocalStorage);
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
 function setCurrentUser(userName) {
     try {
         if (findUser(userName)) {

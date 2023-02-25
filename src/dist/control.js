@@ -162,8 +162,7 @@ function saveListTolocalStorage(list) {
     for (var _i = 0, signedUpUsers_1 = signedUpUsers; _i < signedUpUsers_1.length; _i++) {
         var user = signedUpUsers_1[_i];
         if (user.userName === currentUser.userName) {
-            (_a = user.boardList
-                .find(function (board) { return board.name === currentBoard.name; })) === null || _a === void 0 ? void 0 : _a.lists.push(list);
+            (_a = user.boardList.find(function (board) { return board.name === currentBoard.name; })) === null || _a === void 0 ? void 0 : _a.lists.push(list);
             localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
         }
     }
@@ -172,9 +171,14 @@ function saveListTolocalStorage(list) {
 // list => currentBoard
 // currentBoard => currentUser
 // currentUser => signedUpUsers
-function saveCardTolocalStorage(cardName, list) {
-    // function body
-}
+// function saveCardTolocalStorage(card: List) {
+//  userCard.cards.push(card);
+//  localStorage.setItem("userCard", JSON.stringify(userCard));
+//  const cardBoardtoUptade = userCard.cards.find((board)=> currentBoard.cards == userCard.cards)
+//  cardBoardtoUptade?.cards.push(card);
+//  localStorage.setItem("userCard",JSON.stringify(userCard));
+//  console.log(userCard)
+// }
 // delete from local storage
 function deleteBoard(boardName) {
     var boardIndex = currentUser.boardList.findIndex(function (board) { return board.name === boardName; });

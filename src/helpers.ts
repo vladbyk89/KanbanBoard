@@ -47,6 +47,15 @@ function currentBoardFromStorage() {
   }
 }
 
+function userCardFromStorage(){ //for getting the user cards from local storege
+  try {
+    const getCardLocalStorage = localStorage.getItem("currentBoard");
+    if(getCardLocalStorage) return JSON.parse(getCardLocalStorage)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 function setCurrentUser(userName: string) {
   try {
     if (findUser(userName)) {

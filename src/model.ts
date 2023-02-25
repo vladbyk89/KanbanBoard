@@ -1,6 +1,7 @@
 let currentUser: User = currentUserFromStorage();
 let currentBoard: Board = currentBoardFromStorage();
 let userList: User[] = userListFromStorage();
+// let userCard: List = userCardFromStorage();
 class User {
   private uid: string;
   constructor(
@@ -25,7 +26,8 @@ class Board {
   constructor(
     public name: string,
     public backgroundColor: string,
-    public lists: List[] = []
+    public lists: List[] = [],
+    public cards: List[] = [] 
   ) {
     this.uid = Math.random().toString(36).slice(2);
   }
@@ -53,7 +55,7 @@ const preMadeUserList: User[] = [
     "Gelberg",
     "male",
     "itaiG",
-    "abcdefgh",
+    "12345",
     "itaiGel@gmail.com",
     "0541234567"
   ),

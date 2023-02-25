@@ -5,7 +5,7 @@ function createNewColumn(list) {
     listContainer.classList.add("boardContainer__main__column__list");
     listContainer.setAttribute("draggable", "true");
     listContainer.setAttribute("id", list.name + "_container");
-    listContainer.addEventListener("dragstart", function (e) {
+    listContainer.addEventListener("dragstart", function (hgvyhb_containere) {
         var _a, _b;
         (_a = e.dataTransfer) === null || _a === void 0 ? void 0 : _a.setData("text/plain", (_b = e.target) === null || _b === void 0 ? void 0 : _b.id);
     });
@@ -89,4 +89,6 @@ function createNewCard(cardName, list) {
     card.addEventListener("dragstart", cardMovement);
     var cardTitle = list.querySelector(".boardContainer__main__column__list__header");
     list.insertBefore(card, cardTitle.nextSibling);
+    // saveCardTolocalStorage(card, currentBoard) // not working still
+    card.addEventListener("dragstart", cardMovement);
 }
