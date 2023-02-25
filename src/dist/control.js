@@ -42,20 +42,20 @@ function displayProfile(user) {
     profileWindow.style.display = "flex";
     return (profileDiv.innerHTML = "\n    <ul>\n      <h1>About you</h1>\n      <li>Name: EMPTY</li>\n      <li>Gender: EMPTY</li>\n      <li>Email: EMPTY</li>\n      <li>Phone Number: EMPTY</li>\n      <li>User Name: EMPTY</li>\n      <li>Password: EMPTY</li>\n    </ul>\n    ");
 }
-function updateUserBoardList(updatedUser, updatedBoard) {
+function updateUserBoardList(userToUpdate, boardToUpdate) {
     if (userList) {
-        var findUser_1 = userList.find(function (user) { return user.getuid === updatedUser.getuid; });
+        var findUser_1 = userList.find(function (user) { return user.getuid === userToUpdate.getuid; });
         if (findUser_1) {
-            var findBoard = findUser_1.boardList.find(function (board) { return board.getuid === updatedBoard.getuid; });
+            var findBoard = findUser_1.boardList.find(function (board) { return board.getuid === boardToUpdate.getuid; });
             if (findBoard) {
                 var boardIndex = findUser_1.boardList.indexOf(findBoard);
                 // const indexCurrentUser = currentUser.boardList.indexOf(findBoard);
-                findUser_1.boardList[boardIndex] = updatedBoard;
-                currentUser.boardList[boardIndex] = updatedBoard;
+                findUser_1.boardList[boardIndex] = boardToUpdate;
+                currentUser.boardList[boardIndex] = boardToUpdate;
             }
             else {
-                findUser_1.boardList.unshift(updatedBoard);
-                currentUser.boardList.unshift(updatedBoard);
+                findUser_1.boardList.unshift(boardToUpdate);
+                currentUser.boardList.unshift(boardToUpdate);
             }
         }
         localStorage.setItem("signedUpUsers", JSON.stringify(userList));
@@ -141,7 +141,7 @@ function renderLists() {
         list.cards.forEach(function (card) {
             createNewCard(card, ListElement);
         });
-        mainContaier.append(columnElement);
+        boardContainer.append(columnElement);
     });
 }
 function saveListTolocalStorage(list) {
@@ -165,13 +165,8 @@ function saveListTolocalStorage(list) {
 // list => currentBoard
 // currentBoard => currentUser
 // currentUser => signedUpUsers
-function saveCardTolocalStorage(cardName, listName) {
-    var listToUpDate = currentBoard.lists.find(function (list) { return list.name == listName; });
-    listToUpDate.cards.push(cardName);
-    localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
-    var boardToUpdate = currentUser.boardList.find(function (board) { return board.name == currentBoard.name; });
-    boardToUpdate.lists = currentBoard.lists;
-    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+function saveCardTolocalStorage(cardName, list) {
+    // function body
 }
 // delete from local storage
 function deleteBoard(boardName) {
@@ -182,4 +177,12 @@ function deleteBoard(boardName) {
     if (findUser)
         findUser.boardList.splice(boardIndex, 1);
     localStorage.setItem("signedUpUsers", JSON.stringify(userList));
+}
+function editBoard(board) {
+    board.name = nameInputEle.value;
+    board.backgroundColor = colorInputEle.value;
+    localStorage.setItem("currentBoard", JSON.stringify(board));
+    boardTitleNew.textContent = board.name;
+    boardPageNew.style.backgroundColor = board.backgroundColor;
+    updateUserBoardList(currentUser, board);
 }

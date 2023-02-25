@@ -22,11 +22,3 @@ window.addEventListener("click", function (e) {
         colorInputEle.value = currentBoard.backgroundColor;
     }
 });
-function editBoard() {
-    currentBoard.name = nameInputEle.value;
-    currentBoard.backgroundColor = colorInputEle.value;
-    localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
-    boardTitleNew.textContent = currentBoard.name;
-    boardPageNew.style.backgroundColor = currentBoard.backgroundColor;
-    updateUserBoardList(currentUser, currentBoard);
-}

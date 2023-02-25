@@ -1,9 +1,9 @@
 if (window.location.pathname.endsWith("entryPage.html")) {
     signUpPanelBtn.addEventListener("click", function () {
-        mainContainer.classList.add("active");
+        entryPageMainContainer.classList.add("active");
     });
     signInPanelBtn.addEventListener("click", function () {
-        mainContainer.classList.remove("active");
+        entryPageMainContainer.classList.remove("active");
     });
     signUpForm.addEventListener("submit", handleSignUp);
     signInForm.addEventListener("submit", handleSignIn);
@@ -51,7 +51,7 @@ if (window.location.pathname.endsWith("board.html")) {
     addListBtn.addEventListener("click", function () {
         var newList = new List(newListInput.value);
         saveListTolocalStorage(newList);
-        mainContaier.append(createNewColumn(newList));
+        boardContainer.append(createNewColumn(newList));
         newListInput.value = "";
     });
     window.addEventListener("click", function (e) {
@@ -64,7 +64,7 @@ if (window.location.pathname.endsWith("board.html")) {
             newCardTextArea.value = "";
         }
         if (target.classList.contains("editBoardBtn")) {
-            editBoard();
+            editBoard(currentBoard);
             editBoardWindow.style.display = "none";
         }
         if (target.classList.contains("cancelEditBoardBtn")) {

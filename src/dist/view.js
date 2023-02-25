@@ -1,7 +1,7 @@
 // Entry Page elements
 var signInForm = document.querySelector("#signInForm");
 var signUpForm = document.querySelector("#signUpForm");
-var mainContainer = document.querySelector(".mainContainer");
+var entryPageMainContainer = document.querySelector(".mainContainer");
 var signUpPanelBtn = document.querySelector("#signUpPanel");
 var signInPanelBtn = document.querySelector("#signInPanel");
 var signInBtn = document.querySelector("#signInBtn");
@@ -26,7 +26,7 @@ var boardTitleNew = document.querySelector(".boardContainer__topNav__boardNameNe
 var backToMainBtn = document.querySelector(".boardContainer__topNav__iconDiv__backToMain");
 var boardPage = document.querySelector(".boardContainer__main");
 var boardPageNew = document.querySelector(".boardContainer__main");
-var mainContaier = document.querySelector(".boardContainer__main");
+var boardContainer = document.querySelector(".boardContainer__main");
 var addListBtn = document.querySelector("#addListBtn");
 var newListInput = document.querySelector("#newListInput");
 var newCardButtons = document.querySelectorAll(".newCardBtn");

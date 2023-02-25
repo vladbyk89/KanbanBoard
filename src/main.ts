@@ -2,11 +2,11 @@
 
 if (window.location.pathname.endsWith("entryPage.html")) {
   signUpPanelBtn.addEventListener("click", () => {
-    mainContainer.classList.add("active");
+    entryPageMainContainer.classList.add("active");
   });
 
   signInPanelBtn.addEventListener("click", () => {
-    mainContainer.classList.remove("active");
+    entryPageMainContainer.classList.remove("active");
   });
   signUpForm.addEventListener("submit", handleSignUp);
 
@@ -70,7 +70,7 @@ if (window.location.pathname.endsWith("board.html")) {
   addListBtn.addEventListener("click", () => {
     const newList = new List(newListInput.value);
     saveListTolocalStorage(newList);
-    mainContaier.append(createNewColumn(newList));
+    boardContainer.append(createNewColumn(newList));
     newListInput.value = "";
   });
 
@@ -87,7 +87,7 @@ if (window.location.pathname.endsWith("board.html")) {
       newCardTextArea.value = "";
     }
     if (target.classList.contains("editBoardBtn")) {
-      editBoard();
+      editBoard(currentBoard);
       editBoardWindow.style.display = "none";
     }
     if (target.classList.contains("cancelEditBoardBtn")) {

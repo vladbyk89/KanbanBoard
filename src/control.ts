@@ -74,23 +74,23 @@ function displayProfile(user: User) {
     `);
 }
 
-function updateUserBoardList(updatedUser: User, updatedBoard: Board) {
+function updateUserBoardList(userToUpdate: User, boardToUpdate: Board) {
   if (userList) {
     const findUser = userList.find(
-      (user) => user.getuid === updatedUser.getuid
+      (user) => user.getuid === userToUpdate.getuid
     );
     if (findUser) {
       const findBoard = findUser.boardList.find(
-        (board) => board.getuid === updatedBoard.getuid
+        (board) => board.getuid === boardToUpdate.getuid
       );
       if (findBoard) {
         const boardIndex = findUser.boardList.indexOf(findBoard);
         // const indexCurrentUser = currentUser.boardList.indexOf(findBoard);
-        findUser.boardList[boardIndex] = updatedBoard;
-        currentUser.boardList[boardIndex] = updatedBoard;
+        findUser.boardList[boardIndex] = boardToUpdate;
+        currentUser.boardList[boardIndex] = boardToUpdate;
       } else {
-        findUser.boardList.unshift(updatedBoard);
-        currentUser.boardList.unshift(updatedBoard);
+        findUser.boardList.unshift(boardToUpdate);
+        currentUser.boardList.unshift(boardToUpdate);
       }
     }
     localStorage.setItem("signedUpUsers", JSON.stringify(userList));
@@ -190,7 +190,7 @@ function renderLists() {
     list.cards.forEach((card) => {
       createNewCard(card, ListElement);
     });
-    mainContaier.append(columnElement);
+    boardContainer.append(columnElement);
   });
 }
 
@@ -221,17 +221,8 @@ function saveListTolocalStorage(list: List) {
 // currentBoard => currentUser
 // currentUser => signedUpUsers
 
-function saveCardTolocalStorage(cardName: string, listName: string) {
-  const listToUpDate = currentBoard.lists.find(
-    (list) => list.name == listName
-  ) as List;
-  listToUpDate.cards.push(cardName);
-  localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
-  const boardToUpdate = currentUser.boardList.find(
-    (board) => board.name == currentBoard.name
-  ) as Board;
-  boardToUpdate.lists = currentBoard.lists;
-  localStorage.setItem("currentUser", JSON.stringify(currentUser));
+function saveCardTolocalStorage(cardName: string, list: List) {
+  // function body
 }
 
 // delete from local storage
@@ -244,4 +235,14 @@ function deleteBoard(boardName: string) {
   const findUser = userList.find((user) => user.getuid === currentUser.getuid);
   if (findUser) findUser.boardList.splice(boardIndex, 1);
   localStorage.setItem("signedUpUsers", JSON.stringify(userList));
+}
+
+
+function editBoard(board:Board) {
+  board.name = nameInputEle.value;
+  board.backgroundColor = colorInputEle.value;
+  localStorage.setItem("currentBoard", JSON.stringify(board));
+  boardTitleNew.textContent = board.name;
+  boardPageNew.style.backgroundColor = board.backgroundColor;
+  updateUserBoardList(currentUser, board);
 }
