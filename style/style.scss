@@ -329,6 +329,10 @@ body {
           gap: 5px;
           color: white;
           margin-top: 1em;
+          textarea{
+            font-size: 2vh;
+            padding: .3rem;
+          }
         }
         &__card:hover {
           box-shadow: 0 0 5px black;
