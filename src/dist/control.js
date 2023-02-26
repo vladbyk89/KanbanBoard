@@ -152,20 +152,25 @@ function renderLists() {
     });
 }
 function saveListTolocalStorage(list) {
-    var _a;
     currentBoard.lists.push(list);
     localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
     var boardToUpdate = currentUser.boardList.find(function (board) { return board.name == currentBoard.name; });
     boardToUpdate.lists.push(list);
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
-    var signedUpUsers = JSON.parse(localStorage.getItem("signedUpUsers") || "[]");
-    for (var _i = 0, signedUpUsers_1 = signedUpUsers; _i < signedUpUsers_1.length; _i++) {
-        var user = signedUpUsers_1[_i];
-        if (user.userName === currentUser.userName) {
-            (_a = user.boardList.find(function (board) { return board.name === currentBoard.name; })) === null || _a === void 0 ? void 0 : _a.lists.push(list);
-            localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
-        }
-    }
+    userList = userList.map(function (user) {
+        return user.getuid === currentUser.getuid ? currentUser : user;
+    });
+    localStorage.setItem("signedUpUsers", JSON.stringify(userList));
+    // const signedUpUsers = JSON.parse(
+    //   localStorage.getItem("signedUpUsers") || "[]"
+    // ) as User[];
+    // for (let user of signedUpUsers) {
+    //   if (user.userName === currentUser.userName) {
+    //     user.boardList.find((board) => board.name === currentBoard.name)
+    //       ?.lists.push(list);
+    //     localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
+    //   }
+    // }
 }
 // card => list
 // list => currentBoard

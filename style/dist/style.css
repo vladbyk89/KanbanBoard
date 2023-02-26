@@ -303,6 +303,10 @@ body {
   color: white;
   margin-top: 1em;
 }
+.boardContainer__main__column__list__card--addCard textarea {
+  font-size: 2vh;
+  padding: 0.3rem;
+}
 .boardContainer__main__column__list__card:hover {
   box-shadow: 0 0 5px black;
 }

@@ -4,6 +4,9 @@ window.addEventListener("click", function (e) {
     if (target.classList.contains("profileIcon")) {
         displayProfile(currentUser);
     }
+    if (target.classList.contains("notificationsIcon")) {
+        // nothing yet...
+    }
     if (target.classList.contains("signOutbtn")) {
         localStorage.removeItem("currentUser");
         window.location.href = "entryPage.html";

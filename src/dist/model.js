@@ -37,10 +37,12 @@ var Board = /** @class */ (function () {
     return Board;
 }());
 var List = /** @class */ (function () {
-    function List(name, cards) {
+    function List(name, cards, uid) {
         if (cards === void 0) { cards = []; }
+        if (uid === void 0) { uid = Math.random().toString(36).slice(2); }
         this.name = name;
         this.cards = cards;
+        this.uid = uid;
     }
     return List;
 }());

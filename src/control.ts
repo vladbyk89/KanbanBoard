@@ -204,20 +204,27 @@ function renderLists() {
 function saveListTolocalStorage(list: List) {
   currentBoard.lists.push(list);
   localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
-  const boardToUpdate = currentUser.boardList.find((board) => board.name == currentBoard.name) as Board;
+  const boardToUpdate = currentUser.boardList.find(
+    (board) => board.name == currentBoard.name
+  ) as Board;
   boardToUpdate.lists.push(list);
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  
+  userList = userList.map((user) =>
+    user.getuid === currentUser.getuid ? currentUser : user
+  );
+  localStorage.setItem("signedUpUsers", JSON.stringify(userList));
 
-  const signedUpUsers = JSON.parse(
-    localStorage.getItem("signedUpUsers") || "[]"
-  ) as User[];
-  for (let user of signedUpUsers) {
-    if (user.userName === currentUser.userName) {
-      user.boardList.find((board) => board.name === currentBoard.name)
-        ?.lists.push(list);
-      localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
-    }
-  }
+  // const signedUpUsers = JSON.parse(
+  //   localStorage.getItem("signedUpUsers") || "[]"
+  // ) as User[];
+  // for (let user of signedUpUsers) {
+  //   if (user.userName === currentUser.userName) {
+  //     user.boardList.find((board) => board.name === currentBoard.name)
+  //       ?.lists.push(list);
+  //     localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
+  //   }
+  // }
 }
 
 // card => list
