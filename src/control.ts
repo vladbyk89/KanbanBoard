@@ -273,5 +273,6 @@ function editBoard(board: Board) {
 
 
 function test(){
+  console.log('WORK PLEASE');
   return true;
 }
