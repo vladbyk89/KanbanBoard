@@ -152,7 +152,6 @@ function renderLists() {
     });
 }
 function saveListTolocalStorage(list) {
-    debugger;
     currentBoard.lists.push(list);
     localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
     var boardToUpdate = currentUser.boardList.find(function (board) { return board.uid == currentBoard.uid; });

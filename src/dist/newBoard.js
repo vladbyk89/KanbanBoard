@@ -87,10 +87,8 @@ function createNewCard(cardName, list) {
     card.setAttribute("draggable", "true");
     card.innerHTML = "\n  <p>" + cardName + "</p>\n  <i class=\"fa-regular fa-pen-to-square editCardBtn\"></i>\n  ";
     card.addEventListener("dragstart", cardMovement);
-    // saveCardToList()
     var cardTitle = list.querySelector(".boardContainer__main__column__list__header");
     list.insertBefore(card, cardTitle.nextSibling);
-    // saveCardTolocalStorage(card, currentBoard) // not working still
     card.addEventListener("dragstart", cardMovement);
 }
 //contenteditable function for editing name

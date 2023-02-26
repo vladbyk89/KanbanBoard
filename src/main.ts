@@ -83,6 +83,7 @@ if (window.location.pathname.endsWith("board.html")) {
       const newCardTextArea = listElement.querySelector(
         ".newCardTextArea"
       ) as HTMLTextAreaElement;
+      if (newCardTextArea.value == "") return;
       createNewCard(newCardTextArea.value, listElement);
       saveCardTolocalStorage(newCardTextArea.value, listElement.id);
       newCardTextArea.value = "";
