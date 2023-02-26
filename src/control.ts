@@ -273,6 +273,5 @@ function editBoard(board: Board) {
 
 
 function test(){
-  localStorage.setItem
   return true;
 }
