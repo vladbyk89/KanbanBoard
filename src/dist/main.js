@@ -59,6 +59,8 @@ if (window.location.pathname.endsWith("board.html")) {
         if (target.className === "newCardBtn") {
             var listElement = target.closest(".boardContainer__main__column__list");
             var newCardTextArea = listElement.querySelector(".newCardTextArea");
+            if (newCardTextArea.value == "")
+                return;
             createNewCard(newCardTextArea.value, listElement);
             saveCardTolocalStorage(newCardTextArea.value, listElement.id);
             newCardTextArea.value = "";

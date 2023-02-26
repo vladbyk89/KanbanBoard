@@ -202,7 +202,6 @@ function renderLists() {
 }
 
 function saveListTolocalStorage(list: List) {
-  debugger
   currentBoard.lists.push(list);
   localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
   const boardToUpdate = currentUser.boardList.find(
