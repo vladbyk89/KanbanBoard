@@ -269,3 +269,8 @@ function editBoard(board: Board) {
   boardContainer.style.backgroundColor = board.backgroundColor;
   updateUserBoardList(currentUser, board);
 }
+
+
+function test(){
+  return true;
+}
