@@ -273,6 +273,6 @@ function editBoard(board: Board) {
 
 
 function test(){
-  console.log('WORK PLEASE');
+  console.log('no!');
   return true;
 }

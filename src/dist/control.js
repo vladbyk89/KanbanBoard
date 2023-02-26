@@ -208,6 +208,6 @@ function editBoard(board) {
     updateUserBoardList(currentUser, board);
 }
 function test() {
-    console.log('WORK PLEASE');
+    console.log('no!');
     return true;
 }
