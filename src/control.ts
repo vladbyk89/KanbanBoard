@@ -249,13 +249,6 @@ function saveCardTolocalStorage(cardName: string, listUid: string) {
   localStorage.setItem("signedUpUsers", JSON.stringify(userList));
 }
 
-// currentBoa
-
-
-//  cardBoardtoUptade?.cards.push(card);
-//  localStorage.setItem("userCard",JSON.stringify(userCard));
-//  console.log(userCard)
-// }
 
 // delete from local storage
 function deleteBoard(boardName: string) {
