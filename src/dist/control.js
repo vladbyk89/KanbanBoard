@@ -213,5 +213,6 @@ function editBoard(board) {
     updateUserBoardList(currentUser, board);
 }
 function test() {
+    localStorage.setItem;
     return true;
 }
