@@ -250,11 +250,7 @@ function saveCardTolocalStorage(cardName: string, listUid: string) {
   localStorage.setItem("signedUpUsers", JSON.stringify(userList));
 }
 
-
-// card => list
-// list => currentBoard
-// currentBoard => currentUser
-// currentUser => signedUpUsers
+// currentBoa
 
 // function saveCardTolocalStorage(card: List) {
 //  userCard.cards.push(card);
