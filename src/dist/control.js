@@ -189,18 +189,6 @@ function saveCardTolocalStorage(cardName, listUid) {
     });
     localStorage.setItem("signedUpUsers", JSON.stringify(userList));
 }
-// card => list
-// list => currentBoard
-// currentBoard => currentUser
-// currentUser => signedUpUsers
-// function saveCardTolocalStorage(card: List) {
-//  userCard.cards.push(card);
-//  localStorage.setItem("userCard", JSON.stringify(userCard));
-//  const cardBoardtoUptade = userCard.cards.find((board)=> currentBoard.cards == userCard.cards)
-//  cardBoardtoUptade?.cards.push(card);
-//  localStorage.setItem("userCard",JSON.stringify(userCard));
-//  console.log(userCard)
-// }
 // delete from local storage
 function deleteBoard(boardName) {
     var boardIndex = currentUser.boardList.findIndex(function (board) { return board.name === boardName; });
