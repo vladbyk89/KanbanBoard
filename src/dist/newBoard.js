@@ -5,7 +5,7 @@ function createNewColumn(list) {
     listContainer.classList.add("boardContainer__main__column__list");
     listContainer.setAttribute("draggable", "true");
     listContainer.setAttribute("id", "" + list.uid);
-    listContainer.addEventListener("dragstart", function (hgvyhb_containere) {
+    listContainer.addEventListener("dragstart", function (e) {
         var _a, _b;
         (_a = e.dataTransfer) === null || _a === void 0 ? void 0 : _a.setData("text/plain", (_b = e.target) === null || _b === void 0 ? void 0 : _b.id);
     });

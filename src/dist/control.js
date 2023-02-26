@@ -44,9 +44,9 @@ function displayProfile(user) {
 }
 function updateUserBoardList(userToUpdate, boardToUpdate) {
     if (userList) {
-        var findUser_1 = userList.find(function (user) { return user.getuid === userToUpdate.getuid; });
+        var findUser_1 = userList.find(function (user) { return user.uid === userToUpdate.uid; });
         if (findUser_1) {
-            var findBoard = findUser_1.boardList.find(function (board) { return board.getuid === boardToUpdate.getuid; });
+            var findBoard = findUser_1.boardList.find(function (board) { return board.uid === boardToUpdate.uid; });
             if (findBoard) {
                 var boardIndex = findUser_1.boardList.indexOf(findBoard);
                 // const indexCurrentUser = currentUser.boardList.indexOf(findBoard);
@@ -152,13 +152,14 @@ function renderLists() {
     });
 }
 function saveListTolocalStorage(list) {
+    debugger;
     currentBoard.lists.push(list);
     localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
-    var boardToUpdate = currentUser.boardList.find(function (board) { return board.name == currentBoard.name; });
+    var boardToUpdate = currentUser.boardList.find(function (board) { return board.uid == currentBoard.uid; });
     boardToUpdate.lists.push(list);
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
     userList = userList.map(function (user) {
-        return user.getuid === currentUser.getuid ? currentUser : user;
+        return user.uid === currentUser.uid ? currentUser : user;
     });
     localStorage.setItem("signedUpUsers", JSON.stringify(userList));
     // const signedUpUsers = JSON.parse(
@@ -171,6 +172,23 @@ function saveListTolocalStorage(list) {
     //     localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
     //   }
     // }
+}
+function saveCardTolocalStorage(cardName, listUid) {
+    var findList = currentBoard.lists.find(function (list) { return list.uid === listUid; });
+    if (findList)
+        findList.cards.push(cardName);
+    currentBoard.lists = currentBoard.lists.map(function (list) {
+        return list.uid === findList.uid ? findList : list;
+    });
+    localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
+    currentUser.boardList = currentUser.boardList.map(function (board) {
+        return board.uid === currentBoard.uid ? currentBoard : board;
+    });
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    userList = userList.map(function (user) {
+        return user.uid === currentUser.uid ? currentUser : user;
+    });
+    localStorage.setItem("signedUpUsers", JSON.stringify(userList));
 }
 // card => list
 // list => currentBoard
@@ -189,7 +207,7 @@ function deleteBoard(boardName) {
     var boardIndex = currentUser.boardList.findIndex(function (board) { return board.name === boardName; });
     currentUser.boardList.splice(boardIndex, 1);
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
-    var findUser = userList.find(function (user) { return user.getuid === currentUser.getuid; });
+    var findUser = userList.find(function (user) { return user.uid === currentUser.uid; });
     if (findUser)
         findUser.boardList.splice(boardIndex, 1);
     localStorage.setItem("signedUpUsers", JSON.stringify(userList));

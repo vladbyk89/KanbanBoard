@@ -4,8 +4,9 @@ var currentBoard = currentBoardFromStorage();
 var userList = userListFromStorage();
 // let userCard: List = userCardFromStorage();
 var User = /** @class */ (function () {
-    function User(firstName, lastName, gender, userName, password, email, phoneNumber, boardList) {
+    function User(firstName, lastName, gender, userName, password, email, phoneNumber, boardList, uid) {
         if (boardList === void 0) { boardList = []; }
+        if (uid === void 0) { uid = Math.random().toString(36).slice(2); }
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -14,26 +15,21 @@ var User = /** @class */ (function () {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.boardList = boardList;
-        this.uid = Math.random().toString(36).slice(2);
+        this.uid = uid;
     }
-    User.prototype.getuid = function () {
-        return this.uid;
-    };
     return User;
 }());
 var Board = /** @class */ (function () {
-    function Board(name, backgroundColor, lists, cards) {
+    function Board(name, backgroundColor, lists, cards, uid) {
         if (lists === void 0) { lists = []; }
         if (cards === void 0) { cards = []; }
+        if (uid === void 0) { uid = Math.random().toString(36).slice(2); }
         this.name = name;
         this.backgroundColor = backgroundColor;
         this.lists = lists;
         this.cards = cards;
-        this.uid = Math.random().toString(36).slice(2);
+        this.uid = uid;
     }
-    Board.prototype.getuid = function () {
-        return this.uid;
-    };
     return Board;
 }());
 var List = /** @class */ (function () {

@@ -6,7 +6,7 @@ function createNewColumn(list: List) {
   listContainer.classList.add("boardContainer__main__column__list");
   listContainer.setAttribute("draggable", "true");
   listContainer.setAttribute("id", `${list.uid}`);
-  listContainer.addEventListener("dragstart", function (hgvyhb_containere) {
+  listContainer.addEventListener("dragstart", function (e) {
     e.dataTransfer?.setData("text/plain", e.target?.id);
   });
 

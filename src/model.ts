@@ -3,7 +3,6 @@ let currentBoard: Board = currentBoardFromStorage();
 let userList: User[] = userListFromStorage();
 // let userCard: List = userCardFromStorage();
 class User {
-  private uid: string;
   constructor(
     public firstName: string,
     public lastName: string,
@@ -12,33 +11,27 @@ class User {
     public password: string,
     public email: string,
     public phoneNumber: string,
-    public boardList: Board[] = []
-  ) {
-    this.uid = Math.random().toString(36).slice(2);
-  }
-  getuid() {
-    return this.uid;
-  }
+    public boardList: Board[] = [],
+    public uid: string = Math.random().toString(36).slice(2)
+  ) {}
 }
 
 class Board {
-  private uid: string;
   constructor(
     public name: string,
     public backgroundColor: string,
     public lists: List[] = [],
-    public cards: List[] = [] 
-  ) {
-    this.uid = Math.random().toString(36).slice(2);
-  }
-  getuid() {
-    return this.uid;
-  }
+    public cards: List[] = [],
+    public uid: string = Math.random().toString(36).slice(2)
+  ) {}
 }
 
 class List {
-  constructor(public name: string, public cards: string[] = [], 
-    public uid = Math.random().toString(36).slice(2)) {}
+  constructor(
+    public name: string,
+    public cards: string[] = [],
+    public uid = Math.random().toString(36).slice(2)
+  ) {}
 }
 
 const preMadeUserList: User[] = [

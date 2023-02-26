@@ -73,7 +73,7 @@ if (window.location.pathname.endsWith("board.html")) {
     editBoard(currentBoard);
     editBoardWindow.style.display = "none";
   });
-  
+
   window.addEventListener("click", (e) => {
     const target = e.target as HTMLElement;
     if (target.className === "newCardBtn") {
@@ -84,6 +84,7 @@ if (window.location.pathname.endsWith("board.html")) {
         ".newCardTextArea"
       ) as HTMLTextAreaElement;
       createNewCard(newCardTextArea.value, listElement);
+      saveCardTolocalStorage(newCardTextArea.value, listElement.id);
       newCardTextArea.value = "";
     }
     if (target.classList.contains("cancelEditBoardBtn")) {

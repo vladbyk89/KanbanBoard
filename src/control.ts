@@ -77,11 +77,11 @@ function displayProfile(user: User) {
 function updateUserBoardList(userToUpdate: User, boardToUpdate: Board) {
   if (userList) {
     const findUser = userList.find(
-      (user) => user.getuid === userToUpdate.getuid
+      (user) => user.uid === userToUpdate.uid
     );
     if (findUser) {
       const findBoard = findUser.boardList.find(
-        (board) => board.getuid === boardToUpdate.getuid
+        (board) => board.uid === boardToUpdate.uid
       );
       if (findBoard) {
         const boardIndex = findUser.boardList.indexOf(findBoard);
@@ -202,16 +202,17 @@ function renderLists() {
 }
 
 function saveListTolocalStorage(list: List) {
+  debugger
   currentBoard.lists.push(list);
   localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
   const boardToUpdate = currentUser.boardList.find(
-    (board) => board.name == currentBoard.name
+    (board) => board.uid == currentBoard.uid
   ) as Board;
   boardToUpdate.lists.push(list);
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
   
   userList = userList.map((user) =>
-    user.getuid === currentUser.getuid ? currentUser : user
+    user.uid === currentUser.uid ? currentUser : user
   );
   localStorage.setItem("signedUpUsers", JSON.stringify(userList));
 
@@ -226,6 +227,29 @@ function saveListTolocalStorage(list: List) {
   //   }
   // }
 }
+
+
+function saveCardTolocalStorage(cardName: string, listUid: string) {
+  const findList = currentBoard.lists.find(
+    (list) => list.uid === listUid
+  ) as List;
+  if (findList) findList.cards.push(cardName);
+  currentBoard.lists = currentBoard.lists.map((list) =>
+    list.uid === findList.uid ? findList : list
+  );
+  localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
+
+  currentUser.boardList = currentUser.boardList.map((board) =>
+    board.uid === currentBoard.uid ? currentBoard : board
+  );
+  localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+  userList = userList.map((user) =>
+    user.uid === currentUser.uid ? currentUser : user
+  );
+  localStorage.setItem("signedUpUsers", JSON.stringify(userList));
+}
+
 
 // card => list
 // list => currentBoard
@@ -248,7 +272,7 @@ function deleteBoard(boardName: string) {
   );
   currentUser.boardList.splice(boardIndex, 1);
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  const findUser = userList.find((user) => user.getuid === currentUser.getuid);
+  const findUser = userList.find((user) => user.uid === currentUser.uid);
   if (findUser) findUser.boardList.splice(boardIndex, 1);
   localStorage.setItem("signedUpUsers", JSON.stringify(userList));
 }
