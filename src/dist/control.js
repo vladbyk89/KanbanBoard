@@ -189,11 +189,6 @@ function saveCardTolocalStorage(cardName, listUid) {
     });
     localStorage.setItem("signedUpUsers", JSON.stringify(userList));
 }
-// currentBoa
-//  cardBoardtoUptade?.cards.push(card);
-//  localStorage.setItem("userCard",JSON.stringify(userCard));
-//  console.log(userCard)
-// }
 // delete from local storage
 function deleteBoard(boardName) {
     var boardIndex = currentUser.boardList.findIndex(function (board) { return board.name === boardName; });
