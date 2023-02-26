@@ -252,10 +252,7 @@ function saveCardTolocalStorage(cardName: string, listUid: string) {
 
 // currentBoa
 
-// function saveCardTolocalStorage(card: List) {
-//  userCard.cards.push(card);
-//  localStorage.setItem("userCard", JSON.stringify(userCard));
-//  const cardBoardtoUptade = userCard.cards.find((board)=> currentBoard.cards == userCard.cards)
+
 //  cardBoardtoUptade?.cards.push(card);
 //  localStorage.setItem("userCard",JSON.stringify(userCard));
 //  console.log(userCard)
