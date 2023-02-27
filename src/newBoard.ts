@@ -126,4 +126,5 @@ function createNewCard(cardName: string, list: Element) {
 
 
 
+
 //contenteditable function for editing name
