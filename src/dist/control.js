@@ -120,7 +120,7 @@ function createList() {
         return;
     var newList = new List(newListInput.value);
     saveListTolocalStorage(newList);
-    boardContainer.append(createNewColumn(newList));
+    boardContainer.append(createListElement(newList));
     newListInput.value = "";
 }
 function returnBoard(boardName) {
@@ -142,12 +142,11 @@ function renderBoardInBoardPage() {
 }
 function renderLists() {
     currentBoard.lists.forEach(function (list) {
-        var columnElement = createNewColumn(list);
-        var ListElement = columnElement.querySelector(".boardContainer__main__column__list");
+        var ListElement = createListElement(list);
         list.cards.forEach(function (card) {
             createNewCard(card, ListElement);
         });
-        boardContainer.append(columnElement);
+        boardContainer.append(ListElement);
     });
 }
 function saveListTolocalStorage(list) {
@@ -188,7 +187,7 @@ function saveCardTolocalStorage(cardName, listUid) {
     });
     localStorage.setItem("signedUpUsers", JSON.stringify(userList));
 }
-// delete from local storage
+// delete board from local storage
 function deleteBoard(boardName) {
     var boardIndex = currentUser.boardList.findIndex(function (board) { return board.name === boardName; });
     currentUser.boardList.splice(boardIndex, 1);
@@ -205,8 +204,4 @@ function editBoard(board) {
     boardTitle.textContent = board.name;
     boardContainer.style.backgroundColor = board.backgroundColor;
     updateUserBoardList(currentUser, board);
-}
-function test() {
-    console.log('no!');
-    return true;
 }

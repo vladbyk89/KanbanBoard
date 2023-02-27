@@ -57,7 +57,7 @@ if (window.location.pathname.endsWith("board.html")) {
     window.addEventListener("click", function (e) {
         var target = e.target;
         if (target.className === "newCardBtn") {
-            var listElement = target.closest(".boardContainer__main__column__list");
+            var listElement = target.closest(".boardContainer__main__list");
             var newCardTextArea = listElement.querySelector(".newCardTextArea");
             if (newCardTextArea.value == "")
                 return;
