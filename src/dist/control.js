@@ -22,7 +22,6 @@ function handleSignUp(e) {
 }
 function handleSignIn(e) {
     e.preventDefault();
-    // e.stopPropagation();
     var userName = userNameInput.value;
     var password = passwordInput.value;
     if (checkIfUserExists(userName, password)) {

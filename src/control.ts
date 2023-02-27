@@ -32,7 +32,6 @@ function handleSignUp(e: Event) {
 
 function handleSignIn(e: Event) {
   e.preventDefault();
-  // e.stopPropagation();
   const userName = userNameInput.value;
   const password = passwordInput.value;
 
