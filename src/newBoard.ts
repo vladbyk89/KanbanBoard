@@ -228,3 +228,7 @@ function createNewCard(cardName: string, list: Element) {
 //     dropZone.classList.remove("dragover");
 //   });
 // });
+
+
+
+// xczxc
