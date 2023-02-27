@@ -267,3 +267,12 @@ function editBoard(board: Board) {
   boardContainer.style.backgroundColor = board.backgroundColor;
   updateUserBoardList(currentUser, board);
 }
+
+
+function saveBoardChanges(){
+  const listPositions = Array.from(document.getElementsByClassName('boardContainer__main__list')).map((list , index)=>{
+    return {id: list.getAttribute('list.uid'), position: index};
+  });
+  localStorage.setItem("listPositions", JSON.stringify(listPositions));
+  console.log(listPositions)
+}

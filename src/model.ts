@@ -30,7 +30,8 @@ class List {
   constructor(
     public name: string,
     public cards: string[] = [],
-    public uid = Math.random().toString(36).slice(2)
+    public uid = Math.random().toString(36).slice(2),
+    public position = position
   ) {}
 }
 

@@ -33,6 +33,7 @@ const insertLeftOfLisk = (zone: HTMLElement, mouseX: number) => {
 
   let closestTask: null | Element = null;
   let closestOffset = Number.NEGATIVE_INFINITY;
+ 
 
   staticLists.forEach((list) => {
     const cardBoundaries = list.getBoundingClientRect();
@@ -102,6 +103,7 @@ function createListElement(list: List) {
 
   listContainer.addEventListener("dragover", (e) => {
     let cardIsDragged = false;
+    saveBoardChanges ();
     cards.forEach((card) => {
       if (card.classList.contains("is-dragging")) {
         cardIsDragged = true;
@@ -119,7 +121,6 @@ function createListElement(list: List) {
       listContainer.insertBefore(curTask, bottomTask);
     }
   });
-
   return listContainer;
 }
 

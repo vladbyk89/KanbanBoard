@@ -66,6 +66,7 @@ function createListElement(list) {
     listContainer.appendChild(header);
     listContainer.addEventListener("dragover", function (e) {
         var cardIsDragged = false;
+        saveBoardChanges();
         cards.forEach(function (card) {
             if (card.classList.contains("is-dragging")) {
                 cardIsDragged = true;
