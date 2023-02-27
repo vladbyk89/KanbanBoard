@@ -1,5 +1,4 @@
-var cards = document.querySelectorAll(".boardContainer__main__list__card");
-var listElements = document.querySelectorAll(".boardContainer__main__list");
+var cards;
 boardContainer.addEventListener("dragover", function (e) {
     var cardIsDragged = false;
     cards.forEach(function (card) {
@@ -54,16 +53,15 @@ function createListElement(list) {
     listContainer.setAttribute("id", "" + list.uid);
     var header = document.createElement("div");
     header.classList.add("boardContainer__main__list__header");
-    // header.setAttribute("draggable", "true");
     header.setAttribute("id", list.name + "_header");
     header.innerHTML = "\n  <div class=\"listTitle\" >\n    <h2>" + list.name + "</h2>\n    <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n    </div>\n    <div class=\"boardContainer__main__list__card--addCard\">\n      <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"3\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n    </div>\n  ";
+    listContainer.appendChild(header);
     listContainer.addEventListener("dragstart", function () {
         listContainer.classList.add("is-draggin");
     });
     listContainer.addEventListener("dragend", function () {
         listContainer.classList.remove("is-draggin");
     });
-    listContainer.appendChild(header);
     listContainer.addEventListener("dragover", function (e) {
         var cardIsDragged = false;
         cards.forEach(function (card) {

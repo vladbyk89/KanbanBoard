@@ -1,9 +1,4 @@
-let cards = document.querySelectorAll(
-  ".boardContainer__main__list__card"
-) as NodeListOf<HTMLDivElement>;
-const listElements = document.querySelectorAll(
-  ".boardContainer__main__list"
-) as NodeListOf<HTMLDivElement>;
+let cards: NodeListOf<HTMLDivElement>;
 
 boardContainer.addEventListener("dragover", (e) => {
   let cardIsDragged = false;
@@ -78,7 +73,6 @@ function createListElement(list: List) {
 
   const header = document.createElement("div");
   header.classList.add("boardContainer__main__list__header");
-  // header.setAttribute("draggable", "true");
   header.setAttribute("id", `${list.name}_header`);
   header.innerHTML = `
   <div class="listTitle" >
@@ -91,14 +85,14 @@ function createListElement(list: List) {
     </div>
   `;
 
+  listContainer.appendChild(header);
+
   listContainer.addEventListener("dragstart", () => {
     listContainer.classList.add("is-draggin");
   });
   listContainer.addEventListener("dragend", () => {
     listContainer.classList.remove("is-draggin");
   });
-
-  listContainer.appendChild(header);
 
   listContainer.addEventListener("dragover", (e) => {
     let cardIsDragged = false;
