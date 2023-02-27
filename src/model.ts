@@ -21,7 +21,6 @@ class Board {
     public name: string,
     public backgroundColor: string,
     public lists: List[] = [],
-    public cards: List[] = [],
     public uid: string = Math.random().toString(36).slice(2)
   ) {}
 }

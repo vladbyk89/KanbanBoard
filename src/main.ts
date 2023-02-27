@@ -78,7 +78,7 @@ if (window.location.pathname.endsWith("board.html")) {
     const target = e.target as HTMLElement;
     if (target.className === "newCardBtn") {
       const listElement = target.closest(
-        ".boardContainer__main__column__list"
+        ".boardContainer__main__list"
       ) as HTMLDivElement;
       const newCardTextArea = listElement.querySelector(
         ".newCardTextArea"

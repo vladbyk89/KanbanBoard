@@ -20,14 +20,12 @@ var User = /** @class */ (function () {
     return User;
 }());
 var Board = /** @class */ (function () {
-    function Board(name, backgroundColor, lists, cards, uid) {
+    function Board(name, backgroundColor, lists, uid) {
         if (lists === void 0) { lists = []; }
-        if (cards === void 0) { cards = []; }
         if (uid === void 0) { uid = Math.random().toString(36).slice(2); }
         this.name = name;
         this.backgroundColor = backgroundColor;
         this.lists = lists;
-        this.cards = cards;
         this.uid = uid;
     }
     return Board;

@@ -32,7 +32,6 @@ function handleSignUp(e: Event) {
 
 function handleSignIn(e: Event) {
   e.preventDefault();
-  // e.stopPropagation();
   const userName = userNameInput.value;
   const password = passwordInput.value;
 
@@ -163,7 +162,7 @@ function createList() {
   if (newListInput.value == "") return;
   const newList = new List(newListInput.value);
   saveListTolocalStorage(newList);
-  boardContainer.append(createNewColumn(newList));
+  boardContainer.append(createListElement(newList));
   newListInput.value = "";
 }
 
@@ -189,15 +188,12 @@ function renderBoardInBoardPage() {
 
 function renderLists() {
   currentBoard.lists.forEach((list) => {
-    const columnElement = createNewColumn(list);
-    const ListElement = columnElement.querySelector(
-      ".boardContainer__main__column__list"
-    ) as HTMLDivElement;
+    const ListElement = createListElement(list)
 
     list.cards.forEach((card) => {
       createNewCard(card, ListElement);
     });
-    boardContainer.append(columnElement);
+    boardContainer.append(ListElement);
   });
 }
 
@@ -250,7 +246,7 @@ function saveCardTolocalStorage(cardName: string, listUid: string) {
 }
 
 
-// delete from local storage
+// delete board from local storage
 function deleteBoard(boardName: string) {
   const boardIndex = currentUser.boardList.findIndex(
     (board) => board.name === boardName
@@ -269,10 +265,4 @@ function editBoard(board: Board) {
   boardTitle.textContent = board.name;
   boardContainer.style.backgroundColor = board.backgroundColor;
   updateUserBoardList(currentUser, board);
-}
-
-
-function test(){
-  console.log('no!');
-  return true;
 }
