@@ -90,5 +90,6 @@ function createNewCard(cardName, list) {
     var cardTitle = list.querySelector(".boardContainer__main__column__list__header");
     list.insertBefore(card, cardTitle.nextSibling);
     card.addEventListener("dragstart", cardMovement);
+    console.log();
 }
 //contenteditable function for editing name

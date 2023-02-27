@@ -122,6 +122,7 @@ function createNewCard(cardName: string, list: Element) {
   ) as HTMLDivElement;
   list.insertBefore(card, cardTitle.nextSibling);
   card.addEventListener("dragstart" , cardMovement)
+  console.log();
 }
 
 
