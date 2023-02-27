@@ -256,7 +256,7 @@ body {
     &__column {
       // border-right: 10px solid white;
       width: 10%;
-      min-width: 200px;
+      min-width: 250px;
       min-height: 100%;
       padding: 0.5em;
       &__list {
@@ -296,10 +296,12 @@ body {
           margin: 0.5em 0;
           height: auto;
           width: 100%;
+          height: auto;
+          min-height: 75px;
           cursor: grab;
           display: flex;
           justify-content: space-between;
-          font-size: 2.5vh;
+          gap: 1em;
           i:hover{
             cursor:pointer;
             transform: scale(1.1);
