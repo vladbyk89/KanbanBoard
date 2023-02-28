@@ -47,21 +47,16 @@ function userCardFromStorage() {
         console.log(error);
     }
 }
-function findUser(userName) {
-    var getLocalStorage = localStorage.getItem("signedUpUsers");
-    if (getLocalStorage) {
-        var usersList = JSON.parse(getLocalStorage);
-        var findUser_1 = usersList.find(function (user) { return user.userName === userName; });
-        if (findUser_1)
-            return findUser_1;
-        return false;
-    }
-}
 function setCurrentUser(userName) {
     try {
-        if (findUser(userName)) {
-            currentUser = findUser(userName);
-            localStorage.setItem("currentUser", JSON.stringify(findUser(userName)));
+        var getLocalStorage = localStorage.getItem("signedUpUsers");
+        if (getLocalStorage) {
+            var usersList = JSON.parse(getLocalStorage);
+            var findUser = usersList.find(function (user) { return user.userName === userName; });
+            if (findUser) {
+                currentUser = findUser;
+                localStorage.setItem("currentUser", JSON.stringify(findUser));
+            }
         }
     }
     catch (error) {

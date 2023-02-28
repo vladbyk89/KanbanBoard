@@ -45,21 +45,16 @@ function userCardFromStorage() {
   }
 }
 
-function findUser(userName: string) {
-  const getLocalStorage = localStorage.getItem("signedUpUsers");
-  if (getLocalStorage) {
-    const usersList = JSON.parse(getLocalStorage) as User[];
-    const findUser = usersList.find((user) => user.userName === userName);
-    if (findUser) return findUser;
-    return false;
-  }
-}
-
 function setCurrentUser(userName: string) {
   try {
-    if (findUser(userName)) {
-      currentUser = findUser(userName) as User;
-      localStorage.setItem("currentUser", JSON.stringify(findUser(userName)));
+    const getLocalStorage = localStorage.getItem("signedUpUsers");
+    if (getLocalStorage) {
+      const usersList = JSON.parse(getLocalStorage) as User[];
+      const findUser = usersList.find((user) => user.userName === userName);
+      if (findUser) {
+        currentUser = findUser as User;
+        localStorage.setItem("currentUser", JSON.stringify(findUser));
+      }
     }
   } catch (error) {
     console.log(error);
