@@ -206,52 +206,10 @@ function editBoard(board) {
     boardContainer.style.backgroundColor = board.backgroundColor;
     updateUserBoardList(currentUser, board);
 }
-// function saveBoardChanges(){
-//   const listPositions = Array.from(document.getElementsByClassName('boardContainer__main__list')).map((list , index)=>{
-//     return {id: list.getAttribute('list.uid'), position: index};
-//   });
-//   localStorage.setItem("listPositions", JSON.stringify(listPositions));
-//   console.log(listPositions)
-// }
-// function handleListDragEnd(e: DragEvent): void {
-//   const draggedList = document.querySelector(".dragging") as HTMLDivElement;
-//   const newListOrder = Array.from(
-//     document.querySelectorAll(".boardContainer__main__list")
-//   ).map((list) => list.id);
-//   const oldListOrder = currentUser.boardList.map((board) => board.uid);
-//   if (oldListOrder.toString() !== newListOrder.toString()) {
-//     const newBoardList = [...currentUser.boardList];
-//     const [draggedListData] = newBoardList.splice(
-//       oldListOrder.indexOf(draggedList.id),
-//       1
-//     );
-//     newBoardList.splice(
-//       newListOrder.indexOf(draggedList.id),
-//       0,
-//       draggedListData
-//     );
-//     currentUser.boardList = newBoardList;
-//     localStorage.setItem("currentUser", JSON.stringify(currentUser));
-//   }
-// }
-// function saveBoardChanges(){
-//   const newList = Array.from(
-//     document.querySelectorAll(".boardContainer__main__list")
-//   ).map((list) => list.id);
-//   currentUser.boardList = newList.map(id => {
-//     return currentUser.boardList.find(board => board.uid === id)
-//   });
-//   localStorage.setItem("currentUser", JSON.stringify(currentUser));
-//   console.log(currentUser.boardList);
-// }
 function saveBoardChanges() {
-    var newList = Array.from(document.querySelectorAll(".boardContainer__main__list")).map(function (list) { return list.uid; });
-    console.log(newList);
-    if (currentUser) {
-        currentUser.boardList = newList;
-        localStorage.setItem("currentUser", JSON.stringify(currentUser));
-    }
-    else {
-        console.log("currentUser is undefined.");
-    }
+    var listPositions = Array.from(document.getElementsByClassName('boardContainer__main__list')).map(function (list, index) {
+        return { id: list.getAttribute('list.uid'), position: index };
+    });
+    localStorage.setItem("listPositions", JSON.stringify(listPositions));
+    console.log(listPositions);
 }
