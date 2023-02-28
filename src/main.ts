@@ -39,8 +39,8 @@ if (window.location.pathname.endsWith("index.html")) {
   searchBar.addEventListener("keyup", () => {
     if (searchBar.value != "") {
       boardArea.innerHTML = "";
-      const listToDisplay: Board[] = currentUser.boardList.filter(
-        (ele) => ele.name.toLowerCase().includes(searchBar.value)
+      const listToDisplay: Board[] = currentUser.boardList.filter((ele) =>
+        ele.name.toLowerCase().includes(searchBar.value)
       );
       if (listToDisplay) {
         renderBoardsToMain(listToDisplay);
@@ -71,6 +71,26 @@ if (window.location.pathname.endsWith("board.html")) {
   editBoardBtn.addEventListener("click", () => {
     editBoard(currentBoard);
     editBoardWindow.style.display = "none";
+  });
+  boardContainer.addEventListener("dragover", (e) => {
+    let cardIsDragged = false;
+    cards.forEach((card) => {
+      if (card.classList.contains("is-dragging")) {
+        cardIsDragged = true;
+      }
+    });
+
+    if (cardIsDragged) return;
+    e.preventDefault();
+
+    const leftList = insertLeftOfLisk(boardContainer, e.clientX);
+    const curList = boardContainer.querySelector(".is-draggin") as HTMLElement;
+
+    if (!leftList) {
+      boardContainer.appendChild(curList);
+    } else {
+      boardContainer.insertBefore(curList, leftList);
+    }
   });
 
   window.addEventListener("click", (e) => {

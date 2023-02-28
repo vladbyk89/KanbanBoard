@@ -1,3 +1,47 @@
+const insertLeftOfLisk = (zone: HTMLElement, mouseX: number) => {
+  const staticLists = zone.querySelectorAll(
+    ".boardContainer__main__list:not(.is-dragging)"
+  );
+
+  let closestTask: null | Element = null;
+  let closestOffset = Number.NEGATIVE_INFINITY;
+
+  staticLists.forEach((list) => {
+    const cardBoundaries = list.getBoundingClientRect();
+
+    const offset = mouseX - cardBoundaries.left - cardBoundaries.width / 2;
+
+    if (offset < 0 && offset > closestOffset) {
+      closestOffset = offset;
+      closestTask = list;
+    }
+  });
+
+  return closestTask;
+};
+
+const insertAboveTask = (zone, mouseY) => {
+  const staticCards = zone.querySelectorAll(
+    ".boardContainer__main__list__card:not(.is-dragging)"
+  );
+
+  let closestTask = null;
+  let closestOffset = Number.NEGATIVE_INFINITY;
+
+  staticCards.forEach((card) => {
+    const cardBoundaries = card.getBoundingClientRect();
+
+    const offset = mouseY - cardBoundaries.top - cardBoundaries.height / 2;
+
+    if (offset < 0 && offset > closestOffset) {
+      closestOffset = offset;
+      closestTask = card;
+    }
+  });
+
+  return closestTask;
+};
+
 function checkIfUserIsSignedIn() {
   try {
     if (!localStorage.getItem("currentUser")) {

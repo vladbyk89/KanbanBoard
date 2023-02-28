@@ -1,7 +1,7 @@
 let currentUser: User = currentUserFromStorage();
 let currentBoard: Board = currentBoardFromStorage();
 let userList: User[] = userListFromStorage();
-// let userCard: List = userCardFromStorage();
+let cards: NodeListOf<HTMLDivElement>;
 class User {
   constructor(
     public firstName: string,

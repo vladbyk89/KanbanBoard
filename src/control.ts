@@ -147,6 +147,59 @@ function createBoard() {
     console.log(error);
   }
 }
+function createListElement(list: List) {
+  const listContainer = document.createElement("div");
+  listContainer.classList.add("boardContainer__main__list");
+  listContainer.setAttribute("draggable", "true");
+  listContainer.setAttribute("id", `${list.uid}`);
+
+  const header = document.createElement("div");
+  header.classList.add("boardContainer__main__list__header");
+  header.setAttribute("id", `${list.name}_header`);
+  header.innerHTML = `
+  <div class="listTitle" >
+    <h2>${list.name}</h2>
+    <i class="fa-regular fa-pen-to-square editListBtn"></i>
+    </div>
+    <div class="boardContainer__main__list__card--addCard">
+      <textarea maxlength="30" class="newCardTextArea" cols="30" rows="3"></textarea>
+      <button class="newCardBtn">New Card</button>
+    </div>
+  `;
+
+  listContainer.appendChild(header);
+
+  listContainer.addEventListener("dragstart", () => {
+    listContainer.classList.add("is-draggin");
+  });
+  listContainer.addEventListener("dragend", () => {
+    listContainer.classList.remove("is-draggin");
+  });
+
+  listContainer.addEventListener("dragover", (e) => {
+    let cardIsDragged = false;
+    cards.forEach((card) => {
+      if (card.classList.contains("is-dragging")) {
+        cardIsDragged = true;
+      }
+    });
+    if (!cardIsDragged) return;
+    e.preventDefault();
+
+    const bottomTask = insertAboveTask(listContainer, e.clientY);
+    const curTask = document.querySelector(".is-dragging") as HTMLElement;
+
+    if (!bottomTask) {
+      listContainer.appendChild(curTask);
+    } else {
+      listContainer.insertBefore(curTask, bottomTask);
+    }
+  });
+
+  boardContainer.append(listContainer);
+  return listContainer;
+}
+
 
 function createList() {
   if (newListInput.value == "") return;
@@ -154,6 +207,32 @@ function createList() {
   boardContainer.append(createListElement(newList));
   saveListTolocalStorage(newList);
   newListInput.value = "";
+}
+
+function createNewCard(cardName: string, list: Element) {
+  const card = document.createElement("div");
+  card.classList.add("boardContainer__main__list__card");
+  card.setAttribute("draggable", "true");
+  card.innerHTML = `
+  <p>${cardName}</p>
+  <i class="fa-regular fa-pen-to-square editCardBtn"></i>
+  `;
+  const cardTitle = list.querySelector(
+    ".boardContainer__main__list__header"
+  ) as HTMLDivElement;
+  list.insertBefore(card, cardTitle.nextSibling);
+  card.addEventListener("dragstart", () => {
+    // console.log(card.parentNode.id);
+    card.classList.add("is-dragging");
+  });
+  card.addEventListener("dragend", () => {
+    // console.log(card.parentNode.id);
+    card.classList.remove("is-dragging");
+  });
+  // Add new card to cards variable
+  cards = document.querySelectorAll(
+    ".boardContainer__main__list__card"
+  ) as NodeListOf<HTMLDivElement>;
 }
 
 function renderBoardInBoardPage() {

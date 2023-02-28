@@ -26,7 +26,9 @@ if (window.location.pathname.endsWith("index.html")) {
     searchBar.addEventListener("keyup", function () {
         if (searchBar.value != "") {
             boardArea.innerHTML = "";
-            var listToDisplay = currentUser.boardList.filter(function (ele) { return ele.name.toLowerCase().includes(searchBar.value); });
+            var listToDisplay = currentUser.boardList.filter(function (ele) {
+                return ele.name.toLowerCase().includes(searchBar.value);
+            });
             if (listToDisplay) {
                 renderBoardsToMain(listToDisplay);
             }
@@ -53,6 +55,25 @@ if (window.location.pathname.endsWith("board.html")) {
     editBoardBtn.addEventListener("click", function () {
         editBoard(currentBoard);
         editBoardWindow.style.display = "none";
+    });
+    boardContainer.addEventListener("dragover", function (e) {
+        var cardIsDragged = false;
+        cards.forEach(function (card) {
+            if (card.classList.contains("is-dragging")) {
+                cardIsDragged = true;
+            }
+        });
+        if (cardIsDragged)
+            return;
+        e.preventDefault();
+        var leftList = insertLeftOfLisk(boardContainer, e.clientX);
+        var curList = boardContainer.querySelector(".is-draggin");
+        if (!leftList) {
+            boardContainer.appendChild(curList);
+        }
+        else {
+            boardContainer.insertBefore(curList, leftList);
+        }
     });
     window.addEventListener("click", function (e) {
         var target = e.target;

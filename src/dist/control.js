@@ -104,6 +104,44 @@ function createBoard() {
         console.log(error);
     }
 }
+function createListElement(list) {
+    var listContainer = document.createElement("div");
+    listContainer.classList.add("boardContainer__main__list");
+    listContainer.setAttribute("draggable", "true");
+    listContainer.setAttribute("id", "" + list.uid);
+    var header = document.createElement("div");
+    header.classList.add("boardContainer__main__list__header");
+    header.setAttribute("id", list.name + "_header");
+    header.innerHTML = "\n  <div class=\"listTitle\" >\n    <h2>" + list.name + "</h2>\n    <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n    </div>\n    <div class=\"boardContainer__main__list__card--addCard\">\n      <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"3\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n    </div>\n  ";
+    listContainer.appendChild(header);
+    listContainer.addEventListener("dragstart", function () {
+        listContainer.classList.add("is-draggin");
+    });
+    listContainer.addEventListener("dragend", function () {
+        listContainer.classList.remove("is-draggin");
+    });
+    listContainer.addEventListener("dragover", function (e) {
+        var cardIsDragged = false;
+        cards.forEach(function (card) {
+            if (card.classList.contains("is-dragging")) {
+                cardIsDragged = true;
+            }
+        });
+        if (!cardIsDragged)
+            return;
+        e.preventDefault();
+        var bottomTask = insertAboveTask(listContainer, e.clientY);
+        var curTask = document.querySelector(".is-dragging");
+        if (!bottomTask) {
+            listContainer.appendChild(curTask);
+        }
+        else {
+            listContainer.insertBefore(curTask, bottomTask);
+        }
+    });
+    boardContainer.append(listContainer);
+    return listContainer;
+}
 function createList() {
     if (newListInput.value == "")
         return;
@@ -111,6 +149,24 @@ function createList() {
     boardContainer.append(createListElement(newList));
     saveListTolocalStorage(newList);
     newListInput.value = "";
+}
+function createNewCard(cardName, list) {
+    var card = document.createElement("div");
+    card.classList.add("boardContainer__main__list__card");
+    card.setAttribute("draggable", "true");
+    card.innerHTML = "\n  <p>" + cardName + "</p>\n  <i class=\"fa-regular fa-pen-to-square editCardBtn\"></i>\n  ";
+    var cardTitle = list.querySelector(".boardContainer__main__list__header");
+    list.insertBefore(card, cardTitle.nextSibling);
+    card.addEventListener("dragstart", function () {
+        // console.log(card.parentNode.id);
+        card.classList.add("is-dragging");
+    });
+    card.addEventListener("dragend", function () {
+        // console.log(card.parentNode.id);
+        card.classList.remove("is-dragging");
+    });
+    // Add new card to cards variable
+    cards = document.querySelectorAll(".boardContainer__main__list__card");
 }
 function renderBoardInBoardPage() {
     try {
