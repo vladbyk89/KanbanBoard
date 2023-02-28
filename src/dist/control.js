@@ -128,9 +128,6 @@ function renderLists() {
         list.cards.forEach(function (card) {
             createNewCard(card, ListElement);
         });
-        boardContainer.append(ListElement);
-        // Add new card to cards variable
-        cards = document.querySelectorAll(".boardContainer__main__list__card");
     });
 }
 function saveListTolocalStorage(list) {

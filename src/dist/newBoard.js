@@ -81,6 +81,7 @@ function createListElement(list) {
             listContainer.insertBefore(curTask, bottomTask);
         }
     });
+    boardContainer.append(listContainer);
     return listContainer;
 }
 function createNewCard(cardName, list) {

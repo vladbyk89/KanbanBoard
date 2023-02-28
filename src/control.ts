@@ -173,11 +173,6 @@ function renderLists() {
     list.cards.forEach((card) => {
       createNewCard(card, ListElement);
     });
-    boardContainer.append(ListElement);
-    // Add new card to cards variable
-    cards = document.querySelectorAll(
-      ".boardContainer__main__list__card"
-    ) as NodeListOf<HTMLDivElement>;
   });
 }
 

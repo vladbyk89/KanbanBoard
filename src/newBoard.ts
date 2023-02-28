@@ -114,6 +114,7 @@ function createListElement(list: List) {
     }
   });
 
+  boardContainer.append(listContainer);
   return listContainer;
 }
 
