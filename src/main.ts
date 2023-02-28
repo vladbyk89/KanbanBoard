@@ -72,6 +72,8 @@ if (window.location.pathname.endsWith("board.html")) {
     editBoard(currentBoard);
     editBoardWindow.style.display = "none";
   });
+  
+
   boardContainer.addEventListener("dragover", (e) => {
     let cardIsDragged = false;
     cards.forEach((card) => {
@@ -91,6 +93,7 @@ if (window.location.pathname.endsWith("board.html")) {
     } else {
       boardContainer.insertBefore(curList, leftList);
     }
+    updateCurrentBoard();
   });
 
   window.addEventListener("click", (e) => {
@@ -104,7 +107,7 @@ if (window.location.pathname.endsWith("board.html")) {
       ) as HTMLTextAreaElement;
       if (newCardTextArea.value == "") return;
       saveCardTolocalStorage(newCardTextArea.value, listElement.id);
-      createNewCard(newCardTextArea.value, listElement);
+      createCardElement(newCardTextArea.value, listElement);
       newCardTextArea.value = "";
     }
     if (target.classList.contains("cancelEditBoardBtn")) {

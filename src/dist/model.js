@@ -40,6 +40,12 @@ var List = /** @class */ (function () {
     }
     return List;
 }());
+// class Card {
+//   constructor(
+//     public name: string,
+//     public uid = Math.random().toString(36).slice(2)
+//   ) {}
+// }
 var preMadeUserList = [
     new User("Vladislav", "Bykanov", "male", "vladb89", "12345678", "vladi@gmail.com", "0548155232"),
     new User("Itai", "Gelberg", "male", "itaiG", "12345", "itaiGel@gmail.com", "0541234567"),

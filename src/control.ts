@@ -74,9 +74,7 @@ function displayProfile(user: User) {
 
 function updateUserBoardList(userToUpdate: User, boardToUpdate: Board) {
   if (userList) {
-    const findUser = userList.find(
-      (user) => user.uid === userToUpdate.uid
-    );
+    const findUser = userList.find((user) => user.uid === userToUpdate.uid);
     if (findUser) {
       const findBoard = findUser.boardList.find(
         (board) => board.uid === boardToUpdate.uid
@@ -95,7 +93,6 @@ function updateUserBoardList(userToUpdate: User, boardToUpdate: Board) {
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
   }
 }
-
 
 function checkIfUserExists(userName: string, password: string) {
   try {
@@ -194,12 +191,12 @@ function createListElement(list: List) {
     } else {
       listContainer.insertBefore(curTask, bottomTask);
     }
+    updateCurrentBoard();
   });
 
   boardContainer.append(listContainer);
   return listContainer;
 }
-
 
 function createList() {
   if (newListInput.value == "") return;
@@ -209,7 +206,7 @@ function createList() {
   newListInput.value = "";
 }
 
-function createNewCard(cardName: string, list: Element) {
+function createCardElement(cardName: string, list: Element) {
   const card = document.createElement("div");
   card.classList.add("boardContainer__main__list__card");
   card.setAttribute("draggable", "true");
@@ -222,11 +219,9 @@ function createNewCard(cardName: string, list: Element) {
   ) as HTMLDivElement;
   list.insertBefore(card, cardTitle.nextSibling);
   card.addEventListener("dragstart", () => {
-    // console.log(card.parentNode.id);
     card.classList.add("is-dragging");
   });
   card.addEventListener("dragend", () => {
-    // console.log(card.parentNode.id);
     card.classList.remove("is-dragging");
   });
   // Add new card to cards variable
@@ -247,10 +242,10 @@ function renderBoardInBoardPage() {
 
 function renderLists() {
   currentBoard.lists.forEach((list) => {
-    const ListElement = createListElement(list)
+    const ListElement = createListElement(list);
 
     list.cards.forEach((card) => {
-      createNewCard(card, ListElement);
+      createCardElement(card, ListElement);
     });
   });
 }
@@ -263,13 +258,12 @@ function saveListTolocalStorage(list: List) {
   ) as Board;
   boardToUpdate.lists.push(list);
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  
+
   userList = userList.map((user) =>
     user.uid === currentUser.uid ? currentUser : user
   );
   localStorage.setItem("signedUpUsers", JSON.stringify(userList));
 }
-
 
 function saveCardTolocalStorage(cardName: string, listUid: string) {
   const findList = currentBoard.lists.find(
@@ -292,7 +286,6 @@ function saveCardTolocalStorage(cardName: string, listUid: string) {
   localStorage.setItem("signedUpUsers", JSON.stringify(userList));
 }
 
-
 // delete board from local storage
 function deleteBoard(boardName: string) {
   const boardIndex = currentUser.boardList.findIndex(
@@ -312,4 +305,31 @@ function editBoard(board: Board) {
   boardTitle.textContent = board.name;
   boardContainer.style.backgroundColor = board.backgroundColor;
   updateUserBoardList(currentUser, board);
+}
+
+// function relocateCard(cardName: string) {
+//   currentBoard = currentBoardFromStorage();
+//   const findList = currentBoard.lists.find((list) =>
+//     list.cards.includes(cardName)
+//   );
+//   if (findList) findList.cards.splice(findList.cards.indexOf(cardName), 1);
+//   console.log(findList);
+// }
+// relocateCard("Login");
+
+function updateCurrentBoard() {
+  currentBoard.lists = [];
+  const listElements = boardContainer.querySelectorAll(
+    ".boardContainer__main__list"
+  );
+  listElements.forEach((list) => {
+    const listName = list.querySelector("h2")?.innerHTML as string;
+    const cardsArr: string[] = [];
+    list.querySelectorAll("p").forEach((card) => cardsArr.push(card.innerHTML));
+    const newList = new List(listName, Array.from(cardsArr));
+    currentBoard.lists.push(newList);
+  });
+  console.log(currentBoard);
+  localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
+  updateUserBoardList(currentUser, currentBoard)
 }

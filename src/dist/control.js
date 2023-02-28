@@ -138,6 +138,7 @@ function createListElement(list) {
         else {
             listContainer.insertBefore(curTask, bottomTask);
         }
+        updateCurrentBoard();
     });
     boardContainer.append(listContainer);
     return listContainer;
@@ -150,7 +151,7 @@ function createList() {
     saveListTolocalStorage(newList);
     newListInput.value = "";
 }
-function createNewCard(cardName, list) {
+function createCardElement(cardName, list) {
     var card = document.createElement("div");
     card.classList.add("boardContainer__main__list__card");
     card.setAttribute("draggable", "true");
@@ -158,11 +159,9 @@ function createNewCard(cardName, list) {
     var cardTitle = list.querySelector(".boardContainer__main__list__header");
     list.insertBefore(card, cardTitle.nextSibling);
     card.addEventListener("dragstart", function () {
-        // console.log(card.parentNode.id);
         card.classList.add("is-dragging");
     });
     card.addEventListener("dragend", function () {
-        // console.log(card.parentNode.id);
         card.classList.remove("is-dragging");
     });
     // Add new card to cards variable
@@ -182,7 +181,7 @@ function renderLists() {
     currentBoard.lists.forEach(function (list) {
         var ListElement = createListElement(list);
         list.cards.forEach(function (card) {
-            createNewCard(card, ListElement);
+            createCardElement(card, ListElement);
         });
     });
 }
@@ -231,4 +230,28 @@ function editBoard(board) {
     boardTitle.textContent = board.name;
     boardContainer.style.backgroundColor = board.backgroundColor;
     updateUserBoardList(currentUser, board);
+}
+// function relocateCard(cardName: string) {
+//   currentBoard = currentBoardFromStorage();
+//   const findList = currentBoard.lists.find((list) =>
+//     list.cards.includes(cardName)
+//   );
+//   if (findList) findList.cards.splice(findList.cards.indexOf(cardName), 1);
+//   console.log(findList);
+// }
+// relocateCard("Login");
+function updateCurrentBoard() {
+    currentBoard.lists = [];
+    var listElements = boardContainer.querySelectorAll(".boardContainer__main__list");
+    listElements.forEach(function (list) {
+        var _a;
+        var listName = (_a = list.querySelector("h2")) === null || _a === void 0 ? void 0 : _a.innerHTML;
+        var cardsArr = [];
+        list.querySelectorAll("p").forEach(function (card) { return cardsArr.push(card.innerHTML); });
+        var newList = new List(listName, Array.from(cardsArr));
+        currentBoard.lists.push(newList);
+    });
+    console.log(currentBoard);
+    localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
+    updateUserBoardList(currentUser, currentBoard);
 }

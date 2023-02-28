@@ -74,6 +74,7 @@ if (window.location.pathname.endsWith("board.html")) {
         else {
             boardContainer.insertBefore(curList, leftList);
         }
+        updateCurrentBoard();
     });
     window.addEventListener("click", function (e) {
         var target = e.target;
@@ -83,7 +84,7 @@ if (window.location.pathname.endsWith("board.html")) {
             if (newCardTextArea.value == "")
                 return;
             saveCardTolocalStorage(newCardTextArea.value, listElement.id);
-            createNewCard(newCardTextArea.value, listElement);
+            createCardElement(newCardTextArea.value, listElement);
             newCardTextArea.value = "";
         }
         if (target.classList.contains("cancelEditBoardBtn")) {
