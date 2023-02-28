@@ -157,24 +157,6 @@ function createNewCard(cardName: string, list: Element) {
 // el.parentNode.removeChild(el);
 // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //contenteditable function for editing name
 
 // const cardMovement = () => {

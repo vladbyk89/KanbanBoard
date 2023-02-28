@@ -34,11 +34,10 @@ function handleSignIn(e) {
     }
 }
 function displayProfile(user) {
+    profileWindow.style.display = "flex";
     if (user) {
-        profileWindow.style.display = "flex";
         return (profileDiv.innerHTML = "\n      <ul>\n        <h1>About you</h1>\n        <li>Name: " + user.firstName + " " + user.lastName + "</li>\n        <li>Gender: " + user.gender + "</li>\n        <li>Email: " + user.email + "</li>\n        <li>Phone Number: " + user.phoneNumber + "</li>\n        <li>User Name: " + user.userName + "</li>\n        <li>Password: " + user.password + "</li>\n      </ul>\n      ");
     }
-    profileWindow.style.display = "flex";
     return (profileDiv.innerHTML = "\n    <ul>\n      <h1>About you</h1>\n      <li>Name: EMPTY</li>\n      <li>Gender: EMPTY</li>\n      <li>Email: EMPTY</li>\n      <li>Phone Number: EMPTY</li>\n      <li>User Name: EMPTY</li>\n      <li>Password: EMPTY</li>\n    </ul>\n    ");
 }
 function updateUserBoardList(userToUpdate, boardToUpdate) {
@@ -109,8 +108,8 @@ function createList() {
     if (newListInput.value == "")
         return;
     var newList = new List(newListInput.value);
-    saveListTolocalStorage(newList);
     boardContainer.append(createListElement(newList));
+    saveListTolocalStorage(newList);
     newListInput.value = "";
 }
 function renderBoardInBoardPage() {
@@ -130,6 +129,8 @@ function renderLists() {
             createNewCard(card, ListElement);
         });
         boardContainer.append(ListElement);
+        // Add new card to cards variable
+        cards = document.querySelectorAll(".boardContainer__main__list__card");
     });
 }
 function saveListTolocalStorage(list) {

@@ -61,8 +61,8 @@ if (window.location.pathname.endsWith("board.html")) {
             var newCardTextArea = listElement.querySelector(".newCardTextArea");
             if (newCardTextArea.value == "")
                 return;
-            createNewCard(newCardTextArea.value, listElement);
             saveCardTolocalStorage(newCardTextArea.value, listElement.id);
+            createNewCard(newCardTextArea.value, listElement);
             newCardTextArea.value = "";
         }
         if (target.classList.contains("cancelEditBoardBtn")) {

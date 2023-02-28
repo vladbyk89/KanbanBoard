@@ -45,8 +45,8 @@ function handleSignIn(e: Event) {
 }
 
 function displayProfile(user: User) {
+  profileWindow.style.display = "flex";
   if (user) {
-    profileWindow.style.display = "flex";
     return (profileDiv.innerHTML = `
       <ul>
         <h1>About you</h1>
@@ -59,7 +59,6 @@ function displayProfile(user: User) {
       </ul>
       `);
   }
-  profileWindow.style.display = "flex";
   return (profileDiv.innerHTML = `
     <ul>
       <h1>About you</h1>
@@ -152,8 +151,8 @@ function createBoard() {
 function createList() {
   if (newListInput.value == "") return;
   const newList = new List(newListInput.value);
-  saveListTolocalStorage(newList);
   boardContainer.append(createListElement(newList));
+  saveListTolocalStorage(newList);
   newListInput.value = "";
 }
 
@@ -175,6 +174,10 @@ function renderLists() {
       createNewCard(card, ListElement);
     });
     boardContainer.append(ListElement);
+    // Add new card to cards variable
+    cards = document.querySelectorAll(
+      ".boardContainer__main__list__card"
+    ) as NodeListOf<HTMLDivElement>;
   });
 }
 
