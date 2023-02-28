@@ -43,32 +43,22 @@ function displayProfile(user) {
 }
 function updateUserBoardList(userToUpdate, boardToUpdate) {
     if (userList) {
-        var findUser_1 = userList.find(function (user) { return user.uid === userToUpdate.uid; });
-        if (findUser_1) {
-            var findBoard = findUser_1.boardList.find(function (board) { return board.uid === boardToUpdate.uid; });
+        var findUser = userList.find(function (user) { return user.uid === userToUpdate.uid; });
+        if (findUser) {
+            var findBoard = findUser.boardList.find(function (board) { return board.uid === boardToUpdate.uid; });
             if (findBoard) {
-                var boardIndex = findUser_1.boardList.indexOf(findBoard);
+                var boardIndex = findUser.boardList.indexOf(findBoard);
                 // const indexCurrentUser = currentUser.boardList.indexOf(findBoard);
-                findUser_1.boardList[boardIndex] = boardToUpdate;
+                findUser.boardList[boardIndex] = boardToUpdate;
                 currentUser.boardList[boardIndex] = boardToUpdate;
             }
             else {
-                findUser_1.boardList.unshift(boardToUpdate);
+                findUser.boardList.unshift(boardToUpdate);
                 currentUser.boardList.unshift(boardToUpdate);
             }
         }
         localStorage.setItem("signedUpUsers", JSON.stringify(userList));
         localStorage.setItem("currentUser", JSON.stringify(currentUser));
-    }
-}
-function findUser(userName) {
-    var getLocalStorage = localStorage.getItem("signedUpUsers");
-    if (getLocalStorage) {
-        var usersList = JSON.parse(getLocalStorage);
-        var findUser_2 = usersList.find(function (user) { return user.userName === userName; });
-        if (findUser_2)
-            return findUser_2;
-        return false;
     }
 }
 function checkIfUserExists(userName, password) {
@@ -123,13 +113,6 @@ function createList() {
     boardContainer.append(createListElement(newList));
     newListInput.value = "";
 }
-function returnBoard(boardName) {
-    var findBoard = currentUser.boardList.find(function (board) { return board.name === boardName; });
-    if (findBoard) {
-        return findBoard;
-    }
-    return false;
-}
 function renderBoardInBoardPage() {
     try {
         boardTitle.textContent = currentBoard.name;
@@ -159,16 +142,6 @@ function saveListTolocalStorage(list) {
         return user.uid === currentUser.uid ? currentUser : user;
     });
     localStorage.setItem("signedUpUsers", JSON.stringify(userList));
-    // const signedUpUsers = JSON.parse(
-    //   localStorage.getItem("signedUpUsers") || "[]"
-    // ) as User[];
-    // for (let user of signedUpUsers) {
-    //   if (user.userName === currentUser.userName) {
-    //     user.boardList.find((board) => board.name === currentBoard.name)
-    //       ?.lists.push(list);
-    //     localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
-    //   }
-    // }
 }
 function saveCardTolocalStorage(cardName, listUid) {
     var findList = currentBoard.lists.find(function (list) { return list.uid === listUid; });

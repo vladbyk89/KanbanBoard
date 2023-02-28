@@ -1,4 +1,4 @@
-function checkIfCurrentUserExists() {
+function checkIfUserIsSignedIn() {
   try {
     if (!localStorage.getItem("currentUser")) {
       window.location.href = "entryPage.html";
@@ -7,18 +7,6 @@ function checkIfCurrentUserExists() {
     console.log(error);
   }
 }
-
-const findBoard = (input: string, arr: Board[]): Board[] | false => {
-  try {
-    const filteredByString = arr.filter((ele) =>
-      ele.name.toLowerCase().includes(input)
-    );
-    return filteredByString;
-  } catch (error) {
-    console.log(error);
-    return false;
-  }
-};
 
 function userListFromStorage() {
   const getLocalStorage = localStorage.getItem("signedUpUsers");
@@ -47,12 +35,23 @@ function currentBoardFromStorage() {
   }
 }
 
-function userCardFromStorage(){ //for getting the user cards from local storege
+function userCardFromStorage() {
+  //for getting the user cards from local storege
   try {
     const getCardLocalStorage = localStorage.getItem("currentBoard");
-    if(getCardLocalStorage) return JSON.parse(getCardLocalStorage)
+    if (getCardLocalStorage) return JSON.parse(getCardLocalStorage);
   } catch (error) {
     console.log(error);
+  }
+}
+
+function findUser(userName: string) {
+  const getLocalStorage = localStorage.getItem("signedUpUsers");
+  if (getLocalStorage) {
+    const usersList = JSON.parse(getLocalStorage) as User[];
+    const findUser = usersList.find((user) => user.userName === userName);
+    if (findUser) return findUser;
+    return false;
   }
 }
 

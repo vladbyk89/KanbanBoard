@@ -26,8 +26,8 @@ if (window.location.pathname.endsWith("index.html")) {
     searchBar.addEventListener("keyup", function () {
         if (searchBar.value != "") {
             boardArea.innerHTML = "";
-            var listToDisplay = findBoard(searchBar.value, currentUser.boardList);
-            if (listToDisplay !== false) {
+            var listToDisplay = currentUser.boardList.filter(function (ele) { return ele.name.toLowerCase().includes(searchBar.value); });
+            if (listToDisplay) {
                 renderBoardsToMain(listToDisplay);
             }
         }

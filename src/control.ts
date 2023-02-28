@@ -97,15 +97,6 @@ function updateUserBoardList(userToUpdate: User, boardToUpdate: Board) {
   }
 }
 
-function findUser(userName: string) {
-  const getLocalStorage = localStorage.getItem("signedUpUsers");
-  if (getLocalStorage) {
-    const usersList = JSON.parse(getLocalStorage) as User[];
-    const findUser = usersList.find((user) => user.userName === userName);
-    if (findUser) return findUser;
-    return false;
-  }
-}
 
 function checkIfUserExists(userName: string, password: string) {
   try {
@@ -166,16 +157,6 @@ function createList() {
   newListInput.value = "";
 }
 
-function returnBoard(boardName: string) {
-  const findBoard = currentUser.boardList.find(
-    (board) => board.name === boardName
-  );
-  if (findBoard) {
-    return findBoard;
-  }
-  return false;
-}
-
 function renderBoardInBoardPage() {
   try {
     boardTitle.textContent = currentBoard.name;
@@ -210,17 +191,6 @@ function saveListTolocalStorage(list: List) {
     user.uid === currentUser.uid ? currentUser : user
   );
   localStorage.setItem("signedUpUsers", JSON.stringify(userList));
-
-  // const signedUpUsers = JSON.parse(
-  //   localStorage.getItem("signedUpUsers") || "[]"
-  // ) as User[];
-  // for (let user of signedUpUsers) {
-  //   if (user.userName === currentUser.userName) {
-  //     user.boardList.find((board) => board.name === currentBoard.name)
-  //       ?.lists.push(list);
-  //     localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
-  //   }
-  // }
 }
 
 

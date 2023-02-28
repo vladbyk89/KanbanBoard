@@ -39,11 +39,10 @@ if (window.location.pathname.endsWith("index.html")) {
   searchBar.addEventListener("keyup", () => {
     if (searchBar.value != "") {
       boardArea.innerHTML = "";
-      const listToDisplay: Board[] | boolean = findBoard(
-        searchBar.value,
-        currentUser.boardList
+      const listToDisplay: Board[] = currentUser.boardList.filter(
+        (ele) => ele.name.toLowerCase().includes(searchBar.value)
       );
-      if (listToDisplay !== false) {
+      if (listToDisplay) {
         renderBoardsToMain(listToDisplay);
       }
     } else {

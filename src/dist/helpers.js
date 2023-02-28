@@ -1,4 +1,4 @@
-function checkIfCurrentUserExists() {
+function checkIfUserIsSignedIn() {
     try {
         if (!localStorage.getItem("currentUser")) {
             window.location.href = "entryPage.html";
@@ -8,18 +8,6 @@ function checkIfCurrentUserExists() {
         console.log(error);
     }
 }
-var findBoard = function (input, arr) {
-    try {
-        var filteredByString = arr.filter(function (ele) {
-            return ele.name.toLowerCase().includes(input);
-        });
-        return filteredByString;
-    }
-    catch (error) {
-        console.log(error);
-        return false;
-    }
-};
 function userListFromStorage() {
     var getLocalStorage = localStorage.getItem("signedUpUsers");
     if (getLocalStorage) {
@@ -49,6 +37,7 @@ function currentBoardFromStorage() {
     }
 }
 function userCardFromStorage() {
+    //for getting the user cards from local storege
     try {
         var getCardLocalStorage = localStorage.getItem("currentBoard");
         if (getCardLocalStorage)
@@ -56,6 +45,16 @@ function userCardFromStorage() {
     }
     catch (error) {
         console.log(error);
+    }
+}
+function findUser(userName) {
+    var getLocalStorage = localStorage.getItem("signedUpUsers");
+    if (getLocalStorage) {
+        var usersList = JSON.parse(getLocalStorage);
+        var findUser_1 = usersList.find(function (user) { return user.userName === userName; });
+        if (findUser_1)
+            return findUser_1;
+        return false;
     }
 }
 function setCurrentUser(userName) {
@@ -71,8 +70,8 @@ function setCurrentUser(userName) {
 }
 function setCurrentBoard(boardName) {
     try {
-        var findBoard_1 = currentUser.boardList.find(function (board) { return board.name === boardName; });
-        localStorage.setItem("currentBoard", JSON.stringify(findBoard_1));
+        var findBoard = currentUser.boardList.find(function (board) { return board.name === boardName; });
+        localStorage.setItem("currentBoard", JSON.stringify(findBoard));
     }
     catch (error) {
         console.log(error);
