@@ -52,6 +52,7 @@ function createListElement(list) {
     listContainer.classList.add("boardContainer__main__list");
     listContainer.setAttribute("draggable", "true");
     listContainer.setAttribute("id", "" + list.uid);
+    listContainer.setAttribute("ondragstart", "drag(event)");
     var header = document.createElement("div");
     header.classList.add("boardContainer__main__list__header");
     // header.setAttribute("draggable", "true");
@@ -90,6 +91,8 @@ function createNewCard(cardName, list) {
     var card = document.createElement("div");
     card.classList.add("boardContainer__main__list__card");
     card.setAttribute("draggable", "true");
+    card.setAttribute("ondragstart", "drag(event)");
+    card.setAttribute("id", "deleteId");
     card.innerHTML = "\n  <p>" + cardName + "</p>\n  <i class=\"fa-regular fa-pen-to-square editCardBtn\"></i>\n  ";
     var cardTitle = list.querySelector(".boardContainer__main__list__header");
     list.insertBefore(card, cardTitle.nextSibling);
@@ -101,6 +104,19 @@ function createNewCard(cardName, list) {
     });
     // Add new card to cards variable
     cards = document.querySelectorAll(".boardContainer__main__list__card");
+}
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+function drag(ev) {
+    ev.dataTransfer.setData("Text", ev.target.id);
+}
+function drop(ev) {
+    var _a;
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("Text");
+    var el = document.getElementById(data);
+    (_a = el === null || el === void 0 ? void 0 : el.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(el);
 }
 //contenteditable function for editing name
 // const cardMovement = () => {

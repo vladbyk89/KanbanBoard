@@ -26,8 +26,10 @@ if (window.location.pathname.endsWith("index.html")) {
     searchBar.addEventListener("keyup", function () {
         if (searchBar.value != "") {
             boardArea.innerHTML = "";
-            var listToDisplay = findBoard(searchBar.value, currentUser.boardList);
-            if (listToDisplay !== false) {
+            var listToDisplay = currentUser.boardList.filter(function (ele) {
+                return ele.name.toLowerCase().includes(searchBar.value);
+            });
+            if (listToDisplay) {
                 renderBoardsToMain(listToDisplay);
             }
         }
@@ -54,6 +56,27 @@ if (window.location.pathname.endsWith("board.html")) {
         editBoard(currentBoard);
         editBoardWindow.style.display = "none";
     });
+    boardContainer.addEventListener("dragover", function (e) {
+        var cardIsDragged = false;
+        cards.forEach(function (card) {
+            if (card.classList.contains("is-dragging")) {
+                cardIsDragged = true;
+            }
+        });
+        if (cardIsDragged)
+            return;
+        e.preventDefault();
+        var leftList = insertLeftOfLisk(boardContainer, e.clientX);
+        var curList = boardContainer.querySelector(".is-draggin");
+        if (!leftList) {
+            boardContainer.appendChild(curList);
+        }
+        else {
+            boardContainer.insertBefore(curList, leftList);
+        }
+        // currentBoard.update();
+        updateCurrentBoard();
+    });
     window.addEventListener("click", function (e) {
         var target = e.target;
         if (target.className === "newCardBtn") {
@@ -61,8 +84,8 @@ if (window.location.pathname.endsWith("board.html")) {
             var newCardTextArea = listElement.querySelector(".newCardTextArea");
             if (newCardTextArea.value == "")
                 return;
-            createNewCard(newCardTextArea.value, listElement);
-            saveCardTolocalStorage(newCardTextArea.value, listElement.id);
+            // saveCardTolocalStorage(newCardTextArea.value, listElement.id);
+            createCardElement(newCardTextArea.value, listElement);
             newCardTextArea.value = "";
         }
         if (target.classList.contains("cancelEditBoardBtn")) {

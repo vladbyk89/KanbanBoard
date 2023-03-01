@@ -32,7 +32,6 @@ function handleSignUp(e: Event) {
 
 function handleSignIn(e: Event) {
   e.preventDefault();
-  // e.stopPropagation();
   const userName = userNameInput.value;
   const password = passwordInput.value;
 
@@ -46,8 +45,8 @@ function handleSignIn(e: Event) {
 }
 
 function displayProfile(user: User) {
+  profileWindow.style.display = "flex";
   if (user) {
-    profileWindow.style.display = "flex";
     return (profileDiv.innerHTML = `
       <ul>
         <h1>About you</h1>
@@ -60,7 +59,6 @@ function displayProfile(user: User) {
       </ul>
       `);
   }
-  profileWindow.style.display = "flex";
   return (profileDiv.innerHTML = `
     <ul>
       <h1>About you</h1>
@@ -76,9 +74,7 @@ function displayProfile(user: User) {
 
 function updateUserBoardList(userToUpdate: User, boardToUpdate: Board) {
   if (userList) {
-    const findUser = userList.find(
-      (user) => user.uid === userToUpdate.uid
-    );
+    const findUser = userList.find((user) => user.uid === userToUpdate.uid);
     if (findUser) {
       const findBoard = findUser.boardList.find(
         (board) => board.uid === boardToUpdate.uid
@@ -95,16 +91,6 @@ function updateUserBoardList(userToUpdate: User, boardToUpdate: Board) {
     }
     localStorage.setItem("signedUpUsers", JSON.stringify(userList));
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  }
-}
-
-function findUser(userName: string) {
-  const getLocalStorage = localStorage.getItem("signedUpUsers");
-  if (getLocalStorage) {
-    const usersList = JSON.parse(getLocalStorage) as User[];
-    const findUser = usersList.find((user) => user.userName === userName);
-    if (findUser) return findUser;
-    return false;
   }
 }
 
@@ -158,23 +144,92 @@ function createBoard() {
     console.log(error);
   }
 }
+function createListElement(list: List) {
+  const listContainer = document.createElement("div");
+  listContainer.classList.add("boardContainer__main__list");
+  listContainer.setAttribute("draggable", "true");
+  listContainer.setAttribute("id", `${list.uid}`);
+
+  const header = document.createElement("div");
+  header.classList.add("boardContainer__main__list__header");
+  header.setAttribute("id", `${list.name}_header`);
+  header.innerHTML = `
+  <div class="listTitle" >
+    <h2>${list.name}</h2>
+    <i class="fa-regular fa-pen-to-square editListBtn"></i>
+    </div>
+    <div class="boardContainer__main__list__card--addCard">
+      <textarea maxlength="30" class="newCardTextArea" cols="30" rows="3"></textarea>
+      <button class="newCardBtn">New Card</button>
+    </div>
+  `;
+
+  listContainer.appendChild(header);
+
+  listContainer.addEventListener("dragstart", () => {
+    listContainer.classList.add("is-draggin");
+  });
+  listContainer.addEventListener("dragend", () => {
+    listContainer.classList.remove("is-draggin");
+  });
+
+  listContainer.addEventListener("dragover", (e) => {
+    let cardIsDragged = false;
+    cards.forEach((card) => {
+      if (card.classList.contains("is-dragging")) {
+        cardIsDragged = true;
+      }
+    });
+    if (!cardIsDragged) return;
+    e.preventDefault();
+
+    const bottomTask = insertAboveTask(listContainer, e.clientY);
+    const curTask = document.querySelector(".is-dragging") as HTMLElement;
+
+    if (!bottomTask) {
+      listContainer.appendChild(curTask);
+    } else {
+      listContainer.insertBefore(curTask, bottomTask);
+    }
+    updateCurrentBoard();
+  });
+
+  boardContainer.append(listContainer);
+  updateCurrentBoard();
+  return listContainer;
+}
 
 function createList() {
   if (newListInput.value == "") return;
   const newList = new List(newListInput.value);
-  saveListTolocalStorage(newList);
   boardContainer.append(createListElement(newList));
+  // saveListTolocalStorage(newList);
   newListInput.value = "";
 }
 
-function returnBoard(boardName: string) {
-  const findBoard = currentUser.boardList.find(
-    (board) => board.name === boardName
-  );
-  if (findBoard) {
-    return findBoard;
-  }
-  return false;
+function createCardElement(cardName: string, list: Element) {
+  const card = document.createElement("div");
+  card.classList.add("boardContainer__main__list__card");
+  card.setAttribute("draggable", "true");
+  card.innerHTML = `
+  <p>${cardName}</p>
+  <i class="fa-regular fa-pen-to-square editCardBtn"></i>
+  `;
+  const cardTitle = list.querySelector(
+    ".boardContainer__main__list__header"
+  ) as HTMLDivElement;
+  list.insertBefore(card, cardTitle.nextSibling);
+  card.addEventListener("dragstart", () => {
+    card.classList.add("is-dragging");
+  });
+  card.addEventListener("dragend", () => {
+    card.classList.remove("is-dragging");
+  });
+  updateCurrentBoard();
+  // Add new card to cards variable
+  cards = document.querySelectorAll(
+    ".boardContainer__main__list__card"
+  ) as NodeListOf<HTMLDivElement>;
 }
 
 function renderBoardInBoardPage() {
@@ -189,63 +244,13 @@ function renderBoardInBoardPage() {
 
 function renderLists() {
   currentBoard.lists.forEach((list) => {
-    const ListElement = createListElement(list)
+    const ListElement = createListElement(list);
 
     list.cards.forEach((card) => {
-      createNewCard(card, ListElement);
+      createCardElement(card, ListElement);
     });
-    boardContainer.append(ListElement);
   });
 }
-
-function saveListTolocalStorage(list: List) {
-  currentBoard.lists.push(list);
-  localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
-  const boardToUpdate = currentUser.boardList.find(
-    (board) => board.uid == currentBoard.uid
-  ) as Board;
-  boardToUpdate.lists.push(list);
-  localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  
-  userList = userList.map((user) =>
-    user.uid === currentUser.uid ? currentUser : user
-  );
-  localStorage.setItem("signedUpUsers", JSON.stringify(userList));
-
-  // const signedUpUsers = JSON.parse(
-  //   localStorage.getItem("signedUpUsers") || "[]"
-  // ) as User[];
-  // for (let user of signedUpUsers) {
-  //   if (user.userName === currentUser.userName) {
-  //     user.boardList.find((board) => board.name === currentBoard.name)
-  //       ?.lists.push(list);
-  //     localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
-  //   }
-  // }
-}
-
-
-function saveCardTolocalStorage(cardName: string, listUid: string) {
-  const findList = currentBoard.lists.find(
-    (list) => list.uid === listUid
-  ) as List;
-  if (findList) findList.cards.push(cardName);
-  currentBoard.lists = currentBoard.lists.map((list) =>
-    list.uid === findList.uid ? findList : list
-  );
-  localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
-
-  currentUser.boardList = currentUser.boardList.map((board) =>
-    board.uid === currentBoard.uid ? currentBoard : board
-  );
-  localStorage.setItem("currentUser", JSON.stringify(currentUser));
-
-  userList = userList.map((user) =>
-    user.uid === currentUser.uid ? currentUser : user
-  );
-  localStorage.setItem("signedUpUsers", JSON.stringify(userList));
-}
-
 
 // delete board from local storage
 function deleteBoard(boardName: string) {
@@ -268,11 +273,18 @@ function editBoard(board: Board) {
   updateUserBoardList(currentUser, board);
 }
 
-
-function saveBoardChanges(){
-  const listPositions = Array.from(document.getElementsByClassName('boardContainer__main__list')).map((list , index)=>{
-    return {id: list.getAttribute('list.uid'), position: index};
+function updateCurrentBoard() {
+  currentBoard.lists = [];
+  const listElements = boardContainer.querySelectorAll(
+    ".boardContainer__main__list"
+  );
+  listElements.forEach((list) => {
+    const listName = list.querySelector("h2")?.innerHTML as string;
+    const cardsArr: string[] = [];
+    list.querySelectorAll("p").forEach((card) => cardsArr.push(card.innerHTML));
+    const newList = new List(listName, Array.from(cardsArr));
+    currentBoard.lists.push(newList);
   });
-  localStorage.setItem("listPositions", JSON.stringify(listPositions));
-  console.log(listPositions)
+  localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
+  updateUserBoardList(currentUser, currentBoard)
 }

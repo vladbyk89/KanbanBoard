@@ -39,11 +39,10 @@ if (window.location.pathname.endsWith("index.html")) {
   searchBar.addEventListener("keyup", () => {
     if (searchBar.value != "") {
       boardArea.innerHTML = "";
-      const listToDisplay: Board[] | boolean = findBoard(
-        searchBar.value,
-        currentUser.boardList
+      const listToDisplay: Board[] = currentUser.boardList.filter((ele) =>
+        ele.name.toLowerCase().includes(searchBar.value)
       );
-      if (listToDisplay !== false) {
+      if (listToDisplay) {
         renderBoardsToMain(listToDisplay);
       }
     } else {
@@ -73,6 +72,30 @@ if (window.location.pathname.endsWith("board.html")) {
     editBoard(currentBoard);
     editBoardWindow.style.display = "none";
   });
+  
+
+  boardContainer.addEventListener("dragover", (e) => {
+    let cardIsDragged = false;
+    cards.forEach((card) => {
+      if (card.classList.contains("is-dragging")) {
+        cardIsDragged = true;
+      }
+    });
+
+    if (cardIsDragged) return;
+    e.preventDefault();
+
+    const leftList = insertLeftOfLisk(boardContainer, e.clientX);
+    const curList = boardContainer.querySelector(".is-draggin") as HTMLElement;
+
+    if (!leftList) {
+      boardContainer.appendChild(curList);
+    } else {
+      boardContainer.insertBefore(curList, leftList);
+    }
+    // currentBoard.update();
+    updateCurrentBoard();
+  });
 
   window.addEventListener("click", (e) => {
     const target = e.target as HTMLElement;
@@ -84,8 +107,8 @@ if (window.location.pathname.endsWith("board.html")) {
         ".newCardTextArea"
       ) as HTMLTextAreaElement;
       if (newCardTextArea.value == "") return;
-      createNewCard(newCardTextArea.value, listElement);
-      saveCardTolocalStorage(newCardTextArea.value, listElement.id);
+      // saveCardTolocalStorage(newCardTextArea.value, listElement.id);
+      createCardElement(newCardTextArea.value, listElement);
       newCardTextArea.value = "";
     }
     if (target.classList.contains("cancelEditBoardBtn")) {

@@ -1,4 +1,32 @@
-function checkIfCurrentUserExists() {
+var insertLeftOfLisk = function (zone, mouseX) {
+    var staticLists = zone.querySelectorAll(".boardContainer__main__list:not(.is-dragging)");
+    var closestTask = null;
+    var closestOffset = Number.NEGATIVE_INFINITY;
+    staticLists.forEach(function (list) {
+        var cardBoundaries = list.getBoundingClientRect();
+        var offset = mouseX - cardBoundaries.left - cardBoundaries.width / 2;
+        if (offset < 0 && offset > closestOffset) {
+            closestOffset = offset;
+            closestTask = list;
+        }
+    });
+    return closestTask;
+};
+var insertAboveTask = function (zone, mouseY) {
+    var staticCards = zone.querySelectorAll(".boardContainer__main__list__card:not(.is-dragging)");
+    var closestTask = null;
+    var closestOffset = Number.NEGATIVE_INFINITY;
+    staticCards.forEach(function (card) {
+        var cardBoundaries = card.getBoundingClientRect();
+        var offset = mouseY - cardBoundaries.top - cardBoundaries.height / 2;
+        if (offset < 0 && offset > closestOffset) {
+            closestOffset = offset;
+            closestTask = card;
+        }
+    });
+    return closestTask;
+};
+function checkIfUserIsSignedIn() {
     try {
         if (!localStorage.getItem("currentUser")) {
             window.location.href = "entryPage.html";
@@ -8,18 +36,6 @@ function checkIfCurrentUserExists() {
         console.log(error);
     }
 }
-var findBoard = function (input, arr) {
-    try {
-        var filteredByString = arr.filter(function (ele) {
-            return ele.name.toLowerCase().includes(input);
-        });
-        return filteredByString;
-    }
-    catch (error) {
-        console.log(error);
-        return false;
-    }
-};
 function userListFromStorage() {
     var getLocalStorage = localStorage.getItem("signedUpUsers");
     if (getLocalStorage) {
@@ -49,6 +65,7 @@ function currentBoardFromStorage() {
     }
 }
 function userCardFromStorage() {
+    //for getting the user cards from local storege
     try {
         var getCardLocalStorage = localStorage.getItem("currentBoard");
         if (getCardLocalStorage)
@@ -60,9 +77,14 @@ function userCardFromStorage() {
 }
 function setCurrentUser(userName) {
     try {
-        if (findUser(userName)) {
-            currentUser = findUser(userName);
-            localStorage.setItem("currentUser", JSON.stringify(findUser(userName)));
+        var getLocalStorage = localStorage.getItem("signedUpUsers");
+        if (getLocalStorage) {
+            var usersList = JSON.parse(getLocalStorage);
+            var findUser = usersList.find(function (user) { return user.userName === userName; });
+            if (findUser) {
+                currentUser = findUser;
+                localStorage.setItem("currentUser", JSON.stringify(findUser));
+            }
         }
     }
     catch (error) {
@@ -71,8 +93,8 @@ function setCurrentUser(userName) {
 }
 function setCurrentBoard(boardName) {
     try {
-        var findBoard_1 = currentUser.boardList.find(function (board) { return board.name === boardName; });
-        localStorage.setItem("currentBoard", JSON.stringify(findBoard_1));
+        var findBoard = currentUser.boardList.find(function (board) { return board.name === boardName; });
+        localStorage.setItem("currentBoard", JSON.stringify(findBoard));
     }
     catch (error) {
         console.log(error);

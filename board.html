@@ -18,12 +18,12 @@
     <script src="./src/dist/helpers.js" defer></script>
     <script src="./src/dist/control.js" defer></script>
     <script src="./src/dist/model.js" defer></script>
-    <script src="./src/dist/newBoard.js" defer></script>
     <script src="./src/dist/main.js" defer></script>
     <script src="./src/dist/icons.js" defer></script>
+    <!-- <script src="./src/dist/newBoard.js" defer></script> -->
   </head>
 
-  <body onload="checkIfCurrentUserExists()">
+  <body onload="checkIfUserIsSignedIn()">
     <div class="boardContainer">
       <nav class="boardContainer__topNav">
         <img
@@ -47,13 +47,15 @@
             class="fa-solid fa-bell notificationsIcon"
             title="Notifications"
           ></i>
-          <i
-            class="fa-solid fa-user profileIcon"
-            title="Profile Info"
-          ></i>
+          <i class="fa-solid fa-user profileIcon" title="Profile Info"></i>
         </div>
       </nav>
-      <main class="boardContainer__main"></main>
+      <main class="boardContainer__main">
+          <div id="dropdiv" ondrop="drop(event)" ondragover="allowDrop(event)">  
+                  <h3>Drop here to remove</h3>
+          </div>
+      </div>
+      </main>
     </div>
     <div class="profileWindow">
       <i class="fa-solid fa-arrow-right-from-bracket exitProfilePage"></i>
@@ -68,12 +70,18 @@
       </div>
       <div class="input">
         <label for="boardColor">Backround Color:</label>
-        <input type="color" value="#ffffff" name="boardColor" id="updatedBoardColor" />
+        <input
+          type="color"
+          value="#ffffff"
+          name="boardColor"
+          id="updatedBoardColor"
+        />
       </div>
       <div>
         <button class="editBoardBtn">Edit</button>
         <button class="cancelEditBoardBtn">CANCEL</button>
       </div>
     </div>
+
   </body>
 </html>

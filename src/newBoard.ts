@@ -1,9 +1,18 @@
-let cards = document.querySelectorAll(
-  ".boardContainer__main__list__card"
-) as NodeListOf<HTMLDivElement>;
-const listElements = document.querySelectorAll(
-  ".boardContainer__main__list"
-) as NodeListOf<HTMLDivElement>;
+// function allowDrop(ev)
+// {
+// ev.preventDefault();
+// }
+// function drag(ev)
+// {
+// ev.dataTransfer.setData("Text",ev.target.id);
+// }
+// function drop(ev)
+// {
+// ev.preventDefault();
+// var data=ev.dataTransfer.getData("Text");
+// var el = document.getElementById(data);
+// el.parentNode.removeChild(el);
+// }
 
 boardContainer.addEventListener("dragover", (e) => {
   let cardIsDragged = false;
@@ -76,11 +85,13 @@ function createListElement(list: List) {
   listContainer.classList.add("boardContainer__main__list");
   listContainer.setAttribute("draggable", "true");
   listContainer.setAttribute("id", `${list.uid}`);
+  listContainer.setAttribute("ondragstart", `drag(event)`);
 
   const header = document.createElement("div");
   header.classList.add("boardContainer__main__list__header");
   // header.setAttribute("draggable", "true");
   header.setAttribute("id", `${list.name}_header`);
+ 
   header.innerHTML = `
   <div class="listTitle" >
     <h2>${list.name}</h2>
@@ -128,6 +139,8 @@ function createNewCard(cardName: string, list: Element) {
   const card = document.createElement("div");
   card.classList.add("boardContainer__main__list__card");
   card.setAttribute("draggable", "true");
+  card.setAttribute("ondragstart", `drag(event)`);
+  card.setAttribute("id", `deleteId`);
   card.innerHTML = `
   <p>${cardName}</p>
   <i class="fa-regular fa-pen-to-square editCardBtn"></i>
@@ -146,6 +159,19 @@ function createNewCard(cardName: string, list: Element) {
   cards = document.querySelectorAll(
     ".boardContainer__main__list__card"
   ) as NodeListOf<HTMLDivElement>;
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+function drag(ev) {
+  ev.dataTransfer.setData("Text", ev.target.id);
+}
+function drop(ev) {
+  ev.preventDefault();
+  const data = ev.dataTransfer.getData("Text");
+  const el = document.getElementById(data);
+  el?.parentNode?.removeChild(el);
 }
 
 //contenteditable function for editing name

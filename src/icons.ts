@@ -6,6 +6,10 @@ window.addEventListener("click", (e) => {
   }
   if (target.classList.contains("notificationsIcon")) {
     // nothing yet...
+    console.log("click");
+    console.log(boardContainer);
+    boardContainer.style.background =
+      'url("../../img/blueBrickWall.jpg") no-repeat center / cover';
   }
 
   if (target.classList.contains("signOutbtn")) {
@@ -26,4 +30,3 @@ window.addEventListener("click", (e) => {
     colorInputEle.value = currentBoard.backgroundColor;
   }
 });
-
