@@ -106,7 +106,7 @@ if (window.location.pathname.endsWith("board.html")) {
         ".newCardTextArea"
       ) as HTMLTextAreaElement;
       if (newCardTextArea.value == "") return;
-      saveCardTolocalStorage(newCardTextArea.value, listElement.id);
+      // saveCardTolocalStorage(newCardTextArea.value, listElement.id);
       createCardElement(newCardTextArea.value, listElement);
       newCardTextArea.value = "";
     }

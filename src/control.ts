@@ -195,6 +195,7 @@ function createListElement(list: List) {
   });
 
   boardContainer.append(listContainer);
+  updateCurrentBoard();
   return listContainer;
 }
 
@@ -202,7 +203,7 @@ function createList() {
   if (newListInput.value == "") return;
   const newList = new List(newListInput.value);
   boardContainer.append(createListElement(newList));
-  saveListTolocalStorage(newList);
+  // saveListTolocalStorage(newList);
   newListInput.value = "";
 }
 
@@ -224,6 +225,7 @@ function createCardElement(cardName: string, list: Element) {
   card.addEventListener("dragend", () => {
     card.classList.remove("is-dragging");
   });
+  updateCurrentBoard();
   // Add new card to cards variable
   cards = document.querySelectorAll(
     ".boardContainer__main__list__card"
@@ -233,7 +235,7 @@ function createCardElement(cardName: string, list: Element) {
 function renderBoardInBoardPage() {
   try {
     boardTitle.textContent = currentBoard.name;
-    boardContainer.style.backgroundColor = currentBoard.backgroundColor;
+    // boardContainer.style.backgroundColor = currentBoard.backgroundColor;
     renderLists();
   } catch (error) {
     console.log(error);
@@ -250,41 +252,41 @@ function renderLists() {
   });
 }
 
-function saveListTolocalStorage(list: List) {
-  currentBoard.lists.push(list);
-  localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
-  const boardToUpdate = currentUser.boardList.find(
-    (board) => board.uid == currentBoard.uid
-  ) as Board;
-  boardToUpdate.lists.push(list);
-  localStorage.setItem("currentUser", JSON.stringify(currentUser));
+// function saveListTolocalStorage(list: List) {
+//   currentBoard.lists.push(list);
+//   localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
+//   const boardToUpdate = currentUser.boardList.find(
+//     (board) => board.uid == currentBoard.uid
+//   ) as Board;
+//   boardToUpdate.lists.push(list);
+//   localStorage.setItem("currentUser", JSON.stringify(currentUser));
 
-  userList = userList.map((user) =>
-    user.uid === currentUser.uid ? currentUser : user
-  );
-  localStorage.setItem("signedUpUsers", JSON.stringify(userList));
-}
+//   userList = userList.map((user) =>
+//     user.uid === currentUser.uid ? currentUser : user
+//   );
+//   localStorage.setItem("signedUpUsers", JSON.stringify(userList));
+// }
 
-function saveCardTolocalStorage(cardName: string, listUid: string) {
-  const findList = currentBoard.lists.find(
-    (list) => list.uid === listUid
-  ) as List;
-  if (findList) findList.cards.push(cardName);
-  currentBoard.lists = currentBoard.lists.map((list) =>
-    list.uid === findList.uid ? findList : list
-  );
-  localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
+// function saveCardTolocalStorage(cardName: string, listUid: string) {
+//   const findList = currentBoard.lists.find(
+//     (list) => list.uid === listUid
+//   ) as List;
+//   if (findList) findList.cards.push(cardName);
+//   currentBoard.lists = currentBoard.lists.map((list) =>
+//     list.uid === findList.uid ? findList : list
+//   );
+//   localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
 
-  currentUser.boardList = currentUser.boardList.map((board) =>
-    board.uid === currentBoard.uid ? currentBoard : board
-  );
-  localStorage.setItem("currentUser", JSON.stringify(currentUser));
+//   currentUser.boardList = currentUser.boardList.map((board) =>
+//     board.uid === currentBoard.uid ? currentBoard : board
+//   );
+//   localStorage.setItem("currentUser", JSON.stringify(currentUser));
 
-  userList = userList.map((user) =>
-    user.uid === currentUser.uid ? currentUser : user
-  );
-  localStorage.setItem("signedUpUsers", JSON.stringify(userList));
-}
+//   userList = userList.map((user) =>
+//     user.uid === currentUser.uid ? currentUser : user
+//   );
+//   localStorage.setItem("signedUpUsers", JSON.stringify(userList));
+// }
 
 // delete board from local storage
 function deleteBoard(boardName: string) {
@@ -329,7 +331,6 @@ function updateCurrentBoard() {
     const newList = new List(listName, Array.from(cardsArr));
     currentBoard.lists.push(newList);
   });
-  console.log(currentBoard);
   localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
   updateUserBoardList(currentUser, currentBoard)
 }

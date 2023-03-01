@@ -2,7 +2,7 @@ var _a, _b, _c, _d;
 var currentUser = currentUserFromStorage();
 var currentBoard = currentBoardFromStorage();
 var userList = userListFromStorage();
-var cards;
+var cards = document.querySelectorAll(".boardContainer__main__list__card");
 var User = /** @class */ (function () {
     function User(firstName, lastName, gender, userName, password, email, phoneNumber, boardList, uid) {
         if (boardList === void 0) { boardList = []; }

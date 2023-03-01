@@ -245,6 +245,8 @@ body {
   }
 
   &__main {
+    background: url("../../img/NASA.jpg") no-repeat center / cover;
+    // background: none;
     grid-area: main;
     display: flex;
     flex-direction: row;
@@ -363,7 +365,7 @@ body {
   position: fixed;
   bottom: 450px;
   width: 200px;
-  height:200px;
-  background-color:lightblue;
+  height: 200px;
+  background-color: lightblue;
   padding: 5px;
 }
