@@ -149,6 +149,7 @@ function createListElement(list: List) {
   listContainer.classList.add("boardContainer__main__list");
   listContainer.setAttribute("draggable", "true");
   listContainer.setAttribute("id", `${list.uid}`);
+  listContainer.setAttribute("ondragstart", `drag(event)`);
 
   const header = document.createElement("div");
   header.classList.add("boardContainer__main__list__header");
@@ -199,6 +200,7 @@ function createListElement(list: List) {
   return listContainer;
 }
 
+
 function createList() {
   if (newListInput.value == "") return;
   const newList = new List(newListInput.value);
@@ -211,6 +213,8 @@ function createCardElement(cardName: string, list: Element) {
   const card = document.createElement("div");
   card.classList.add("boardContainer__main__list__card");
   card.setAttribute("draggable", "true");
+  card.setAttribute("ondragstart", `drag(event)`);
+  card.setAttribute("id", `${uid()}`);
   card.innerHTML = `
   <p>${cardName}</p>
   <i class="fa-regular fa-pen-to-square editCardBtn"></i>
@@ -287,4 +291,18 @@ function updateCurrentBoard() {
   });
   localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
   updateUserBoardList(currentUser, currentBoard)
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+function drag(ev) {
+  ev.dataTransfer.setData("Text", ev.target.id);
+}
+function drop(ev) {
+  ev.preventDefault();
+  const data = ev.dataTransfer.getData("Text");
+  const el = document.getElementById(data);
+  el?.parentNode?.removeChild(el);
+  updateCurrentBoard()
 }
