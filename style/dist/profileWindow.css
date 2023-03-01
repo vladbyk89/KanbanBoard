@@ -1,12 +1,18 @@
 .profileWindow {
-  background-color: #36395a;
-  color: whitesmoke;
-  height: 100%;
-  width: 100%;
+  background-color: #0d0e0dd2;
+  color: wheat;
+  text-align: center;
+  align-items: center;
   position: absolute;
   display: flex;
   padding: 5%;
   display: none;
+}
+.profileWindow .profile {
+  align-items: center;
+}
+.profileWindow .exitProfilePage {
+  color: #e62c03;
 }
 .profileWindow .signOutbtn {
   background-color: initial;
