@@ -235,7 +235,7 @@ function createCardElement(cardName: string, list: Element) {
 function renderBoardInBoardPage() {
   try {
     boardTitle.textContent = currentBoard.name;
-    // boardContainer.style.backgroundColor = currentBoard.backgroundColor;
+    boardContainer.style.backgroundColor = currentBoard.backgroundColor;
     renderLists();
   } catch (error) {
     console.log(error);
@@ -251,42 +251,6 @@ function renderLists() {
     });
   });
 }
-
-// function saveListTolocalStorage(list: List) {
-//   currentBoard.lists.push(list);
-//   localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
-//   const boardToUpdate = currentUser.boardList.find(
-//     (board) => board.uid == currentBoard.uid
-//   ) as Board;
-//   boardToUpdate.lists.push(list);
-//   localStorage.setItem("currentUser", JSON.stringify(currentUser));
-
-//   userList = userList.map((user) =>
-//     user.uid === currentUser.uid ? currentUser : user
-//   );
-//   localStorage.setItem("signedUpUsers", JSON.stringify(userList));
-// }
-
-// function saveCardTolocalStorage(cardName: string, listUid: string) {
-//   const findList = currentBoard.lists.find(
-//     (list) => list.uid === listUid
-//   ) as List;
-//   if (findList) findList.cards.push(cardName);
-//   currentBoard.lists = currentBoard.lists.map((list) =>
-//     list.uid === findList.uid ? findList : list
-//   );
-//   localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
-
-//   currentUser.boardList = currentUser.boardList.map((board) =>
-//     board.uid === currentBoard.uid ? currentBoard : board
-//   );
-//   localStorage.setItem("currentUser", JSON.stringify(currentUser));
-
-//   userList = userList.map((user) =>
-//     user.uid === currentUser.uid ? currentUser : user
-//   );
-//   localStorage.setItem("signedUpUsers", JSON.stringify(userList));
-// }
 
 // delete board from local storage
 function deleteBoard(boardName: string) {
@@ -308,16 +272,6 @@ function editBoard(board: Board) {
   boardContainer.style.backgroundColor = board.backgroundColor;
   updateUserBoardList(currentUser, board);
 }
-
-// function relocateCard(cardName: string) {
-//   currentBoard = currentBoardFromStorage();
-//   const findList = currentBoard.lists.find((list) =>
-//     list.cards.includes(cardName)
-//   );
-//   if (findList) findList.cards.splice(findList.cards.indexOf(cardName), 1);
-//   console.log(findList);
-// }
-// relocateCard("Login");
 
 function updateCurrentBoard() {
   currentBoard.lists = [];
