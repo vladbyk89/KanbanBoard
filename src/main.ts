@@ -93,6 +93,7 @@ if (window.location.pathname.endsWith("board.html")) {
     } else {
       boardContainer.insertBefore(curList, leftList);
     }
+    // currentBoard.update();
     updateCurrentBoard();
   });
 

@@ -7,8 +7,8 @@
     <title>Kanban Board Main</title>
     <link rel="icon" type="image/png" href="./img/kanban3.png" />
     <link rel="stylesheet" href="./style/dist/style.css" />
-    <link rel="stylesheet" href="./style/dist/profileWindow.css">
-    <link rel="stylesheet" href="./style/dist/createBoardWindow.css">
+    <link rel="stylesheet" href="./style/dist/profileWindow.css" />
+    <link rel="stylesheet" href="./style/dist/createBoardWindow.css" />
     <script src="./src/dist/view.js" defer></script>
     <script src="./src/dist/helpers.js" defer></script>
     <script src="./src/dist/control.js" defer></script>
@@ -62,17 +62,26 @@
     </div>
     <div class="newBoardWindow">
       <h1>Create New Board</h1>
-      <div class="input">
-        <label for="boardName">Name your board:</label>
-        <input type="text" name="boardName" id="boardName" required/>
-      </div>
-      <div class="input">
-        <label for="boardColor">Backround Color:</label>
-        <input type="color" value="#ffffff" name="boardColor" id="boardColor"/>
-      </div>
+      <label for="boardName">Name your board:</label>
+      <input type="text" name="boardName" id="boardName" required />
+      <!-- <label for="boardColor">Backround Color:</label>
+        <input type="color" value="#ffffff" name="boardColor" id="boardColor"/> -->
+      <button>Choose Background Image</button>
+      <img src="./img/Screenshot 2023-02-18 230204.png" alt="KanbanLogo">
       <div>
         <button class="createBoardBtn">CREATE</button>
         <button class="cancelCreateBoardBtn">CANCEL</button>
+      </div>
+      <div class="backgroundSelectionDiv">
+        <img class="backgroundImage" src="./img/blueBrickWall.jpg" alt="">
+        <img class="backgroundImage" src="./img/bright-light.jpg" alt="">
+        <img class="backgroundImage" src="./img/do-something-great.jpg" alt="">
+        <img class="backgroundImage" src="./img/NASA.jpg" alt="">
+        <img class="backgroundImage" src="./img/pink-sea.jpg" alt="">
+        <img class="backgroundImage" src="./img/purple-flower.jpg" alt="">
+        <img class="backgroundImage" src="./img/sea.jpg" alt="">
+        <img class="backgroundImage" src="./img/wall-painting.jpg" alt="">
+        <img class="backgroundImage" src="./img/passion-led-us-here.jpg" alt="">
       </div>
     </div>
   </body>

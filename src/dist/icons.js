@@ -9,7 +9,7 @@ window.addEventListener("click", function (e) {
         console.log("click");
         console.log(boardContainer);
         boardContainer.style.background =
-            'background: url("../../../img/blueBrickWall.jpg") no-repeat center / cover';
+            'url("../../img/blueBrickWall.jpg") no-repeat center / cover';
     }
     if (target.classList.contains("signOutbtn")) {
         localStorage.removeItem("currentUser");

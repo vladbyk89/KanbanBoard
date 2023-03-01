@@ -25,6 +25,23 @@ class Board {
     public lists: List[] = [],
     public uid: string = Math.random().toString(36).slice(2)
   ) {}
+  // update() {
+  //   this.lists = [];
+  //   const listElements = boardContainer.querySelectorAll(
+  //     ".boardContainer__main__list"
+  //   );
+  //   listElements.forEach((list) => {
+  //     const listName = list.querySelector("h2")?.innerHTML as string;
+  //     const cardsArr: string[] = [];
+  //     list
+  //       .querySelectorAll("p")
+  //       .forEach((card) => cardsArr.push(card.innerHTML));
+  //     const newList = new List(listName, Array.from(cardsArr));
+  //     this.lists.push(newList);
+  //   });
+  //   localStorage.setItem("currentBoard", JSON.stringify(this));
+  //   updateUserBoardList(currentUser, this);
+  // }
 }
 
 class List {

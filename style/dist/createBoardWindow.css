@@ -1,7 +1,8 @@
-.newBoardWindow, .editBoardWindow {
+.newBoardWindow,
+.editBoardWindow {
   position: absolute;
   background-color: darkolivegreen;
-  height: 80vh;
+  height: 90vh;
   aspect-ratio: 1/1;
   border-radius: 20px;
   display: flex;
@@ -10,26 +11,47 @@
   justify-content: space-between;
   padding: 2rem 0;
   font-size: 1.3rem;
-  display: none;
   box-shadow: 0 0 10px 1000px rgba(0, 0, 0, 0.816);
-}
-.newBoardWindow .input, .editBoardWindow .input {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1em;
 }
-.newBoardWindow .input input, .editBoardWindow .input input {
+.newBoardWindow input,
+.editBoardWindow input {
   width: 40vh;
   height: 3rem;
   font-size: 1.5rem;
   padding: 0.3rem;
   outline: none;
 }
-.newBoardWindow button, .editBoardWindow button {
+.newBoardWindow button,
+.editBoardWindow button {
   border: 1px solid black;
   padding: 0.5em;
   font-size: 1.2rem;
   margin: 1em 3em;
+  cursor: pointer;
+}
+.newBoardWindow img,
+.editBoardWindow img {
+  height: 20%;
+}
+.newBoardWindow .backgroundSelectionDiv,
+.editBoardWindow .backgroundSelectionDiv {
+  position: absolute;
+  top: 15%;
+  background-color: #94939a;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0.5em;
+  padding: 0.5em;
+}
+.newBoardWindow .backgroundSelectionDiv img,
+.editBoardWindow .backgroundSelectionDiv img {
+  width: 100%;
+  height: 100%;
   cursor: pointer;
 }
