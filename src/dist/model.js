@@ -2,7 +2,7 @@ var _a, _b, _c, _d;
 var currentUser = currentUserFromStorage();
 var currentBoard = currentBoardFromStorage();
 var userList = userListFromStorage();
-// let userCard: List = userCardFromStorage();
+var cards = document.querySelectorAll(".boardContainer__main__list__card");
 var User = /** @class */ (function () {
     function User(firstName, lastName, gender, userName, password, email, phoneNumber, boardList, uid) {
         if (boardList === void 0) { boardList = []; }
@@ -20,14 +20,12 @@ var User = /** @class */ (function () {
     return User;
 }());
 var Board = /** @class */ (function () {
-    function Board(name, backgroundColor, lists, cards, uid) {
+    function Board(name, backgroundColor, lists, uid) {
         if (lists === void 0) { lists = []; }
-        if (cards === void 0) { cards = []; }
         if (uid === void 0) { uid = Math.random().toString(36).slice(2); }
         this.name = name;
         this.backgroundColor = backgroundColor;
         this.lists = lists;
-        this.cards = cards;
         this.uid = uid;
     }
     return Board;
@@ -42,6 +40,12 @@ var List = /** @class */ (function () {
     }
     return List;
 }());
+// class Card {
+//   constructor(
+//     public name: string,
+//     public uid = Math.random().toString(36).slice(2)
+//   ) {}
+// }
 var preMadeUserList = [
     new User("Vladislav", "Bykanov", "male", "vladb89", "12345678", "vladi@gmail.com", "0548155232"),
     new User("Itai", "Gelberg", "male", "itaiG", "12345", "itaiGel@gmail.com", "0541234567"),

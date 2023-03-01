@@ -1,9 +1,18 @@
-let cards = document.querySelectorAll(
-  ".boardContainer__main__list__card"
-) as NodeListOf<HTMLDivElement>;
-const listElements = document.querySelectorAll(
-  ".boardContainer__main__list"
-) as NodeListOf<HTMLDivElement>;
+// function allowDrop(ev)
+// {
+// ev.preventDefault();
+// }
+// function drag(ev)
+// {
+// ev.dataTransfer.setData("Text",ev.target.id);
+// }
+// function drop(ev)
+// {
+// ev.preventDefault();
+// var data=ev.dataTransfer.getData("Text");
+// var el = document.getElementById(data);
+// el.parentNode.removeChild(el);
+// }
 
 boardContainer.addEventListener("dragover", (e) => {
   let cardIsDragged = false;
