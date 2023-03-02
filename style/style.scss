@@ -37,8 +37,8 @@ body {
       border: 1px solid rgba(0, 0, 0, 0.249);
       outline: none;
       width: 20%;
-      font-size: 1.3rem;
-      padding: 0.3em;
+      font-size: 1.2rem;
+      padding: .3rem;
       font-family: sans-serif, FontAwesome;
     }
     &__search:focus::placeholder {
@@ -75,12 +75,9 @@ body {
       display: inline-flex;
       font-family: system-ui, -apple-system, system-ui, "Helvetica Neue",
         Helvetica, Arial, sans-serif;
-      font-size: 16px;
       font-weight: 600;
       justify-content: center;
       line-height: 1.25;
-      margin: 0;
-      min-height: 3rem;
       padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
       position: relative;
       text-decoration: none;
@@ -165,17 +162,16 @@ body {
             text-align: center;
             font-size: 2.5vh;
           }
-          button {
+          .removeBoard {
             position: absolute;
-            top: -1.5rem;
-            border: 1px solid rgba(0, 0, 0, 0.182);
-            padding: 0.3em;
+            right: 0;
+            bottom: -1rem;
             font-size: 0.5rem;
-            border-radius: 5px;
             cursor: pointer;
           }
-          button:hover {
-            background-color: rgba(255, 0, 0, 0.388);
+          .removeBoard:hover {
+            background-color: rgb(255, 0, 0);
+            border: none;
           }
         }
         .board:hover {
