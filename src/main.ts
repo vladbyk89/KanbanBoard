@@ -65,7 +65,9 @@ if (window.location.pathname.endsWith("index.html")) {
 
   boardArea.addEventListener("click", (e) => {
     const target = e.target as HTMLElement;
-    if (target.dataset.name) deleteBoard(target.dataset.name);
+    if (target.dataset.name) {
+      deleteBoard(target.dataset.name);
+    }
     renderBoardsToMain(currentUser.boardList);
 
     if (target.classList.contains("boardClick")) {
@@ -120,7 +122,6 @@ if (window.location.pathname.endsWith("board.html")) {
     } else {
       boardContainer.insertBefore(curList, leftList);
     }
-    // currentBoard.update();
     updateCurrentBoard();
   });
 
@@ -134,7 +135,6 @@ if (window.location.pathname.endsWith("board.html")) {
         ".newCardTextArea"
       ) as HTMLTextAreaElement;
       if (newCardTextArea.value == "") return;
-      // saveCardTolocalStorage(newCardTextArea.value, listElement.id);
       createCardElement(newCardTextArea.value, listElement);
       newCardTextArea.value = "";
     }
