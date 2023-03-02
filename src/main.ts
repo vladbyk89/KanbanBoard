@@ -21,7 +21,7 @@ if (window.location.pathname.endsWith("entryPage.html")) {
   });
 }
 
-// if user is in index.html run this
+// ---------------------- index.html ----------------------
 if (window.location.pathname.endsWith("index.html")) {
   renderBoardsToMain(currentUser.boardList);
 
@@ -34,6 +34,19 @@ if (window.location.pathname.endsWith("index.html")) {
     "click",
     () => (newBoardWindow.style.display = "none")
   );
+  boardImageBtn.addEventListener("click", () => {
+    backgroundImageSelectionDiv.style.display = "grid";
+    const backgroundImages = document.querySelectorAll(
+      ".backgroundImage"
+    ) as NodeListOf<HTMLImageElement>;
+    backgroundImages.forEach((img) => {
+      img.addEventListener("click", () => {
+        imageDisplayedInCreate.src = img.src;
+        backgroundImageSelectionDiv.style.display = "none";
+      });
+    });
+  });
+
   createBoardBtn.addEventListener("click", createBoard);
 
   searchBar.addEventListener("keyup", () => {
@@ -62,7 +75,7 @@ if (window.location.pathname.endsWith("index.html")) {
   });
 }
 
-// if user is in board.html run this
+//---------------------- board.html ----------------------
 if (window.location.pathname.endsWith("board.html")) {
   renderBoardInBoardPage();
 
@@ -72,7 +85,21 @@ if (window.location.pathname.endsWith("board.html")) {
     editBoard(currentBoard);
     editBoardWindow.style.display = "none";
   });
-  
+
+  updatedBoardImageBtn.addEventListener("click", () => {
+    console.log("click");
+    backgroundImageSelectionDiv.style.display = "grid";
+
+    const backgroundImages = document.querySelectorAll(
+      ".backgroundImage"
+    ) as NodeListOf<HTMLImageElement>;
+    backgroundImages.forEach((img) => {
+      img.addEventListener("click", () => {
+        imageDisplayedInEdit.src = img.src;
+        backgroundImageSelectionDiv.style.display = "none";
+      });
+    });
+  });
 
   boardContainer.addEventListener("dragover", (e) => {
     let cardIsDragged = false;
@@ -120,5 +147,9 @@ if (window.location.pathname.endsWith("board.html")) {
     if (target.classList.contains("editCardBtn")) {
       console.log("Edit Card btn is clicked");
     }
+  });
+
+  boardContainer.addEventListener("keyup", () => {
+    updateCurrentBoard();
   });
 }

@@ -6,10 +6,6 @@ window.addEventListener("click", function (e) {
     }
     if (target.classList.contains("notificationsIcon")) {
         // nothing yet...
-        console.log("click");
-        console.log(boardContainer);
-        boardContainer.style.background =
-            'url("../../img/blueBrickWall.jpg") no-repeat center / cover';
     }
     if (target.classList.contains("signOutbtn")) {
         localStorage.removeItem("currentUser");
@@ -25,6 +21,6 @@ window.addEventListener("click", function (e) {
     if (target.classList.contains("editBoardIcon")) {
         editBoardWindow.style.display = "flex";
         nameInputEle.value = currentBoard.name;
-        colorInputEle.value = currentBoard.backgroundColor;
+        imageDisplayedInEdit.src = currentBoard.backgroundImage;
     }
 });

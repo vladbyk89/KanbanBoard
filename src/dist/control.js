@@ -72,7 +72,7 @@ function renderBoardsToMain(listOFBoards) {
     try {
         boardArea.innerHTML = listOFBoards
             .map(function (board) {
-            return "\n      <div class='board' \n      style='background-color: " + board.backgroundColor + "'>\n      <p class=\"boardClick\">" + board.name + "</p>\n      <button class=\"removeBoard\" data-name=\"" + board.name + "\">DELETE</button>\n      </div>\n      ";
+            return "\n      <div class='board' style=\"background: url(" + board.backgroundImage + ") center center / cover no-repeat\">\n      <p class=\"boardClick\">" + board.name + "</p>\n      <button class=\"removeBoard\" data-name=\"" + board.name + "\">DELETE</button>\n      </div>\n      ";
         })
             .join("");
     }
@@ -83,21 +83,22 @@ function renderBoardsToMain(listOFBoards) {
 function createBoard() {
     try {
         var boardName_1 = newBoardName.value;
-        var boardColor = newnBoardColor.value;
-        if (boardName_1 && boardColor) {
+        // let boardColor = newnBoardColor.value;
+        var boardImage = imageDisplayedInCreate.src.toString();
+        if (boardName_1) {
             if (currentUser.boardList.find(function (board) { return board.name === boardName_1; }))
                 return alert("There is already a board with that name");
-            var newBoard = new Board(boardName_1, boardColor);
+            var newBoard = new Board(boardName_1, boardImage);
             updateUserBoardList(currentUser, newBoard);
             localStorage.setItem("currentBoard", JSON.stringify(newBoard));
-            location.href = "board.html";
             boardName_1 = "";
-            boardColor = "";
+            boardImage = "./img/Screenshot 2023-02-18 230204.png";
             newBoardWindow.style.display = "none";
             renderBoardsToMain(currentUser.boardList);
+            location.href = "board.html";
         }
         else {
-            alert("missing field");
+            alert("Board Name Is Missing");
         }
     }
     catch (error) {
@@ -175,7 +176,8 @@ function createCardElement(cardName, list) {
 function renderBoardInBoardPage() {
     try {
         boardTitle.textContent = currentBoard.name;
-        boardContainer.style.backgroundColor = currentBoard.backgroundColor;
+        // boardContainer.style.backgroundColor = currentBoard.backgroundColor;
+        boardContainer.style.background = "url(" + currentBoard.backgroundImage + ") no-repeat center / cover";
         renderLists();
     }
     catch (error) {
@@ -202,10 +204,12 @@ function deleteBoard(boardName) {
 }
 function editBoard(board) {
     board.name = nameInputEle.value;
-    board.backgroundColor = colorInputEle.value;
+    // board.backgroundColor = colorInputEle.value;
+    board.backgroundImage = imageDisplayedInEdit.src;
     localStorage.setItem("currentBoard", JSON.stringify(board));
     boardTitle.textContent = board.name;
-    boardContainer.style.backgroundColor = board.backgroundColor;
+    // boardContainer.style.backgroundColor = board.backgroundColor;
+    boardContainer.style.background = "url(" + currentBoard.backgroundImage + ") no-repeat center / cover";
     updateUserBoardList(currentUser, board);
 }
 function updateCurrentBoard() {

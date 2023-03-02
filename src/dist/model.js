@@ -20,11 +20,13 @@ var User = /** @class */ (function () {
     return User;
 }());
 var Board = /** @class */ (function () {
-    function Board(name, backgroundColor, lists, uid) {
+    function Board(name, 
+    // public backgroundColor: string,
+    backgroundImage, lists, uid) {
         if (lists === void 0) { lists = []; }
         if (uid === void 0) { uid = Math.random().toString(36).slice(2); }
         this.name = name;
-        this.backgroundColor = backgroundColor;
+        this.backgroundImage = backgroundImage;
         this.lists = lists;
         this.uid = uid;
     }
@@ -40,23 +42,17 @@ var List = /** @class */ (function () {
     }
     return List;
 }());
-// class Card {
-//   constructor(
-//     public name: string,
-//     public uid = Math.random().toString(36).slice(2)
-//   ) {}
-// }
 var preMadeUserList = [
     new User("Vladislav", "Bykanov", "male", "vladb89", "12345678", "vladi@gmail.com", "0548155232"),
     new User("Itai", "Gelberg", "male", "itaiG", "12345", "itaiGel@gmail.com", "0541234567"),
     new User("Itay", "Amosi", "male", "itayz1e", "144322", "itayAmosi@gmail.com", "0540987654"),
 ];
 var preMadeBoardList = [
-    new Board("Golden Board", "darkgoldenrod"),
-    new Board("Cyan Board", "darkcyan"),
-    new Board("Magenta Board", "darkmagenta"),
-    new Board("Salmon Board", "darksalmon"),
-    new Board("SlateBlue Board", "darkslateblue"),
+    new Board("Golden Board", "./img/NASA.jpg"),
+    new Board("Cyan Board", "./img/pink-sea.jpg"),
+    new Board("Magenta Board", "./img/purple-flower.jpg"),
+    new Board("Salmon Board", "./img/sea.jpg"),
+    new Board("SlateBlue Board", "./img/wall-painting.jpg"),
 ];
 var preMadeListList = [
     new List("To Do", ["buy chocolate", "write a song", "go for a jog"]),
