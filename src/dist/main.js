@@ -17,11 +17,21 @@ if (window.location.pathname.endsWith("entryPage.html")) {
         }
     });
 }
-// if user is in index.html run this
+// ---------------------- index.html ----------------------
 if (window.location.pathname.endsWith("index.html")) {
     renderBoardsToMain(currentUser.boardList);
     createBoardWindowBtn.addEventListener("click", function () { return (newBoardWindow.style.display = "flex"); });
     cancelCreateBoardBtn.addEventListener("click", function () { return (newBoardWindow.style.display = "none"); });
+    boardImageBtn.addEventListener("click", function () {
+        backgroundImageSelectionDiv.style.display = "grid";
+        var backgroundImages = document.querySelectorAll(".backgroundImage");
+        backgroundImages.forEach(function (img) {
+            img.addEventListener("click", function () {
+                imageDisplayedInCreate.src = img.src;
+                backgroundImageSelectionDiv.style.display = "none";
+            });
+        });
+    });
     createBoardBtn.addEventListener("click", createBoard);
     searchBar.addEventListener("keyup", function () {
         if (searchBar.value != "") {
@@ -48,13 +58,24 @@ if (window.location.pathname.endsWith("index.html")) {
         }
     });
 }
-// if user is in board.html run this
+//---------------------- board.html ----------------------
 if (window.location.pathname.endsWith("board.html")) {
     renderBoardInBoardPage();
     addListBtn.addEventListener("click", createList);
     editBoardBtn.addEventListener("click", function () {
         editBoard(currentBoard);
         editBoardWindow.style.display = "none";
+    });
+    updatedBoardImageBtn.addEventListener("click", function () {
+        console.log("click");
+        backgroundImageSelectionDiv.style.display = "grid";
+        var backgroundImages = document.querySelectorAll(".backgroundImage");
+        backgroundImages.forEach(function (img) {
+            img.addEventListener("click", function () {
+                imageDisplayedInEdit.src = img.src;
+                backgroundImageSelectionDiv.style.display = "none";
+            });
+        });
     });
     boardContainer.addEventListener("dragover", function (e) {
         var cardIsDragged = false;
@@ -97,5 +118,8 @@ if (window.location.pathname.endsWith("board.html")) {
         if (target.classList.contains("editCardBtn")) {
             console.log("Edit Card btn is clicked");
         }
+    });
+    boardContainer.addEventListener("keyup", function () {
+        updateCurrentBoard();
     });
 }

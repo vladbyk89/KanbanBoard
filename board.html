@@ -51,37 +51,48 @@
         </div>
       </nav>
       <main class="boardContainer__main">
-          <div id="dropdiv" ondrop="drop(event)" ondragover="allowDrop(event)">  
-                  <h3>Drop here to remove</h3>
-          </div>
-      </div>
+        <div id="dropdiv" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <h3>Drop here to remove</h3>
+        </div>
       </main>
     </div>
     <div class="profileWindow">
-      <i class="fa-solid fa-arrow-right-from-bracket exitProfilePage"></i>
+      <i
+        class="fa-solid fa-arrow-right-from-bracket exitProfilePage"
+        title="Back To Page"
+      ></i>
       <button class="signOutbtn">Sign out</button>
       <div class="profile"></div>
     </div>
     <div class="editBoardWindow">
       <h1>Edit Board</h1>
-      <div class="input">
-        <label for="boardName">Name your board:</label>
-        <input type="text" name="boardName" id="updatedBoardName" />
-      </div>
-      <div class="input">
-        <label for="boardColor">Backround Color:</label>
-        <input
-          type="color"
-          value="#ffffff"
-          name="boardColor"
-          id="updatedBoardColor"
-        />
-      </div>
+      <label for="boardName">Name your board:</label>
+      <input type="text" name="boardName" id="updatedBoardName" />
+      <button id="updatedBoardImageBtn">Edit Background Image</button>
+      <img id="imageEditWindow"  src="./img/Screenshot 2023-02-18 230204.png" alt="KanbanLogo" />
       <div>
         <button class="editBoardBtn">Edit</button>
         <button class="cancelEditBoardBtn">CANCEL</button>
       </div>
+      <div class="backgroundSelectionDiv">
+        <img class="backgroundImage" src="./img/blueBrickWall.jpg" alt="" />
+        <img class="backgroundImage" src="./img/bright-light.jpg" alt="" />
+        <img
+          class="backgroundImage"
+          src="./img/do-something-great.jpg"
+          alt=""
+        />
+        <img class="backgroundImage" src="./img/NASA.jpg" alt="" />
+        <img class="backgroundImage" src="./img/pink-sea.jpg" alt="" />
+        <img class="backgroundImage" src="./img/purple-flower.jpg" alt="" />
+        <img class="backgroundImage" src="./img/sea.jpg" alt="" />
+        <img class="backgroundImage" src="./img/wall-painting.jpg" alt="" />
+        <img
+          class="backgroundImage"
+          src="./img/passion-led-us-here.jpg"
+          alt=""
+        />
+      </div>
     </div>
-
   </body>
 </html>

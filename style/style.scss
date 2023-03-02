@@ -31,22 +31,20 @@ body {
     align-items: center;
     font-size: 3vh;
     &__logo {
-      // border: 1px solid black;
       height: 100%;
     }
     &__search {
       border: 1px solid rgba(0, 0, 0, 0.249);
       outline: none;
       width: 20%;
-      font-size: 1.3rem;
-      padding: 0.3em;
+      font-size: 1.2rem;
+      padding: .3rem;
       font-family: sans-serif, FontAwesome;
     }
     &__search:focus::placeholder {
       color: transparent;
     }
     &__iconDiv {
-      // border: 1px solid black;
       display: flex;
       justify-content: end;
       align-items: center;
@@ -56,7 +54,6 @@ body {
       i {
         cursor: pointer;
         color: #fa6400;
-        // border: 1px solid black;
         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.541);
         border-radius: 5px;
         padding: 0.3em;
@@ -78,12 +75,9 @@ body {
       display: inline-flex;
       font-family: system-ui, -apple-system, system-ui, "Helvetica Neue",
         Helvetica, Arial, sans-serif;
-      font-size: 16px;
       font-weight: 600;
       justify-content: center;
       line-height: 1.25;
-      margin: 0;
-      min-height: 3rem;
       padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
       position: relative;
       text-decoration: none;
@@ -112,7 +106,6 @@ body {
     }
   }
   &__main {
-    // border: 1px solid black;
     grid-area: main;
     display: flex;
     flex-direction: column;
@@ -134,14 +127,12 @@ body {
       width: 70%;
       max-width: 1200px;
       h3 {
-        // color: #fb8332;
         font-size: 2rem;
         text-shadow: 0 0 5px white;
         font-weight: bold;
         font-family: Arial, Helvetica, sans-serif;
       }
       &__boardArea {
-        // border: 10px solid black;
         width: 100%;
         height: auto;
         display: grid;
@@ -149,8 +140,7 @@ body {
         gap: 3rem;
         margin-top: 3em;
         .board {
-          // border: 5px solid rgba(0, 0, 0, 0.23);
-          box-shadow: 0 0 10px white;
+          box-shadow: 0 0 10px rgb(255, 255, 255);
           border-radius: 10px;
           width: 50%;
           max-width: 300px;
@@ -160,7 +150,8 @@ body {
           opacity: 0.8;
           p {
             color: #fff;
-            mix-blend-mode: difference;
+            text-shadow: 0 0 10px black;
+            // mix-blend-mode: difference;
             width: 100%;
             height: 100%;
             border-radius: 10px;
@@ -171,17 +162,16 @@ body {
             text-align: center;
             font-size: 2.5vh;
           }
-          button {
+          .removeBoard {
             position: absolute;
-            top: -1.5rem;
-            border: 1px solid rgba(0, 0, 0, 0.182);
-            padding: 0.3em;
+            right: 0;
+            bottom: -1rem;
             font-size: 0.5rem;
-            border-radius: 5px;
             cursor: pointer;
           }
-          button:hover {
-            background-color: rgba(255, 0, 0, 0.388);
+          .removeBoard:hover {
+            background-color: rgb(255, 0, 0);
+            border: none;
           }
         }
         .board:hover {
@@ -222,18 +212,15 @@ body {
       }
     }
     &__iconDiv {
-      // border: 1px solid black;
       display: flex;
       justify-content: end;
       align-items: center;
       padding: 0 1em;
       gap: 3rem;
       height: 100%;
-      // margin-right: 15%;
       i {
         cursor: pointer;
         color: #fa6400;
-        // border: 1px solid black;
         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.541);
         border-radius: 5px;
         padding: 0.3em;
@@ -245,8 +232,6 @@ body {
   }
 
   &__main {
-    background: url("../../img/NASA.jpg") no-repeat center / cover;
-    // background: none;
     grid-area: main;
     display: flex;
     flex-direction: row;
@@ -255,7 +240,6 @@ body {
     overflow: auto;
     padding: 1rem;
     &__list {
-      // border: 5px solid black;
       width: 15%;
       max-width: 250px;
       min-height: 100%;
@@ -265,7 +249,6 @@ body {
       cursor: grab;
 
       &__header {
-        // border: 1px solid black;
         background-color: rgba(0, 0, 0, 0.25);
         .listTitle {
           color: #fff;
@@ -367,6 +350,10 @@ body {
   right: 0px;
   width: 200px;
   height: 200px;
-  background-color: lightblue;
+  background-color: rgba(223, 47, 16, 0.658);
   padding: 5px;
+  color: rgb(12, 10, 10);
+  h3{
+padding-top: 35%;
+  }
 }

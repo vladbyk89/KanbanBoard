@@ -109,8 +109,7 @@ function renderBoardsToMain(listOFBoards: Board[]) {
     boardArea.innerHTML = listOFBoards
       .map((board) => {
         return `
-      <div class='board' 
-      style='background-color: ${board.backgroundColor}'>
+      <div class='board' style="background: url(${board.backgroundImage}) center center / cover no-repeat">
       <p class="boardClick">${board.name}</p>
       <button class="removeBoard" data-name="${board.name}">DELETE</button>
       </div>
@@ -125,20 +124,21 @@ function renderBoardsToMain(listOFBoards: Board[]) {
 function createBoard() {
   try {
     let boardName = newBoardName.value;
-    let boardColor = newnBoardColor.value;
-    if (boardName && boardColor) {
+    // let boardColor = newnBoardColor.value;
+    let boardImage = imageDisplayedInCreate.src.toString();
+    if (boardName) {
       if (currentUser.boardList.find((board) => board.name === boardName))
         return alert("There is already a board with that name");
-      const newBoard = new Board(boardName, boardColor);
+      const newBoard = new Board(boardName, boardImage);
       updateUserBoardList(currentUser, newBoard);
       localStorage.setItem("currentBoard", JSON.stringify(newBoard));
-      location.href = "board.html";
       boardName = "";
-      boardColor = "";
+      boardImage = "./img/Screenshot 2023-02-18 230204.png";
       newBoardWindow.style.display = "none";
       renderBoardsToMain(currentUser.boardList);
+      location.href = "board.html";
     } else {
-      alert("missing field");
+      alert("Board Name Is Missing");
     }
   } catch (error) {
     console.log(error);
@@ -149,13 +149,14 @@ function createListElement(list: List) {
   listContainer.classList.add("boardContainer__main__list");
   listContainer.setAttribute("draggable", "true");
   listContainer.setAttribute("id", `${list.uid}`);
+  listContainer.setAttribute("ondragstart", `drag(event)`);
 
   const header = document.createElement("div");
   header.classList.add("boardContainer__main__list__header");
   header.setAttribute("id", `${list.name}_header`);
   header.innerHTML = `
   <div class="listTitle" >
-    <h2>${list.name}</h2>
+    <h2 contenteditable>${list.name}</h2>
     <i class="fa-regular fa-pen-to-square editListBtn"></i>
     </div>
     <div class="boardContainer__main__list__card--addCard">
@@ -211,8 +212,10 @@ function createCardElement(cardName: string, list: Element) {
   const card = document.createElement("div");
   card.classList.add("boardContainer__main__list__card");
   card.setAttribute("draggable", "true");
+  card.setAttribute("ondragstart", `drag(event)`);
+  card.setAttribute("id", `${uid()}`);
   card.innerHTML = `
-  <p>${cardName}</p>
+  <p contenteditable>${cardName}</p>
   <i class="fa-regular fa-pen-to-square editCardBtn"></i>
   `;
   const cardTitle = list.querySelector(
@@ -235,7 +238,8 @@ function createCardElement(cardName: string, list: Element) {
 function renderBoardInBoardPage() {
   try {
     boardTitle.textContent = currentBoard.name;
-    boardContainer.style.backgroundColor = currentBoard.backgroundColor;
+    // boardContainer.style.backgroundColor = currentBoard.backgroundColor;
+    boardContainer.style.background = `url(${currentBoard.backgroundImage}) no-repeat center / cover`;
     renderLists();
   } catch (error) {
     console.log(error);
@@ -266,10 +270,12 @@ function deleteBoard(boardName: string) {
 
 function editBoard(board: Board) {
   board.name = nameInputEle.value;
-  board.backgroundColor = colorInputEle.value;
+  // board.backgroundColor = colorInputEle.value;
+  board.backgroundImage = imageDisplayedInEdit.src;
   localStorage.setItem("currentBoard", JSON.stringify(board));
   boardTitle.textContent = board.name;
-  boardContainer.style.backgroundColor = board.backgroundColor;
+  // boardContainer.style.backgroundColor = board.backgroundColor;
+  boardContainer.style.background = `url(${currentBoard.backgroundImage}) no-repeat center / cover`;
   updateUserBoardList(currentUser, board);
 }
 
@@ -286,5 +292,19 @@ function updateCurrentBoard() {
     currentBoard.lists.push(newList);
   });
   localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
-  updateUserBoardList(currentUser, currentBoard)
+  updateUserBoardList(currentUser, currentBoard);
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+function drag(ev) {
+  ev.dataTransfer.setData("Text", ev.target.id);
+}
+function drop(ev) {
+  ev.preventDefault();
+  const data = ev.dataTransfer.getData("Text");
+  const el = document.getElementById(data);
+  el?.parentNode?.removeChild(el);
+  updateCurrentBoard();
 }
