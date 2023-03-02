@@ -336,6 +336,7 @@ body {
   width: 200px;
   height: 200px;
   background-color: rgba(223, 47, 16, 0.658);
+  border: 1px solid black;
   padding: 5px;
   color: #0c0a0a;
 }
