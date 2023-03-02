@@ -36,3 +36,4 @@ var updatedBoardImageBtn = document.querySelector("#updatedBoardImageBtn");
 var newListInput = document.querySelector("#newListInput");
 var nameInputEle = document.querySelector("#updatedBoardName");
 var colorInputEle = document.querySelector("#updatedBoardColor");
+var addNewCardInputs = document.querySelectorAll(".newCardTextArea");

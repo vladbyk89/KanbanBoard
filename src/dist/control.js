@@ -116,6 +116,16 @@ function createListElement(list) {
     header.setAttribute("id", list.name + "_header");
     header.innerHTML = "\n  <div class=\"listTitle\" >\n    <h2 contenteditable>" + list.name + "</h2>\n    <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n    </div>\n    <div class=\"boardContainer__main__list__card--addCard\">\n      <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"3\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n    </div>\n  ";
     listContainer.appendChild(header);
+    var newCardTextArea = listContainer.querySelector(".newCardTextArea");
+    newCardTextArea.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            var newCardBtn = listContainer.querySelector(".newCardBtn");
+            if (newCardTextArea.value.trim() !== '') {
+                createCardElement(newCardTextArea.value.trim(), listContainer);
+                newCardTextArea.value = "";
+            }
+        }
+    });
     listContainer.addEventListener("dragstart", function () {
         listContainer.classList.add("is-draggin");
     });

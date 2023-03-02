@@ -70,7 +70,8 @@ const editBoardWindow = document.querySelector(
   ".editBoardWindow"
 ) as HTMLDivElement;
 const imageDisplayedInEdit = document.querySelector(
-  "#imageEditWindow") as HTMLImageElement;
+  "#imageEditWindow"
+) as HTMLImageElement;
 
 //Buttons
 const addListBtn = document.querySelector("#addListBtn") as HTMLButtonElement;
@@ -80,6 +81,7 @@ const editBoardBtn = document.querySelector(
 const updatedBoardImageBtn = document.querySelector(
   "#updatedBoardImageBtn"
 ) as HTMLButtonElement;
+
 
 // Input
 const newListInput = document.querySelector(
@@ -91,3 +93,6 @@ const nameInputEle = document.querySelector(
 const colorInputEle = document.querySelector(
   "#updatedBoardColor"
 ) as HTMLInputElement;
+const addNewCardInputs  = document.querySelectorAll(
+  ".newCardTextArea"
+);

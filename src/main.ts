@@ -152,4 +152,9 @@ if (window.location.pathname.endsWith("board.html")) {
   boardContainer.addEventListener("keyup", () => {
     updateCurrentBoard();
   });
+  newListInput.addEventListener("keyup", (event) =>{
+    if(event.keyCode === 13){
+      createList();
+    }
+  })
 }
