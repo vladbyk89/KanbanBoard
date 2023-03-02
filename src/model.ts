@@ -21,7 +21,8 @@ class User {
 class Board {
   constructor(
     public name: string,
-    public backgroundColor: string,
+    // public backgroundColor: string,
+    public backgroundImage: string,
     public lists: List[] = [],
     public uid: string = Math.random().toString(36).slice(2)
   ) {}
@@ -51,13 +52,6 @@ class List {
     public uid = Math.random().toString(36).slice(2)
   ) {}
 }
-
-// class Card {
-//   constructor(
-//     public name: string,
-//     public uid = Math.random().toString(36).slice(2)
-//   ) {}
-// }
 
 const preMadeUserList: User[] = [
   new User(
@@ -90,11 +84,11 @@ const preMadeUserList: User[] = [
 ];
 
 const preMadeBoardList: Board[] = [
-  new Board("Golden Board", "darkgoldenrod"),
-  new Board("Cyan Board", "darkcyan"),
-  new Board("Magenta Board", "darkmagenta"),
-  new Board("Salmon Board", "darksalmon"),
-  new Board("SlateBlue Board", "darkslateblue"),
+  new Board("Golden Board", "./img/NASA.jpg"),
+  new Board("Cyan Board", "./img/pink-sea.jpg"),
+  new Board("Magenta Board", "./img/purple-flower.jpg"),
+  new Board("Salmon Board", "./img/sea.jpg"),
+  new Board("SlateBlue Board", "./img/wall-painting.jpg"),
 ];
 
 const preMadeListList = [

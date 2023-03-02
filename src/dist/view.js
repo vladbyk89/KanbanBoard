@@ -12,10 +12,13 @@ var profileWindow = document.querySelector(".profileWindow");
 var profileDiv = document.querySelector(".profile");
 var newBoardWindow = document.querySelector(".newBoardWindow");
 var boardArea = document.querySelector(".mainpageContainer__main__boards__boardArea");
+var backgroundImageSelectionDiv = document.querySelector(".backgroundSelectionDiv");
+var imageDisplayedInCreate = document.querySelector("#imageCreateWindow");
 // Buttons
 var createBoardWindowBtn = document.querySelector(".createBoardWindowBtn");
 var createBoardBtn = document.querySelector(".createBoardBtn");
 var cancelCreateBoardBtn = document.querySelector(".cancelCreateBoardBtn");
+var boardImageBtn = document.querySelector("#boardImageBtn");
 // Input
 var newBoardName = document.querySelector("#boardName");
 var newnBoardColor = document.querySelector("#boardColor");
@@ -24,9 +27,11 @@ var searchBar = document.querySelector(".mainpageContainer__topNav__search");
 var boardContainer = document.querySelector(".boardContainer__main");
 var boardTitle = document.querySelector(".boardContainer__topNav__boardName");
 var editBoardWindow = document.querySelector(".editBoardWindow");
+var imageDisplayedInEdit = document.querySelector("#imageEditWindow");
 //Buttons
 var addListBtn = document.querySelector("#addListBtn");
 var editBoardBtn = document.querySelector(".editBoardBtn");
+var updatedBoardImageBtn = document.querySelector("#updatedBoardImageBtn");
 // Input
 var newListInput = document.querySelector("#newListInput");
 var nameInputEle = document.querySelector("#updatedBoardName");

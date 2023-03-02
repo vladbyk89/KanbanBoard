@@ -29,6 +29,12 @@ const newBoardWindow = document.querySelector(
 const boardArea = document.querySelector(
   ".mainpageContainer__main__boards__boardArea"
 ) as HTMLDivElement;
+const backgroundImageSelectionDiv = document.querySelector(
+  ".backgroundSelectionDiv"
+) as HTMLDivElement;
+const imageDisplayedInCreate = document.querySelector(
+  "#imageCreateWindow"
+) as HTMLImageElement;
 
 // Buttons
 const createBoardWindowBtn = document.querySelector(
@@ -39,6 +45,9 @@ const createBoardBtn = document.querySelector(
 ) as HTMLButtonElement;
 const cancelCreateBoardBtn = document.querySelector(
   ".cancelCreateBoardBtn"
+) as HTMLButtonElement;
+const boardImageBtn = document.querySelector(
+  "#boardImageBtn"
 ) as HTMLButtonElement;
 
 // Input
@@ -60,11 +69,16 @@ const boardTitle = document.querySelector(
 const editBoardWindow = document.querySelector(
   ".editBoardWindow"
 ) as HTMLDivElement;
+const imageDisplayedInEdit = document.querySelector(
+  "#imageEditWindow") as HTMLImageElement;
 
 //Buttons
 const addListBtn = document.querySelector("#addListBtn") as HTMLButtonElement;
 const editBoardBtn = document.querySelector(
   ".editBoardBtn"
+) as HTMLButtonElement;
+const updatedBoardImageBtn = document.querySelector(
+  "#updatedBoardImageBtn"
 ) as HTMLButtonElement;
 
 // Input

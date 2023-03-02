@@ -35,10 +35,10 @@
   }
   .backgroundSelectionDiv{
     position: absolute;
-    top: 15%;
+    top: 0;
     background-color: #94939a;
     width: 100%;
-    // height: 60vh;
+    height: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
