@@ -186,7 +186,6 @@ function createCardElement(cardName, list) {
 function renderBoardInBoardPage() {
     try {
         boardTitle.textContent = currentBoard.name;
-        // boardContainer.style.backgroundColor = currentBoard.backgroundColor;
         boardContainer.style.background = "url(" + currentBoard.backgroundImage + ") no-repeat center / cover";
         renderLists();
     }
