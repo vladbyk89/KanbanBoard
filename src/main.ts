@@ -66,9 +66,10 @@ if (window.location.pathname.endsWith("index.html")) {
   boardArea.addEventListener("click", (e) => {
     const target = e.target as HTMLElement;
     if (target.dataset.name) {
-      deleteBoard(target.dataset.name);
+      const check = confirm("Are you sure you want to delete?");
+      if (check) deleteBoard(target.dataset.name);
+      renderBoardsToMain(currentUser.boardList);
     }
-    renderBoardsToMain(currentUser.boardList);
 
     if (target.classList.contains("boardClick")) {
       setCurrentBoard(target.innerHTML);
@@ -152,9 +153,9 @@ if (window.location.pathname.endsWith("board.html")) {
   boardContainer.addEventListener("keyup", () => {
     updateCurrentBoard();
   });
-  newListInput.addEventListener("keyup", (event) =>{
-    if(event.keyCode === 13){
+  newListInput.addEventListener("keyup", (event) => {
+    if (event.keyCode === 13) {
       createList();
     }
-  })
+  });
 }

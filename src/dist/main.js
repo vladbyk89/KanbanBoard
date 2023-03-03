@@ -50,9 +50,11 @@ if (window.location.pathname.endsWith("index.html")) {
     boardArea.addEventListener("click", function (e) {
         var target = e.target;
         if (target.dataset.name) {
-            deleteBoard(target.dataset.name);
+            var check = confirm("Are you sure you want to delete?");
+            if (check)
+                deleteBoard(target.dataset.name);
+            renderBoardsToMain(currentUser.boardList);
         }
-        renderBoardsToMain(currentUser.boardList);
         if (target.classList.contains("boardClick")) {
             setCurrentBoard(target.innerHTML);
             window.location.href = "board.html";
