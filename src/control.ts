@@ -164,9 +164,20 @@ function createListElement(list: List) {
       <button class="newCardBtn">New Card</button>
     </div>
   `;
-
   listContainer.appendChild(header);
 
+  const newCardTextArea = listContainer.querySelector(".newCardTextArea")as HTMLTextAreaElement;
+
+  newCardTextArea.addEventListener("keyup", (event) => {
+    if (event.keyCode === 13) {
+      const newCardBtn = listContainer.querySelector(".newCardBtn") as HTMLButtonElement;
+      if (newCardTextArea.value.trim() !== '') {
+        createCardElement(newCardTextArea.value.trim(), listContainer);
+        newCardTextArea.value = "";
+      }
+    }
+  });
+  
   listContainer.addEventListener("dragstart", () => {
     listContainer.classList.add("is-draggin");
   });
@@ -201,7 +212,7 @@ function createListElement(list: List) {
 }
 
 function createList() {
-  if (newListInput.value == "") return;
+  if (newListInput.value == "")return;
   const newList = new List(newListInput.value);
   boardContainer.append(createListElement(newList));
   // saveListTolocalStorage(newList);
