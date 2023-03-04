@@ -158,4 +158,14 @@ if (window.location.pathname.endsWith("board.html")) {
       createList();
     }
   });
+
+  deleteBoxDiv?.addEventListener("drop", (event) => {
+    event.preventDefault();
+    const confirmDelete = confirm("Are you sure you want to delete?");
+    if (confirmDelete) {
+      const element = document.getElementById(event.dataTransfer!.getData("Text"));
+      element?.parentNode?.removeChild(element);
+      updateCurrentBoard();
+    }
+  });
 }
