@@ -111,7 +111,7 @@ function renderBoardsToMain(listOFBoards: Board[]) {
         return `
       <div class='board' style="background: url(${board.backgroundImage}) center center / cover no-repeat">
       <p class="boardClick">${board.name}</p>
-      <button class="removeBoard" data-name="${board.name}">DELETE</button>
+      <button class="removeBoard" id="warning" data-name="${board.name}">DELETE</button>
       </div>
       `;
       })
@@ -317,4 +317,25 @@ function drop(ev) {
   const el = document.getElementById(data);
   el?.parentNode?.removeChild(el);
   updateCurrentBoard();
+  if(el){
+  prompt("Are you sure you want to drop")
+  }
 }
+
+const warning  =  document.querySelectorAll("warning");
+const alert = document.querySelectorAll(".");
+warning.forEach((del) => {
+  del.addEventListener("click",() => {
+  alert.style.display = "flex";
+  });
+  if(alert == true){
+
+  }
+});
+
+function delFunction(){        
+     const msg =      
+     if (msg == true) { 
+        this.remove(); //remove the clicked element if confirmed
+    }   
+  };

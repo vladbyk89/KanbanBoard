@@ -72,7 +72,7 @@ function renderBoardsToMain(listOFBoards) {
     try {
         boardArea.innerHTML = listOFBoards
             .map(function (board) {
-            return "\n      <div class='board' style=\"background: url(" + board.backgroundImage + ") center center / cover no-repeat\">\n      <p class=\"boardClick\">" + board.name + "</p>\n      <button class=\"removeBoard\" data-name=\"" + board.name + "\">DELETE</button>\n      </div>\n      ";
+            return "\n      <div class='board' style=\"background: url(" + board.backgroundImage + ") center center / cover no-repeat\">\n      <p class=\"boardClick\">" + board.name + "</p>\n      <button class=\"removeBoard\" id=\"warning\" data-name=\"" + board.name + "\">DELETE</button>\n      </div>\n      ";
         })
             .join("");
     }
@@ -248,4 +248,23 @@ function drop(ev) {
     var el = document.getElementById(data);
     (_a = el === null || el === void 0 ? void 0 : el.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(el);
     updateCurrentBoard();
+    if (el) {
+        prompt("Are you sure you want to drop");
+    }
 }
+var warning = document.querySelectorAll("warning");
+var alert = document.querySelectorAll(".");
+warning.forEach(function (del) {
+    del.addEventListener("click", function () {
+        alert.style.display = "flex";
+    });
+    if (alert == true) {
+    }
+});
+function delFunction() {
+    var msg = ;
+    if (msg == true) {
+        this.remove(); //remove the clicked element if confirmed
+    }
+}
+;
