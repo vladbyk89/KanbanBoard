@@ -50,9 +50,11 @@ if (window.location.pathname.endsWith("index.html")) {
     boardArea.addEventListener("click", function (e) {
         var target = e.target;
         if (target.dataset.name) {
-            deleteBoard(target.dataset.name);
+            var check = confirm("Are you sure you want to delete?");
+            if (check)
+                deleteBoard(target.dataset.name);
+            renderBoardsToMain(currentUser.boardList);
         }
-        renderBoardsToMain(currentUser.boardList);
         if (target.classList.contains("boardClick")) {
             setCurrentBoard(target.innerHTML);
             window.location.href = "board.html";
@@ -124,6 +126,16 @@ if (window.location.pathname.endsWith("board.html")) {
     newListInput.addEventListener("keyup", function (event) {
         if (event.keyCode === 13) {
             createList();
+        }
+    });
+    deleteBoxDiv === null || deleteBoxDiv === void 0 ? void 0 : deleteBoxDiv.addEventListener("drop", function (event) {
+        var _a;
+        event.preventDefault();
+        var confirmDelete = confirm("Are you sure you want to delete?");
+        if (confirmDelete) {
+            var element = document.getElementById(event.dataTransfer.getData("Text"));
+            (_a = element === null || element === void 0 ? void 0 : element.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(element);
+            updateCurrentBoard();
         }
     });
 }
