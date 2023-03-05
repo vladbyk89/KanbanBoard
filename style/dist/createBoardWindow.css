@@ -43,7 +43,7 @@
   position: absolute;
   top: 0;
   background-color: #94939a;
-  width: 100%;
+  width: 150%;
   height: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
