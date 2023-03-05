@@ -97,7 +97,7 @@ button:active {
   transform: translateY(0);
 }
 
-.warningWindow {
+#warningWindow {
   position: absolute;
   background-color: #000000c1;
   width: 40%;
@@ -111,11 +111,11 @@ button:active {
   display: none;
   color: whitesmoke;
 }
-.warningWindow .xMark {
+#warningWindow .xMark {
   background-color: darkred;
   width: 10vw;
 }
-.warningWindow .vMark {
+#warningWindow .vMark {
   background-color: darkgreen;
   width: 10vw;
 }

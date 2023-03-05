@@ -128,4 +128,14 @@ if (window.location.pathname.endsWith("board.html")) {
             createList();
         }
     });
+    deleteBoxDiv === null || deleteBoxDiv === void 0 ? void 0 : deleteBoxDiv.addEventListener("drop", function (event) {
+        var _a;
+        event.preventDefault();
+        var confirmDelete = confirm("Are you sure you want to delete?");
+        if (confirmDelete) {
+            var element = document.getElementById(event.dataTransfer.getData("Text"));
+            (_a = element === null || element === void 0 ? void 0 : element.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(element);
+            updateCurrentBoard();
+        }
+    });
 }

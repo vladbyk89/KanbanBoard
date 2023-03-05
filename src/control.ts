@@ -156,7 +156,7 @@ function createListElement(list: List) {
   header.setAttribute("id", `${list.name}_header`);
   header.innerHTML = `
   <div class="listTitle" >
-    <h2 contenteditable>${list.name}</h2>
+    <h2>${list.name}</h2>
     <i class="fa-regular fa-pen-to-square editListBtn"></i>
     </div>
     <div class="boardContainer__main__list__card--addCard">
@@ -226,7 +226,7 @@ function createCardElement(cardName: string, list: Element) {
   card.setAttribute("ondragstart", `drag(event)`);
   card.setAttribute("id", `${uid()}`);
   card.innerHTML = `
-  <p contenteditable>${cardName}</p>
+  <p>${cardName}</p>
   <i class="fa-regular fa-pen-to-square editCardBtn"></i>
   `;
   const cardTitle = list.querySelector(
@@ -315,6 +315,6 @@ function drop(ev) {
   ev.preventDefault();
   const data = ev.dataTransfer.getData("Text");
   const el = document.getElementById(data);
-  el?.parentNode?.removeChild(el);
+  // el?.parentNode?.removeChild(el); => delete without Warning
   updateCurrentBoard();
 }

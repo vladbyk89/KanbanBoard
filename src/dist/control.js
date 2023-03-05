@@ -114,7 +114,7 @@ function createListElement(list) {
     var header = document.createElement("div");
     header.classList.add("boardContainer__main__list__header");
     header.setAttribute("id", list.name + "_header");
-    header.innerHTML = "\n  <div class=\"listTitle\" >\n    <h2 contenteditable>" + list.name + "</h2>\n    <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n    </div>\n    <div class=\"boardContainer__main__list__card--addCard\">\n      <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"3\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n    </div>\n  ";
+    header.innerHTML = "\n  <div class=\"listTitle\" >\n    <h2>" + list.name + "</h2>\n    <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n    </div>\n    <div class=\"boardContainer__main__list__card--addCard\">\n      <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"3\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n    </div>\n  ";
     listContainer.appendChild(header);
     var newCardTextArea = listContainer.querySelector(".newCardTextArea");
     newCardTextArea.addEventListener("keyup", function (event) {
@@ -170,7 +170,7 @@ function createCardElement(cardName, list) {
     card.setAttribute("draggable", "true");
     card.setAttribute("ondragstart", "drag(event)");
     card.setAttribute("id", "" + uid());
-    card.innerHTML = "\n  <p contenteditable>" + cardName + "</p>\n  <i class=\"fa-regular fa-pen-to-square editCardBtn\"></i>\n  ";
+    card.innerHTML = "\n  <p>" + cardName + "</p>\n  <i class=\"fa-regular fa-pen-to-square editCardBtn\"></i>\n  ";
     var cardTitle = list.querySelector(".boardContainer__main__list__header");
     list.insertBefore(card, cardTitle.nextSibling);
     card.addEventListener("dragstart", function () {
@@ -242,10 +242,9 @@ function drag(ev) {
     ev.dataTransfer.setData("Text", ev.target.id);
 }
 function drop(ev) {
-    var _a;
     ev.preventDefault();
     var data = ev.dataTransfer.getData("Text");
     var el = document.getElementById(data);
-    (_a = el === null || el === void 0 ? void 0 : el.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(el);
+    // el?.parentNode?.removeChild(el); => delete without Warning
     updateCurrentBoard();
 }
