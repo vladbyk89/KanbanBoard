@@ -100,3 +100,13 @@ body {
 .mainpageContainer__main__boards__boardArea .board:hover {
   opacity: 1;
 }
+.mainpageContainer__main::-webkit-scrollbar {
+  display: none;
+}
+
+@media screen and (max-width: 500px) {
+  .mainpageContainer__main__boards__boardArea {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
