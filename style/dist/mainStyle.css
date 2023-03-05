@@ -1,0 +1,102 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: cursive;
+  outline: none;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mainpageContainer {
+  width: 100%;
+  height: 100%;
+}
+.mainpageContainer__main {
+  height: calc(100vh - 3rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5%;
+  padding: 2rem;
+  overflow-y: auto;
+  background: url("../../img/blueBrickWall.jpg") no-repeat center/cover;
+}
+.mainpageContainer__main h1 {
+  font-size: 1.2rem;
+  color: whitesmoke;
+  box-shadow: 0 0 10px black;
+  background-color: rgba(0, 0, 0, 0.526);
+  padding: 0.3em;
+  border-radius: 10px;
+}
+.mainpageContainer__main__boards {
+  margin-top: 1em;
+  height: auto;
+  width: 70%;
+  max-width: 1200px;
+}
+.mainpageContainer__main__boards h3 {
+  display: inline;
+  font-size: 1rem;
+  box-shadow: 0 0 10px white;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.549);
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0.1em;
+}
+.mainpageContainer__main__boards__boardArea {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-top: 3em;
+}
+.mainpageContainer__main__boards__boardArea .board {
+  box-shadow: 0 0 10px white;
+  border-radius: 10px;
+  width: 70%;
+  max-width: 300px;
+  aspect-ratio: 1/1;
+  cursor: pointer;
+  position: relative;
+  opacity: 0.8;
+}
+.mainpageContainer__main__boards__boardArea .board p {
+  color: #fff;
+  text-shadow: 0 0 10px black;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.mainpageContainer__main__boards__boardArea .board .removeBoard {
+  position: absolute;
+  right: 0;
+  bottom: -1rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  width: 60%;
+  height: 20%;
+}
+.mainpageContainer__main__boards__boardArea .board .removeBoard:hover {
+  background-color: red;
+  border: none;
+}
+.mainpageContainer__main__boards__boardArea .board:hover {
+  opacity: 1;
+}

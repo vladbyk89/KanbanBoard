@@ -22,10 +22,10 @@ var boardImageBtn = document.querySelector("#boardImageBtn");
 // Input
 var newBoardName = document.querySelector("#boardName");
 var newnBoardColor = document.querySelector("#boardColor");
-var searchBar = document.querySelector(".mainpageContainer__topNav__search");
+var searchBar = document.querySelector(".topNav__search");
 //------------------Board page-----------------------//
 var boardContainer = document.querySelector(".boardContainer__main");
-var boardTitle = document.querySelector(".boardContainer__topNav__boardName");
+var boardTitle = document.querySelector(".topNav__boardName");
 var editBoardWindow = document.querySelector(".editBoardWindow");
 var imageDisplayedInEdit = document.querySelector("#imageEditWindow");
 var deleteBoxDiv = document.getElementById("dropdiv");

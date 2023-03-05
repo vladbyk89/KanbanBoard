@@ -72,7 +72,7 @@ function renderBoardsToMain(listOFBoards) {
     try {
         boardArea.innerHTML = listOFBoards
             .map(function (board) {
-            return "\n      <div class='board' style=\"background: url(" + board.backgroundImage + ") center center / cover no-repeat\">\n      <p class=\"boardClick\">" + board.name + "</p>\n      <button class=\"removeBoard\" data-name=\"" + board.name + "\">DELETE</button>\n      </div>\n      ";
+            return "\n      <div class='board' style=\"background: url(" + board.backgroundImage + ") center center / cover no-repeat\">\n      <p class=\"boardClick\">" + board.name + "</p>\n      <button class=\"removeBoard\" data-name=\"" + board.name + "\">Delete</button>\n      </div>\n      ";
         })
             .join("");
     }

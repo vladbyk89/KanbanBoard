@@ -1,51 +1,24 @@
 .profileWindow {
   background-color: #0d0e0dd2;
   color: wheat;
+  height: 90%;
+  width: 50%;
+  display: flex;
   text-align: center;
   align-items: center;
   position: absolute;
-  display: flex;
-  padding: 5%;
+  padding: 2rem;
   display: none;
-}
-.profileWindow .profile {
-  align-items: center;
 }
 .profileWindow .exitProfilePage {
   color: #e62c03;
 }
 .profileWindow .signOutbtn {
-  background-color: initial;
-  background-image: linear-gradient(-180deg, #ff7e31, #e62c03);
-  border-radius: 6px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
-  color: #ffffff;
-  cursor: pointer;
-  font-family: Inter, -apple-system, system-ui, Roboto, "Helvetica Neue", Arial, sans-serif;
-  height: 5%;
-  line-height: 40px;
-  outline: 0;
-  overflow: hidden;
-  pointer-events: auto;
   position: absolute;
-  touch-action: manipulation;
-  user-select: none;
-  -webkit-user-select: none;
-  vertical-align: top;
-  white-space: nowrap;
-  right: 10%;
-  bottom: 10%;
-  width: 15%;
-  border: 0;
-  transition: box-shadow 0.2s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-.profileWindow .signOutbtn:hover {
-  box-shadow: rgba(253, 76, 0, 0.5) 0 3px 8px;
+  right: 0.5em;
+  bottom: 0.5em;
+  height: 5%;
+  font-size: 1rem;
 }
 .profileWindow i {
   position: absolute;
@@ -55,11 +28,30 @@
   cursor: pointer;
 }
 .profileWindow ul {
+  height: 70vh;
   display: flex;
   flex-direction: column;
+  align-items: start;
+  justify-content: space-around;
   gap: 1rem;
   font-size: 1.5rem;
 }
 .profileWindow ul li {
   display: block;
+}
+
+@media screen and (max-width: 800px) {
+  html {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 500px) {
+  html {
+    font-size: 8px;
+  }
 }
