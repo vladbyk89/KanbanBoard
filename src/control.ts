@@ -111,7 +111,7 @@ function renderBoardsToMain(listOFBoards: Board[]) {
         return `
       <div class='board' style="background: url(${board.backgroundImage}) center center / cover no-repeat">
       <p class="boardClick">${board.name}</p>
-      <button class="removeBoard" data-name="${board.name}">DELETE</button>
+      <button class="removeBoard" data-name="${board.name}">Delete</button>
       </div>
       `;
       })

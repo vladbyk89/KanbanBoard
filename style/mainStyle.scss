@@ -1,0 +1,128 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: cursive;
+  outline: none;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mainpageContainer {
+  width: 100%;
+  height: 100%;
+  &__main {
+    height: calc(100vh - 3rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5%;
+    padding: 2rem;
+    overflow-y: auto;
+    background: url("../../img/blueBrickWall.jpg") no-repeat center / cover;
+    h1 {
+      font-size: 1.2rem;
+      color: whitesmoke;
+      box-shadow: 0 0 10px black;
+      background-color: rgba(0, 0, 0, 0.526);
+      padding: .3em;
+      border-radius: 10px;
+    }
+    &__boards {
+      margin-top: 1em;
+      height: auto;
+      width: 70%;
+      max-width: 1200px;
+      h3 {
+        display: inline;
+        font-size: 1rem;
+        box-shadow: 0 0 10px white;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.549);
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: .1em;
+      }
+      &__boardArea {
+        width: 100%;
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+        margin-top: 3em;
+        .board {
+          box-shadow: 0 0 10px rgb(255, 255, 255);
+          border-radius: 10px;
+          width: 70%;
+          max-width: 300px;
+          aspect-ratio: 1/1;
+          cursor: pointer;
+          position: relative;
+          opacity: 0.8;
+          p {
+            color: #fff;
+            text-shadow: 0 0 10px black;
+            // mix-blend-mode: difference;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+          }
+          .removeBoard {
+            position: absolute;
+            right: 0;
+            bottom: -1rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            width: 60%;
+            height: 20%;
+          }
+          .removeBoard:hover {
+            background-color: rgb(255, 0, 0);
+            border: none;
+          }
+        }
+        .board:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+// #maindiv {
+//   width: 500px;
+//   height: 300px;
+//   padding: 10px;
+// }
+// #dragdiv {
+//   width: 180px;
+//   float: left;
+// }
+// #dropdiv {
+//   position: fixed;
+//   bottom: 0px;
+//   right: 0px;
+//   width: 200px;
+//   height: 200px;
+//   background-color: rgba(223, 47, 16, 0.658);
+//   padding: 5px;
+//   color: rgb(12, 10, 10);
+//   h3{
+// padding-top: 35%;
+//   }
+// }
+
+
