@@ -32,9 +32,12 @@ body {
   background-position: center;
 }
 .mainpageContainer__main h1 {
-  font-size: 2.5rem;
+  font-size: 1.2rem;
   color: whitesmoke;
-  text-shadow: 0 0 10px black;
+  box-shadow: 0 0 10px black;
+  background-color: rgba(0, 0, 0, 0.526);
+  padding: 0.3em;
+  border-radius: 10px;
 }
 .mainpageContainer__main__boards {
   height: auto;
@@ -42,10 +45,14 @@ body {
   max-width: 1200px;
 }
 .mainpageContainer__main__boards h3 {
-  font-size: 2rem;
-  text-shadow: 0 0 5px white;
+  display: inline;
+  font-size: 1rem;
+  box-shadow: 0 0 10px white;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.549);
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
+  padding: 0.1em;
 }
 .mainpageContainer__main__boards__boardArea {
   width: 100%;
@@ -108,6 +115,7 @@ body {
   gap: 1rem;
   overflow: auto;
   padding: 1rem;
+  padding-right: 10rem;
 }
 .boardContainer__main__list {
   width: 15%;
@@ -207,12 +215,6 @@ body {
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
   background: rgba(230, 12, 12, 0.37);
   color: white;
-}
-
-section {
-  position: fixed;
-  bottom: 0%;
-  right: 0.5%;
 }
 
 .topNav {
