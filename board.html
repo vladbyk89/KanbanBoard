@@ -27,7 +27,7 @@
     <div class="boardContainer">
       <nav class="boardContainer__topNav">
         <img
-          src="./img/Screenshot 2023-02-18 230204.png"
+          src="./img/Logo.png"
           alt=""
           class="boardContainer__topNav__logo"
         />
@@ -54,11 +54,15 @@
         <!-- <div id="dropdiv" ondrop="drop(event)" ondragover="allowDrop(event)">
           <h3>Drop here to remove</h3>
         </div> -->
-        <section id="dropdiv" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <section
+          id="dropdiv"
+          ondrop="drop(event)"
+          ondragover="allowDrop(event)"
+        >
           <span class="trash">
-              <span></span>
-              <i></i>
-            </span>
+            <span></span>
+            <i></i>
+          </span>
         </section>
       </main>
     </div>
@@ -75,7 +79,11 @@
       <label for="boardName">Name your board:</label>
       <input type="text" name="boardName" id="updatedBoardName" />
       <button id="updatedBoardImageBtn">Edit Background Image</button>
-      <img id="imageEditWindow"  src="./img/Screenshot 2023-02-18 230204.png" alt="KanbanLogo" />
+      <img
+        id="imageEditWindow"
+        src="./img/Logo.png"
+        alt="KanbanLogo"
+      />
       <div>
         <button class="editBoardBtn">Edit</button>
         <button class="cancelEditBoardBtn">CANCEL</button>
@@ -100,13 +108,13 @@
         />
       </div>
     </div>
-    
-    <div id="warningWindow">
+
+    <!-- <div id="warningWindow">
       <h2>Are you sure you want to delete?</h2>
       <div>
         <button class="xMark"><i class="fa-solid fa-xmark"></i></button>
         <button class="vMark"><i class="fa-solid fa-check"></i></button>
       </div>
-    </div>
+    </div> -->
   </body>
 </html>

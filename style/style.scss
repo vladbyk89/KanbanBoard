@@ -6,6 +6,9 @@
   outline: none;
 }
 
+:root{
+  --textSize: calc((2vh + 2vw) / 2.5)}
+
 body {
   height: 100vh;
   width: 100vw;
@@ -29,7 +32,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 3vh;
+    font-size: 1.5rem;
     &__logo {
       height: 100%;
     }
@@ -118,7 +121,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     h1 {
-      font-size: calc((5vh + 5vw) / 3);
+      font-size: 2.5rem;
       color: whitesmoke;
       text-shadow: 0 0 10px black;
     }
@@ -160,7 +163,8 @@ body {
             align-items: center;
             justify-content: center;
             text-align: center;
-            font-size: 2.5vh;
+            font-size: 1.2rem;
+            font-weight: bold;
           }
           .removeBoard {
             position: absolute;
@@ -198,7 +202,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 3vh;
+    font-size: 1.3rem;
     &__logo {
       height: 100%;
     }
@@ -271,15 +275,19 @@ body {
         background-color: whitesmoke;
         position: relative;
         padding: 0.5em;
-        margin: 0.5em 0;
         height: auto;
         width: 100%;
         height: auto;
         min-height: 75px;
         cursor: move;
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
         gap: 1em;
+        font-size: .8rem;
+        i{
+          margin-left: auto;
+        }
         i:hover {
           cursor: pointer;
           transform: scale(1.1);
@@ -294,8 +302,11 @@ body {
         color: white;
         margin-top: 1em;
         textarea {
-          font-size: 2vh;
+          font-size: .8rem;
           padding: 0.3rem;
+        }
+        .newCardBtn{
+          font-size: .7rem;
         }
       }
       &__card:hover {
