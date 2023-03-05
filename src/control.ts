@@ -111,7 +111,7 @@ function renderBoardsToMain(listOFBoards: Board[]) {
         return `
       <div class='board' style="background: url(${board.backgroundImage}) center center / cover no-repeat">
       <p class="boardClick">${board.name}</p>
-      <button class="removeBoard" data-name="${board.name}">DELETE</button>
+      <button class="removeBoard" data-name="${board.name}">Delete</button>
       </div>
       `;
       })
@@ -133,7 +133,7 @@ function createBoard() {
       updateUserBoardList(currentUser, newBoard);
       localStorage.setItem("currentBoard", JSON.stringify(newBoard));
       boardName = "";
-      boardImage = "./img/Screenshot 2023-02-18 230204.png";
+      boardImage = "./img/Logo.png";
       newBoardWindow.style.display = "none";
       renderBoardsToMain(currentUser.boardList);
       location.href = "board.html";
@@ -156,11 +156,11 @@ function createListElement(list: List) {
   header.setAttribute("id", `${list.name}_header`);
   header.innerHTML = `
   <div class="listTitle" >
-    <h2>${list.name}</h2>
+    <h2>${list.name}</h3>
     <i class="fa-regular fa-pen-to-square editListBtn"></i>
     </div>
     <div class="boardContainer__main__list__card--addCard">
-      <textarea maxlength="30" class="newCardTextArea" cols="30" rows="3"></textarea>
+      <textarea maxlength="30" class="newCardTextArea" cols="30" rows="2" placeholder="Task..."></textarea>
       <button class="newCardBtn">New Card</button>
     </div>
   `;

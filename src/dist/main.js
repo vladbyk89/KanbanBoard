@@ -124,11 +124,11 @@ if (window.location.pathname.endsWith("board.html")) {
         updateCurrentBoard();
     });
     newListInput.addEventListener("keyup", function (event) {
-        if (event.keyCode === 13) {
+        if (event.key === 'Enter') {
             createList();
         }
     });
-    deleteBoxDiv === null || deleteBoxDiv === void 0 ? void 0 : deleteBoxDiv.addEventListener("drop", function (event) {
+    deleteBoxDiv.addEventListener("drop", function (event) {
         var _a;
         event.preventDefault();
         var confirmDelete = confirm("Are you sure you want to delete?");

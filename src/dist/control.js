@@ -72,7 +72,7 @@ function renderBoardsToMain(listOFBoards) {
     try {
         boardArea.innerHTML = listOFBoards
             .map(function (board) {
-            return "\n      <div class='board' style=\"background: url(" + board.backgroundImage + ") center center / cover no-repeat\">\n      <p class=\"boardClick\">" + board.name + "</p>\n      <button class=\"removeBoard\" data-name=\"" + board.name + "\">DELETE</button>\n      </div>\n      ";
+            return "\n      <div class='board' style=\"background: url(" + board.backgroundImage + ") center center / cover no-repeat\">\n      <p class=\"boardClick\">" + board.name + "</p>\n      <button class=\"removeBoard\" data-name=\"" + board.name + "\">Delete</button>\n      </div>\n      ";
         })
             .join("");
     }
@@ -92,7 +92,7 @@ function createBoard() {
             updateUserBoardList(currentUser, newBoard);
             localStorage.setItem("currentBoard", JSON.stringify(newBoard));
             boardName_1 = "";
-            boardImage = "./img/Screenshot 2023-02-18 230204.png";
+            boardImage = "./img/Logo.png";
             newBoardWindow.style.display = "none";
             renderBoardsToMain(currentUser.boardList);
             location.href = "board.html";
@@ -114,7 +114,7 @@ function createListElement(list) {
     var header = document.createElement("div");
     header.classList.add("boardContainer__main__list__header");
     header.setAttribute("id", list.name + "_header");
-    header.innerHTML = "\n  <div class=\"listTitle\" >\n    <h2>" + list.name + "</h2>\n    <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n    </div>\n    <div class=\"boardContainer__main__list__card--addCard\">\n      <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"3\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n    </div>\n  ";
+    header.innerHTML = "\n  <div class=\"listTitle\" >\n    <h2>" + list.name + "</h3>\n    <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n    </div>\n    <div class=\"boardContainer__main__list__card--addCard\">\n      <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"2\" placeholder=\"Task...\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n    </div>\n  ";
     listContainer.appendChild(header);
     var newCardTextArea = listContainer.querySelector(".newCardTextArea");
     newCardTextArea.addEventListener("keyup", function (event) {
