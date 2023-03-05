@@ -6,6 +6,10 @@
   outline: none;
 }
 
+:root {
+  --textSize: calc((2vh + 2vw) / 2.5);
+}
+
 body {
   height: 100vh;
   width: 100vw;
@@ -27,7 +31,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 3vh;
+  font-size: 1.5rem;
 }
 .mainpageContainer__topNav__logo {
   height: 100%;
@@ -112,7 +116,7 @@ body {
   background-position: center;
 }
 .mainpageContainer__main h1 {
-  font-size: calc((5vh + 5vw) / 3);
+  font-size: 2.5rem;
   color: whitesmoke;
   text-shadow: 0 0 10px black;
 }
@@ -156,7 +160,8 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: 2.5vh;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 .mainpageContainer__main__boards__boardArea .board .removeBoard {
   position: absolute;
@@ -186,7 +191,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 3vh;
+  font-size: 1.3rem;
 }
 .boardContainer__topNav__logo {
   height: 100%;
@@ -257,15 +262,19 @@ body {
   background-color: whitesmoke;
   position: relative;
   padding: 0.5em;
-  margin: 0.5em 0;
   height: auto;
   width: 100%;
   height: auto;
   min-height: 75px;
   cursor: move;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   gap: 1em;
+  font-size: 0.8rem;
+}
+.boardContainer__main__list__card i {
+  margin-left: auto;
 }
 .boardContainer__main__list__card i:hover {
   cursor: pointer;
@@ -280,8 +289,11 @@ body {
   margin-top: 1em;
 }
 .boardContainer__main__list__card--addCard textarea {
-  font-size: 2vh;
+  font-size: 0.8rem;
   padding: 0.3rem;
+}
+.boardContainer__main__list__card--addCard .newCardBtn {
+  font-size: 0.7rem;
 }
 .boardContainer__main__list__card:hover {
   box-shadow: 0 0 5px black;
