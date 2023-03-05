@@ -154,12 +154,12 @@ if (window.location.pathname.endsWith("board.html")) {
     updateCurrentBoard();
   });
   newListInput.addEventListener("keyup", (event) => {
-    if (event.keyCode === 13) {
+    if (event.key === 'Enter') {
       createList();
     }
   });
 
-  deleteBoxDiv?.addEventListener("drop", (event) => {
+  deleteBoxDiv.addEventListener("drop", (event) => {
     event.preventDefault();
     const confirmDelete = confirm("Are you sure you want to delete?");
     if (confirmDelete) {
