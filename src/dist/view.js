@@ -28,6 +28,7 @@ var boardContainer = document.querySelector(".boardContainer__main");
 var boardTitle = document.querySelector(".boardContainer__topNav__boardName");
 var editBoardWindow = document.querySelector(".editBoardWindow");
 var imageDisplayedInEdit = document.querySelector("#imageEditWindow");
+var deleteBoxDiv = document.getElementById("dropdiv");
 //Buttons
 var addListBtn = document.querySelector("#addListBtn");
 var editBoardBtn = document.querySelector(".editBoardBtn");

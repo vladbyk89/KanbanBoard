@@ -51,9 +51,15 @@
         </div>
       </nav>
       <main class="boardContainer__main">
-        <div id="dropdiv" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <!-- <div id="dropdiv" ondrop="drop(event)" ondragover="allowDrop(event)">
           <h3>Drop here to remove</h3>
-        </div>
+        </div> -->
+        <section id="dropdiv" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <span class="trash">
+              <span></span>
+              <i></i>
+            </span>
+        </section>
       </main>
     </div>
     <div class="profileWindow">
@@ -95,7 +101,7 @@
       </div>
     </div>
     
-    <div class="warningWindow">
+    <div id="warningWindow">
       <h2>Are you sure you want to delete?</h2>
       <div>
         <button class="xMark"><i class="fa-solid fa-xmark"></i></button>
