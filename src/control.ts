@@ -166,10 +166,35 @@ function createListElement(list: List) {
   `;
   listContainer.appendChild(header);
 
+
+  const editListBtn = header.querySelector(".editListBtn") as HTMLElement
+
+  editListBtn.addEventListener("click", () => {
+    const listTitle = header.querySelector(".listTitle") as HTMLElement;
+    const listTitleText = listTitle.querySelector("h2") as HTMLElement;
+    const editListInput = document.createElement("input");
+
+    editListInput.type = "text";
+    editListInput.value = listTitleText.textContent!;
+    editListInput.classList.add("editListInput");
+
+    listTitle.replaceChild(editListInput, listTitleText);
+    editListInput.focus();
+
+    editListInput.addEventListener("keyup", (event)=>{
+      if(event.key === "Enter"){
+        listTitle.replaceChild(listTitleText, editListInput);
+        listTitleText.textContent = editListInput.value.trim();
+        updateCurrentBoard();
+      }
+    })
+  })
+
+
   const newCardTextArea = listContainer.querySelector(".newCardTextArea")as HTMLTextAreaElement;
 
   newCardTextArea.addEventListener("keyup", (event) => {
-    if (event.keyCode === 13) {
+    if (event.key === "Enter") {
       const newCardBtn = listContainer.querySelector(".newCardBtn") as HTMLButtonElement;
       if (newCardTextArea.value.trim() !== '') {
         createCardElement(newCardTextArea.value.trim(), listContainer);
@@ -233,6 +258,37 @@ function createCardElement(cardName: string, list: Element) {
     ".boardContainer__main__list__header"
   ) as HTMLDivElement;
   list.insertBefore(card, cardTitle.nextSibling);
+
+
+const editCardBtn = card.querySelector(".editCardBtn") as HTMLElement;
+
+editCardBtn.addEventListener("click", ()=>{
+  const cardTitle = card.querySelector(".boardContainer__main__list__card > p") as HTMLElement;
+  if(!cardTitle){
+    console.error("Card title element not found!");
+    return;
+  }
+
+  const editCardInput = document.createElement("input");
+
+  editCardInput.type = "text";
+  editCardInput.value = cardTitle.textContent!;
+  editCardInput.classList.add("editCardInput");
+
+  editCardInput.addEventListener("keyup",(event)=>{
+    if(event.key === "Enter"){
+   const newCardTitle = document.createElement("p");
+   newCardTitle.textContent = editCardInput.value.trim();
+   editCardInput.replaceWith(newCardTitle);
+    }
+  });
+
+  cardTitle.replaceWith(editCardInput);
+  editCardInput.focus();
+  updateCurrentBoard();
+})
+
+
   card.addEventListener("dragstart", () => {
     card.classList.add("is-dragging");
   });

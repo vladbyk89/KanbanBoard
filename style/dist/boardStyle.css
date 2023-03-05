@@ -39,6 +39,7 @@ body {
 }
 .boardContainer__main__list__header {
   background-color: rgba(0, 0, 0, 0.63);
+  position: relative;
 }
 .boardContainer__main__list__header .listTitle {
   color: #fff;
@@ -54,6 +55,20 @@ body {
 .boardContainer__main__list__header .listTitle i:hover {
   cursor: pointer;
   transform: scale(1.1);
+}
+.boardContainer__main__list__header .listTitle .editListInput {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 2rem;
+  outline: non;
+  left: 0;
+  font-size: 16px;
+  padding: 5px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 3px;
+  z-index: 1;
 }
 .boardContainer__main__list__card {
   border: 1px solid black;

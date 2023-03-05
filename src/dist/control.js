@@ -116,9 +116,27 @@ function createListElement(list) {
     header.setAttribute("id", list.name + "_header");
     header.innerHTML = "\n  <div class=\"listTitle\" >\n    <h2>" + list.name + "</h3>\n    <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n    </div>\n    <div class=\"boardContainer__main__list__card--addCard\">\n      <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"2\" placeholder=\"Task...\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n    </div>\n  ";
     listContainer.appendChild(header);
+    var editListBtn = header.querySelector(".editListBtn");
+    editListBtn.addEventListener("click", function () {
+        var listTitle = header.querySelector(".listTitle");
+        var listTitleText = listTitle.querySelector("h2");
+        var editListInput = document.createElement("input");
+        editListInput.type = "text";
+        editListInput.value = listTitleText.textContent;
+        editListInput.classList.add("editListInput");
+        listTitle.replaceChild(editListInput, listTitleText);
+        editListInput.focus();
+        editListInput.addEventListener("keyup", function (event) {
+            if (event.key === "Enter") {
+                listTitle.replaceChild(listTitleText, editListInput);
+                listTitleText.textContent = editListInput.value.trim();
+                updateCurrentBoard();
+            }
+        });
+    });
     var newCardTextArea = listContainer.querySelector(".newCardTextArea");
     newCardTextArea.addEventListener("keyup", function (event) {
-        if (event.keyCode === 13) {
+        if (event.key === "Enter") {
             var newCardBtn = listContainer.querySelector(".newCardBtn");
             if (newCardTextArea.value.trim() !== '') {
                 createCardElement(newCardTextArea.value.trim(), listContainer);
@@ -173,6 +191,28 @@ function createCardElement(cardName, list) {
     card.innerHTML = "\n  <p>" + cardName + "</p>\n  <i class=\"fa-regular fa-pen-to-square editCardBtn\"></i>\n  ";
     var cardTitle = list.querySelector(".boardContainer__main__list__header");
     list.insertBefore(card, cardTitle.nextSibling);
+    var editCardBtn = card.querySelector(".editCardBtn");
+    editCardBtn.addEventListener("click", function () {
+        var cardTitle = card.querySelector(".boardContainer__main__list__card > p");
+        if (!cardTitle) {
+            console.error("Card title element not found!");
+            return;
+        }
+        var editCardInput = document.createElement("input");
+        editCardInput.type = "text";
+        editCardInput.value = cardTitle.textContent;
+        editCardInput.classList.add("editCardInput");
+        editCardInput.addEventListener("keyup", function (event) {
+            if (event.key === "Enter") {
+                var newCardTitle = document.createElement("p");
+                newCardTitle.textContent = editCardInput.value.trim();
+                editCardInput.replaceWith(newCardTitle);
+            }
+        });
+        cardTitle.replaceWith(editCardInput);
+        editCardInput.focus();
+        updateCurrentBoard();
+    });
     card.addEventListener("dragstart", function () {
         card.classList.add("is-dragging");
     });

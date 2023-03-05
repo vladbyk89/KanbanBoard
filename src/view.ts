@@ -73,7 +73,6 @@ const imageDisplayedInEdit = document.querySelector(
   "#imageEditWindow"
 ) as HTMLImageElement;
 const deleteBoxDiv = document.getElementById("dropdiv") as HTMLDivElement;
-
 //Buttons
 const addListBtn = document.querySelector("#addListBtn") as HTMLButtonElement;
 const editBoardBtn = document.querySelector(
