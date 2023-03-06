@@ -119,7 +119,7 @@ if (window.location.pathname.endsWith("board.html")) {
     const curList = boardContainer.querySelector(".is-draggin") as HTMLElement;
 
     if (!leftList) {
-      boardContainer.appendChild(curList);
+      boardContainer.insertBefore(curList, deleteBoxDiv);
     } else {
       boardContainer.insertBefore(curList, leftList);
     }
@@ -159,7 +159,7 @@ if (window.location.pathname.endsWith("board.html")) {
     }
   });
 
-  deleteBoxDiv.addEventListener("drop", (event) => {
+  trashCan.addEventListener("drop", (event) => {
     event.preventDefault();
     const confirmDelete = confirm("Are you sure you want to delete?");
     if (confirmDelete) {

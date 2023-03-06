@@ -93,7 +93,7 @@ if (window.location.pathname.endsWith("board.html")) {
         var leftList = insertLeftOfLisk(boardContainer, e.clientX);
         var curList = boardContainer.querySelector(".is-draggin");
         if (!leftList) {
-            boardContainer.appendChild(curList);
+            boardContainer.insertBefore(curList, deleteBoxDiv);
         }
         else {
             boardContainer.insertBefore(curList, leftList);
@@ -128,7 +128,7 @@ if (window.location.pathname.endsWith("board.html")) {
             createList();
         }
     });
-    deleteBoxDiv.addEventListener("drop", function (event) {
+    trashCan.addEventListener("drop", function (event) {
         var _a;
         event.preventDefault();
         var confirmDelete = confirm("Are you sure you want to delete?");

@@ -206,7 +206,7 @@ function createListElement(list: List) {
     updateCurrentBoard();
   });
 
-  boardContainer.append(listContainer);
+  boardContainer.insertBefore(listContainer, deleteBoxDiv);
   updateCurrentBoard();
   return listContainer;
 }
@@ -214,7 +214,7 @@ function createListElement(list: List) {
 function createList() {
   if (newListInput.value == "")return;
   const newList = new List(newListInput.value);
-  boardContainer.append(createListElement(newList));
+  boardContainer.insertBefore(createListElement(newList), deleteBoxDiv);
   // saveListTolocalStorage(newList);
   newListInput.value = "";
 }
