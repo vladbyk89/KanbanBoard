@@ -71,7 +71,6 @@ const imageDisplayedInEdit = document.querySelector(
   "#imageEditWindow"
 ) as HTMLImageElement;
 const deleteBoxDiv = document.getElementById("trashDiv") as HTMLDivElement;
-const trashCan = document.querySelector(".trash") as HTMLSpanElement;
 
 //Buttons
 const addListBtn = document.querySelector("#addListBtn") as HTMLButtonElement;
