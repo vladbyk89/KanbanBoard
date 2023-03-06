@@ -24,7 +24,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 5%;
-  padding: 2rem;
+  padding: 2rem 4rem;
   overflow-y: auto;
   background: url("../../img/blueBrickWall.jpg") no-repeat center/cover;
 }
@@ -39,7 +39,7 @@ body {
 .mainpageContainer__main__boards {
   margin-top: 1em;
   height: auto;
-  width: 70%;
+  width: 100%;
   max-width: 1200px;
 }
 .mainpageContainer__main__boards h3 {
@@ -56,14 +56,14 @@ body {
   width: 100%;
   height: auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 3rem;
   margin-top: 3em;
 }
 .mainpageContainer__main__boards__boardArea .board {
   box-shadow: 0 0 10px white;
   border-radius: 10px;
-  width: 70%;
+  width: 60%;
   max-width: 300px;
   aspect-ratio: 1/1;
   cursor: pointer;

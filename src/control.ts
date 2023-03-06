@@ -36,7 +36,6 @@ function checkIfEmailExists(email:string){
   if(findEmail) return true
   return false
 }
-console.log(checkIfEmailExists('vladi@gmail.com'));
 
 function handleSignIn(e: Event) {
   e.preventDefault();

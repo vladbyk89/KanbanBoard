@@ -28,7 +28,6 @@ function checkIfEmailExists(email) {
         return true;
     return false;
 }
-console.log(checkIfEmailExists('vladi@gmail.com'));
 function handleSignIn(e) {
     e.preventDefault();
     var userName = userNameInput.value;

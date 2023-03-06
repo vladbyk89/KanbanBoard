@@ -2,6 +2,11 @@
   html {
     font-size: 12px;
   }
+
+  .mainpageContainer__main__boards__boardArea {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 @media screen and (max-width: 650px) {
   html {
@@ -12,14 +17,15 @@
   html {
     font-size: 8px;
   }
-
-  .mainpageContainer__main__boards__boardArea {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 @media screen and (max-width: 440px) {
   html {
     font-size: 6px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .mainpageContainer__main__boards__boardArea {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
