@@ -128,7 +128,7 @@ if (window.location.pathname.endsWith("board.html")) {
             createList();
         }
     });
-    trashCan.addEventListener("drop", function (event) {
+    deleteBoxDiv.addEventListener("drop", function (event) {
         var _a;
         event.preventDefault();
         var confirmDelete = confirm("Are you sure you want to delete?");

@@ -159,7 +159,7 @@ if (window.location.pathname.endsWith("board.html")) {
     }
   });
 
-  trashCan.addEventListener("drop", (event) => {
+  deleteBoxDiv.addEventListener("drop", (event) => {
     event.preventDefault();
     const confirmDelete = confirm("Are you sure you want to delete?");
     if (confirmDelete) {
