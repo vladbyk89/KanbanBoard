@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="./style/dist/profileWindow.css" />
     <link rel="stylesheet" href="./style/dist/createBoardWindow.css" />
     <link rel="stylesheet" href="./style/dist/trashStyle.css" />
+    <link rel="stylesheet" href="./style/dist/responsive.css" />
     <script src="./src/dist/view.js" defer></script>
     <script src="./src/dist/helpers.js" defer></script>
     <script src="./src/dist/control.js" defer></script>
@@ -29,7 +30,13 @@
       <nav class="topNav">
         <div class="leftSideDiv">
           <img src="./img/Logo.png" alt="" />
-          <input placeholder="New List..." id="newListInput" type="text" maxlength="15" required />
+          <input
+            placeholder="New List..."
+            id="newListInput"
+            type="text"
+            maxlength="15"
+            required
+          />
           <button id="addListBtn">Add List+</button>
         </div>
         <div class="topNav__boardName">Board Name</div>
@@ -50,19 +57,13 @@
         <!-- <div id="dropdiv" ondrop="drop(event)" ondragover="allowDrop(event)">
           <h3>Drop here to remove</h3>
         </div> -->
-        <div class="listArea">
-          
-        </div>
-        <section
-          id="dropdiv"
-          ondrop="drop(event)"
-          ondragover="allowDrop(event)"
-        >
+        <div class="listArea"></div>
+        <div id="trashDiv">
           <span class="trash">
             <span></span>
             <i></i>
           </span>
-        </section>
+        </div>
       </main>
     </div>
     <div class="profileWindow">

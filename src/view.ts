@@ -55,9 +55,7 @@ const newBoardName = document.querySelector("#boardName") as HTMLInputElement;
 const newnBoardColor = document.querySelector(
   "#boardColor"
 ) as HTMLInputElement;
-const searchBar = document.querySelector(
-  ".topNav__search"
-) as HTMLInputElement;
+const searchBar = document.querySelector(".topNav__search") as HTMLInputElement;
 
 //------------------Board page-----------------------//
 const boardContainer = document.querySelector(
@@ -72,7 +70,8 @@ const editBoardWindow = document.querySelector(
 const imageDisplayedInEdit = document.querySelector(
   "#imageEditWindow"
 ) as HTMLImageElement;
-const deleteBoxDiv = document.getElementById("dropdiv") as HTMLDivElement;
+const deleteBoxDiv = document.getElementById("trashDiv") as HTMLDivElement;
+const trashCan = document.querySelector(".trash") as HTMLSpanElement;
 
 //Buttons
 const addListBtn = document.querySelector("#addListBtn") as HTMLButtonElement;

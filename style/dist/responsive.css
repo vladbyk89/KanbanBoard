@@ -1,0 +1,25 @@
+@media screen and (max-width: 800px) {
+  html {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 650px) {
+  html {
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 550px) {
+  html {
+    font-size: 8px;
+  }
+
+  .mainpageContainer__main__boards__boardArea {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 440px) {
+  html {
+    font-size: 6px;
+  }
+}

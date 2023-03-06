@@ -100,3 +100,6 @@ body {
 .mainpageContainer__main__boards__boardArea .board:hover {
   opacity: 1;
 }
+.mainpageContainer__main::-webkit-scrollbar {
+  display: none;
+}
