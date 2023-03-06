@@ -9,9 +9,10 @@ function handleSignUp(e) {
     var email = this.elements.email.value;
     var phone = this.elements.phoneNumber.value;
     var arr = [gender, firstName, lastName, password, userName, email, phone];
-    console.log(arr);
     if (arr.some(function (ele) { return ele == ""; }))
         return alert("missing field");
+    if (checkIfEmailExists(email))
+        return alert('Email is alreay in the system');
     var newUser = new User(firstName, lastName, gender, userName, password, email, phone);
     var signedUpUsers = JSON.parse(localStorage.getItem("signedUpUsers") || "[]");
     signedUpUsers.push(newUser);
@@ -19,6 +20,13 @@ function handleSignUp(e) {
     localStorage.setItem("currentUser", JSON.stringify(newUser));
     location.href = "index.html";
     this.reset();
+}
+function checkIfEmailExists(email) {
+    userList = userListFromStorage();
+    var findEmail = userList.find(function (user) { return user.email === email; });
+    if (findEmail)
+        return true;
+    return false;
 }
 function handleSignIn(e) {
     e.preventDefault();
@@ -82,8 +90,9 @@ function renderBoardsToMain(listOFBoards) {
 }
 function createBoard() {
     try {
+        if (currentUser.boardList.length === 10)
+            return alert('maxinum amount of boards is 10');
         var boardName_1 = newBoardName.value;
-        // let boardColor = newnBoardColor.value;
         var boardImage = imageDisplayedInCreate.src.toString();
         if (boardName_1) {
             if (currentUser.boardList.find(function (board) { return board.name === boardName_1; }))
