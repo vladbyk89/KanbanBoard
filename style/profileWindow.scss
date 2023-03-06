@@ -16,7 +16,6 @@
     position: absolute;
     right: .5em;
     bottom: .5em;
-    // width: 25%;
     height: 5%;
     font-size: 1rem;
   }
@@ -28,7 +27,6 @@
     cursor: pointer;
   }
   ul {
-    // border: 1px solid white;
     height: 70vh;
     display: flex;
     flex-direction: column;
@@ -40,20 +38,4 @@
       display: block;
     }
   }
-}
-
-@media screen and (max-width: 800px) {
-  html{
-    font-size: 12px;
-  }  
-}
-@media screen and (max-width: 600px) {
-  html{
-    font-size: 10px;
-  }  
-}
-@media screen and (max-width: 500px) {
-  html{
-    font-size: 8px;
-  }  
 }

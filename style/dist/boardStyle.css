@@ -12,6 +12,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .boardContainer {
@@ -20,6 +21,7 @@ body {
 }
 .boardContainer__main {
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: start;
@@ -29,8 +31,7 @@ body {
   padding-right: 10rem;
 }
 .boardContainer__main__list {
-  width: 15%;
-  max-width: 250px;
+  width: 11rem;
   min-height: 100%;
   display: flex;
   flex-direction: column;

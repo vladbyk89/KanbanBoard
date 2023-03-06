@@ -23,7 +23,7 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 5%;
-    padding: 2rem;
+    padding: 2rem 4rem;
     overflow-y: auto;
     background: url("../../img/blueBrickWall.jpg") no-repeat center / cover;
     h1 {
@@ -31,13 +31,13 @@ body {
       color: whitesmoke;
       box-shadow: 0 0 10px black;
       background-color: rgba(0, 0, 0, 0.526);
-      padding: .3em;
+      padding: 0.3em;
       border-radius: 10px;
     }
     &__boards {
       margin-top: 1em;
       height: auto;
-      width: 70%;
+      width: 100%;
       max-width: 1200px;
       h3 {
         display: inline;
@@ -47,19 +47,19 @@ body {
         background-color: rgba(255, 255, 255, 0.549);
         font-weight: bold;
         font-family: Arial, Helvetica, sans-serif;
-        padding: .1em;
+        padding: 0.1em;
       }
       &__boardArea {
         width: 100%;
         height: auto;
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 3rem;
         margin-top: 3em;
         .board {
           box-shadow: 0 0 10px rgb(255, 255, 255);
           border-radius: 10px;
-          width: 70%;
+          width: 60%;
           max-width: 300px;
           aspect-ratio: 1/1;
           cursor: pointer;
@@ -100,6 +100,9 @@ body {
       }
     }
   }
+  &__main::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 // #maindiv {
@@ -124,5 +127,4 @@ body {
 // padding-top: 35%;
 //   }
 // }
-
 

@@ -9,8 +9,8 @@ function handleSignUp(e: Event) {
   const email = this.elements.email.value;
   const phone = this.elements.phoneNumber.value;
   const arr = [gender, firstName, lastName, password, userName, email, phone];
-  console.log(arr);
   if (arr.some((ele) => ele == "")) return alert("missing field");
+  if(checkIfEmailExists(email)) return alert('Email is alreay in the system')
   const newUser = new User(
     firstName,
     lastName,
@@ -28,6 +28,13 @@ function handleSignUp(e: Event) {
   localStorage.setItem("currentUser", JSON.stringify(newUser));
   location.href = "index.html";
   this.reset();
+}
+
+function checkIfEmailExists(email:string){
+  userList = userListFromStorage();
+  const findEmail = userList.find(user => user.email === email)
+  if(findEmail) return true
+  return false
 }
 
 function handleSignIn(e: Event) {
@@ -123,8 +130,8 @@ function renderBoardsToMain(listOFBoards: Board[]) {
 
 function createBoard() {
   try {
+    if(currentUser.boardList.length === 10) return alert('maxinum amount of boards is 10')
     let boardName = newBoardName.value;
-    // let boardColor = newnBoardColor.value;
     let boardImage = imageDisplayedInCreate.src.toString();
     if (boardName) {
       if (currentUser.boardList.find((board) => board.name === boardName))
@@ -231,7 +238,7 @@ function createListElement(list: List) {
     updateCurrentBoard();
   });
 
-  boardContainer.append(listContainer);
+  boardContainer.insertBefore(listContainer, deleteBoxDiv);
   updateCurrentBoard();
   return listContainer;
 }
@@ -239,7 +246,7 @@ function createListElement(list: List) {
 function createList() {
   if (newListInput.value == "")return;
   const newList = new List(newListInput.value);
-  boardContainer.append(createListElement(newList));
+  boardContainer.insertBefore(createListElement(newList), deleteBoxDiv);
   // saveListTolocalStorage(newList);
   newListInput.value = "";
 }
