@@ -87,7 +87,7 @@ if (window.location.pathname.endsWith("board.html")) {
   addListBtn.addEventListener("click", () => createList(newListInput.value));
 
   editBoardBtn.addEventListener("click", () => {
-    editBoard(currentBoard);
+    currentBoard.edit(nameInputEle.value, imageDisplayedInEdit.src);
     editBoardWindow.style.display = "none";
   });
 

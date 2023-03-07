@@ -68,7 +68,7 @@ if (window.location.pathname.endsWith("board.html")) {
     renderBoardInBoardPage();
     addListBtn.addEventListener("click", function () { return createList(newListInput.value); });
     editBoardBtn.addEventListener("click", function () {
-        editBoard(currentBoard);
+        currentBoard.edit(nameInputEle.value, imageDisplayedInEdit.src);
         editBoardWindow.style.display = "none";
     });
     updatedBoardImageBtn.addEventListener("click", function () {

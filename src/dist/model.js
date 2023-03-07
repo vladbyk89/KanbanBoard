@@ -97,6 +97,10 @@ var Board = /** @class */ (function () {
     Board.prototype.edit = function (newName, imageSrc) {
         this.name = newName;
         this.backgroundImage = imageSrc;
+        localStorage.setItem("currentBoard", JSON.stringify(this));
+        boardTitle.textContent = newName;
+        boardContainer.style.background = "url(" + imageSrc + ") no-repeat center / cover";
+        updateUserBoardList(currentUser, this);
     };
     return Board;
 }());
