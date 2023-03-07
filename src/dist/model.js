@@ -1,6 +1,4 @@
 var _a, _b, _c, _d;
-var currentUser = currentUserFromStorage();
-var currentBoard = currentBoardFromStorage();
 var userList = userListFromStorage();
 var cards = document.querySelectorAll(".boardContainer__main__list__card");
 var User = /** @class */ (function () {
@@ -17,12 +15,40 @@ var User = /** @class */ (function () {
         this.boardList = boardList;
         this.uid = uid;
     }
+    User.currentUserFromStorage = function () {
+        try {
+            var getUser = localStorage.getItem("currentUser");
+            if (getUser) {
+                var obj = JSON.parse(getUser);
+                currentUser = new User(obj.firstName, obj.lastName, obj.gender, obj.userName, obj.password, obj.email, obj.phoneNumber, obj.boardList, obj.uid);
+            }
+        }
+        catch (error) {
+            console.log(error);
+        }
+    };
+    User.setCurrentUser = function (userName) {
+        try {
+            var getLocalStorage = localStorage.getItem("signedUpUsers");
+            if (getLocalStorage) {
+                var usersList = JSON.parse(getLocalStorage);
+                var findUser = usersList.find(function (user) { return user.userName === userName; });
+                if (findUser) {
+                    currentUser = findUser;
+                    localStorage.setItem("currentUser", JSON.stringify(findUser));
+                }
+            }
+        }
+        catch (error) {
+            console.log(error);
+        }
+    };
     return User;
 }());
+var currentUser;
+User.currentUserFromStorage();
 var Board = /** @class */ (function () {
-    function Board(name, 
-    // public backgroundColor: string,
-    backgroundImage, lists, uid) {
+    function Board(name, backgroundImage, lists, uid) {
         if (lists === void 0) { lists = []; }
         if (uid === void 0) { uid = Math.random().toString(36).slice(2); }
         this.name = name;
@@ -30,8 +56,52 @@ var Board = /** @class */ (function () {
         this.lists = lists;
         this.uid = uid;
     }
+    Board.getCurrentBoardFromStorage = function () {
+        try {
+            var getBoard = localStorage.getItem("currentBoard");
+            if (getBoard) {
+                var obj = JSON.parse(getBoard);
+                currentBoard = new Board(obj.name, obj.backgroundImage, obj.lists, obj.uid);
+            }
+        }
+        catch (error) {
+            console.log(error);
+        }
+    };
+    Board.setCurrentBoard = function (boardName) {
+        try {
+            var findBoard = currentUser.boardList.find(function (board) { return board.name === boardName; });
+            localStorage.setItem("currentBoard", JSON.stringify(findBoard));
+        }
+        catch (error) {
+            console.log(error);
+        }
+    };
+    Board.prototype.update = function () {
+        var _this = this;
+        this.lists = [];
+        var listElements = boardContainer.querySelectorAll(".boardContainer__main__list");
+        listElements.forEach(function (list) {
+            var _a;
+            var listName = (_a = list.querySelector("h2")) === null || _a === void 0 ? void 0 : _a.innerHTML;
+            var cardsArr = [];
+            list
+                .querySelectorAll("p")
+                .forEach(function (card) { return cardsArr.push(card.innerHTML); });
+            var newList = new List(listName, Array.from(cardsArr));
+            _this.lists.push(newList);
+        });
+        localStorage.setItem("currentBoard", JSON.stringify(this));
+        updateUserBoardList(currentUser, this);
+    };
+    Board.prototype.edit = function (newName, imageSrc) {
+        this.name = newName;
+        this.backgroundImage = imageSrc;
+    };
     return Board;
 }());
+var currentBoard;
+Board.getCurrentBoardFromStorage();
 var List = /** @class */ (function () {
     function List(name, cards, uid, position) {
         if (cards === void 0) { cards = []; }
@@ -74,3 +144,22 @@ if (!localStorage.getItem("signedUpUsers")) {
     (_d = preMadeUserList[2].boardList).push.apply(_d, preMadeBoardList);
     localStorage.setItem("signedUpUsers", JSON.stringify(preMadeUserList));
 }
+// let currentBoard: Board = currentBoardFromStorage();
+// function currentBoardFromStorage(): Board {
+//   try {
+//     const getBoard = localStorage.getItem("currentBoard");
+//     if (getBoard) {
+//       const obj = JSON.parse(getBoard);
+//       const board = new Board(obj.name, obj.backgroundImage, obj.lists, obj.uid)
+//       console.log(board);
+//       console.log(JSON.parse(getBoard));
+//       return board;
+//     }
+//     const fakeBoard: Board = new Board('empty', 'empty');
+//     return fakeBoard
+//   } catch (error) {
+//     console.log(error);
+//     const fakeBoard: Board = new Board('empty', 'empty');
+//     return fakeBoard
+//   }
+// }

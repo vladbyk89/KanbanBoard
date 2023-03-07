@@ -47,7 +47,9 @@ if (window.location.pathname.endsWith("index.html")) {
     });
   });
 
-  createBoardBtn.addEventListener("click", createBoard);
+  createBoardBtn.addEventListener("click", () =>
+    createBoard(newBoardName.value, imageDisplayedInCreate.src.toString())
+  );
 
   searchBar.addEventListener("keyup", () => {
     if (searchBar.value != "") {
@@ -72,7 +74,7 @@ if (window.location.pathname.endsWith("index.html")) {
     }
 
     if (target.classList.contains("boardClick")) {
-      setCurrentBoard(target.innerHTML);
+      Board.setCurrentBoard(target.innerHTML);
       window.location.href = "board.html";
     }
   });
@@ -82,7 +84,7 @@ if (window.location.pathname.endsWith("index.html")) {
 if (window.location.pathname.endsWith("board.html")) {
   renderBoardInBoardPage();
 
-  addListBtn.addEventListener("click", createList);
+  addListBtn.addEventListener("click", () => createList(newListInput.value));
 
   editBoardBtn.addEventListener("click", () => {
     editBoard(currentBoard);
@@ -123,7 +125,7 @@ if (window.location.pathname.endsWith("board.html")) {
     } else {
       boardContainer.insertBefore(curList, leftList);
     }
-    updateCurrentBoard();
+    currentBoard.update();
   });
 
   window.addEventListener("click", (e) => {
@@ -151,11 +153,11 @@ if (window.location.pathname.endsWith("board.html")) {
   });
 
   boardContainer.addEventListener("keyup", () => {
-    updateCurrentBoard();
+    currentBoard.update();
   });
   newListInput.addEventListener("keyup", (event) => {
-    if (event.key === 'Enter') {
-      createList();
+    if (event.key === "Enter") {
+      createList(newListInput.value);
     }
   });
 
@@ -163,9 +165,11 @@ if (window.location.pathname.endsWith("board.html")) {
     event.preventDefault();
     const confirmDelete = confirm("Are you sure you want to delete?");
     if (confirmDelete) {
-      const element = document.getElementById(event.dataTransfer!.getData("Text"));
+      const element = document.getElementById(
+        event.dataTransfer!.getData("Text")
+      );
       element?.parentNode?.removeChild(element);
-      updateCurrentBoard();
+      currentBoard.update();
     }
   });
 }
