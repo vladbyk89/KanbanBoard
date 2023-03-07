@@ -93,6 +93,17 @@ class Board {
     }
   }
 
+  static deleteBoard(boardName: string) {
+    const boardIndex = currentUser.boardList.findIndex(
+      (board) => board.name === boardName
+    );
+    currentUser.boardList.splice(boardIndex, 1);
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    const findUser = userList.find((user) => user.uid === currentUser.uid);
+    if (findUser) findUser.boardList.splice(boardIndex, 1);
+    localStorage.setItem("signedUpUsers", JSON.stringify(userList));
+  }
+
   update() {
     this.lists = [];
     const listElements = boardContainer.querySelectorAll(
@@ -111,14 +122,13 @@ class Board {
     updateUserBoardList(currentUser, this);
   }
 
-  edit(newName:string, imageSrc:string){
+  edit(newName: string, imageSrc: string) {
     this.name = newName;
     this.backgroundImage = imageSrc;
     localStorage.setItem("currentBoard", JSON.stringify(this));
     boardTitle.textContent = newName;
     boardContainer.style.background = `url(${imageSrc}) no-repeat center / cover`;
     updateUserBoardList(currentUser, this);
-
   }
 }
 

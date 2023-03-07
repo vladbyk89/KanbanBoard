@@ -54,7 +54,7 @@ if (window.location.pathname.endsWith("index.html")) {
         if (target.dataset.name) {
             var check = confirm("Are you sure you want to delete?");
             if (check)
-                deleteBoard(target.dataset.name);
+                Board.deleteBoard(target.dataset.name);
             renderBoardsToMain(currentUser.boardList);
         }
         if (target.classList.contains("boardClick")) {

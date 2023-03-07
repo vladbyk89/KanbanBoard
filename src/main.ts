@@ -69,7 +69,7 @@ if (window.location.pathname.endsWith("index.html")) {
     const target = e.target as HTMLElement;
     if (target.dataset.name) {
       const check = confirm("Are you sure you want to delete?");
-      if (check) deleteBoard(target.dataset.name);
+      if (check) Board.deleteBoard(target.dataset.name);
       renderBoardsToMain(currentUser.boardList);
     }
 

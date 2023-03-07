@@ -321,18 +321,6 @@ function renderBoardInBoardPage() {
   }
 }
 
-// delete board from local storage
-function deleteBoard(boardName: string) {
-  const boardIndex = currentUser.boardList.findIndex(
-    (board) => board.name === boardName
-  );
-  currentUser.boardList.splice(boardIndex, 1);
-  localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  const findUser = userList.find((user) => user.uid === currentUser.uid);
-  if (findUser) findUser.boardList.splice(boardIndex, 1);
-  localStorage.setItem("signedUpUsers", JSON.stringify(userList));
-}
-
 function allowDrop(ev) {
   ev.preventDefault();
 }
