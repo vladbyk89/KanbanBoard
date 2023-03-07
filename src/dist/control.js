@@ -242,41 +242,6 @@ function renderBoardInBoardPage() {
         console.log(error);
     }
 }
-// delete board from local storage
-function deleteBoard(boardName) {
-    var boardIndex = currentUser.boardList.findIndex(function (board) { return board.name === boardName; });
-    currentUser.boardList.splice(boardIndex, 1);
-    localStorage.setItem("currentUser", JSON.stringify(currentUser));
-    var findUser = userList.find(function (user) { return user.uid === currentUser.uid; });
-    if (findUser)
-        findUser.boardList.splice(boardIndex, 1);
-    localStorage.setItem("signedUpUsers", JSON.stringify(userList));
-}
-function editBoard(board) {
-    board.name = nameInputEle.value;
-    // board.backgroundColor = colorInputEle.value;
-    board.backgroundImage = imageDisplayedInEdit.src;
-    localStorage.setItem("currentBoard", JSON.stringify(board));
-    boardTitle.textContent = board.name;
-    // boardContainer.style.backgroundColor = board.backgroundColor;
-    boardContainer.style.background = "url(" + currentBoard.backgroundImage + ") no-repeat center / cover";
-    updateUserBoardList(currentUser, board);
-}
-// function currentBoard.update() {
-//   currentBoard.lists = [];
-//   const listElements = boardContainer.querySelectorAll(
-//     ".boardContainer__main__list"
-//   );
-//   listElements.forEach((list) => {
-//     const listName = list.querySelector("h2")?.innerHTML as string;
-//     const cardsArr: string[] = [];
-//     list.querySelectorAll("p").forEach((card) => cardsArr.push(card.innerHTML));
-//     const newList = new List(listName, Array.from(cardsArr));
-//     currentBoard.lists.push(newList);
-//   });
-//   localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
-//   updateUserBoardList(currentUser, currentBoard);
-// }
 function allowDrop(ev) {
     ev.preventDefault();
 }

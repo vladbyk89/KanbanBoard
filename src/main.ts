@@ -69,7 +69,7 @@ if (window.location.pathname.endsWith("index.html")) {
     const target = e.target as HTMLElement;
     if (target.dataset.name) {
       const check = confirm("Are you sure you want to delete?");
-      if (check) deleteBoard(target.dataset.name);
+      if (check) Board.deleteBoard(target.dataset.name);
       renderBoardsToMain(currentUser.boardList);
     }
 
@@ -87,7 +87,7 @@ if (window.location.pathname.endsWith("board.html")) {
   addListBtn.addEventListener("click", () => createList(newListInput.value));
 
   editBoardBtn.addEventListener("click", () => {
-    editBoard(currentBoard);
+    currentBoard.edit(nameInputEle.value, imageDisplayedInEdit.src);
     editBoardWindow.style.display = "none";
   });
 

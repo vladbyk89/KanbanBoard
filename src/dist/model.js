@@ -77,6 +77,15 @@ var Board = /** @class */ (function () {
             console.log(error);
         }
     };
+    Board.deleteBoard = function (boardName) {
+        var boardIndex = currentUser.boardList.findIndex(function (board) { return board.name === boardName; });
+        currentUser.boardList.splice(boardIndex, 1);
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
+        var findUser = userList.find(function (user) { return user.uid === currentUser.uid; });
+        if (findUser)
+            findUser.boardList.splice(boardIndex, 1);
+        localStorage.setItem("signedUpUsers", JSON.stringify(userList));
+    };
     Board.prototype.update = function () {
         var _this = this;
         this.lists = [];
@@ -97,6 +106,10 @@ var Board = /** @class */ (function () {
     Board.prototype.edit = function (newName, imageSrc) {
         this.name = newName;
         this.backgroundImage = imageSrc;
+        localStorage.setItem("currentBoard", JSON.stringify(this));
+        boardTitle.textContent = newName;
+        boardContainer.style.background = "url(" + imageSrc + ") no-repeat center / cover";
+        updateUserBoardList(currentUser, this);
     };
     return Board;
 }());

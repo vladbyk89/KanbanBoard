@@ -54,7 +54,7 @@ if (window.location.pathname.endsWith("index.html")) {
         if (target.dataset.name) {
             var check = confirm("Are you sure you want to delete?");
             if (check)
-                deleteBoard(target.dataset.name);
+                Board.deleteBoard(target.dataset.name);
             renderBoardsToMain(currentUser.boardList);
         }
         if (target.classList.contains("boardClick")) {
@@ -68,7 +68,7 @@ if (window.location.pathname.endsWith("board.html")) {
     renderBoardInBoardPage();
     addListBtn.addEventListener("click", function () { return createList(newListInput.value); });
     editBoardBtn.addEventListener("click", function () {
-        editBoard(currentBoard);
+        currentBoard.edit(nameInputEle.value, imageDisplayedInEdit.src);
         editBoardWindow.style.display = "none";
     });
     updatedBoardImageBtn.addEventListener("click", function () {
