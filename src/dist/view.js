@@ -26,6 +26,7 @@ var searchBar = document.querySelector(".topNav__search");
 //------------------Board page-----------------------//
 var boardContainer = document.querySelector(".boardContainer__main");
 var boardTitle = document.querySelector(".topNav__boardName");
+var cards = document.querySelectorAll(".boardContainer__main__list__card");
 var editBoardWindow = document.querySelector(".editBoardWindow");
 var imageDisplayedInEdit = document.querySelector("#imageEditWindow");
 var deleteBoxDiv = document.getElementById("trashDiv");

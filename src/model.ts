@@ -1,7 +1,3 @@
-let userList: User[] = userListFromStorage();
-let cards = document.querySelectorAll(
-  ".boardContainer__main__list__card"
-) as NodeListOf<HTMLDivElement>;
 class User {
   constructor(
     public firstName: string,
@@ -99,6 +95,7 @@ class Board {
     );
     currentUser.boardList.splice(boardIndex, 1);
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    const userList = userListFromStorage();
     const findUser = userList.find((user) => user.uid === currentUser.uid);
     if (findUser) findUser.boardList.splice(boardIndex, 1);
     localStorage.setItem("signedUpUsers", JSON.stringify(userList));
@@ -148,13 +145,13 @@ class List {
     boardContainer.insertBefore(newList.createListElement(), deleteBoxDiv);
     newListInput.value = "";
   }
-  createListElement(){
+  createListElement() {
     const listContainer = document.createElement("div");
     listContainer.classList.add("boardContainer__main__list");
     listContainer.setAttribute("draggable", "true");
     listContainer.setAttribute("id", `${this.uid}`);
     listContainer.setAttribute("ondragstart", `drag(event)`);
-  
+
     const header = document.createElement("div");
     header.classList.add("boardContainer__main__list__header");
     header.setAttribute("id", `${this.name}_header`);
@@ -169,14 +166,14 @@ class List {
       </div>
     `;
     listContainer.appendChild(header);
-    makeListFunctional(listContainer)
+    makeListFunctional(listContainer);
     boardContainer.insertBefore(listContainer, deleteBoxDiv);
     currentBoard.update();
     return listContainer;
-
   }
 }
 
+// ---------------------- pre made users ---------------------- //
 const preMadeUserList: User[] = [
   new User(
     "Vladislav",

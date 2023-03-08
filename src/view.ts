@@ -64,6 +64,9 @@ const boardContainer = document.querySelector(
 const boardTitle = document.querySelector(
   ".topNav__boardName"
 ) as HTMLDivElement;
+let cards = document.querySelectorAll(
+  ".boardContainer__main__list__card"
+) as NodeListOf<HTMLDivElement>;
 const editBoardWindow = document.querySelector(
   ".editBoardWindow"
 ) as HTMLDivElement;

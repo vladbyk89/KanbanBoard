@@ -68,7 +68,7 @@ function uid() {
 
 
 function checkIfEmailExists(email:string){
-  userList = userListFromStorage();
+  const userList = userListFromStorage();
   const findEmail = userList.find(user => user.email === email)
   if(findEmail) return true
   return false

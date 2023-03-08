@@ -78,6 +78,7 @@ function displayProfile(user: User) {
 
 function updateUserBoardList(userToUpdate: User, boardToUpdate: Board) {
   try {
+    const userList = userListFromStorage();
     if (userList) {
       const findUser = userList.find((user) => user.uid === userToUpdate.uid);
       if (findUser) {
@@ -103,6 +104,7 @@ function updateUserBoardList(userToUpdate: User, boardToUpdate: Board) {
 
 function checkIfUserExists(userName: string, password: string) {
   try {
+    const userList = userListFromStorage();
     return userList.find(
       (user) => user.userName === userName && user.password === password
     );
