@@ -116,15 +116,36 @@ var Board = /** @class */ (function () {
 var currentBoard;
 Board.getCurrentBoardFromStorage();
 var List = /** @class */ (function () {
-    function List(name, cards, uid, position) {
+    function List(name, cards, uid) {
         if (cards === void 0) { cards = []; }
         if (uid === void 0) { uid = Math.random().toString(36).slice(2); }
-        if (position === void 0) { position = position; }
         this.name = name;
         this.cards = cards;
         this.uid = uid;
-        this.position = position;
     }
+    List.createList = function (listName) {
+        if (newListInput.value == "")
+            return;
+        var newList = new List(listName);
+        boardContainer.insertBefore(newList.createListElement(), deleteBoxDiv);
+        newListInput.value = "";
+    };
+    List.prototype.createListElement = function () {
+        var listContainer = document.createElement("div");
+        listContainer.classList.add("boardContainer__main__list");
+        listContainer.setAttribute("draggable", "true");
+        listContainer.setAttribute("id", "" + this.uid);
+        listContainer.setAttribute("ondragstart", "drag(event)");
+        var header = document.createElement("div");
+        header.classList.add("boardContainer__main__list__header");
+        header.setAttribute("id", this.name + "_header");
+        header.innerHTML = "\n    <div class=\"listTitle\" >\n      <h2>" + this.name + "</h3>\n      <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n      </div>\n      <div class=\"boardContainer__main__list__card--addCard\">\n        <textarea maxlength=\"20\" class=\"newCardTextArea\" cols=\"30\" rows=\"2\" placeholder=\"Task...\"></textarea>\n        <button class=\"newCardBtn\">New Card</button>\n      </div>\n    ";
+        listContainer.appendChild(header);
+        makeListFunctional(listContainer);
+        boardContainer.insertBefore(listContainer, deleteBoxDiv);
+        currentBoard.update();
+        return listContainer;
+    };
     return List;
 }());
 var preMadeUserList = [
@@ -157,22 +178,3 @@ if (!localStorage.getItem("signedUpUsers")) {
     (_d = preMadeUserList[2].boardList).push.apply(_d, preMadeBoardList);
     localStorage.setItem("signedUpUsers", JSON.stringify(preMadeUserList));
 }
-// let currentBoard: Board = currentBoardFromStorage();
-// function currentBoardFromStorage(): Board {
-//   try {
-//     const getBoard = localStorage.getItem("currentBoard");
-//     if (getBoard) {
-//       const obj = JSON.parse(getBoard);
-//       const board = new Board(obj.name, obj.backgroundImage, obj.lists, obj.uid)
-//       console.log(board);
-//       console.log(JSON.parse(getBoard));
-//       return board;
-//     }
-//     const fakeBoard: Board = new Board('empty', 'empty');
-//     return fakeBoard
-//   } catch (error) {
-//     console.log(error);
-//     const fakeBoard: Board = new Board('empty', 'empty');
-//     return fakeBoard
-//   }
-// }

@@ -84,7 +84,7 @@ if (window.location.pathname.endsWith("index.html")) {
 if (window.location.pathname.endsWith("board.html")) {
   renderBoardInBoardPage();
 
-  addListBtn.addEventListener("click", () => createList(newListInput.value));
+  addListBtn.addEventListener("click", () => List.createList(newListInput.value));
 
   editBoardBtn.addEventListener("click", () => {
     currentBoard.edit(nameInputEle.value, imageDisplayedInEdit.src);
@@ -157,7 +157,7 @@ if (window.location.pathname.endsWith("board.html")) {
   });
   newListInput.addEventListener("keyup", (event) => {
     if (event.key === "Enter") {
-      createList(newListInput.value);
+      List.createList(newListInput.value);
     }
   });
 
