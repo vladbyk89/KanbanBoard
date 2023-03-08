@@ -1,6 +1,4 @@
 var _a, _b, _c, _d;
-var currentUser = currentUserFromStorage();
-var currentBoard = currentBoardFromStorage();
 var userList = userListFromStorage();
 var cards = document.querySelectorAll(".boardContainer__main__list__card");
 var User = /** @class */ (function () {
@@ -17,12 +15,40 @@ var User = /** @class */ (function () {
         this.boardList = boardList;
         this.uid = uid;
     }
+    User.currentUserFromStorage = function () {
+        try {
+            var getUser = localStorage.getItem("currentUser");
+            if (getUser) {
+                var obj = JSON.parse(getUser);
+                currentUser = new User(obj.firstName, obj.lastName, obj.gender, obj.userName, obj.password, obj.email, obj.phoneNumber, obj.boardList, obj.uid);
+            }
+        }
+        catch (error) {
+            console.log(error);
+        }
+    };
+    User.setCurrentUser = function (userName) {
+        try {
+            var getLocalStorage = localStorage.getItem("signedUpUsers");
+            if (getLocalStorage) {
+                var usersList = JSON.parse(getLocalStorage);
+                var findUser = usersList.find(function (user) { return user.userName === userName; });
+                if (findUser) {
+                    currentUser = findUser;
+                    localStorage.setItem("currentUser", JSON.stringify(findUser));
+                }
+            }
+        }
+        catch (error) {
+            console.log(error);
+        }
+    };
     return User;
 }());
+var currentUser;
+User.currentUserFromStorage();
 var Board = /** @class */ (function () {
-    function Board(name, 
-    // public backgroundColor: string,
-    backgroundImage, lists, uid) {
+    function Board(name, backgroundImage, lists, uid) {
         if (lists === void 0) { lists = []; }
         if (uid === void 0) { uid = Math.random().toString(36).slice(2); }
         this.name = name;
@@ -30,18 +56,96 @@ var Board = /** @class */ (function () {
         this.lists = lists;
         this.uid = uid;
     }
+    Board.getCurrentBoardFromStorage = function () {
+        try {
+            var getBoard = localStorage.getItem("currentBoard");
+            if (getBoard) {
+                var obj = JSON.parse(getBoard);
+                currentBoard = new Board(obj.name, obj.backgroundImage, obj.lists, obj.uid);
+            }
+        }
+        catch (error) {
+            console.log(error);
+        }
+    };
+    Board.setCurrentBoard = function (boardName) {
+        try {
+            var findBoard = currentUser.boardList.find(function (board) { return board.name === boardName; });
+            localStorage.setItem("currentBoard", JSON.stringify(findBoard));
+        }
+        catch (error) {
+            console.log(error);
+        }
+    };
+    Board.deleteBoard = function (boardName) {
+        var boardIndex = currentUser.boardList.findIndex(function (board) { return board.name === boardName; });
+        currentUser.boardList.splice(boardIndex, 1);
+        localStorage.setItem("currentUser", JSON.stringify(currentUser));
+        var findUser = userList.find(function (user) { return user.uid === currentUser.uid; });
+        if (findUser)
+            findUser.boardList.splice(boardIndex, 1);
+        localStorage.setItem("signedUpUsers", JSON.stringify(userList));
+    };
+    Board.prototype.update = function () {
+        var _this = this;
+        this.lists = [];
+        var listElements = boardContainer.querySelectorAll(".boardContainer__main__list");
+        listElements.forEach(function (list) {
+            var _a;
+            var listName = (_a = list.querySelector("h2")) === null || _a === void 0 ? void 0 : _a.innerHTML;
+            var cardsArr = [];
+            list
+                .querySelectorAll("p")
+                .forEach(function (card) { return cardsArr.push(card.innerHTML); });
+            var newList = new List(listName, Array.from(cardsArr));
+            _this.lists.push(newList);
+        });
+        localStorage.setItem("currentBoard", JSON.stringify(this));
+        updateUserBoardList(currentUser, this);
+    };
+    Board.prototype.edit = function (newName, imageSrc) {
+        this.name = newName;
+        this.backgroundImage = imageSrc;
+        localStorage.setItem("currentBoard", JSON.stringify(this));
+        boardTitle.textContent = newName;
+        boardContainer.style.background = "url(" + imageSrc + ") no-repeat center / cover";
+        updateUserBoardList(currentUser, this);
+    };
     return Board;
 }());
+var currentBoard;
+Board.getCurrentBoardFromStorage();
 var List = /** @class */ (function () {
-    function List(name, cards, uid, position) {
+    function List(name, cards, uid) {
         if (cards === void 0) { cards = []; }
         if (uid === void 0) { uid = Math.random().toString(36).slice(2); }
-        if (position === void 0) { position = position; }
         this.name = name;
         this.cards = cards;
         this.uid = uid;
-        this.position = position;
     }
+    List.createList = function (listName) {
+        if (newListInput.value == "")
+            return;
+        var newList = new List(listName);
+        boardContainer.insertBefore(newList.createListElement(), deleteBoxDiv);
+        newListInput.value = "";
+    };
+    List.prototype.createListElement = function () {
+        var listContainer = document.createElement("div");
+        listContainer.classList.add("boardContainer__main__list");
+        listContainer.setAttribute("draggable", "true");
+        listContainer.setAttribute("id", "" + this.uid);
+        listContainer.setAttribute("ondragstart", "drag(event)");
+        var header = document.createElement("div");
+        header.classList.add("boardContainer__main__list__header");
+        header.setAttribute("id", this.name + "_header");
+        header.innerHTML = "\n    <div class=\"listTitle\" >\n      <h2>" + this.name + "</h3>\n      <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n      </div>\n      <div class=\"boardContainer__main__list__card--addCard\">\n        <textarea maxlength=\"20\" class=\"newCardTextArea\" cols=\"30\" rows=\"2\" placeholder=\"Task...\"></textarea>\n        <button class=\"newCardBtn\">New Card</button>\n      </div>\n    ";
+        listContainer.appendChild(header);
+        makeListFunctional(listContainer);
+        boardContainer.insertBefore(listContainer, deleteBoxDiv);
+        currentBoard.update();
+        return listContainer;
+    };
     return List;
 }());
 var preMadeUserList = [

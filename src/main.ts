@@ -47,7 +47,9 @@ if (window.location.pathname.endsWith("index.html")) {
     });
   });
 
-  createBoardBtn.addEventListener("click", createBoard);
+  createBoardBtn.addEventListener("click", () =>
+    createBoard(newBoardName.value, imageDisplayedInCreate.src.toString())
+  );
 
   searchBar.addEventListener("keyup", () => {
     if (searchBar.value != "") {
@@ -67,12 +69,12 @@ if (window.location.pathname.endsWith("index.html")) {
     const target = e.target as HTMLElement;
     if (target.dataset.name) {
       const check = confirm("Are you sure you want to delete?");
-      if (check) deleteBoard(target.dataset.name);
+      if (check) Board.deleteBoard(target.dataset.name);
       renderBoardsToMain(currentUser.boardList);
     }
 
     if (target.classList.contains("boardClick")) {
-      setCurrentBoard(target.innerHTML);
+      Board.setCurrentBoard(target.innerHTML);
       window.location.href = "board.html";
     }
   });
@@ -82,10 +84,10 @@ if (window.location.pathname.endsWith("index.html")) {
 if (window.location.pathname.endsWith("board.html")) {
   renderBoardInBoardPage();
 
-  addListBtn.addEventListener("click", createList);
+  addListBtn.addEventListener("click", () => List.createList(newListInput.value));
 
   editBoardBtn.addEventListener("click", () => {
-    editBoard(currentBoard);
+    currentBoard.edit(nameInputEle.value, imageDisplayedInEdit.src);
     editBoardWindow.style.display = "none";
   });
 
@@ -123,7 +125,7 @@ if (window.location.pathname.endsWith("board.html")) {
     } else {
       boardContainer.insertBefore(curList, leftList);
     }
-    updateCurrentBoard();
+    currentBoard.update();
   });
 
   window.addEventListener("click", (e) => {
@@ -151,21 +153,23 @@ if (window.location.pathname.endsWith("board.html")) {
   });
 
   boardContainer.addEventListener("keyup", () => {
-    updateCurrentBoard();
+    currentBoard.update();
   });
   newListInput.addEventListener("keyup", (event) => {
-    if (event.key === 'Enter') {
-      createList();
+    if (event.key === "Enter") {
+      List.createList(newListInput.value);
     }
   });
 
-  trashCan.addEventListener("drop", (event) => {
+  deleteBoxDiv.addEventListener("drop", (event) => {
     event.preventDefault();
     const confirmDelete = confirm("Are you sure you want to delete?");
     if (confirmDelete) {
-      const element = document.getElementById(event.dataTransfer!.getData("Text"));
+      const element = document.getElementById(
+        event.dataTransfer!.getData("Text")
+      );
       element?.parentNode?.removeChild(element);
-      updateCurrentBoard();
+      currentBoard.update();
     }
   });
 }

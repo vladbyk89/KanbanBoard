@@ -1,5 +1,3 @@
-let currentUser: User = currentUserFromStorage();
-let currentBoard: Board = currentBoardFromStorage();
 let userList: User[] = userListFromStorage();
 let cards = document.querySelectorAll(
   ".boardContainer__main__list__card"
@@ -16,42 +14,167 @@ class User {
     public boardList: Board[] = [],
     public uid: string = Math.random().toString(36).slice(2)
   ) {}
+
+  static currentUserFromStorage() {
+    try {
+      const getUser = localStorage.getItem("currentUser");
+      if (getUser) {
+        const obj: User = JSON.parse(getUser);
+        currentUser = new User(
+          obj.firstName,
+          obj.lastName,
+          obj.gender,
+          obj.userName,
+          obj.password,
+          obj.email,
+          obj.phoneNumber,
+          obj.boardList,
+          obj.uid
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  static setCurrentUser(userName: string) {
+    try {
+      const getLocalStorage = localStorage.getItem("signedUpUsers");
+      if (getLocalStorage) {
+        const usersList = JSON.parse(getLocalStorage) as User[];
+        const findUser = usersList.find((user) => user.userName === userName);
+        if (findUser) {
+          currentUser = findUser as User;
+          localStorage.setItem("currentUser", JSON.stringify(findUser));
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
+
+let currentUser: User;
+User.currentUserFromStorage();
 
 class Board {
   constructor(
     public name: string,
-    // public backgroundColor: string,
     public backgroundImage: string,
     public lists: List[] = [],
     public uid: string = Math.random().toString(36).slice(2)
   ) {}
-  // update() {
-  //   this.lists = [];
-  //   const listElements = boardContainer.querySelectorAll(
-  //     ".boardContainer__main__list"
-  //   );
-  //   listElements.forEach((list) => {
-  //     const listName = list.querySelector("h2")?.innerHTML as string;
-  //     const cardsArr: string[] = [];
-  //     list
-  //       .querySelectorAll("p")
-  //       .forEach((card) => cardsArr.push(card.innerHTML));
-  //     const newList = new List(listName, Array.from(cardsArr));
-  //     this.lists.push(newList);
-  //   });
-  //   localStorage.setItem("currentBoard", JSON.stringify(this));
-  //   updateUserBoardList(currentUser, this);
-  // }
+
+  static getCurrentBoardFromStorage() {
+    try {
+      const getBoard = localStorage.getItem("currentBoard");
+      if (getBoard) {
+        const obj = JSON.parse(getBoard);
+        currentBoard = new Board(
+          obj.name,
+          obj.backgroundImage,
+          obj.lists,
+          obj.uid
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  static setCurrentBoard(boardName: string) {
+    try {
+      const findBoard = currentUser.boardList.find(
+        (board) => board.name === boardName
+      );
+      localStorage.setItem("currentBoard", JSON.stringify(findBoard));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  static deleteBoard(boardName: string) {
+    const boardIndex = currentUser.boardList.findIndex(
+      (board) => board.name === boardName
+    );
+    currentUser.boardList.splice(boardIndex, 1);
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    const findUser = userList.find((user) => user.uid === currentUser.uid);
+    if (findUser) findUser.boardList.splice(boardIndex, 1);
+    localStorage.setItem("signedUpUsers", JSON.stringify(userList));
+  }
+
+  update() {
+    this.lists = [];
+    const listElements = boardContainer.querySelectorAll(
+      ".boardContainer__main__list"
+    );
+    listElements.forEach((list) => {
+      const listName = list.querySelector("h2")?.innerHTML as string;
+      const cardsArr: string[] = [];
+      list
+        .querySelectorAll("p")
+        .forEach((card) => cardsArr.push(card.innerHTML));
+      const newList = new List(listName, Array.from(cardsArr));
+      this.lists.push(newList);
+    });
+    localStorage.setItem("currentBoard", JSON.stringify(this));
+    updateUserBoardList(currentUser, this);
+  }
+
+  edit(newName: string, imageSrc: string) {
+    this.name = newName;
+    this.backgroundImage = imageSrc;
+    localStorage.setItem("currentBoard", JSON.stringify(this));
+    boardTitle.textContent = newName;
+    boardContainer.style.background = `url(${imageSrc}) no-repeat center / cover`;
+    updateUserBoardList(currentUser, this);
+  }
 }
+
+let currentBoard: Board;
+Board.getCurrentBoardFromStorage();
 
 class List {
   constructor(
     public name: string,
     public cards: string[] = [],
-    public uid = Math.random().toString(36).slice(2),
-    public position = position
+    public uid = Math.random().toString(36).slice(2)
   ) {}
+
+  static createList(listName: string) {
+    if (newListInput.value == "") return;
+    const newList = new List(listName);
+    boardContainer.insertBefore(newList.createListElement(), deleteBoxDiv);
+    newListInput.value = "";
+  }
+  createListElement(){
+    const listContainer = document.createElement("div");
+    listContainer.classList.add("boardContainer__main__list");
+    listContainer.setAttribute("draggable", "true");
+    listContainer.setAttribute("id", `${this.uid}`);
+    listContainer.setAttribute("ondragstart", `drag(event)`);
+  
+    const header = document.createElement("div");
+    header.classList.add("boardContainer__main__list__header");
+    header.setAttribute("id", `${this.name}_header`);
+    header.innerHTML = `
+    <div class="listTitle" >
+      <h2>${this.name}</h3>
+      <i class="fa-regular fa-pen-to-square editListBtn"></i>
+      </div>
+      <div class="boardContainer__main__list__card--addCard">
+        <textarea maxlength="20" class="newCardTextArea" cols="30" rows="2" placeholder="Task..."></textarea>
+        <button class="newCardBtn">New Card</button>
+      </div>
+    `;
+    listContainer.appendChild(header);
+    makeListFunctional(listContainer)
+    boardContainer.insertBefore(listContainer, deleteBoxDiv);
+    currentBoard.update();
+    return listContainer;
+
+  }
 }
 
 const preMadeUserList: User[] = [

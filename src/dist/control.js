@@ -12,7 +12,7 @@ function handleSignUp(e) {
     if (arr.some(function (ele) { return ele == ""; }))
         return alert("missing field");
     if (checkIfEmailExists(email))
-        return alert('Email is alreay in the system');
+        return alert("Email is alreay in the system");
     var newUser = new User(firstName, lastName, gender, userName, password, email, phone);
     var signedUpUsers = JSON.parse(localStorage.getItem("signedUpUsers") || "[]");
     signedUpUsers.push(newUser);
@@ -21,19 +21,12 @@ function handleSignUp(e) {
     location.href = "index.html";
     this.reset();
 }
-function checkIfEmailExists(email) {
-    userList = userListFromStorage();
-    var findEmail = userList.find(function (user) { return user.email === email; });
-    if (findEmail)
-        return true;
-    return false;
-}
 function handleSignIn(e) {
     e.preventDefault();
     var userName = userNameInput.value;
     var password = passwordInput.value;
     if (checkIfUserExists(userName, password)) {
-        setCurrentUser(userName);
+        User.setCurrentUser(userName);
         signInForm.reset();
         window.location.href = "index.html";
     }
@@ -42,30 +35,39 @@ function handleSignIn(e) {
     }
 }
 function displayProfile(user) {
-    profileWindow.style.display = "flex";
-    if (user) {
-        return (profileDiv.innerHTML = "\n      <ul>\n        <h1>About you</h1>\n        <li>Name: " + user.firstName + " " + user.lastName + "</li>\n        <li>Gender: " + user.gender + "</li>\n        <li>Email: " + user.email + "</li>\n        <li>Phone Number: " + user.phoneNumber + "</li>\n        <li>User Name: " + user.userName + "</li>\n        <li>Password: " + user.password + "</li>\n      </ul>\n      ");
+    try {
+        profileWindow.style.display = "flex";
+        if (user) {
+            return (profileDiv.innerHTML = "\n        <ul>\n          <h1>About you:</h1>\n          <li>Name: " + user.firstName + " " + user.lastName + "</li>\n          <li>Gender: " + user.gender + "</li>\n          <li>Email: " + user.email + "</li>\n          <li>Phone Number: " + user.phoneNumber + "</li>\n          <li>User Name: " + user.userName + "</li>\n          <li>Password: " + user.password + "</li>\n        </ul>\n        ");
+        }
+        return (profileDiv.innerHTML = "\n      <ul>\n        <h1>About you</h1>\n        <li>Name: EMPTY</li>\n        <li>Gender: EMPTY</li>\n        <li>Email: EMPTY</li>\n        <li>Phone Number: EMPTY</li>\n        <li>User Name: EMPTY</li>\n        <li>Password: EMPTY</li>\n      </ul>\n      ");
     }
-    return (profileDiv.innerHTML = "\n    <ul>\n      <h1>About you</h1>\n      <li>Name: EMPTY</li>\n      <li>Gender: EMPTY</li>\n      <li>Email: EMPTY</li>\n      <li>Phone Number: EMPTY</li>\n      <li>User Name: EMPTY</li>\n      <li>Password: EMPTY</li>\n    </ul>\n    ");
+    catch (error) {
+        console.log(error);
+    }
 }
 function updateUserBoardList(userToUpdate, boardToUpdate) {
-    if (userList) {
-        var findUser = userList.find(function (user) { return user.uid === userToUpdate.uid; });
-        if (findUser) {
-            var findBoard = findUser.boardList.find(function (board) { return board.uid === boardToUpdate.uid; });
-            if (findBoard) {
-                var boardIndex = findUser.boardList.indexOf(findBoard);
-                // const indexCurrentUser = currentUser.boardList.indexOf(findBoard);
-                findUser.boardList[boardIndex] = boardToUpdate;
-                currentUser.boardList[boardIndex] = boardToUpdate;
+    try {
+        if (userList) {
+            var findUser = userList.find(function (user) { return user.uid === userToUpdate.uid; });
+            if (findUser) {
+                var findBoard = findUser.boardList.find(function (board) { return board.uid === boardToUpdate.uid; });
+                if (findBoard) {
+                    var boardIndex = findUser.boardList.indexOf(findBoard);
+                    findUser.boardList[boardIndex] = boardToUpdate;
+                    currentUser.boardList[boardIndex] = boardToUpdate;
+                }
+                else {
+                    findUser.boardList.unshift(boardToUpdate);
+                    currentUser.boardList.unshift(boardToUpdate);
+                }
             }
-            else {
-                findUser.boardList.unshift(boardToUpdate);
-                currentUser.boardList.unshift(boardToUpdate);
-            }
+            localStorage.setItem("signedUpUsers", JSON.stringify(userList));
+            localStorage.setItem("currentUser", JSON.stringify(currentUser));
         }
-        localStorage.setItem("signedUpUsers", JSON.stringify(userList));
-        localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    }
+    catch (error) {
+        throw error;
     }
 }
 function checkIfUserExists(userName, password) {
@@ -88,22 +90,16 @@ function renderBoardsToMain(listOFBoards) {
         console.log(error);
     }
 }
-function createBoard() {
+function createBoard(boardName, boardImage) {
     try {
         if (currentUser.boardList.length === 10)
-            return alert('maxinum amount of boards is 10');
-        var boardName_1 = newBoardName.value;
-        var boardImage = imageDisplayedInCreate.src.toString();
-        if (boardName_1) {
-            if (currentUser.boardList.find(function (board) { return board.name === boardName_1; }))
+            return alert("maxinum amount of boards is 10");
+        if (boardName) {
+            if (currentUser.boardList.find(function (board) { return board.name === boardName; }))
                 return alert("There is already a board with that name");
-            var newBoard = new Board(boardName_1, boardImage);
+            var newBoard = new Board(boardName, boardImage);
             updateUserBoardList(currentUser, newBoard);
             localStorage.setItem("currentBoard", JSON.stringify(newBoard));
-            boardName_1 = "";
-            boardImage = "./img/Logo.png";
-            newBoardWindow.style.display = "none";
-            renderBoardsToMain(currentUser.boardList);
             location.href = "board.html";
         }
         else {
@@ -114,64 +110,63 @@ function createBoard() {
         console.log(error);
     }
 }
-function createListElement(list) {
-    var listContainer = document.createElement("div");
-    listContainer.classList.add("boardContainer__main__list");
-    listContainer.setAttribute("draggable", "true");
-    listContainer.setAttribute("id", "" + list.uid);
-    listContainer.setAttribute("ondragstart", "drag(event)");
-    var header = document.createElement("div");
-    header.classList.add("boardContainer__main__list__header");
-    header.setAttribute("id", list.name + "_header");
-    header.innerHTML = "\n  <div class=\"listTitle\" >\n    <h2>" + list.name + "</h3>\n    <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n    </div>\n    <div class=\"boardContainer__main__list__card--addCard\">\n      <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"2\" placeholder=\"Task...\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n    </div>\n  ";
-    listContainer.appendChild(header);
-    var newCardTextArea = listContainer.querySelector(".newCardTextArea");
-    newCardTextArea.addEventListener("keyup", function (event) {
-        if (event.keyCode === 13) {
-            var newCardBtn = listContainer.querySelector(".newCardBtn");
-            if (newCardTextArea.value.trim() !== '') {
-                createCardElement(newCardTextArea.value.trim(), listContainer);
-                newCardTextArea.value = "";
-            }
-        }
-    });
+function makeListFunctional(listContainer) {
     listContainer.addEventListener("dragstart", function () {
         listContainer.classList.add("is-draggin");
     });
     listContainer.addEventListener("dragend", function () {
         listContainer.classList.remove("is-draggin");
     });
-    listContainer.addEventListener("dragover", function (e) {
-        var cardIsDragged = false;
-        cards.forEach(function (card) {
-            if (card.classList.contains("is-dragging")) {
-                cardIsDragged = true;
+    listContainer.addEventListener("dragover", dragginCard);
+    var editListBtn = listContainer.querySelector(".editListBtn");
+    editListBtn.addEventListener("click", editList);
+    var newCardTextArea = listContainer.querySelector(".newCardTextArea");
+    newCardTextArea.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+            if (newCardTextArea.value.trim() !== "") {
+                createCardElement(newCardTextArea.value.trim(), listContainer);
+                newCardTextArea.value = "";
             }
-        });
-        if (!cardIsDragged)
-            return;
-        e.preventDefault();
-        var bottomTask = insertAboveTask(listContainer, e.clientY);
-        var curTask = document.querySelector(".is-dragging");
-        if (!bottomTask) {
-            listContainer.appendChild(curTask);
         }
-        else {
-            listContainer.insertBefore(curTask, bottomTask);
-        }
-        updateCurrentBoard();
     });
-    boardContainer.insertBefore(listContainer, deleteBoxDiv);
-    updateCurrentBoard();
-    return listContainer;
 }
-function createList() {
-    if (newListInput.value == "")
+function dragginCard(_a) {
+    var clientY = _a.clientY;
+    var cardIsDragged = false;
+    cards.forEach(function (card) {
+        if (card.classList.contains("is-dragging")) {
+            cardIsDragged = true;
+        }
+    });
+    if (!cardIsDragged)
         return;
-    var newList = new List(newListInput.value);
-    boardContainer.insertBefore(createListElement(newList), deleteBoxDiv);
-    // saveListTolocalStorage(newList);
-    newListInput.value = "";
+    // e.preventDefault();
+    var bottomTask = insertAboveTask(this, clientY);
+    var curTask = document.querySelector(".is-dragging");
+    if (!bottomTask) {
+        this.appendChild(curTask);
+    }
+    else {
+        this.insertBefore(curTask, bottomTask);
+    }
+    currentBoard.update();
+}
+function editList() {
+    var listTitle = this.parentNode;
+    var listTitleText = listTitle.querySelector("h2");
+    var editListInput = document.createElement("input");
+    editListInput.type = "text";
+    editListInput.value = listTitleText.textContent;
+    editListInput.classList.add("editListInput");
+    listTitle.replaceChild(editListInput, listTitleText);
+    editListInput.focus();
+    editListInput.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+            listTitle.replaceChild(listTitleText, editListInput);
+            listTitleText.textContent = editListInput.value.trim();
+            currentBoard.update();
+        }
+    });
 }
 function createCardElement(cardName, list) {
     var card = document.createElement("div");
@@ -182,13 +177,35 @@ function createCardElement(cardName, list) {
     card.innerHTML = "\n  <p>" + cardName + "</p>\n  <i class=\"fa-regular fa-pen-to-square editCardBtn\"></i>\n  ";
     var cardTitle = list.querySelector(".boardContainer__main__list__header");
     list.insertBefore(card, cardTitle.nextSibling);
+    var editCardBtn = card.querySelector(".editCardBtn");
+    editCardBtn.addEventListener("click", function () {
+        var cardTitle = card.querySelector(".boardContainer__main__list__card > p");
+        if (!cardTitle) {
+            console.error("Card title element not found!");
+            return;
+        }
+        var editCardInput = document.createElement("input");
+        editCardInput.type = "text";
+        editCardInput.value = cardTitle.textContent;
+        editCardInput.classList.add("editCardInput");
+        editCardInput.addEventListener("keyup", function (event) {
+            if (event.key === "Enter") {
+                var newCardTitle = document.createElement("p");
+                newCardTitle.textContent = editCardInput.value.trim();
+                editCardInput.replaceWith(newCardTitle);
+            }
+        });
+        cardTitle.replaceWith(editCardInput);
+        editCardInput.focus();
+        currentBoard.update();
+    });
     card.addEventListener("dragstart", function () {
         card.classList.add("is-dragging");
     });
     card.addEventListener("dragend", function () {
         card.classList.remove("is-dragging");
     });
-    updateCurrentBoard();
+    currentBoard.update();
     // Add new card to cards variable
     cards = document.querySelectorAll(".boardContainer__main__list__card");
 }
@@ -196,53 +213,17 @@ function renderBoardInBoardPage() {
     try {
         boardTitle.textContent = currentBoard.name;
         boardContainer.style.background = "url(" + currentBoard.backgroundImage + ") no-repeat center / cover";
-        renderLists();
+        currentBoard.lists.forEach(function (list) {
+            var listObj = new List(list.name, list.cards, list.uid);
+            var ListElement = listObj.createListElement();
+            list.cards.forEach(function (card) {
+                createCardElement(card, ListElement);
+            });
+        });
     }
     catch (error) {
         console.log(error);
     }
-}
-function renderLists() {
-    currentBoard.lists.forEach(function (list) {
-        var ListElement = createListElement(list);
-        list.cards.forEach(function (card) {
-            createCardElement(card, ListElement);
-        });
-    });
-}
-// delete board from local storage
-function deleteBoard(boardName) {
-    var boardIndex = currentUser.boardList.findIndex(function (board) { return board.name === boardName; });
-    currentUser.boardList.splice(boardIndex, 1);
-    localStorage.setItem("currentUser", JSON.stringify(currentUser));
-    var findUser = userList.find(function (user) { return user.uid === currentUser.uid; });
-    if (findUser)
-        findUser.boardList.splice(boardIndex, 1);
-    localStorage.setItem("signedUpUsers", JSON.stringify(userList));
-}
-function editBoard(board) {
-    board.name = nameInputEle.value;
-    // board.backgroundColor = colorInputEle.value;
-    board.backgroundImage = imageDisplayedInEdit.src;
-    localStorage.setItem("currentBoard", JSON.stringify(board));
-    boardTitle.textContent = board.name;
-    // boardContainer.style.backgroundColor = board.backgroundColor;
-    boardContainer.style.background = "url(" + currentBoard.backgroundImage + ") no-repeat center / cover";
-    updateUserBoardList(currentUser, board);
-}
-function updateCurrentBoard() {
-    currentBoard.lists = [];
-    var listElements = boardContainer.querySelectorAll(".boardContainer__main__list");
-    listElements.forEach(function (list) {
-        var _a;
-        var listName = (_a = list.querySelector("h2")) === null || _a === void 0 ? void 0 : _a.innerHTML;
-        var cardsArr = [];
-        list.querySelectorAll("p").forEach(function (card) { return cardsArr.push(card.innerHTML); });
-        var newList = new List(listName, Array.from(cardsArr));
-        currentBoard.lists.push(newList);
-    });
-    localStorage.setItem("currentBoard", JSON.stringify(currentBoard));
-    updateUserBoardList(currentUser, currentBoard);
 }
 function allowDrop(ev) {
     ev.preventDefault();
@@ -255,5 +236,5 @@ function drop(ev) {
     var data = ev.dataTransfer.getData("Text");
     var el = document.getElementById(data);
     // el?.parentNode?.removeChild(el); => delete without Warning
-    updateCurrentBoard();
+    currentBoard.update();
 }

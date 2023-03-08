@@ -32,7 +32,9 @@ if (window.location.pathname.endsWith("index.html")) {
             });
         });
     });
-    createBoardBtn.addEventListener("click", createBoard);
+    createBoardBtn.addEventListener("click", function () {
+        return createBoard(newBoardName.value, imageDisplayedInCreate.src.toString());
+    });
     searchBar.addEventListener("keyup", function () {
         if (searchBar.value != "") {
             boardArea.innerHTML = "";
@@ -52,11 +54,11 @@ if (window.location.pathname.endsWith("index.html")) {
         if (target.dataset.name) {
             var check = confirm("Are you sure you want to delete?");
             if (check)
-                deleteBoard(target.dataset.name);
+                Board.deleteBoard(target.dataset.name);
             renderBoardsToMain(currentUser.boardList);
         }
         if (target.classList.contains("boardClick")) {
-            setCurrentBoard(target.innerHTML);
+            Board.setCurrentBoard(target.innerHTML);
             window.location.href = "board.html";
         }
     });
@@ -64,9 +66,9 @@ if (window.location.pathname.endsWith("index.html")) {
 //---------------------- board.html ----------------------
 if (window.location.pathname.endsWith("board.html")) {
     renderBoardInBoardPage();
-    addListBtn.addEventListener("click", createList);
+    addListBtn.addEventListener("click", function () { return List.createList(newListInput.value); });
     editBoardBtn.addEventListener("click", function () {
-        editBoard(currentBoard);
+        currentBoard.edit(nameInputEle.value, imageDisplayedInEdit.src);
         editBoardWindow.style.display = "none";
     });
     updatedBoardImageBtn.addEventListener("click", function () {
@@ -98,7 +100,7 @@ if (window.location.pathname.endsWith("board.html")) {
         else {
             boardContainer.insertBefore(curList, leftList);
         }
-        updateCurrentBoard();
+        currentBoard.update();
     });
     window.addEventListener("click", function (e) {
         var target = e.target;
@@ -121,21 +123,21 @@ if (window.location.pathname.endsWith("board.html")) {
         }
     });
     boardContainer.addEventListener("keyup", function () {
-        updateCurrentBoard();
+        currentBoard.update();
     });
     newListInput.addEventListener("keyup", function (event) {
-        if (event.key === 'Enter') {
-            createList();
+        if (event.key === "Enter") {
+            List.createList(newListInput.value);
         }
     });
-    trashCan.addEventListener("drop", function (event) {
+    deleteBoxDiv.addEventListener("drop", function (event) {
         var _a;
         event.preventDefault();
         var confirmDelete = confirm("Are you sure you want to delete?");
         if (confirmDelete) {
             var element = document.getElementById(event.dataTransfer.getData("Text"));
             (_a = element === null || element === void 0 ? void 0 : element.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(element);
-            updateCurrentBoard();
+            currentBoard.update();
         }
     });
 }

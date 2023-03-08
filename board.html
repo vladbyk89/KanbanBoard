@@ -59,7 +59,7 @@
           <h3>Drop here to remove</h3>
         </div> -->
         <div class="listArea"></div>
-        <div id="trashDiv">
+        <div id="trashDiv" ondrop="drop(event)" ondragover="allowDrop(event)">
           <span class="trash">
             <span></span>
             <i></i>
@@ -67,7 +67,10 @@
         </div>
       </main>
     </div>
-    <div class="profileWindow">
+    <div class="profileWindow"><i
+      class="fa-regular fa-pen-to-square editprofileBtn"
+      title="Edit Profile Info"
+    ></i>
       <i
         class="fa-solid fa-arrow-right-from-bracket exitProfilePage"
         title="Back To Page"
