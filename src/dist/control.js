@@ -48,6 +48,7 @@ function displayProfile(user) {
 }
 function updateUserBoardList(userToUpdate, boardToUpdate) {
     try {
+        var userList = userListFromStorage();
         if (userList) {
             var findUser = userList.find(function (user) { return user.uid === userToUpdate.uid; });
             if (findUser) {
@@ -72,6 +73,7 @@ function updateUserBoardList(userToUpdate, boardToUpdate) {
 }
 function checkIfUserExists(userName, password) {
     try {
+        var userList = userListFromStorage();
         return userList.find(function (user) { return user.userName === userName && user.password === password; });
     }
     catch (error) {

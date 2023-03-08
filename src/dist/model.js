@@ -1,6 +1,4 @@
 var _a, _b, _c, _d;
-var userList = userListFromStorage();
-var cards = document.querySelectorAll(".boardContainer__main__list__card");
 var User = /** @class */ (function () {
     function User(firstName, lastName, gender, userName, password, email, phoneNumber, boardList, uid) {
         if (boardList === void 0) { boardList = []; }
@@ -81,6 +79,7 @@ var Board = /** @class */ (function () {
         var boardIndex = currentUser.boardList.findIndex(function (board) { return board.name === boardName; });
         currentUser.boardList.splice(boardIndex, 1);
         localStorage.setItem("currentUser", JSON.stringify(currentUser));
+        var userList = userListFromStorage();
         var findUser = userList.find(function (user) { return user.uid === currentUser.uid; });
         if (findUser)
             findUser.boardList.splice(boardIndex, 1);
@@ -148,6 +147,7 @@ var List = /** @class */ (function () {
     };
     return List;
 }());
+// ---------------------- pre made users ---------------------- //
 var preMadeUserList = [
     new User("Vladislav", "Bykanov", "male", "vladb89", "12345678", "vladi@gmail.com", "0548155232"),
     new User("Itai", "Gelberg", "male", "itaiG", "12345", "itaiGel@gmail.com", "0541234567"),
