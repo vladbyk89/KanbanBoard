@@ -28,40 +28,6 @@ span {
   font-size: 0.8rem;
 }
 
-a {
-  color: #333;
-  text-decoration: none;
-  margin: 1rem 0;
-}
-
-form {
-  background-color: #ffffff;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: column;
-  gap: 5px;
-  padding: 1rem 2rem;
-  text-align: center;
-}
-form select {
-  margin-right: auto;
-  border: 1px solid rgba(0, 0, 0, 0.113);
-}
-form select option {
-  border: 3px solid black;
-  font-size: 0.7rem;
-}
-
-input {
-  background-color: #eee;
-  border: 1px solid rgba(0, 0, 0, 0.058);
-  padding: 1vh;
-  width: 100%;
-  outline: none;
-}
-
 .iconsArea a {
   border: 1px solid #dddddd;
   border-radius: 50%;
@@ -116,7 +82,7 @@ input {
   z-index: 100;
 }
 .mainContainer .overlayContainer .overlay {
-  background-image: url("../../img/NASA.jpg");
+  background-image: url("../../img/darkSunrise.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   color: #ffffff;
