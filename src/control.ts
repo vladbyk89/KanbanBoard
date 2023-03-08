@@ -44,6 +44,29 @@ function handleSignIn(e: Event) {
   }
 }
 
+function handleRecovery(e: Event) {
+  e.preventDefault();
+  const firstName = this.elements.firstName.value;
+  const lastName = this.elements.lastName.value;
+  const userName = this.elements.userName.value;
+  const email = this.elements.email.value;
+  const phone = this.elements.phoneNumber.value;
+  const arr = [firstName, lastName, userName, email, phone];
+  if (arr.some((ele) => ele == "")) return alert("missing field");
+  const userList = userListFromStorage();
+  const findUser = userList.find(
+    (user) =>
+      user.userName == userName ||
+      user.firstName == firstName ||
+      user.lastName == lastName ||
+      user.email == email ||
+      user.phoneNumber == phone
+  );
+  if (!findUser) return alert("No such user exists");
+  recoveredPassword.textContent = findUser.password;
+  passwordDisplayDiv.style.display = "flex";
+}
+
 function displayProfile(user: User) {
   try {
     profileWindow.style.display = "flex";

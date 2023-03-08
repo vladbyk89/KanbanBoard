@@ -18,6 +18,15 @@ const passwordInput = document.querySelector(
   "#passwordInput"
 ) as HTMLInputElement;
 
+//------------------ Recovery page elements -----------------//
+const recoveryForm = document.querySelector(".recoveryForm") as HTMLFormElement;
+const passwordDisplayDiv = document.querySelector(
+  ".passwordDisplay"
+) as HTMLDivElement;
+const recoveredPassword = document.querySelector(
+  "#recoveredPassword"
+) as HTMLSpanElement;
+
 //------------------ Main page elements -----------------//
 const profileWindow = document.querySelector(
   ".profileWindow"

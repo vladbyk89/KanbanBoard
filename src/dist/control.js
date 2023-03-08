@@ -34,6 +34,29 @@ function handleSignIn(e) {
         alert("user not in database");
     }
 }
+function handleRecovery(e) {
+    e.preventDefault();
+    var firstName = this.elements.firstName.value;
+    var lastName = this.elements.lastName.value;
+    var userName = this.elements.userName.value;
+    var email = this.elements.email.value;
+    var phone = this.elements.phoneNumber.value;
+    var arr = [firstName, lastName, userName, email, phone];
+    if (arr.some(function (ele) { return ele == ""; }))
+        return alert("missing field");
+    var userList = userListFromStorage();
+    var findUser = userList.find(function (user) {
+        return user.userName == userName ||
+            user.firstName == firstName ||
+            user.lastName == lastName ||
+            user.email == email ||
+            user.phoneNumber == phone;
+    });
+    if (!findUser)
+        return alert("No such user exists");
+    recoveredPassword.textContent = findUser.password;
+    passwordDisplayDiv.style.display = "flex";
+}
 function displayProfile(user) {
     try {
         profileWindow.style.display = "flex";
