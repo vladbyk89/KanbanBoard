@@ -21,6 +21,11 @@ if (window.location.pathname.endsWith("entryPage.html")) {
   });
 }
 
+// ---------------------- forgotPassword.html ----------------------
+if (window.location.pathname.endsWith("forgotPassword.html")){
+  recoveryForm.addEventListener('submit', handleRecovery)
+}
+
 // ---------------------- index.html ----------------------
 if (window.location.pathname.endsWith("index.html")) {
   renderBoardsToMain(currentUser.boardList);
