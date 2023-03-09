@@ -160,7 +160,7 @@ class List {
       <h2>${this.name}</h3>
       <i class="fa-regular fa-pen-to-square editListBtn"></i>
       </div>
-      <div class="boardContainer__main__list__card--addCard">
+      <div class="boardContainer__main__list__header--addCard">
         <textarea maxlength="20" class="newCardTextArea" cols="30" rows="2" placeholder="Task..."></textarea>
         <button class="newCardBtn">New Card</button>
       </div>
