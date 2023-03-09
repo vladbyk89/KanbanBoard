@@ -7,6 +7,10 @@ var signInPanelBtn = document.querySelector("#signInPanel");
 var signInBtn = document.querySelector("#signInBtn");
 var userNameInput = document.querySelector("#userNameInput");
 var passwordInput = document.querySelector("#passwordInput");
+//------------------ Recovery page elements -----------------//
+var recoveryForm = document.querySelector(".recoveryForm");
+var passwordDisplayDiv = document.querySelector(".passwordDisplay");
+var recoveredPassword = document.querySelector("#recoveredPassword");
 //------------------ Main page elements -----------------//
 var profileWindow = document.querySelector(".profileWindow");
 var profileDiv = document.querySelector(".profile");
@@ -26,6 +30,7 @@ var searchBar = document.querySelector(".topNav__search");
 //------------------Board page-----------------------//
 var boardContainer = document.querySelector(".boardContainer__main");
 var boardTitle = document.querySelector(".topNav__boardName");
+var cards = document.querySelectorAll(".boardContainer__main__list__card");
 var editBoardWindow = document.querySelector(".editBoardWindow");
 var imageDisplayedInEdit = document.querySelector("#imageEditWindow");
 var deleteBoxDiv = document.getElementById("trashDiv");

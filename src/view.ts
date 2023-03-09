@@ -18,6 +18,15 @@ const passwordInput = document.querySelector(
   "#passwordInput"
 ) as HTMLInputElement;
 
+//------------------ Recovery page elements -----------------//
+const recoveryForm = document.querySelector(".recoveryForm") as HTMLFormElement;
+const passwordDisplayDiv = document.querySelector(
+  ".passwordDisplay"
+) as HTMLDivElement;
+const recoveredPassword = document.querySelector(
+  "#recoveredPassword"
+) as HTMLSpanElement;
+
 //------------------ Main page elements -----------------//
 const profileWindow = document.querySelector(
   ".profileWindow"
@@ -64,6 +73,9 @@ const boardContainer = document.querySelector(
 const boardTitle = document.querySelector(
   ".topNav__boardName"
 ) as HTMLDivElement;
+let cards = document.querySelectorAll(
+  ".boardContainer__main__list__card"
+) as NodeListOf<HTMLDivElement>;
 const editBoardWindow = document.querySelector(
   ".editBoardWindow"
 ) as HTMLDivElement;

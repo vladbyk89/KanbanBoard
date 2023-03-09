@@ -44,13 +44,36 @@ function handleSignIn(e: Event) {
   }
 }
 
+function handleRecovery(e: Event) {
+  e.preventDefault();
+  const firstName = this.elements.firstName.value;
+  const lastName = this.elements.lastName.value;
+  const userName = this.elements.userName.value;
+  const email = this.elements.email.value;
+  const phone = this.elements.phoneNumber.value;
+  const arr = [firstName, lastName, userName, email, phone];
+  if (arr.some((ele) => ele == "")) return alert("missing field");
+  const userList = userListFromStorage();
+  const findUser = userList.find(
+    (user) =>
+      user.userName == userName ||
+      user.firstName == firstName ||
+      user.lastName == lastName ||
+      user.email == email ||
+      user.phoneNumber == phone
+  );
+  if (!findUser) return alert("No such user exists");
+  recoveredPassword.textContent = findUser.password;
+  passwordDisplayDiv.style.display = "flex";
+}
+
 function displayProfile(user: User) {
   try {
     profileWindow.style.display = "flex";
     if (user) {
       return (profileDiv.innerHTML = `
         <ul>
-          <h1>About you</h1>
+          <h1>About you:</h1>
           <li>Name: ${user.firstName} ${user.lastName}</li>
           <li>Gender: ${user.gender}</li>
           <li>Email: ${user.email}</li>
@@ -78,6 +101,7 @@ function displayProfile(user: User) {
 
 function updateUserBoardList(userToUpdate: User, boardToUpdate: Board) {
   try {
+    const userList = userListFromStorage();
     if (userList) {
       const findUser = userList.find((user) => user.uid === userToUpdate.uid);
       if (findUser) {
@@ -103,6 +127,7 @@ function updateUserBoardList(userToUpdate: User, boardToUpdate: Board) {
 
 function checkIfUserExists(userName: string, password: string) {
   try {
+    const userList = userListFromStorage();
     return userList.find(
       (user) => user.userName === userName && user.password === password
     );
@@ -146,67 +171,7 @@ function createBoard(boardName: string, boardImage: string) {
     console.log(error);
   }
 }
-function createListElement(list: List) {
-  const listContainer = document.createElement("div");
-  listContainer.classList.add("boardContainer__main__list");
-  listContainer.setAttribute("draggable", "true");
-  listContainer.setAttribute("id", `${list.uid}`);
-  listContainer.setAttribute("ondragstart", `drag(event)`);
-
-  const header = document.createElement("div");
-  header.classList.add("boardContainer__main__list__header");
-  header.setAttribute("id", `${list.name}_header`);
-  header.innerHTML = `
-  <div class="listTitle" >
-    <h2>${list.name}</h3>
-    <i class="fa-regular fa-pen-to-square editListBtn"></i>
-    </div>
-    <div class="boardContainer__main__list__card--addCard">
-      <textarea maxlength="30" class="newCardTextArea" cols="30" rows="2" placeholder="Task..."></textarea>
-      <button class="newCardBtn">New Card</button>
-    </div>
-  `;
-  listContainer.appendChild(header);
-
-  const editListBtn = header.querySelector(".editListBtn") as HTMLElement;
-
-  editListBtn.addEventListener("click", () => {
-    const listTitle = header.querySelector(".listTitle") as HTMLElement;
-    const listTitleText = listTitle.querySelector("h2") as HTMLElement;
-    const editListInput = document.createElement("input");
-
-    editListInput.type = "text";
-    editListInput.value = listTitleText.textContent!;
-    editListInput.classList.add("editListInput");
-
-    listTitle.replaceChild(editListInput, listTitleText);
-    editListInput.focus();
-
-    editListInput.addEventListener("keyup", (event) => {
-      if (event.key === "Enter") {
-        listTitle.replaceChild(listTitleText, editListInput);
-        listTitleText.textContent = editListInput.value.trim();
-        currentBoard.update();
-      }
-    });
-  });
-
-  const newCardTextArea = listContainer.querySelector(
-    ".newCardTextArea"
-  ) as HTMLTextAreaElement;
-
-  newCardTextArea.addEventListener("keyup", (event) => {
-    if (event.key === "Enter") {
-      const newCardBtn = listContainer.querySelector(
-        ".newCardBtn"
-      ) as HTMLButtonElement;
-      if (newCardTextArea.value.trim() !== "") {
-        createCardElement(newCardTextArea.value.trim(), listContainer);
-        newCardTextArea.value = "";
-      }
-    }
-  });
-
+function makeListFunctional(listContainer: HTMLElement) {
   listContainer.addEventListener("dragstart", () => {
     listContainer.classList.add("is-draggin");
   });
@@ -214,37 +179,66 @@ function createListElement(list: List) {
     listContainer.classList.remove("is-draggin");
   });
 
-  listContainer.addEventListener("dragover", (e) => {
-    let cardIsDragged = false;
-    cards.forEach((card) => {
-      if (card.classList.contains("is-dragging")) {
-        cardIsDragged = true;
+  listContainer.addEventListener("dragover", dragginCard);
+
+  const editListBtn = listContainer.querySelector(
+    ".editListBtn"
+  ) as HTMLElement;
+  editListBtn.addEventListener("click", editList);
+
+  const newCardTextArea = listContainer.querySelector(
+    ".newCardTextArea"
+  ) as HTMLTextAreaElement;
+  newCardTextArea.addEventListener("keyup", (event) => {
+    if (event.key === "Enter") {
+      if (newCardTextArea.value.trim() !== "") {
+        createCardElement(newCardTextArea.value.trim(), listContainer);
+        newCardTextArea.value = "";
       }
-    });
-    if (!cardIsDragged) return;
-    e.preventDefault();
-
-    const bottomTask = insertAboveTask(listContainer, e.clientY);
-    const curTask = document.querySelector(".is-dragging") as HTMLElement;
-
-    if (!bottomTask) {
-      listContainer.appendChild(curTask);
-    } else {
-      listContainer.insertBefore(curTask, bottomTask);
     }
-    currentBoard.update();
   });
-
-  boardContainer.insertBefore(listContainer, deleteBoxDiv);
-  currentBoard.update();
-  return listContainer;
 }
 
-function createList(listName: string) {
-  if (newListInput.value == "") return;
-  const newList = new List(listName);
-  boardContainer.insertBefore(createListElement(newList), deleteBoxDiv);
-  newListInput.value = "";
+function dragginCard({ clientY }) {
+  let cardIsDragged = false;
+  cards.forEach((card) => {
+    if (card.classList.contains("is-dragging")) {
+      cardIsDragged = true;
+    }
+  });
+  if (!cardIsDragged) return;
+  // e.preventDefault();
+
+  const bottomTask = insertAboveTask(this, clientY);
+  const curTask = document.querySelector(".is-dragging") as HTMLElement;
+
+  if (!bottomTask) {
+    this.appendChild(curTask);
+  } else {
+    this.insertBefore(curTask, bottomTask);
+  }
+  currentBoard.update();
+}
+
+function editList() {
+  const listTitle = this.parentNode as HTMLElement;
+  const listTitleText = listTitle.querySelector("h2") as HTMLElement;
+  const editListInput = document.createElement("input");
+
+  editListInput.type = "text";
+  editListInput.value = listTitleText.textContent!;
+  editListInput.classList.add("editListInput");
+
+  listTitle.replaceChild(editListInput, listTitleText);
+  editListInput.focus();
+
+  editListInput.addEventListener("keyup", (event) => {
+    if (event.key === "Enter") {
+      listTitle.replaceChild(listTitleText, editListInput);
+      listTitleText.textContent = editListInput.value.trim();
+      currentBoard.update();
+    }
+  });
 }
 
 function createCardElement(cardName: string, list: Element) {
@@ -310,7 +304,8 @@ function renderBoardInBoardPage() {
     boardTitle.textContent = currentBoard.name;
     boardContainer.style.background = `url(${currentBoard.backgroundImage}) no-repeat center / cover`;
     currentBoard.lists.forEach((list) => {
-      const ListElement = createListElement(list);
+      const listObj = new List(list.name, list.cards, list.uid);
+      const ListElement = listObj.createListElement();
 
       list.cards.forEach((card) => {
         createCardElement(card, ListElement);

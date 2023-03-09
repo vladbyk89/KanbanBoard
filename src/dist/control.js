@@ -34,11 +34,34 @@ function handleSignIn(e) {
         alert("user not in database");
     }
 }
+function handleRecovery(e) {
+    e.preventDefault();
+    var firstName = this.elements.firstName.value;
+    var lastName = this.elements.lastName.value;
+    var userName = this.elements.userName.value;
+    var email = this.elements.email.value;
+    var phone = this.elements.phoneNumber.value;
+    var arr = [firstName, lastName, userName, email, phone];
+    if (arr.some(function (ele) { return ele == ""; }))
+        return alert("missing field");
+    var userList = userListFromStorage();
+    var findUser = userList.find(function (user) {
+        return user.userName == userName ||
+            user.firstName == firstName ||
+            user.lastName == lastName ||
+            user.email == email ||
+            user.phoneNumber == phone;
+    });
+    if (!findUser)
+        return alert("No such user exists");
+    recoveredPassword.textContent = findUser.password;
+    passwordDisplayDiv.style.display = "flex";
+}
 function displayProfile(user) {
     try {
         profileWindow.style.display = "flex";
         if (user) {
-            return (profileDiv.innerHTML = "\n        <ul>\n          <h1>About you</h1>\n          <li>Name: " + user.firstName + " " + user.lastName + "</li>\n          <li>Gender: " + user.gender + "</li>\n          <li>Email: " + user.email + "</li>\n          <li>Phone Number: " + user.phoneNumber + "</li>\n          <li>User Name: " + user.userName + "</li>\n          <li>Password: " + user.password + "</li>\n        </ul>\n        ");
+            return (profileDiv.innerHTML = "\n        <ul>\n          <h1>About you:</h1>\n          <li>Name: " + user.firstName + " " + user.lastName + "</li>\n          <li>Gender: " + user.gender + "</li>\n          <li>Email: " + user.email + "</li>\n          <li>Phone Number: " + user.phoneNumber + "</li>\n          <li>User Name: " + user.userName + "</li>\n          <li>Password: " + user.password + "</li>\n        </ul>\n        ");
         }
         return (profileDiv.innerHTML = "\n      <ul>\n        <h1>About you</h1>\n        <li>Name: EMPTY</li>\n        <li>Gender: EMPTY</li>\n        <li>Email: EMPTY</li>\n        <li>Phone Number: EMPTY</li>\n        <li>User Name: EMPTY</li>\n        <li>Password: EMPTY</li>\n      </ul>\n      ");
     }
@@ -48,6 +71,7 @@ function displayProfile(user) {
 }
 function updateUserBoardList(userToUpdate, boardToUpdate) {
     try {
+        var userList = userListFromStorage();
         if (userList) {
             var findUser = userList.find(function (user) { return user.uid === userToUpdate.uid; });
             if (findUser) {
@@ -72,6 +96,7 @@ function updateUserBoardList(userToUpdate, boardToUpdate) {
 }
 function checkIfUserExists(userName, password) {
     try {
+        var userList = userListFromStorage();
         return userList.find(function (user) { return user.userName === userName && user.password === password; });
     }
     catch (error) {
@@ -110,81 +135,63 @@ function createBoard(boardName, boardImage) {
         console.log(error);
     }
 }
-function createListElement(list) {
-    var listContainer = document.createElement("div");
-    listContainer.classList.add("boardContainer__main__list");
-    listContainer.setAttribute("draggable", "true");
-    listContainer.setAttribute("id", "" + list.uid);
-    listContainer.setAttribute("ondragstart", "drag(event)");
-    var header = document.createElement("div");
-    header.classList.add("boardContainer__main__list__header");
-    header.setAttribute("id", list.name + "_header");
-    header.innerHTML = "\n  <div class=\"listTitle\" >\n    <h2>" + list.name + "</h3>\n    <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n    </div>\n    <div class=\"boardContainer__main__list__card--addCard\">\n      <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"2\" placeholder=\"Task...\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n    </div>\n  ";
-    listContainer.appendChild(header);
-    var editListBtn = header.querySelector(".editListBtn");
-    editListBtn.addEventListener("click", function () {
-        var listTitle = header.querySelector(".listTitle");
-        var listTitleText = listTitle.querySelector("h2");
-        var editListInput = document.createElement("input");
-        editListInput.type = "text";
-        editListInput.value = listTitleText.textContent;
-        editListInput.classList.add("editListInput");
-        listTitle.replaceChild(editListInput, listTitleText);
-        editListInput.focus();
-        editListInput.addEventListener("keyup", function (event) {
-            if (event.key === "Enter") {
-                listTitle.replaceChild(listTitleText, editListInput);
-                listTitleText.textContent = editListInput.value.trim();
-                currentBoard.update();
-            }
-        });
-    });
-    var newCardTextArea = listContainer.querySelector(".newCardTextArea");
-    newCardTextArea.addEventListener("keyup", function (event) {
-        if (event.key === "Enter") {
-            var newCardBtn = listContainer.querySelector(".newCardBtn");
-            if (newCardTextArea.value.trim() !== "") {
-                createCardElement(newCardTextArea.value.trim(), listContainer);
-                newCardTextArea.value = "";
-            }
-        }
-    });
+function makeListFunctional(listContainer) {
     listContainer.addEventListener("dragstart", function () {
         listContainer.classList.add("is-draggin");
     });
     listContainer.addEventListener("dragend", function () {
         listContainer.classList.remove("is-draggin");
     });
-    listContainer.addEventListener("dragover", function (e) {
-        var cardIsDragged = false;
-        cards.forEach(function (card) {
-            if (card.classList.contains("is-dragging")) {
-                cardIsDragged = true;
+    listContainer.addEventListener("dragover", dragginCard);
+    var editListBtn = listContainer.querySelector(".editListBtn");
+    editListBtn.addEventListener("click", editList);
+    var newCardTextArea = listContainer.querySelector(".newCardTextArea");
+    newCardTextArea.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+            if (newCardTextArea.value.trim() !== "") {
+                createCardElement(newCardTextArea.value.trim(), listContainer);
+                newCardTextArea.value = "";
             }
-        });
-        if (!cardIsDragged)
-            return;
-        e.preventDefault();
-        var bottomTask = insertAboveTask(listContainer, e.clientY);
-        var curTask = document.querySelector(".is-dragging");
-        if (!bottomTask) {
-            listContainer.appendChild(curTask);
         }
-        else {
-            listContainer.insertBefore(curTask, bottomTask);
-        }
-        currentBoard.update();
     });
-    boardContainer.insertBefore(listContainer, deleteBoxDiv);
-    currentBoard.update();
-    return listContainer;
 }
-function createList(listName) {
-    if (newListInput.value == "")
+function dragginCard(_a) {
+    var clientY = _a.clientY;
+    var cardIsDragged = false;
+    cards.forEach(function (card) {
+        if (card.classList.contains("is-dragging")) {
+            cardIsDragged = true;
+        }
+    });
+    if (!cardIsDragged)
         return;
-    var newList = new List(listName);
-    boardContainer.insertBefore(createListElement(newList), deleteBoxDiv);
-    newListInput.value = "";
+    // e.preventDefault();
+    var bottomTask = insertAboveTask(this, clientY);
+    var curTask = document.querySelector(".is-dragging");
+    if (!bottomTask) {
+        this.appendChild(curTask);
+    }
+    else {
+        this.insertBefore(curTask, bottomTask);
+    }
+    currentBoard.update();
+}
+function editList() {
+    var listTitle = this.parentNode;
+    var listTitleText = listTitle.querySelector("h2");
+    var editListInput = document.createElement("input");
+    editListInput.type = "text";
+    editListInput.value = listTitleText.textContent;
+    editListInput.classList.add("editListInput");
+    listTitle.replaceChild(editListInput, listTitleText);
+    editListInput.focus();
+    editListInput.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+            listTitle.replaceChild(listTitleText, editListInput);
+            listTitleText.textContent = editListInput.value.trim();
+            currentBoard.update();
+        }
+    });
 }
 function createCardElement(cardName, list) {
     var card = document.createElement("div");
@@ -232,7 +239,8 @@ function renderBoardInBoardPage() {
         boardTitle.textContent = currentBoard.name;
         boardContainer.style.background = "url(" + currentBoard.backgroundImage + ") no-repeat center / cover";
         currentBoard.lists.forEach(function (list) {
-            var ListElement = createListElement(list);
+            var listObj = new List(list.name, list.cards, list.uid);
+            var ListElement = listObj.createListElement();
             list.cards.forEach(function (card) {
                 createCardElement(card, ListElement);
             });

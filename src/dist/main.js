@@ -17,6 +17,10 @@ if (window.location.pathname.endsWith("entryPage.html")) {
         }
     });
 }
+// ---------------------- forgotPassword.html ----------------------
+if (window.location.pathname.endsWith("forgotPassword.html")) {
+    recoveryForm.addEventListener('submit', handleRecovery);
+}
 // ---------------------- index.html ----------------------
 if (window.location.pathname.endsWith("index.html")) {
     renderBoardsToMain(currentUser.boardList);
@@ -66,7 +70,7 @@ if (window.location.pathname.endsWith("index.html")) {
 //---------------------- board.html ----------------------
 if (window.location.pathname.endsWith("board.html")) {
     renderBoardInBoardPage();
-    addListBtn.addEventListener("click", function () { return createList(newListInput.value); });
+    addListBtn.addEventListener("click", function () { return List.createList(newListInput.value); });
     editBoardBtn.addEventListener("click", function () {
         currentBoard.edit(nameInputEle.value, imageDisplayedInEdit.src);
         editBoardWindow.style.display = "none";
@@ -127,7 +131,7 @@ if (window.location.pathname.endsWith("board.html")) {
     });
     newListInput.addEventListener("keyup", function (event) {
         if (event.key === "Enter") {
-            createList(newListInput.value);
+            List.createList(newListInput.value);
         }
     });
     deleteBoxDiv.addEventListener("drop", function (event) {
