@@ -58,19 +58,29 @@
         <!-- <div id="dropdiv" ondrop="drop(event)" ondragover="allowDrop(event)">
           <h3>Drop here to remove</h3>
         </div> -->
-        <div class="listArea"></div>
+        <!-- <div class="listArea"></div>
         <div id="trashDiv" ondrop="drop(event)" ondragover="allowDrop(event)">
           <span class="trash">
             <span></span>
             <i></i>
           </span>
+        </div> -->
+        <div class="trashDiv">
+          <i
+            class="fa-solid fa-trash-can"
+            id="trash"
+            ondrop="drop(event)"
+            ondragover="allowDrop(event)"
+          ></i>
+
         </div>
       </main>
     </div>
-    <div class="profileWindow"><i
-      class="fa-regular fa-pen-to-square editprofileBtn"
-      title="Edit Profile Info"
-    ></i>
+    <div class="profileWindow">
+      <i
+        class="fa-regular fa-pen-to-square editprofileBtn"
+        title="Edit Profile Info"
+      ></i>
       <i
         class="fa-solid fa-arrow-right-from-bracket exitProfilePage"
         title="Back To Page"

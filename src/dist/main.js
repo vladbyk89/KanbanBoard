@@ -19,7 +19,7 @@ if (window.location.pathname.endsWith("entryPage.html")) {
 }
 // ---------------------- forgotPassword.html ----------------------
 if (window.location.pathname.endsWith("forgotPassword.html")) {
-    recoveryForm.addEventListener('submit', handleRecovery);
+    recoveryForm.addEventListener("submit", handleRecovery);
 }
 // ---------------------- index.html ----------------------
 if (window.location.pathname.endsWith("index.html")) {
@@ -70,7 +70,9 @@ if (window.location.pathname.endsWith("index.html")) {
 //---------------------- board.html ----------------------
 if (window.location.pathname.endsWith("board.html")) {
     renderBoardInBoardPage();
-    addListBtn.addEventListener("click", function () { return List.createList(newListInput.value); });
+    addListBtn.addEventListener("click", function () {
+        return List.createList(newListInput.value);
+    });
     editBoardBtn.addEventListener("click", function () {
         currentBoard.edit(nameInputEle.value, imageDisplayedInEdit.src);
         editBoardWindow.style.display = "none";
@@ -99,7 +101,7 @@ if (window.location.pathname.endsWith("board.html")) {
         var leftList = insertLeftOfLisk(boardContainer, e.clientX);
         var curList = boardContainer.querySelector(".is-draggin");
         if (!leftList) {
-            boardContainer.insertBefore(curList, deleteBoxDiv);
+            boardContainer.insertBefore(curList, trashCanDiv);
         }
         else {
             boardContainer.insertBefore(curList, leftList);
@@ -134,7 +136,7 @@ if (window.location.pathname.endsWith("board.html")) {
             List.createList(newListInput.value);
         }
     });
-    deleteBoxDiv.addEventListener("drop", function (event) {
+    trashCan.addEventListener("drop", function (event) {
         var _a;
         event.preventDefault();
         var confirmDelete = confirm("Are you sure you want to delete?");

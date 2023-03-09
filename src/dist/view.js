@@ -33,7 +33,8 @@ var boardTitle = document.querySelector(".topNav__boardName");
 var cards = document.querySelectorAll(".boardContainer__main__list__card");
 var editBoardWindow = document.querySelector(".editBoardWindow");
 var imageDisplayedInEdit = document.querySelector("#imageEditWindow");
-var deleteBoxDiv = document.getElementById("trashDiv");
+var trashCan = document.querySelector("#trash");
+var trashCanDiv = document.querySelector(".trashDiv");
 //Buttons
 var addListBtn = document.querySelector("#addListBtn");
 var editBoardBtn = document.querySelector(".editBoardBtn");
