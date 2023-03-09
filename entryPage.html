@@ -37,6 +37,7 @@
             <option value="other">other</option>
           </select>
           <input
+            minlength="3"
             type="text"
             name="firstName"
             placeholder="First Name"
@@ -44,6 +45,7 @@
           />
 
           <input
+            minlength="3"
             type="text"
             name="lastName"
             placeholder="Last Name"
@@ -51,6 +53,7 @@
           />
 
           <input
+            minlength="5"
             type="text"
             name="userName"
             placeholder="User Name"
@@ -58,18 +61,14 @@
           />
 
           <input
+            minlength="8"
             type="password"
             name="password"
             placeholder="Password"
             required
           />
 
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            required
-          />
+          <input type="email" name="email" placeholder="Email" required />
 
           <input
             type="tel"
@@ -91,14 +90,15 @@
           </div>
           <span>or use your account</span>
           <input
+            minlength="5"
             name="userName"
             type="text"
             placeholder="User Name"
             id="userNameInput"
             required
-            
           />
           <input
+            minlength="8"
             name="password"
             type="password"
             placeholder="Password"
@@ -114,13 +114,11 @@
         <div class="overlay">
           <div class="panel signIn">
             <h1>Welcome Back!</h1>
-            <p>
-              To keep working with us please login with your personal info
-            </p>
+            <p>To keep working with us please login with your personal info</p>
             <button id="signInPanel">Sign In</button>
           </div>
           <div class="panel signUp">
-            <h1>Hello, Friend!</h1>
+            <h1>Hello Friend!</h1>
             <p>Enter your personal details and start working with us</p>
             <button id="signUpPanel">Sign Up</button>
           </div>
