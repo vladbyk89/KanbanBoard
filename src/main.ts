@@ -69,7 +69,7 @@ if (window.location.pathname.endsWith("index.html")) {
       renderBoardsToMain(currentUser.boardList);
     }
   });
-
+  
   boardArea.addEventListener("click", (e) => {
     const target = e.target as HTMLElement;
     if (target.dataset.name) {
@@ -77,7 +77,7 @@ if (window.location.pathname.endsWith("index.html")) {
       if (check) Board.deleteBoard(target.dataset.name);
       renderBoardsToMain(currentUser.boardList);
     }
-
+    
     if (target.classList.contains("boardClick")) {
       Board.setCurrentBoard(target.innerHTML);
       window.location.href = "board.html";
@@ -88,31 +88,33 @@ if (window.location.pathname.endsWith("index.html")) {
 //---------------------- board.html ----------------------
 if (window.location.pathname.endsWith("board.html")) {
   renderBoardInBoardPage();
-
-  addListBtn.addEventListener("click", () =>
+  
+  addListBtn.addEventListener("click", () =>{
     List.createList(newListInput.value)
-  );
-
+    let successListMsg = `<i class="fa-solid fa-circle-check"></i> Add new List ${newListInput.value}`
+    notification (successListMsg)
+  });
+  
   editBoardBtn.addEventListener("click", () => {
     currentBoard.edit(nameInputEle.value, imageDisplayedInEdit.src);
     editBoardWindow.style.display = "none";
   });
-
+  
   updatedBoardImageBtn.addEventListener("click", () => {
     console.log("click");
     backgroundImageSelectionDiv.style.display = "grid";
-
+    
     const backgroundImages = document.querySelectorAll(
       ".backgroundImage"
-    ) as NodeListOf<HTMLImageElement>;
-    backgroundImages.forEach((img) => {
-      img.addEventListener("click", () => {
+      ) as NodeListOf<HTMLImageElement>;
+      backgroundImages.forEach((img) => {
+        img.addEventListener("click", () => {
         imageDisplayedInEdit.src = img.src;
         backgroundImageSelectionDiv.style.display = "none";
       });
     });
   });
-
+  
   boardContainer.addEventListener("dragover", (e) => {
     let cardIsDragged = false;
     cards.forEach((card) => {
@@ -126,7 +128,7 @@ if (window.location.pathname.endsWith("board.html")) {
 
     const leftList = insertLeftOfLisk(boardContainer, e.clientX);
     const curList = boardContainer.querySelector(".is-draggin") as HTMLElement;
-
+    
     if (!leftList) {
       boardContainer.insertBefore(curList, trashCanDiv);
     } else {
@@ -134,7 +136,7 @@ if (window.location.pathname.endsWith("board.html")) {
     }
     currentBoard.update();
   });
-
+  
   window.addEventListener("click", (e) => {
     const target = e.target as HTMLElement;
     if (target.className === "newCardBtn") {
@@ -146,6 +148,8 @@ if (window.location.pathname.endsWith("board.html")) {
       ) as HTMLTextAreaElement;
       if (newCardTextArea.value == "") return;
       createCardElement(newCardTextArea.value, listElement);
+      let successcardMsg = `<i class="fa-solid fa-circle-check"></i>Add new card ${newCardTextArea.value}`
+      notification(successcardMsg)
       newCardTextArea.value = "";
     }
     if (target.classList.contains("cancelEditBoardBtn")) {
@@ -164,7 +168,10 @@ if (window.location.pathname.endsWith("board.html")) {
   });
   newListInput.addEventListener("keyup", (event) => {
     if (event.key === "Enter") {
+      let successListMsg = `<i class="fa-solid fa-circle-check"></i> Add new List ${newListInput.value}`
+      notification(successListMsg)
       List.createList(newListInput.value);
+      
     }
   });
 
@@ -174,9 +181,34 @@ if (window.location.pathname.endsWith("board.html")) {
     if (confirmDelete) {
       const element = document.getElementById(
         event.dataTransfer!.getData("Text")
-      );
+        );
+        let successDeleteMsg = `<i class="fa-solid fa-circle-xmark"></i> Delete List/Card ${newListInput.value}`
+      notification (successDeleteMsg)
       element?.parentNode?.removeChild(element);
       currentBoard.update();
     }
   });
 }
+
+let noteBox: any = document.getElementById("notificationBox")
+function notification (msg){
+  let note = document.createElement("div");
+ note.classList.add("notification");
+ note.innerHTML = msg;
+ noteBox.appendChild(note);
+
+ if(msg.includes(`Delete`)){
+  note.classList.add("Delete");
+ }
+ if(msg.includes(`List`)){
+  note.classList.add("List");
+ }
+ if(msg.includes(`card`)){
+  note.classList.add("card");
+ }
+ setTimeout((e) => {
+  note.remove();
+ },6000)
+}
+
+ 

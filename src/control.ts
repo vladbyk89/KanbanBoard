@@ -208,6 +208,7 @@ function makeListFunctional(listContainer: HTMLElement) {
     if (event.key === "Enter") {
       if (newCardTextArea.value.trim() !== "") {
         createCardElement(newCardTextArea.value.trim(), listContainer);
+        notification(`<i class="fa-solid fa-circle-check"></i>Add new card ${newCardTextArea.value}`);
         newCardTextArea.value = "";
       }
     }

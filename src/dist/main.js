@@ -71,7 +71,9 @@ if (window.location.pathname.endsWith("index.html")) {
 if (window.location.pathname.endsWith("board.html")) {
     renderBoardInBoardPage();
     addListBtn.addEventListener("click", function () {
-        return List.createList(newListInput.value);
+        List.createList(newListInput.value);
+        var successListMsg = "<i class=\"fa-solid fa-circle-check\"></i> Add new List " + newListInput.value;
+        notification(successListMsg);
     });
     editBoardBtn.addEventListener("click", function () {
         currentBoard.edit(nameInputEle.value, imageDisplayedInEdit.src);
@@ -116,6 +118,8 @@ if (window.location.pathname.endsWith("board.html")) {
             if (newCardTextArea.value == "")
                 return;
             createCardElement(newCardTextArea.value, listElement);
+            var successcardMsg = "<i class=\"fa-solid fa-circle-check\"></i>Add new card " + newCardTextArea.value;
+            notification(successcardMsg);
             newCardTextArea.value = "";
         }
         if (target.classList.contains("cancelEditBoardBtn")) {
@@ -133,6 +137,8 @@ if (window.location.pathname.endsWith("board.html")) {
     });
     newListInput.addEventListener("keyup", function (event) {
         if (event.key === "Enter") {
+            var successListMsg = "<i class=\"fa-solid fa-circle-check\"></i> Add new List " + newListInput.value;
+            notification(successListMsg);
             List.createList(newListInput.value);
         }
     });
@@ -142,8 +148,29 @@ if (window.location.pathname.endsWith("board.html")) {
         var confirmDelete = confirm("Are you sure you want to delete?");
         if (confirmDelete) {
             var element = document.getElementById(event.dataTransfer.getData("Text"));
+            var successDeleteMsg = "<i class=\"fa-solid fa-circle-xmark\"></i> Delete List/Card " + newListInput.value;
+            notification(successDeleteMsg);
             (_a = element === null || element === void 0 ? void 0 : element.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(element);
             currentBoard.update();
         }
     });
+}
+var noteBox = document.getElementById("notificationBox");
+function notification(msg) {
+    var note = document.createElement("div");
+    note.classList.add("notification");
+    note.innerHTML = msg;
+    noteBox.appendChild(note);
+    if (msg.includes("Delete")) {
+        note.classList.add("Delete");
+    }
+    if (msg.includes("List")) {
+        note.classList.add("List");
+    }
+    if (msg.includes("card")) {
+        note.classList.add("card");
+    }
+    setTimeout(function (e) {
+        note.remove();
+    }, 6000);
 }

@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="./style/dist/createBoardWindow.css" />
     <link rel="stylesheet" href="./style/dist/trashStyle.css" />
     <link rel="stylesheet" href="./style/dist/responsive.css" />
+    <link rel="stylesheet" href="./style/dist/notification.css">
     <script src="./src/dist/view.js" defer></script>
     <script src="./src/dist/helpers.js" defer></script>
     <script src="./src/dist/control.js" defer></script>
@@ -55,16 +56,6 @@
         </div>
       </nav>
       <main class="boardContainer__main">
-        <!-- <div id="dropdiv" ondrop="drop(event)" ondragover="allowDrop(event)">
-          <h3>Drop here to remove</h3>
-        </div> -->
-        <!-- <div class="listArea"></div>
-        <div id="trashDiv" ondrop="drop(event)" ondragover="allowDrop(event)">
-          <span class="trash">
-            <span></span>
-            <i></i>
-          </span>
-        </div> -->
         <div class="trashDiv">
           <i
             class="fa-solid fa-trash-can"
@@ -74,6 +65,7 @@
           ></i>
 
         </div>
+        <div id="notificationBox"></div>
       </main>
     </div>
     <div class="profileWindow">
