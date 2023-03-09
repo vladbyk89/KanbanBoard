@@ -50,13 +50,10 @@ body {
 .boardContainer__main__list__header .listTitle {
   color: #fff;
   mix-blend-mode: difference;
-  font-weight: bold;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 0 0.5rem;
-  height: 4rem;
+  padding: 0.5rem;
 }
 .boardContainer__main__list__header .listTitle i {
   margin-bottom: 0.3rem;
