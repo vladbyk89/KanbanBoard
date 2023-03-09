@@ -1,61 +1,77 @@
 function handleSignUp(e) {
-    e.preventDefault();
-    // e.stopPropagation();
-    var gender = this.elements.gender.value;
-    var firstName = this.elements.firstName.value;
-    var lastName = this.elements.lastName.value;
-    var password = this.elements.password.value;
-    var userName = this.elements.userName.value;
-    var email = this.elements.email.value;
-    var phone = this.elements.phoneNumber.value;
-    var arr = [gender, firstName, lastName, password, userName, email, phone];
-    if (arr.some(function (ele) { return ele == ""; }))
-        return alert("missing field");
-    if (checkIfEmailExists(email))
-        return alert("Email is alreay in the system");
-    var newUser = new User(firstName, lastName, gender, userName, password, email, phone);
-    var signedUpUsers = JSON.parse(localStorage.getItem("signedUpUsers") || "[]");
-    signedUpUsers.push(newUser);
-    localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
-    localStorage.setItem("currentUser", JSON.stringify(newUser));
-    location.href = "index.html";
-    this.reset();
+    try {
+        e.preventDefault();
+        // e.stopPropagation();
+        var gender = this.elements.gender.value;
+        var firstName = this.elements.firstName.value;
+        var lastName = this.elements.lastName.value;
+        var password = this.elements.password.value;
+        var userName = this.elements.userName.value;
+        var email = this.elements.email.value;
+        var phone = this.elements.phoneNumber.value;
+        var arr = [gender, firstName, lastName, password, userName, email, phone];
+        var regex_1 = /^[a-zA-Z0-9!@#$%\^&*)(+=._-]*$/;
+        if (arr.some(function (ele) { return !regex_1.test(ele); }))
+            return alert("Only English characters allowed");
+        if (checkIfEmailExists(email))
+            return alert("Email is alreay in the system");
+        var newUser = new User(firstName, lastName, gender, userName, password, email, phone);
+        var signedUpUsers = JSON.parse(localStorage.getItem("signedUpUsers") || "[]");
+        signedUpUsers.push(newUser);
+        localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
+        localStorage.setItem("currentUser", JSON.stringify(newUser));
+        location.href = "index.html";
+        this.reset();
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
 function handleSignIn(e) {
-    e.preventDefault();
-    var userName = userNameInput.value;
-    var password = passwordInput.value;
-    if (checkIfUserExists(userName, password)) {
-        User.setCurrentUser(userName);
-        signInForm.reset();
-        window.location.href = "index.html";
+    try {
+        e.preventDefault();
+        var userName = userNameInput.value;
+        var password = passwordInput.value;
+        if (checkIfUserExists(userName, password)) {
+            User.setCurrentUser(userName);
+            signInForm.reset();
+            window.location.href = "index.html";
+        }
+        else {
+            alert("User does not exist.");
+        }
     }
-    else {
-        alert("user not in database");
+    catch (error) {
+        console.log(error);
     }
 }
 function handleRecovery(e) {
-    e.preventDefault();
-    var firstName = this.elements.firstName.value;
-    var lastName = this.elements.lastName.value;
-    var userName = this.elements.userName.value;
-    var email = this.elements.email.value;
-    var phone = this.elements.phoneNumber.value;
-    var arr = [firstName, lastName, userName, email, phone];
-    if (arr.some(function (ele) { return ele == ""; }))
-        return alert("missing field");
-    var userList = userListFromStorage();
-    var findUser = userList.find(function (user) {
-        return user.userName == userName ||
-            user.firstName == firstName ||
-            user.lastName == lastName ||
-            user.email == email ||
-            user.phoneNumber == phone;
-    });
-    if (!findUser)
-        return alert("No such user exists");
-    recoveredPassword.textContent = findUser.password;
-    passwordDisplayDiv.style.display = "flex";
+    try {
+        e.preventDefault();
+        var firstName_1 = this.elements.firstName.value;
+        var lastName_1 = this.elements.lastName.value;
+        var userName_1 = this.elements.userName.value;
+        var email_1 = this.elements.email.value;
+        var phone_1 = this.elements.phoneNumber.value;
+        var arr = [firstName_1, lastName_1, userName_1, email_1, phone_1];
+        if (arr.some(function (ele) { return ele == ""; }))
+            return alert("missing field");
+        var userList = userListFromStorage();
+        var findUser = userList.find(function (user) {
+            return user.userName == userName_1 ||
+                user.firstName == firstName_1 ||
+                user.lastName == lastName_1 ||
+                user.email == email_1 ||
+                user.phoneNumber == phone_1;
+        });
+        if (!findUser)
+            return alert("No such user exists");
+        recoveredPassword.textContent = findUser.password;
+        passwordDisplayDiv.style.display = "flex";
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
 function displayProfile(user) {
     try {
