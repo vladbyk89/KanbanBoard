@@ -1,70 +1,84 @@
 function handleSignUp(e: Event) {
-  e.preventDefault();
-  // e.stopPropagation();
-  const gender = this.elements.gender.value;
-  const firstName = this.elements.firstName.value;
-  const lastName = this.elements.lastName.value;
-  const password = this.elements.password.value;
-  const userName = this.elements.userName.value;
-  const email = this.elements.email.value;
-  const phone = this.elements.phoneNumber.value;
-  const arr = [gender, firstName, lastName, password, userName, email, phone];
-  if (arr.some((ele) => ele == "")) return alert("missing field");
-  if (checkIfEmailExists(email)) return alert("Email is alreay in the system");
-  const newUser = new User(
-    firstName,
-    lastName,
-    gender,
-    userName,
-    password,
-    email,
-    phone
-  );
-  const signedUpUsers = JSON.parse(
-    localStorage.getItem("signedUpUsers") || "[]"
-  ) as User[];
-  signedUpUsers.push(newUser);
-  localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
-  localStorage.setItem("currentUser", JSON.stringify(newUser));
-  location.href = "index.html";
-  this.reset();
+  try {
+    e.preventDefault();
+    // e.stopPropagation();
+    const gender = this.elements.gender.value;
+    const firstName = this.elements.firstName.value;
+    const lastName = this.elements.lastName.value;
+    const password = this.elements.password.value;
+    const userName = this.elements.userName.value;
+    const email = this.elements.email.value;
+    const phone = this.elements.phoneNumber.value;
+    const arr = [gender, firstName, lastName, password, userName, email, phone];
+    if (arr.some((ele) => ele == "")) return alert("missing field");
+    if (checkIfEmailExists(email))
+      return alert("Email is alreay in the system");
+    const newUser = new User(
+      firstName,
+      lastName,
+      gender,
+      userName,
+      password,
+      email,
+      phone
+    );
+    const signedUpUsers = JSON.parse(
+      localStorage.getItem("signedUpUsers") || "[]"
+    ) as User[];
+    signedUpUsers.push(newUser);
+    localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
+    localStorage.setItem("currentUser", JSON.stringify(newUser));
+    location.href = "index.html";
+    this.reset();
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function handleSignIn(e: Event) {
-  e.preventDefault();
-  const userName = userNameInput.value;
-  const password = passwordInput.value;
+  try {
+    e.preventDefault();
+    const userName = userNameInput.value;
+    const password = passwordInput.value;
 
-  if (checkIfUserExists(userName, password)) {
-    User.setCurrentUser(userName);
-    signInForm.reset();
-    window.location.href = "index.html";
-  } else {
-    alert("user not in database");
+    if (checkIfUserExists(userName, password)) {
+      User.setCurrentUser(userName);
+      signInForm.reset();
+      window.location.href = "index.html";
+    } else {
+      alert("User does not exist.");
+    }
+  } catch (error) {
+    console.log(error);
   }
 }
 
 function handleRecovery(e: Event) {
-  e.preventDefault();
-  const firstName = this.elements.firstName.value;
-  const lastName = this.elements.lastName.value;
-  const userName = this.elements.userName.value;
-  const email = this.elements.email.value;
-  const phone = this.elements.phoneNumber.value;
-  const arr = [firstName, lastName, userName, email, phone];
-  if (arr.some((ele) => ele == "")) return alert("missing field");
-  const userList = userListFromStorage();
-  const findUser = userList.find(
-    (user) =>
-      user.userName == userName ||
-      user.firstName == firstName ||
-      user.lastName == lastName ||
-      user.email == email ||
-      user.phoneNumber == phone
-  );
-  if (!findUser) return alert("No such user exists");
-  recoveredPassword.textContent = findUser.password;
-  passwordDisplayDiv.style.display = "flex";
+  try {
+    e.preventDefault();
+    const firstName = this.elements.firstName.value;
+    const lastName = this.elements.lastName.value;
+    const userName = this.elements.userName.value;
+    const email = this.elements.email.value;
+    const phone = this.elements.phoneNumber.value;
+    const arr = [firstName, lastName, userName, email, phone];
+    if (arr.some((ele) => ele == "")) return alert("missing field");
+    const userList = userListFromStorage();
+    const findUser = userList.find(
+      (user) =>
+        user.userName == userName ||
+        user.firstName == firstName ||
+        user.lastName == lastName ||
+        user.email == email ||
+        user.phoneNumber == phone
+    );
+    if (!findUser) return alert("No such user exists");
+    recoveredPassword.textContent = findUser.password;
+    passwordDisplayDiv.style.display = "flex";
+    
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function displayProfile(user: User) {
