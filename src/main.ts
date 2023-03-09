@@ -146,9 +146,7 @@ if (window.location.pathname.endsWith("board.html")) {
       ) as HTMLTextAreaElement;
       if (newCardTextArea.value == "") return;
       createCardElement(newCardTextArea.value, listElement);
-      // ******
       newCardTextArea.value = "";
-    
     }
     if (target.classList.contains("cancelEditBoardBtn")) {
       editBoardWindow.style.display = "none";
@@ -166,7 +164,7 @@ if (window.location.pathname.endsWith("board.html")) {
   });
   newListInput.addEventListener("keyup", (event) => {
     if (event.key === "Enter") {
-      createList(newListInput.value);
+      List.createList(newListInput.value);
     }
   });
 
@@ -177,7 +175,6 @@ if (window.location.pathname.endsWith("board.html")) {
       const element = document.getElementById(
         event.dataTransfer!.getData("Text")
       );
-      // *****
       element?.parentNode?.removeChild(element);
       currentBoard.update();
     }

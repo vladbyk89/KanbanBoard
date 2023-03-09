@@ -116,7 +116,6 @@ if (window.location.pathname.endsWith("board.html")) {
             if (newCardTextArea.value == "")
                 return;
             createCardElement(newCardTextArea.value, listElement);
-            // ******
             newCardTextArea.value = "";
         }
         if (target.classList.contains("cancelEditBoardBtn")) {
@@ -134,7 +133,7 @@ if (window.location.pathname.endsWith("board.html")) {
     });
     newListInput.addEventListener("keyup", function (event) {
         if (event.key === "Enter") {
-            createList(newListInput.value);
+            List.createList(newListInput.value);
         }
     });
     trashCan.addEventListener("drop", function (event) {
@@ -143,7 +142,6 @@ if (window.location.pathname.endsWith("board.html")) {
         var confirmDelete = confirm("Are you sure you want to delete?");
         if (confirmDelete) {
             var element = document.getElementById(event.dataTransfer.getData("Text"));
-            // *****
             (_a = element === null || element === void 0 ? void 0 : element.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(element);
             currentBoard.update();
         }
