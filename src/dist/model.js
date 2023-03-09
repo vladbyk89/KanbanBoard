@@ -126,7 +126,7 @@ var List = /** @class */ (function () {
         if (newListInput.value == "")
             return;
         var newList = new List(listName);
-        boardContainer.insertBefore(newList.createListElement(), deleteBoxDiv);
+        boardContainer.insertBefore(newList.createListElement(), trashCanDiv);
         newListInput.value = "";
     };
     List.prototype.createListElement = function () {
@@ -141,7 +141,7 @@ var List = /** @class */ (function () {
         header.innerHTML = "\n    <div class=\"listTitle\" >\n      <h2>" + this.name + "</h3>\n      <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n      </div>\n      <div class=\"boardContainer__main__list__header--addCard\">\n        <textarea maxlength=\"20\" class=\"newCardTextArea\" cols=\"30\" rows=\"2\" placeholder=\"Task...\"></textarea>\n        <button class=\"newCardBtn\">New Card</button>\n      </div>\n    ";
         listContainer.appendChild(header);
         makeListFunctional(listContainer);
-        boardContainer.insertBefore(listContainer, deleteBoxDiv);
+        boardContainer.insertBefore(listContainer, trashCanDiv);
         currentBoard.update();
         return listContainer;
     };

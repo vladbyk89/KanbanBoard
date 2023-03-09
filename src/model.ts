@@ -142,7 +142,7 @@ class List {
   static createList(listName: string) {
     if (newListInput.value == "") return;
     const newList = new List(listName);
-    boardContainer.insertBefore(newList.createListElement(), deleteBoxDiv);
+    boardContainer.insertBefore(newList.createListElement(), trashCanDiv);
     newListInput.value = "";
   }
   createListElement() {
@@ -167,7 +167,7 @@ class List {
     `;
     listContainer.appendChild(header);
     makeListFunctional(listContainer);
-    boardContainer.insertBefore(listContainer, deleteBoxDiv);
+    boardContainer.insertBefore(listContainer, trashCanDiv);
     currentBoard.update();
     return listContainer;
   }
