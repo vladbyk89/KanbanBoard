@@ -1,84 +1,46 @@
 function handleSignUp(e: Event) {
-  try {
-    e.preventDefault();
-    // e.stopPropagation();
-    const gender = this.elements.gender.value;
-    const firstName = this.elements.firstName.value;
-    const lastName = this.elements.lastName.value;
-    const password = this.elements.password.value;
-    const userName = this.elements.userName.value;
-    const email = this.elements.email.value;
-    const phone = this.elements.phoneNumber.value;
-    const arr = [gender, firstName, lastName, password, userName, email, phone];
-    const regex = /^[a-zA-Z0-9!@#$%\^&*)(+=._-]*$/
-    if (arr.some((ele) => !regex.test(ele))) return alert("Only English characters allowed");
-    if (checkIfEmailExists(email))
-      return alert("Email is alreay in the system");
-    const newUser = new User(
-      firstName,
-      lastName,
-      gender,
-      userName,
-      password,
-      email,
-      phone
-    );
-    const signedUpUsers = JSON.parse(
-      localStorage.getItem("signedUpUsers") || "[]"
-    ) as User[];
-    signedUpUsers.push(newUser);
-    localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
-    localStorage.setItem("currentUser", JSON.stringify(newUser));
-    location.href = "index.html";
-    this.reset();
-  } catch (error) {
-    console.log(error);
-  }
+  e.preventDefault();
+  // e.stopPropagation();
+  const gender = this.elements.gender.value;
+  const firstName = this.elements.firstName.value;
+  const lastName = this.elements.lastName.value;
+  const password = this.elements.password.value;
+  const userName = this.elements.userName.value;
+  const email = this.elements.email.value;
+  const phone = this.elements.phoneNumber.value;
+  const arr = [gender, firstName, lastName, password, userName, email, phone];
+  if (arr.some((ele) => ele == "")) return alert("missing field");
+  if (checkIfEmailExists(email)) return alert("Email is alreay in the system");
+  const newUser = new User(
+    firstName,
+    lastName,
+    gender,
+    userName,
+    password,
+    email,
+    phone
+  );
+  const signedUpUsers = JSON.parse(
+    localStorage.getItem("signedUpUsers") || "[]"
+  ) as User[];
+  signedUpUsers.push(newUser);
+  localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
+  localStorage.setItem("currentUser", JSON.stringify(newUser));
+  location.href = "index.html";
+  this.reset();
 }
 
 function handleSignIn(e: Event) {
-  try {
-    e.preventDefault();
-    const userName = userNameInput.value;
-    const password = passwordInput.value;
+  e.preventDefault();
+  const userName = userNameInput.value;
+  const password = passwordInput.value;
 
-    if (checkIfUserExists(userName, password)) {
-      User.setCurrentUser(userName);
-      signInForm.reset();
-      window.location.href = "index.html";
-    } else {
-      alert("User does not exist.");
-    }
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-function handleRecovery(e: Event) {
-  try {
-    e.preventDefault();
-    const firstName = this.elements.firstName.value;
-    const lastName = this.elements.lastName.value;
-    const userName = this.elements.userName.value;
-    const email = this.elements.email.value;
-    const phone = this.elements.phoneNumber.value;
-    const arr = [firstName, lastName, userName, email, phone];
-    if (arr.some((ele) => ele == "")) return alert("missing field");
-    const userList = userListFromStorage();
-    const findUser = userList.find(
-      (user) =>
-        user.userName == userName ||
-        user.firstName == firstName ||
-        user.lastName == lastName ||
-        user.email == email ||
-        user.phoneNumber == phone
-    );
-    if (!findUser) return alert("No such user exists");
-    recoveredPassword.textContent = findUser.password;
-    passwordDisplayDiv.style.display = "flex";
-    
-  } catch (error) {
-    console.log(error);
+  if (checkIfUserExists(userName, password)) {
+    User.setCurrentUser(userName);
+    signInForm.reset();
+    window.location.href = "index.html";
+  } else {
+    alert("user not in database");
   }
 }
 
@@ -116,7 +78,6 @@ function displayProfile(user: User) {
 
 function updateUserBoardList(userToUpdate: User, boardToUpdate: Board) {
   try {
-    const userList = userListFromStorage();
     if (userList) {
       const findUser = userList.find((user) => user.uid === userToUpdate.uid);
       if (findUser) {
@@ -142,7 +103,6 @@ function updateUserBoardList(userToUpdate: User, boardToUpdate: Board) {
 
 function checkIfUserExists(userName: string, password: string) {
   try {
-    const userList = userListFromStorage();
     return userList.find(
       (user) => user.userName === userName && user.password === password
     );
@@ -186,7 +146,67 @@ function createBoard(boardName: string, boardImage: string) {
     console.log(error);
   }
 }
-function makeListFunctional(listContainer: HTMLElement) {
+function createListElement(list: List) {
+  const listContainer = document.createElement("div");
+  listContainer.classList.add("boardContainer__main__list");
+  listContainer.setAttribute("draggable", "true");
+  listContainer.setAttribute("id", `${list.uid}`);
+  listContainer.setAttribute("ondragstart", `drag(event)`);
+
+  const header = document.createElement("div");
+  header.classList.add("boardContainer__main__list__header");
+  header.setAttribute("id", `${list.name}_header`);
+  header.innerHTML = `
+  <div class="listTitle" >
+    <h2>${list.name}</h3>
+    <i class="fa-regular fa-pen-to-square editListBtn"></i>
+    </div>
+    <div class="boardContainer__main__list__card--addCard">
+      <textarea maxlength="30" class="newCardTextArea" cols="30" rows="2" placeholder="Task..."></textarea>
+      <button class="newCardBtn">New Card</button>
+    </div>
+  `;
+  listContainer.appendChild(header);
+
+  const editListBtn = header.querySelector(".editListBtn") as HTMLElement;
+
+  editListBtn.addEventListener("click", () => {
+    const listTitle = header.querySelector(".listTitle") as HTMLElement;
+    const listTitleText = listTitle.querySelector("h2") as HTMLElement;
+    const editListInput = document.createElement("input");
+
+    editListInput.type = "text";
+    editListInput.value = listTitleText.textContent!;
+    editListInput.classList.add("editListInput");
+
+    listTitle.replaceChild(editListInput, listTitleText);
+    editListInput.focus();
+
+    editListInput.addEventListener("keyup", (event) => {
+      if (event.key === "Enter") {
+        listTitle.replaceChild(listTitleText, editListInput);
+        listTitleText.textContent = editListInput.value.trim();
+        currentBoard.update();
+      }
+    });
+  });
+
+  const newCardTextArea = listContainer.querySelector(
+    ".newCardTextArea"
+  ) as HTMLTextAreaElement;
+
+  newCardTextArea.addEventListener("keyup", (event) => {
+    if (event.key === "Enter") {
+      const newCardBtn = listContainer.querySelector(
+        ".newCardBtn"
+      ) as HTMLButtonElement;
+      if (newCardTextArea.value.trim() !== "") {
+        createCardElement(newCardTextArea.value.trim(), listContainer);
+        newCardTextArea.value = "";
+      }
+    }
+  });
+
   listContainer.addEventListener("dragstart", () => {
     listContainer.classList.add("is-draggin");
   });
@@ -194,66 +214,37 @@ function makeListFunctional(listContainer: HTMLElement) {
     listContainer.classList.remove("is-draggin");
   });
 
-  listContainer.addEventListener("dragover", dragginCard);
-
-  const editListBtn = listContainer.querySelector(
-    ".editListBtn"
-  ) as HTMLElement;
-  editListBtn.addEventListener("click", editList);
-
-  const newCardTextArea = listContainer.querySelector(
-    ".newCardTextArea"
-  ) as HTMLTextAreaElement;
-  newCardTextArea.addEventListener("keyup", (event) => {
-    if (event.key === "Enter") {
-      if (newCardTextArea.value.trim() !== "") {
-        createCardElement(newCardTextArea.value.trim(), listContainer);
-        newCardTextArea.value = "";
+  listContainer.addEventListener("dragover", (e) => {
+    let cardIsDragged = false;
+    cards.forEach((card) => {
+      if (card.classList.contains("is-dragging")) {
+        cardIsDragged = true;
       }
+    });
+    if (!cardIsDragged) return;
+    e.preventDefault();
+
+    const bottomTask = insertAboveTask(listContainer, e.clientY);
+    const curTask = document.querySelector(".is-dragging") as HTMLElement;
+
+    if (!bottomTask) {
+      listContainer.appendChild(curTask);
+    } else {
+      listContainer.insertBefore(curTask, bottomTask);
     }
+    currentBoard.update();
   });
-}
 
-function dragginCard({ clientY }) {
-  let cardIsDragged = false;
-  cards.forEach((card) => {
-    if (card.classList.contains("is-dragging")) {
-      cardIsDragged = true;
-    }
-  });
-  if (!cardIsDragged) return;
-  // e.preventDefault();
-
-  const bottomTask = insertAboveTask(this, clientY);
-  const curTask = document.querySelector(".is-dragging") as HTMLElement;
-
-  if (!bottomTask) {
-    this.appendChild(curTask);
-  } else {
-    this.insertBefore(curTask, bottomTask);
-  }
+  boardContainer.insertBefore(listContainer, deleteBoxDiv);
   currentBoard.update();
+  return listContainer;
 }
 
-function editList() {
-  const listTitle = this.parentNode as HTMLElement;
-  const listTitleText = listTitle.querySelector("h2") as HTMLElement;
-  const editListInput = document.createElement("input");
-
-  editListInput.type = "text";
-  editListInput.value = listTitleText.textContent!;
-  editListInput.classList.add("editListInput");
-
-  listTitle.replaceChild(editListInput, listTitleText);
-  editListInput.focus();
-
-  editListInput.addEventListener("keyup", (event) => {
-    if (event.key === "Enter") {
-      listTitle.replaceChild(listTitleText, editListInput);
-      listTitleText.textContent = editListInput.value.trim();
-      currentBoard.update();
-    }
-  });
+function createList(listName: string) {
+  if (newListInput.value == "") return;
+  const newList = new List(listName);
+  boardContainer.insertBefore(createListElement(newList), deleteBoxDiv);
+  newListInput.value = "";
 }
 
 function createCardElement(cardName: string, list: Element) {
@@ -319,8 +310,7 @@ function renderBoardInBoardPage() {
     boardTitle.textContent = currentBoard.name;
     boardContainer.style.background = `url(${currentBoard.backgroundImage}) no-repeat center / cover`;
     currentBoard.lists.forEach((list) => {
-      const listObj = new List(list.name, list.cards, list.uid);
-      const ListElement = listObj.createListElement();
+      const ListElement = createListElement(list);
 
       list.cards.forEach((card) => {
         createCardElement(card, ListElement);

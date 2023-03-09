@@ -73,3 +73,6 @@ function checkIfEmailExists(email:string){
   if(findEmail) return true
   return false
 }
+
+
+
