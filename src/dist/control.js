@@ -1,37 +1,76 @@
 function handleSignUp(e) {
-    e.preventDefault();
-    // e.stopPropagation();
-    var gender = this.elements.gender.value;
-    var firstName = this.elements.firstName.value;
-    var lastName = this.elements.lastName.value;
-    var password = this.elements.password.value;
-    var userName = this.elements.userName.value;
-    var email = this.elements.email.value;
-    var phone = this.elements.phoneNumber.value;
-    var arr = [gender, firstName, lastName, password, userName, email, phone];
-    if (arr.some(function (ele) { return ele == ""; }))
-        return alert("missing field");
-    if (checkIfEmailExists(email))
-        return alert("Email is alreay in the system");
-    var newUser = new User(firstName, lastName, gender, userName, password, email, phone);
-    var signedUpUsers = JSON.parse(localStorage.getItem("signedUpUsers") || "[]");
-    signedUpUsers.push(newUser);
-    localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
-    localStorage.setItem("currentUser", JSON.stringify(newUser));
-    location.href = "index.html";
-    this.reset();
+    try {
+        e.preventDefault();
+        // e.stopPropagation();
+        var gender = this.elements.gender.value;
+        var firstName = this.elements.firstName.value;
+        var lastName = this.elements.lastName.value;
+        var password = this.elements.password.value;
+        var userName = this.elements.userName.value;
+        var email = this.elements.email.value;
+        var phone = this.elements.phoneNumber.value;
+        var arr = [gender, firstName, lastName, password, userName, email, phone];
+        var regex_1 = /^[a-zA-Z0-9!@#$%\^&*)(+=._-]*$/;
+        if (arr.some(function (ele) { return !regex_1.test(ele); }))
+            return alert("Only English characters allowed");
+        if (checkIfEmailExists(email))
+            return alert("Email is alreay in the system");
+        var newUser = new User(firstName, lastName, gender, userName, password, email, phone);
+        var signedUpUsers = JSON.parse(localStorage.getItem("signedUpUsers") || "[]");
+        signedUpUsers.push(newUser);
+        localStorage.setItem("signedUpUsers", JSON.stringify(signedUpUsers));
+        localStorage.setItem("currentUser", JSON.stringify(newUser));
+        location.href = "index.html";
+        this.reset();
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
 function handleSignIn(e) {
-    e.preventDefault();
-    var userName = userNameInput.value;
-    var password = passwordInput.value;
-    if (checkIfUserExists(userName, password)) {
-        User.setCurrentUser(userName);
-        signInForm.reset();
-        window.location.href = "index.html";
+    try {
+        e.preventDefault();
+        var userName = userNameInput.value;
+        var password = passwordInput.value;
+        if (checkIfUserExists(userName, password)) {
+            User.setCurrentUser(userName);
+            signInForm.reset();
+            window.location.href = "index.html";
+        }
+        else {
+            alert("User does not exist.");
+        }
     }
-    else {
-        alert("user not in database");
+    catch (error) {
+        console.log(error);
+    }
+}
+function handleRecovery(e) {
+    try {
+        e.preventDefault();
+        var firstName_1 = this.elements.firstName.value;
+        var lastName_1 = this.elements.lastName.value;
+        var userName_1 = this.elements.userName.value;
+        var email_1 = this.elements.email.value;
+        var phone_1 = this.elements.phoneNumber.value;
+        var arr = [firstName_1, lastName_1, userName_1, email_1, phone_1];
+        if (arr.some(function (ele) { return ele == ""; }))
+            return alert("missing field");
+        var userList = userListFromStorage();
+        var findUser = userList.find(function (user) {
+            return user.userName == userName_1 ||
+                user.firstName == firstName_1 ||
+                user.lastName == lastName_1 ||
+                user.email == email_1 ||
+                user.phoneNumber == phone_1;
+        });
+        if (!findUser)
+            return alert("No such user exists");
+        recoveredPassword.textContent = findUser.password;
+        passwordDisplayDiv.style.display = "flex";
+    }
+    catch (error) {
+        console.log(error);
     }
 }
 function displayProfile(user) {
@@ -48,6 +87,7 @@ function displayProfile(user) {
 }
 function updateUserBoardList(userToUpdate, boardToUpdate) {
     try {
+        var userList = userListFromStorage();
         if (userList) {
             var findUser = userList.find(function (user) { return user.uid === userToUpdate.uid; });
             if (findUser) {
@@ -72,6 +112,7 @@ function updateUserBoardList(userToUpdate, boardToUpdate) {
 }
 function checkIfUserExists(userName, password) {
     try {
+        var userList = userListFromStorage();
         return userList.find(function (user) { return user.userName === userName && user.password === password; });
     }
     catch (error) {
@@ -110,81 +151,63 @@ function createBoard(boardName, boardImage) {
         console.log(error);
     }
 }
-function createListElement(list) {
-    var listContainer = document.createElement("div");
-    listContainer.classList.add("boardContainer__main__list");
-    listContainer.setAttribute("draggable", "true");
-    listContainer.setAttribute("id", "" + list.uid);
-    listContainer.setAttribute("ondragstart", "drag(event)");
-    var header = document.createElement("div");
-    header.classList.add("boardContainer__main__list__header");
-    header.setAttribute("id", list.name + "_header");
-    header.innerHTML = "\n  <div class=\"listTitle\" >\n    <h2>" + list.name + "</h3>\n    <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n    </div>\n    <div class=\"boardContainer__main__list__card--addCard\">\n      <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"2\" placeholder=\"Task...\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n    </div>\n  ";
-    listContainer.appendChild(header);
-    var editListBtn = header.querySelector(".editListBtn");
-    editListBtn.addEventListener("click", function () {
-        var listTitle = header.querySelector(".listTitle");
-        var listTitleText = listTitle.querySelector("h2");
-        var editListInput = document.createElement("input");
-        editListInput.type = "text";
-        editListInput.value = listTitleText.textContent;
-        editListInput.classList.add("editListInput");
-        listTitle.replaceChild(editListInput, listTitleText);
-        editListInput.focus();
-        editListInput.addEventListener("keyup", function (event) {
-            if (event.key === "Enter") {
-                listTitle.replaceChild(listTitleText, editListInput);
-                listTitleText.textContent = editListInput.value.trim();
-                currentBoard.update();
-            }
-        });
-    });
-    var newCardTextArea = listContainer.querySelector(".newCardTextArea");
-    newCardTextArea.addEventListener("keyup", function (event) {
-        if (event.key === "Enter") {
-            var newCardBtn = listContainer.querySelector(".newCardBtn");
-            if (newCardTextArea.value.trim() !== "") {
-                createCardElement(newCardTextArea.value.trim(), listContainer);
-                newCardTextArea.value = "";
-            }
-        }
-    });
+function makeListFunctional(listContainer) {
     listContainer.addEventListener("dragstart", function () {
         listContainer.classList.add("is-draggin");
     });
     listContainer.addEventListener("dragend", function () {
         listContainer.classList.remove("is-draggin");
     });
-    listContainer.addEventListener("dragover", function (e) {
-        var cardIsDragged = false;
-        cards.forEach(function (card) {
-            if (card.classList.contains("is-dragging")) {
-                cardIsDragged = true;
+    listContainer.addEventListener("dragover", dragginCard);
+    var editListBtn = listContainer.querySelector(".editListBtn");
+    editListBtn.addEventListener("click", editList);
+    var newCardTextArea = listContainer.querySelector(".newCardTextArea");
+    newCardTextArea.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+            if (newCardTextArea.value.trim() !== "") {
+                createCardElement(newCardTextArea.value.trim(), listContainer);
+                newCardTextArea.value = "";
             }
-        });
-        if (!cardIsDragged)
-            return;
-        e.preventDefault();
-        var bottomTask = insertAboveTask(listContainer, e.clientY);
-        var curTask = document.querySelector(".is-dragging");
-        if (!bottomTask) {
-            listContainer.appendChild(curTask);
         }
-        else {
-            listContainer.insertBefore(curTask, bottomTask);
-        }
-        currentBoard.update();
     });
-    boardContainer.insertBefore(listContainer, deleteBoxDiv);
-    currentBoard.update();
-    return listContainer;
 }
-function createList(listName) {
-    if (newListInput.value == "")
+function dragginCard(_a) {
+    var clientY = _a.clientY;
+    var cardIsDragged = false;
+    cards.forEach(function (card) {
+        if (card.classList.contains("is-dragging")) {
+            cardIsDragged = true;
+        }
+    });
+    if (!cardIsDragged)
         return;
-    var newList = new List(listName);
-    boardContainer.insertBefore(createListElement(newList), deleteBoxDiv);
-    newListInput.value = "";
+    // e.preventDefault();
+    var bottomTask = insertAboveTask(this, clientY);
+    var curTask = document.querySelector(".is-dragging");
+    if (!bottomTask) {
+        this.appendChild(curTask);
+    }
+    else {
+        this.insertBefore(curTask, bottomTask);
+    }
+    currentBoard.update();
+}
+function editList() {
+    var listTitle = this.parentNode;
+    var listTitleText = listTitle.querySelector("h2");
+    var editListInput = document.createElement("input");
+    editListInput.type = "text";
+    editListInput.value = listTitleText.textContent;
+    editListInput.classList.add("editListInput");
+    listTitle.replaceChild(editListInput, listTitleText);
+    editListInput.focus();
+    editListInput.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+            listTitle.replaceChild(listTitleText, editListInput);
+            listTitleText.textContent = editListInput.value.trim();
+            currentBoard.update();
+        }
+    });
 }
 function createCardElement(cardName, list) {
     var card = document.createElement("div");
@@ -232,7 +255,8 @@ function renderBoardInBoardPage() {
         boardTitle.textContent = currentBoard.name;
         boardContainer.style.background = "url(" + currentBoard.backgroundImage + ") no-repeat center / cover";
         currentBoard.lists.forEach(function (list) {
-            var ListElement = createListElement(list);
+            var listObj = new List(list.name, list.cards, list.uid);
+            var ListElement = listObj.createListElement();
             list.cards.forEach(function (card) {
                 createCardElement(card, ListElement);
             });
