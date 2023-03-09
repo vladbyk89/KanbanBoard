@@ -136,7 +136,8 @@ class List {
   constructor(
     public name: string,
     public cards: string[] = [],
-    public uid = Math.random().toString(36).slice(2)
+    public uid = Math.random().toString(36).slice(2),
+    public backColor: string = `#${randomColor()}`
   ) {}
 
   static createList(listName: string) {
@@ -156,7 +157,7 @@ class List {
     header.classList.add("boardContainer__main__list__header");
     header.setAttribute("id", `${this.name}_header`);
     header.innerHTML = `
-    <div class="listTitle" >
+    <div class="listTitle">
       <h2>${this.name}</h3>
       <i class="fa-regular fa-pen-to-square editListBtn"></i>
       </div>
@@ -166,6 +167,7 @@ class List {
       </div>
     `;
     listContainer.appendChild(header);
+    header.style.backgroundColor = this.backColor;
     makeListFunctional(listContainer);
     boardContainer.insertBefore(listContainer, trashCanDiv);
     currentBoard.update();

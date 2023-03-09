@@ -255,7 +255,7 @@ function renderBoardInBoardPage() {
         boardTitle.textContent = currentBoard.name;
         boardContainer.style.background = "url(" + currentBoard.backgroundImage + ") no-repeat center / cover";
         currentBoard.lists.forEach(function (list) {
-            var listObj = new List(list.name, list.cards, list.uid);
+            var listObj = new List(list.name, list.cards, list.uid, list.backColor);
             var ListElement = listObj.createListElement();
             list.cards.forEach(function (card) {
                 createCardElement(card, ListElement);

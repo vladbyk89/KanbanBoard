@@ -319,7 +319,7 @@ function renderBoardInBoardPage() {
     boardTitle.textContent = currentBoard.name;
     boardContainer.style.background = `url(${currentBoard.backgroundImage}) no-repeat center / cover`;
     currentBoard.lists.forEach((list) => {
-      const listObj = new List(list.name, list.cards, list.uid);
+      const listObj = new List(list.name, list.cards, list.uid, list.backColor);
       const ListElement = listObj.createListElement();
 
       list.cards.forEach((card) => {
