@@ -48,7 +48,7 @@ function uid() {
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
 function checkIfEmailExists(email) {
-    userList = userListFromStorage();
+    var userList = userListFromStorage();
     var findEmail = userList.find(function (user) { return user.email === email; });
     if (findEmail)
         return true;
