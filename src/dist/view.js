@@ -13,7 +13,9 @@ var passwordDisplayDiv = document.querySelector(".passwordDisplay");
 var recoveredPassword = document.querySelector("#recoveredPassword");
 //------------------ Main page elements -----------------//
 var profileWindow = document.querySelector(".profileWindow");
+var notifictionWindow = document.querySelector(".notifictionWindow");
 var profileDiv = document.querySelector(".profile");
+var notificationsDiv = document.querySelector(".notifications");
 var newBoardWindow = document.querySelector(".newBoardWindow");
 var boardArea = document.querySelector(".mainpageContainer__main__boards__boardArea");
 var backgroundImageSelectionDiv = document.querySelector(".backgroundSelectionDiv");

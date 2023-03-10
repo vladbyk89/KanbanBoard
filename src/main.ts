@@ -91,8 +91,6 @@ if (window.location.pathname.endsWith("board.html")) {
   
   addListBtn.addEventListener("click", () =>{
     List.createList(newListInput.value)
-    let successListMsg = `<i class="fa-solid fa-circle-check"></i> Add new List ${newListInput.value}`
-    notification (successListMsg)
   });
   
   editBoardBtn.addEventListener("click", () => {
@@ -148,7 +146,7 @@ if (window.location.pathname.endsWith("board.html")) {
       ) as HTMLTextAreaElement;
       if (newCardTextArea.value == "") return;
       createCardElement(newCardTextArea.value, listElement);
-      let successcardMsg = `<i class="fa-solid fa-circle-check"></i>Add new card ${newCardTextArea.value}`
+      let successcardMsg = `<i class="fa-solid fa-circle-check"></i>Add new card: ${newCardTextArea.value}`
       notification(successcardMsg)
       newCardTextArea.value = "";
     }
@@ -168,8 +166,6 @@ if (window.location.pathname.endsWith("board.html")) {
   });
   newListInput.addEventListener("keyup", (event) => {
     if (event.key === "Enter") {
-      let successListMsg = `<i class="fa-solid fa-circle-check"></i> Add new List ${newListInput.value}`
-      notification(successListMsg)
       List.createList(newListInput.value);
       
     }
@@ -182,8 +178,8 @@ if (window.location.pathname.endsWith("board.html")) {
       const element = document.getElementById(
         event.dataTransfer!.getData("Text")
         );
-        let successDeleteMsg = `<i class="fa-solid fa-circle-xmark"></i> Delete List/Card ${newListInput.value}`
-      notification (successDeleteMsg)
+        let successDeleteMsg = `<i class="fa-solid fa-circle-xmark"></i> Delete - List/Card!`;
+        notification(successDeleteMsg)
       element?.parentNode?.removeChild(element);
       currentBoard.update();
     }
@@ -202,13 +198,14 @@ function notification (msg){
  }
  if(msg.includes(`List`)){
   note.classList.add("List");
+
  }
  if(msg.includes(`card`)){
   note.classList.add("card");
+
  }
  setTimeout((e) => {
   note.remove();
  },6000)
 }
-
  

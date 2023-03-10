@@ -1,3 +1,12 @@
+// class Notifictions{
+//   constructor(
+//     public nameList: string,
+//     public namecard: string,
+//     public nameDelete: string
+//   ){};
+// }
+
+
 class User {
   constructor(
     public firstName: string,
@@ -9,7 +18,7 @@ class User {
     public phoneNumber: string,
     public boardList: Board[] = [],
     public uid: string = Math.random().toString(36).slice(2)
-  ) {}
+  ) {};
 
   static currentUserFromStorage() {
     try {
@@ -151,7 +160,7 @@ class List {
     listContainer.setAttribute("draggable", "true");
     listContainer.setAttribute("id", `${this.uid}`);
     listContainer.setAttribute("ondragstart", `drag(event)`);
-
+    
     const header = document.createElement("div");
     header.classList.add("boardContainer__main__list__header");
     header.setAttribute("id", `${this.name}_header`);
@@ -161,13 +170,16 @@ class List {
       <i class="fa-regular fa-pen-to-square editListBtn"></i>
       </div>
       <div class="boardContainer__main__list__header--addCard">
-        <textarea maxlength="20" class="newCardTextArea" cols="30" rows="2" placeholder="Task..."></textarea>
-        <button class="newCardBtn">New Card</button>
+      <textarea maxlength="20" class="newCardTextArea" cols="30" rows="2" placeholder="Task..."></textarea>
+      <button class="newCardBtn">New Card</button>
       </div>
     `;
     listContainer.appendChild(header);
     makeListFunctional(listContainer);
     boardContainer.insertBefore(listContainer, trashCanDiv);
+    let successListMsg = `<i class="fa-solid fa-circle-check"></i> Add new List: ${this.name}`;
+    // notificationWithList("A new list has been created.");
+    notification(successListMsg)
     currentBoard.update();
     return listContainer;
   }
@@ -183,8 +195,8 @@ const preMadeUserList: User[] = [
     "12345678",
     "vladi@gmail.com",
     "0548155232"
-  ),
-  new User(
+    ),
+    new User(
     "Itai",
     "Gelberg",
     "male",

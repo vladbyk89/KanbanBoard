@@ -113,6 +113,23 @@ function displayProfile(user: User) {
     console.log(error);
   }
 }
+function displayNotifictions() {
+  try {
+    notifictionWindow.style.display = "flex";
+    if (notifictionWindow) {
+      return (notificationsDiv.innerHTML = `
+        <ul>
+          <h1>Notifictions:</h1>
+          <li>${newListInput.value}</li>
+          <li>${"Delete List/Card!"}</li>
+          </ul>
+          `);
+        }
+        // <li>${newCardTextArea.value}</li>
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 function updateUserBoardList(userToUpdate: User, boardToUpdate: Board) {
   try {
@@ -208,7 +225,7 @@ function makeListFunctional(listContainer: HTMLElement) {
     if (event.key === "Enter") {
       if (newCardTextArea.value.trim() !== "") {
         createCardElement(newCardTextArea.value.trim(), listContainer);
-        notification(`<i class="fa-solid fa-circle-check"></i>Add new card ${newCardTextArea.value}`);
+        notification(`<i class="fa-solid fa-circle-check"></i>Add new card: ${newCardTextArea.value}`);
         newCardTextArea.value = "";
       }
     }

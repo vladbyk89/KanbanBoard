@@ -1,3 +1,10 @@
+// class Notifictions{
+//   constructor(
+//     public nameList: string,
+//     public namecard: string,
+//     public nameDelete: string
+//   ){};
+// }
 var _a, _b, _c, _d;
 var User = /** @class */ (function () {
     function User(firstName, lastName, gender, userName, password, email, phoneNumber, boardList, uid) {
@@ -13,6 +20,7 @@ var User = /** @class */ (function () {
         this.boardList = boardList;
         this.uid = uid;
     }
+    ;
     User.currentUserFromStorage = function () {
         try {
             var getUser = localStorage.getItem("currentUser");
@@ -138,10 +146,13 @@ var List = /** @class */ (function () {
         var header = document.createElement("div");
         header.classList.add("boardContainer__main__list__header");
         header.setAttribute("id", this.name + "_header");
-        header.innerHTML = "\n    <div class=\"listTitle\" >\n      <h2>" + this.name + "</h3>\n      <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n      </div>\n      <div class=\"boardContainer__main__list__header--addCard\">\n        <textarea maxlength=\"20\" class=\"newCardTextArea\" cols=\"30\" rows=\"2\" placeholder=\"Task...\"></textarea>\n        <button class=\"newCardBtn\">New Card</button>\n      </div>\n    ";
+        header.innerHTML = "\n    <div class=\"listTitle\" >\n      <h2>" + this.name + "</h3>\n      <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n      </div>\n      <div class=\"boardContainer__main__list__header--addCard\">\n      <textarea maxlength=\"20\" class=\"newCardTextArea\" cols=\"30\" rows=\"2\" placeholder=\"Task...\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n      </div>\n    ";
         listContainer.appendChild(header);
         makeListFunctional(listContainer);
         boardContainer.insertBefore(listContainer, trashCanDiv);
+        var successListMsg = "<i class=\"fa-solid fa-circle-check\"></i> Add new List: " + this.name;
+        // notificationWithList("A new list has been created.");
+        notification(successListMsg);
         currentBoard.update();
         return listContainer;
     };

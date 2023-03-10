@@ -72,8 +72,6 @@ if (window.location.pathname.endsWith("board.html")) {
     renderBoardInBoardPage();
     addListBtn.addEventListener("click", function () {
         List.createList(newListInput.value);
-        var successListMsg = "<i class=\"fa-solid fa-circle-check\"></i> Add new List " + newListInput.value;
-        notification(successListMsg);
     });
     editBoardBtn.addEventListener("click", function () {
         currentBoard.edit(nameInputEle.value, imageDisplayedInEdit.src);
@@ -118,7 +116,7 @@ if (window.location.pathname.endsWith("board.html")) {
             if (newCardTextArea.value == "")
                 return;
             createCardElement(newCardTextArea.value, listElement);
-            var successcardMsg = "<i class=\"fa-solid fa-circle-check\"></i>Add new card " + newCardTextArea.value;
+            var successcardMsg = "<i class=\"fa-solid fa-circle-check\"></i>Add new card: " + newCardTextArea.value;
             notification(successcardMsg);
             newCardTextArea.value = "";
         }
@@ -137,8 +135,6 @@ if (window.location.pathname.endsWith("board.html")) {
     });
     newListInput.addEventListener("keyup", function (event) {
         if (event.key === "Enter") {
-            var successListMsg = "<i class=\"fa-solid fa-circle-check\"></i> Add new List " + newListInput.value;
-            notification(successListMsg);
             List.createList(newListInput.value);
         }
     });
@@ -148,7 +144,7 @@ if (window.location.pathname.endsWith("board.html")) {
         var confirmDelete = confirm("Are you sure you want to delete?");
         if (confirmDelete) {
             var element = document.getElementById(event.dataTransfer.getData("Text"));
-            var successDeleteMsg = "<i class=\"fa-solid fa-circle-xmark\"></i> Delete List/Card " + newListInput.value;
+            var successDeleteMsg = "<i class=\"fa-solid fa-circle-xmark\"></i> Delete - List/Card!";
             notification(successDeleteMsg);
             (_a = element === null || element === void 0 ? void 0 : element.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(element);
             currentBoard.update();
