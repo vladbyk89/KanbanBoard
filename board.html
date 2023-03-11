@@ -26,16 +26,17 @@
     <script src="./src/dist/icons.js" defer></script>
   </head>
 
-  <body onload="checkIfUserIsSignedIn()">
+  <body>
     <div class="boardContainer">
       <nav class="topNav">
         <div class="leftSideDiv">
-          <img src="./img/Logo.png" alt="" />
+          <!-- <img src="./img/Logo.png" alt="" /> -->
+          <!-- <h1>Your "IVI" board</h1> -->
           <input
             placeholder="New List..."
             id="newListInput"
             type="text"
-            maxlength="15"
+            maxlength="20"
             required
           />
           <button id="addListBtn">Add List+</button>
@@ -55,24 +56,14 @@
         </div>
       </nav>
       <main class="boardContainer__main">
-        <!-- <div id="dropdiv" ondrop="drop(event)" ondragover="allowDrop(event)">
-          <h3>Drop here to remove</h3>
-        </div> -->
-        <!-- <div class="listArea"></div>
-        <div id="trashDiv" ondrop="drop(event)" ondragover="allowDrop(event)">
-          <span class="trash">
-            <span></span>
-            <i></i>
-          </span>
-        </div> -->
         <div class="trashDiv">
           <i
+            title="Drag here to delete"
             class="fa-solid fa-trash-can"
             id="trash"
             ondrop="drop(event)"
             ondragover="allowDrop(event)"
           ></i>
-
         </div>
       </main>
     </div>

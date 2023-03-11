@@ -26,16 +26,6 @@ var insertAboveTask = function (zone, mouseY) {
     });
     return closestTask;
 };
-function checkIfUserIsSignedIn() {
-    try {
-        if (!localStorage.getItem("currentUser")) {
-            window.location.href = "entryPage.html";
-        }
-    }
-    catch (error) {
-        console.log(error);
-    }
-}
 function userListFromStorage() {
     var getLocalStorage = localStorage.getItem("signedUpUsers");
     if (getLocalStorage) {
@@ -54,3 +44,4 @@ function checkIfEmailExists(email) {
         return true;
     return false;
 }
+var randomColor = function () { return Math.floor(Math.random() * 16777215).toString(16); };

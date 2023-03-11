@@ -6,13 +6,18 @@ function handleSignUp(e) {
         var firstName = this.elements.firstName.value;
         var lastName = this.elements.lastName.value;
         var password = this.elements.password.value;
+        var confirmPassword = this.elements.confirmPassword.value;
         var userName = this.elements.userName.value;
         var email = this.elements.email.value;
         var phone = this.elements.phoneNumber.value;
+        if (confirmPassword != password)
+            return alert("Passwords don't match");
+        if (!/^\d+$/.test(phone))
+            return alert("Please use only digit for phone number field");
         var arr = [gender, firstName, lastName, password, userName, email, phone];
         var regex_1 = /^[a-zA-Z0-9!@#$%\^&*)(+=._-]*$/;
         if (arr.some(function (ele) { return !regex_1.test(ele); }))
-            return alert("Only English characters allowed");
+            return alert("Please check your input(Only English characters allowed)");
         if (checkIfEmailExists(email))
             return alert("Email is alreay in the system");
         var newUser = new User(firstName, lastName, gender, userName, password, email, phone);
@@ -136,7 +141,7 @@ function createBoard(boardName, boardImage) {
         if (currentUser.boardList.length === 10)
             return alert("maxinum amount of boards is 10");
         if (boardName) {
-            if (currentUser.boardList.find(function (board) { return board.name === boardName; }))
+            if (currentUser.boardList.find(function (board) { return board.name.toLocaleUpperCase() == boardName.toLocaleLowerCase(); }))
                 return alert("There is already a board with that name");
             var newBoard = new Board(boardName, boardImage);
             updateUserBoardList(currentUser, newBoard);
@@ -255,7 +260,7 @@ function renderBoardInBoardPage() {
         boardTitle.textContent = currentBoard.name;
         boardContainer.style.background = "url(" + currentBoard.backgroundImage + ") no-repeat center / cover";
         currentBoard.lists.forEach(function (list) {
-            var listObj = new List(list.name, list.cards, list.uid);
+            var listObj = new List(list.name, list.cards, list.uid, list.backColor);
             var ListElement = listObj.createListElement();
             list.cards.forEach(function (card) {
                 createCardElement(card, ListElement);

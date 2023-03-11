@@ -1,5 +1,10 @@
 // if user is in entryPage.html run this
 if (window.location.pathname.endsWith("entryPage.html")) {
+  window.addEventListener("load", () => {
+    if (localStorage.getItem("currentUser")) {
+      window.location.href = "index.html";
+    }
+  });
   signUpPanelBtn.addEventListener("click", () => {
     entryPageMainContainer.classList.add("active");
   });
@@ -28,6 +33,11 @@ if (window.location.pathname.endsWith("forgotPassword.html")) {
 
 // ---------------------- index.html ----------------------
 if (window.location.pathname.endsWith("index.html")) {
+  window.addEventListener("load", () => {
+    if (!localStorage.getItem("currentUser")) {
+      window.location.href = "entryPage.html";
+    }
+  });
   renderBoardsToMain(currentUser.boardList);
 
   createBoardWindowBtn.addEventListener(
@@ -87,6 +97,11 @@ if (window.location.pathname.endsWith("index.html")) {
 
 //---------------------- board.html ----------------------
 if (window.location.pathname.endsWith("board.html")) {
+  window.addEventListener("load", () => {
+    if (!localStorage.getItem("currentUser")) {
+      window.location.href = "entryPage.html";
+    }
+  });
   renderBoardInBoardPage();
 
   addListBtn.addEventListener("click", () =>
@@ -99,7 +114,6 @@ if (window.location.pathname.endsWith("board.html")) {
   });
 
   updatedBoardImageBtn.addEventListener("click", () => {
-    console.log("click");
     backgroundImageSelectionDiv.style.display = "grid";
 
     const backgroundImages = document.querySelectorAll(
@@ -150,12 +164,6 @@ if (window.location.pathname.endsWith("board.html")) {
     }
     if (target.classList.contains("cancelEditBoardBtn")) {
       editBoardWindow.style.display = "none";
-    }
-    if (target.classList.contains("editListBtn")) {
-      console.log("Edit List btn is clicked");
-    }
-    if (target.classList.contains("editCardBtn")) {
-      console.log("Edit Card btn is clicked");
     }
   });
 

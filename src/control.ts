@@ -6,14 +6,20 @@ function handleSignUp(e: Event) {
     const firstName = this.elements.firstName.value;
     const lastName = this.elements.lastName.value;
     const password = this.elements.password.value;
+    const confirmPassword = this.elements.confirmPassword.value;
     const userName = this.elements.userName.value;
     const email = this.elements.email.value;
     const phone = this.elements.phoneNumber.value;
+    if (confirmPassword != password) return alert("Passwords don't match");
+    if (!/^\d+$/.test(phone))
+      return alert("Please use only digit for phone number field");
     const arr = [gender, firstName, lastName, password, userName, email, phone];
-    const regex = /^[a-zA-Z0-9!@#$%\^&*)(+=._-]*$/
-    if (arr.some((ele) => !regex.test(ele))) return alert("Only English characters allowed");
+    const regex = /^[a-zA-Z0-9!@#$%\^&*)(+=._-]*$/;
+    if (arr.some((ele) => !regex.test(ele)))
+      return alert("Please check your input(Only English characters allowed)");
     if (checkIfEmailExists(email))
       return alert("Email is alreay in the system");
+
     const newUser = new User(
       firstName,
       lastName,
@@ -76,7 +82,6 @@ function handleRecovery(e: Event) {
     if (!findUser) return alert("No such user exists");
     recoveredPassword.textContent = findUser.password;
     passwordDisplayDiv.style.display = "flex";
-    
   } catch (error) {
     console.log(error);
   }
@@ -173,7 +178,7 @@ function createBoard(boardName: string, boardImage: string) {
     if (currentUser.boardList.length === 10)
       return alert("maxinum amount of boards is 10");
     if (boardName) {
-      if (currentUser.boardList.find((board) => board.name === boardName))
+      if (currentUser.boardList.find((board) => board.name.toLocaleUpperCase() == boardName.toLocaleLowerCase()))
         return alert("There is already a board with that name");
       const newBoard = new Board(boardName, boardImage);
       updateUserBoardList(currentUser, newBoard);
@@ -319,7 +324,7 @@ function renderBoardInBoardPage() {
     boardTitle.textContent = currentBoard.name;
     boardContainer.style.background = `url(${currentBoard.backgroundImage}) no-repeat center / cover`;
     currentBoard.lists.forEach((list) => {
-      const listObj = new List(list.name, list.cards, list.uid);
+      const listObj = new List(list.name, list.cards, list.uid, list.backColor);
       const ListElement = listObj.createListElement();
 
       list.cards.forEach((card) => {

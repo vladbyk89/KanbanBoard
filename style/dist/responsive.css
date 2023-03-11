@@ -33,4 +33,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
+  .mainpageContainer__main__boards__boardArea .board {
+    width: 80%;
+  }
 }
