@@ -1,5 +1,10 @@
 // if user is in entryPage.html run this
 if (window.location.pathname.endsWith("entryPage.html")) {
+  window.addEventListener("load", () => {
+    if (localStorage.getItem("currentUser")) {
+      window.location.href = "index.html";
+    }
+  });
   signUpPanelBtn.addEventListener("click", () => {
     entryPageMainContainer.classList.add("active");
   });
@@ -28,6 +33,11 @@ if (window.location.pathname.endsWith("forgotPassword.html")) {
 
 // ---------------------- index.html ----------------------
 if (window.location.pathname.endsWith("index.html")) {
+  window.addEventListener("load", () => {
+    if (!localStorage.getItem("currentUser")) {
+      window.location.href = "entryPage.html";
+    }
+  });
   renderBoardsToMain(currentUser.boardList);
 
   createBoardWindowBtn.addEventListener(

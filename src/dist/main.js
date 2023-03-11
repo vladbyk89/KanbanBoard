@@ -1,5 +1,10 @@
 // if user is in entryPage.html run this
 if (window.location.pathname.endsWith("entryPage.html")) {
+    window.addEventListener("load", function () {
+        if (localStorage.getItem("currentUser")) {
+            window.location.href = "index.html";
+        }
+    });
     signUpPanelBtn.addEventListener("click", function () {
         entryPageMainContainer.classList.add("active");
     });
@@ -23,6 +28,11 @@ if (window.location.pathname.endsWith("forgotPassword.html")) {
 }
 // ---------------------- index.html ----------------------
 if (window.location.pathname.endsWith("index.html")) {
+    window.addEventListener("load", function () {
+        if (!localStorage.getItem("currentUser")) {
+            window.location.href = "entryPage.html";
+        }
+    });
     renderBoardsToMain(currentUser.boardList);
     createBoardWindowBtn.addEventListener("click", function () { return (newBoardWindow.style.display = "flex"); });
     cancelCreateBoardBtn.addEventListener("click", function () { return (newBoardWindow.style.display = "none"); });
