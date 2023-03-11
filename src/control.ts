@@ -259,6 +259,13 @@ function editList() {
       currentBoard.update();
     }
   });
+
+  editListInput.addEventListener("blur",(event)=>{
+    const newListTitle = document.createElement("h2");
+    newListTitle.textContent = editListInput.value.trim();
+    editListInput.replaceWith(newListTitle);
+    currentBoard.update();
+  });
 }
 
 function createCardElement(cardName: string, list: Element) {
@@ -300,6 +307,13 @@ function createCardElement(cardName: string, list: Element) {
         editCardInput.replaceWith(newCardTitle);
       }
     });
+
+    editCardInput.addEventListener("blur",()=>{
+      const newCardTitle = document.createElement("p");
+      newCardTitle.textContent = editCardInput.value.trim();
+      editCardInput.replaceWith(newCardTitle);
+      currentBoard.update();
+    })
 
     cardTitle.replaceWith(editCardInput);
     editCardInput.focus();
@@ -349,3 +363,5 @@ function drop(ev) {
   // el?.parentNode?.removeChild(el); => delete without Warning
   currentBoard.update();
 }
+
+

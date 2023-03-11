@@ -191,7 +191,7 @@ const preMadeUserList: User[] = [
     "Gelberg",
     "male",
     "itaiG",
-    "12345",
+    "12345678",
     "itaiGel@gmail.com",
     "0541234567"
   ),

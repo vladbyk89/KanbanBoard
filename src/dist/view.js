@@ -39,6 +39,7 @@ var trashCanDiv = document.querySelector(".trashDiv");
 var addListBtn = document.querySelector("#addListBtn");
 var editBoardBtn = document.querySelector(".editBoardBtn");
 var updatedBoardImageBtn = document.querySelector("#updatedBoardImageBtn");
+var editProfileInfo = document.querySelector(".editprofileBtn");
 // Input
 var newListInput = document.querySelector("#newListInput");
 var nameInputEle = document.querySelector("#updatedBoardName");

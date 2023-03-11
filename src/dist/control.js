@@ -213,6 +213,12 @@ function editList() {
             currentBoard.update();
         }
     });
+    editListInput.addEventListener("blur", function (event) {
+        var newListTitle = document.createElement("h2");
+        newListTitle.textContent = editListInput.value.trim();
+        editListInput.replaceWith(newListTitle);
+        currentBoard.update();
+    });
 }
 function createCardElement(cardName, list) {
     var card = document.createElement("div");
@@ -240,6 +246,12 @@ function createCardElement(cardName, list) {
                 newCardTitle.textContent = editCardInput.value.trim();
                 editCardInput.replaceWith(newCardTitle);
             }
+        });
+        editCardInput.addEventListener("blur", function () {
+            var newCardTitle = document.createElement("p");
+            newCardTitle.textContent = editCardInput.value.trim();
+            editCardInput.replaceWith(newCardTitle);
+            currentBoard.update();
         });
         cardTitle.replaceWith(editCardInput);
         editCardInput.focus();

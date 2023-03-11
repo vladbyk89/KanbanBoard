@@ -153,7 +153,7 @@ var List = /** @class */ (function () {
 // ---------------------- pre made users ---------------------- //
 var preMadeUserList = [
     new User("Vladislav", "Bykanov", "male", "vladb89", "12345678", "vladi@gmail.com", "0548155232"),
-    new User("Itai", "Gelberg", "male", "itaiG", "12345", "itaiGel@gmail.com", "0541234567"),
+    new User("Itai", "Gelberg", "male", "itaiG", "12345678", "itaiGel@gmail.com", "0541234567"),
     new User("Itay", "Amosi", "male", "itayz1e", "144322144", "itayAmosi@gmail.com", "0540987654"),
 ];
 var preMadeBoardList = [
