@@ -376,3 +376,38 @@ function drop(ev) {
 }
 
 
+function saveNotificationToLocalStorage(notification, board, user) {
+  let userNotifications = JSON.parse(
+    localStorage.getItem(`notifications`) || `[]`
+  );
+  userNotifications.push(notification);
+  localStorage.setItem(`notifications`, JSON.stringify(userNotifications));
+  let boardNotifications = JSON.parse(
+    localStorage.getItem(`notifications-board-${board.uid}`) || `[]`
+  );
+  boardNotifications.push(notification);
+  localStorage.setItem(
+    `notifications-board-${board.uid}`,
+    JSON.stringify(boardNotifications)
+  );
+}
+
+function notification(msg) {
+  let note = document.createElement("div");
+  note.classList.add("notification");
+  note.innerHTML = msg;
+  noteBox.appendChild(note);
+
+  if (msg.includes(`Delete`)) {
+    note.classList.add("Delete");
+  }
+  if (msg.includes(`List`)) {
+    note.classList.add("List");
+  }
+  if (msg.includes(`card`)) {
+    note.classList.add("card");
+  }
+  setTimeout(() => {
+    note.remove();
+  }, 6000);
+}
