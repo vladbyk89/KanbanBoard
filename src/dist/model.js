@@ -1,14 +1,8 @@
-// class Notifictions{
-//   constructor(
-//     public nameList: string,
-//     public namecard: string,
-//     public nameDelete: string
-//   ){};
-// }
 var _a, _b, _c, _d;
 var User = /** @class */ (function () {
-    function User(firstName, lastName, gender, userName, password, email, phoneNumber, boardList, uid) {
+    function User(firstName, lastName, gender, userName, password, email, phoneNumber, boardList, notifiction, uid) {
         if (boardList === void 0) { boardList = []; }
+        if (notifiction === void 0) { notifiction = []; }
         if (uid === void 0) { uid = Math.random().toString(36).slice(2); }
         this.firstName = firstName;
         this.lastName = lastName;
@@ -18,15 +12,15 @@ var User = /** @class */ (function () {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.boardList = boardList;
+        this.notifiction = notifiction;
         this.uid = uid;
     }
-    ;
     User.currentUserFromStorage = function () {
         try {
             var getUser = localStorage.getItem("currentUser");
             if (getUser) {
                 var obj = JSON.parse(getUser);
-                currentUser = new User(obj.firstName, obj.lastName, obj.gender, obj.userName, obj.password, obj.email, obj.phoneNumber, obj.boardList, obj.uid);
+                currentUser = new User(obj.firstName, obj.lastName, obj.gender, obj.userName, obj.password, obj.email, obj.phoneNumber, obj.boardList, obj.notifiction, obj.uid);
             }
         }
         catch (error) {
@@ -135,6 +129,9 @@ var List = /** @class */ (function () {
             return;
         var newList = new List(listName);
         boardContainer.insertBefore(newList.createListElement(), trashCanDiv);
+        var successListMsg = "<i class=\"fa-solid fa-circle-check\"></i> Add new List: " + newListInput.value;
+        notification(successListMsg);
+        saveNotificationToLocalStorage(newListInput.value, currentBoard, currentUser);
         newListInput.value = "";
     };
     List.prototype.createListElement = function () {
@@ -147,12 +144,9 @@ var List = /** @class */ (function () {
         header.classList.add("boardContainer__main__list__header");
         header.setAttribute("id", this.name + "_header");
         header.innerHTML = "\n    <div class=\"listTitle\" >\n      <h2>" + this.name + "</h3>\n      <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n      </div>\n      <div class=\"boardContainer__main__list__header--addCard\">\n      <textarea maxlength=\"20\" class=\"newCardTextArea\" cols=\"30\" rows=\"2\" placeholder=\"Task...\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n      </div>\n    ";
-        // let successListMsg = `<i class="fa-solid fa-circle-check"></i> Add new List: ${this.name}`;
-        // notification(successListMsg)
         listContainer.appendChild(header);
         makeListFunctional(listContainer);
         boardContainer.insertBefore(listContainer, trashCanDiv);
-        // notificationWithList("A new list has been created.");
         currentBoard.update();
         return listContainer;
     };

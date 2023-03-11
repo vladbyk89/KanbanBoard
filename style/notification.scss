@@ -5,24 +5,26 @@
   overflow: hidden;
   color: rgb(6, 123, 224);
   text-align: center;
+  overflow-wrap: break-word;
 }
 .notification {
   width: 18vw;
-  height: 6vh;
+  height: auto;
   background-color: aliceblue;
   font-size: 120%;
   margin: 15% -10%;
   box-shadow: 0 0 20px rgb(0, 0, 0.3);
+  overflow-wrap: break-word;
   position: relative;
   animation: moveleft 0.8s linear forwards;
-  @keyframes moveleft{
-      50%{
-          transform: translateX(50%);
-        }
-      0%{
-          transform: translateX(100%);
-        }
+  @keyframes moveleft {
+    50% {
+      transform: translateX(50%);
     }
+    0% {
+      transform: translateX(100%);
+    }
+  }
   .fa-solid .fa-circle-check {
     margin-top: 8px;
   }
@@ -46,23 +48,21 @@
   animation: timer 6s linear forwards;
 }
 
-@keyframes timer{
-    0%{
-        width: 0;
-    }
-    1%{
-        background-color: green;
-    }
+@keyframes timer {
+  0% {
+    width: 0;
+  }
+  1% {
+    background-color: green;
+  }
 
-    70%{
-        background-color: orange;
-    }
-    100%{
-        background-color: red;
-    }
-
+  70% {
+    background-color: orange;
+  }
+  100% {
+    background-color: red;
+  }
 }
-
 
 .notifictionWindow {
   background-color: #0d0e0dd2;
@@ -75,7 +75,7 @@
   position: absolute;
   padding: 2rem;
   display: none;
-  .exitNotifictionsPage{
+  .exitNotifictionsPage {
     color: #56e603;
   }
   .editprofileBtn {
@@ -85,8 +85,8 @@
   }
   .signOutbtn {
     position: absolute;
-    right: .5em;
-    bottom: .5em;
+    right: 0.5em;
+    bottom: 0.5em;
     height: 5%;
     font-size: 1rem;
   }
@@ -110,5 +110,3 @@
     }
   }
 }
-
-
