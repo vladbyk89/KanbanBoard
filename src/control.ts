@@ -6,15 +6,20 @@ function handleSignUp(e: Event) {
     const firstName = this.elements.firstName.value;
     const lastName = this.elements.lastName.value;
     const password = this.elements.password.value;
+    const confirmPassword = this.elements.confirmPassword.value;
     const userName = this.elements.userName.value;
     const email = this.elements.email.value;
     const phone = this.elements.phoneNumber.value;
+    if (confirmPassword != password) return alert("Passwords don't match");
+    if (!/^\d+$/.test(phone))
+      return alert("Please use only digit for phone number field");
     const arr = [gender, firstName, lastName, password, userName, email, phone];
     const regex = /^[a-zA-Z0-9!@#$%\^&*)(+=._-]*$/;
     if (arr.some((ele) => !regex.test(ele)))
-      return alert("Only English characters allowed");
+      return alert("Please check your input(Only English characters allowed)");
     if (checkIfEmailExists(email))
       return alert("Email is alreay in the system");
+
     const newUser = new User(
       firstName,
       lastName,
@@ -150,7 +155,6 @@ function checkIfUserExists(userName: string, password: string) {
     console.log(error);
   }
 }
-
 
 function renderBoardsToMain(listOFBoards: Board[]) {
   try {

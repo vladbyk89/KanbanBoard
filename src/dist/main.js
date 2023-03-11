@@ -79,6 +79,11 @@ if (window.location.pathname.endsWith("index.html")) {
 }
 //---------------------- board.html ----------------------
 if (window.location.pathname.endsWith("board.html")) {
+    window.addEventListener("load", function () {
+        if (!localStorage.getItem("currentUser")) {
+            window.location.href = "entryPage.html";
+        }
+    });
     renderBoardInBoardPage();
     addListBtn.addEventListener("click", function () {
         return List.createList(newListInput.value);
