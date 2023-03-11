@@ -93,7 +93,6 @@ if (window.location.pathname.endsWith("board.html")) {
         editBoardWindow.style.display = "none";
     });
     updatedBoardImageBtn.addEventListener("click", function () {
-        console.log("click");
         backgroundImageSelectionDiv.style.display = "grid";
         var backgroundImages = document.querySelectorAll(".backgroundImage");
         backgroundImages.forEach(function (img) {
@@ -135,12 +134,6 @@ if (window.location.pathname.endsWith("board.html")) {
         }
         if (target.classList.contains("cancelEditBoardBtn")) {
             editBoardWindow.style.display = "none";
-        }
-        if (target.classList.contains("editListBtn")) {
-            console.log("Edit List btn is clicked");
-        }
-        if (target.classList.contains("editCardBtn")) {
-            console.log("Edit Card btn is clicked");
         }
     });
     boardContainer.addEventListener("keyup", function () {

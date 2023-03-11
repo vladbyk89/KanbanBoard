@@ -114,7 +114,6 @@ if (window.location.pathname.endsWith("board.html")) {
   });
 
   updatedBoardImageBtn.addEventListener("click", () => {
-    console.log("click");
     backgroundImageSelectionDiv.style.display = "grid";
 
     const backgroundImages = document.querySelectorAll(
@@ -165,12 +164,6 @@ if (window.location.pathname.endsWith("board.html")) {
     }
     if (target.classList.contains("cancelEditBoardBtn")) {
       editBoardWindow.style.display = "none";
-    }
-    if (target.classList.contains("editListBtn")) {
-      console.log("Edit List btn is clicked");
-    }
-    if (target.classList.contains("editCardBtn")) {
-      console.log("Edit Card btn is clicked");
     }
   });
 

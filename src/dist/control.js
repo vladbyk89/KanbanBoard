@@ -141,7 +141,7 @@ function createBoard(boardName, boardImage) {
         if (currentUser.boardList.length === 10)
             return alert("maxinum amount of boards is 10");
         if (boardName) {
-            if (currentUser.boardList.find(function (board) { return board.name === boardName; }))
+            if (currentUser.boardList.find(function (board) { return board.name.toLocaleUpperCase() == boardName.toLocaleLowerCase(); }))
                 return alert("There is already a board with that name");
             var newBoard = new Board(boardName, boardImage);
             updateUserBoardList(currentUser, newBoard);
