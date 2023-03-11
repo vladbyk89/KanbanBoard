@@ -117,12 +117,14 @@ var Board = /** @class */ (function () {
 var currentBoard;
 Board.getCurrentBoardFromStorage();
 var List = /** @class */ (function () {
-    function List(name, cards, uid) {
+    function List(name, cards, uid, backColor) {
         if (cards === void 0) { cards = []; }
         if (uid === void 0) { uid = Math.random().toString(36).slice(2); }
+        if (backColor === void 0) { backColor = "#" + randomColor(); }
         this.name = name;
         this.cards = cards;
         this.uid = uid;
+        this.backColor = backColor;
     }
     List.createList = function (listName) {
         if (newListInput.value == "")
@@ -143,8 +145,9 @@ var List = /** @class */ (function () {
         var header = document.createElement("div");
         header.classList.add("boardContainer__main__list__header");
         header.setAttribute("id", this.name + "_header");
-        header.innerHTML = "\n    <div class=\"listTitle\" >\n      <h2>" + this.name + "</h3>\n      <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n      </div>\n      <div class=\"boardContainer__main__list__header--addCard\">\n      <textarea maxlength=\"20\" class=\"newCardTextArea\" cols=\"30\" rows=\"2\" placeholder=\"Task...\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n      </div>\n    ";
+        header.innerHTML = "\n    <div class=\"listTitle\">\n      <h2>" + this.name + "</h2>\n      <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n      </div>\n      <div class=\"boardContainer__main__list__header--addCard\">\n        <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"2\" placeholder=\"Task...\"></textarea>\n        <button class=\"newCardBtn\">New Card</button>\n      </div>\n    ";
         listContainer.appendChild(header);
+        header.style.backgroundColor = this.backColor;
         makeListFunctional(listContainer);
         boardContainer.insertBefore(listContainer, trashCanDiv);
         currentBoard.update();
@@ -155,7 +158,7 @@ var List = /** @class */ (function () {
 // ---------------------- pre made users ---------------------- //
 var preMadeUserList = [
     new User("Vladislav", "Bykanov", "male", "vladb89", "12345678", "vladi@gmail.com", "0548155232"),
-    new User("Itai", "Gelberg", "male", "itaiG", "12345", "itaiGel@gmail.com", "0541234567"),
+    new User("Itai", "Gelberg", "male", "itaiG", "12345678", "itaiGel@gmail.com", "0541234567"),
     new User("Itay", "Amosi", "male", "itayz1e", "144322144", "itayAmosi@gmail.com", "0540987654"),
 ];
 var preMadeBoardList = [

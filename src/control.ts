@@ -6,15 +6,20 @@ function handleSignUp(e: Event) {
     const firstName = this.elements.firstName.value;
     const lastName = this.elements.lastName.value;
     const password = this.elements.password.value;
+    const confirmPassword = this.elements.confirmPassword.value;
     const userName = this.elements.userName.value;
     const email = this.elements.email.value;
     const phone = this.elements.phoneNumber.value;
+    if (confirmPassword != password) return alert("Passwords don't match");
+    if (!/^\d+$/.test(phone))
+      return alert("Please use only digit for phone number field");
     const arr = [gender, firstName, lastName, password, userName, email, phone];
     const regex = /^[a-zA-Z0-9!@#$%\^&*)(+=._-]*$/;
     if (arr.some((ele) => !regex.test(ele)))
-      return alert("Only English characters allowed");
+      return alert("Please check your input(Only English characters allowed)");
     if (checkIfEmailExists(email))
       return alert("Email is alreay in the system");
+
     const newUser = new User(
       firstName,
       lastName,
@@ -176,7 +181,7 @@ function createBoard(boardName: string, boardImage: string) {
     if (currentUser.boardList.length === 10)
       return alert("maxinum amount of boards is 10");
     if (boardName) {
-      if (currentUser.boardList.find((board) => board.name === boardName))
+      if (currentUser.boardList.find((board) => board.name.toLocaleUpperCase() == boardName.toLocaleLowerCase()))
         return alert("There is already a board with that name");
       const newBoard = new Board(boardName, boardImage);
       updateUserBoardList(currentUser, newBoard);
@@ -265,6 +270,13 @@ function editList() {
       currentBoard.update();
     }
   });
+
+  editListInput.addEventListener("blur",(event)=>{
+    const newListTitle = document.createElement("h2");
+    newListTitle.textContent = editListInput.value.trim();
+    editListInput.replaceWith(newListTitle);
+    currentBoard.update();
+  });
 }
 
 function createCardElement(cardName: string, list: Element) {
@@ -307,6 +319,13 @@ function createCardElement(cardName: string, list: Element) {
       }
     });
 
+    editCardInput.addEventListener("blur",()=>{
+      const newCardTitle = document.createElement("p");
+      newCardTitle.textContent = editCardInput.value.trim();
+      editCardInput.replaceWith(newCardTitle);
+      currentBoard.update();
+    })
+
     cardTitle.replaceWith(editCardInput);
     editCardInput.focus();
     currentBoard.update();
@@ -330,7 +349,7 @@ function renderBoardInBoardPage() {
     boardTitle.textContent = currentBoard.name;
     boardContainer.style.background = `url(${currentBoard.backgroundImage}) no-repeat center / cover`;
     currentBoard.lists.forEach((list) => {
-      const listObj = new List(list.name, list.cards, list.uid);
+      const listObj = new List(list.name, list.cards, list.uid, list.backColor);
       const ListElement = listObj.createListElement();
 
       list.cards.forEach((card) => {
@@ -356,38 +375,4 @@ function drop(ev) {
   currentBoard.update();
 }
 
-function saveNotificationToLocalStorage(notification, board, user) {
-  let userNotifications = JSON.parse(
-    localStorage.getItem(`notifications`) || `[]`
-  );
-  userNotifications.push(notification);
-  localStorage.setItem(`notifications`, JSON.stringify(userNotifications));
-  let boardNotifications = JSON.parse(
-    localStorage.getItem(`notifications-board-${board.uid}`) || `[]`
-  );
-  boardNotifications.push(notification);
-  localStorage.setItem(
-    `notifications-board-${board.uid}`,
-    JSON.stringify(boardNotifications)
-  );
-}
 
-function notification(msg) {
-  let note = document.createElement("div");
-  note.classList.add("notification");
-  note.innerHTML = msg;
-  noteBox.appendChild(note);
-
-  if (msg.includes(`Delete`)) {
-    note.classList.add("Delete");
-  }
-  if (msg.includes(`List`)) {
-    note.classList.add("List");
-  }
-  if (msg.includes(`card`)) {
-    note.classList.add("card");
-  }
-  setTimeout(() => {
-    note.remove();
-  }, 6000);
-}

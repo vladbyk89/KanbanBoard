@@ -1,5 +1,10 @@
 // if user is in entryPage.html run this
 if (window.location.pathname.endsWith("entryPage.html")) {
+    window.addEventListener("load", function () {
+        if (localStorage.getItem("currentUser")) {
+            window.location.href = "index.html";
+        }
+    });
     signUpPanelBtn.addEventListener("click", function () {
         entryPageMainContainer.classList.add("active");
     });
@@ -23,6 +28,11 @@ if (window.location.pathname.endsWith("forgotPassword.html")) {
 }
 // ---------------------- index.html ----------------------
 if (window.location.pathname.endsWith("index.html")) {
+    window.addEventListener("load", function () {
+        if (!localStorage.getItem("currentUser")) {
+            window.location.href = "entryPage.html";
+        }
+    });
     renderBoardsToMain(currentUser.boardList);
     createBoardWindowBtn.addEventListener("click", function () { return (newBoardWindow.style.display = "flex"); });
     cancelCreateBoardBtn.addEventListener("click", function () { return (newBoardWindow.style.display = "none"); });
@@ -69,6 +79,11 @@ if (window.location.pathname.endsWith("index.html")) {
 }
 //---------------------- board.html ----------------------
 if (window.location.pathname.endsWith("board.html")) {
+    window.addEventListener("load", function () {
+        if (!localStorage.getItem("currentUser")) {
+            window.location.href = "entryPage.html";
+        }
+    });
     renderBoardInBoardPage();
     addListBtn.addEventListener("click", function () {
         List.createList(newListInput.value);
@@ -78,7 +93,6 @@ if (window.location.pathname.endsWith("board.html")) {
         editBoardWindow.style.display = "none";
     });
     updatedBoardImageBtn.addEventListener("click", function () {
-        console.log("click");
         backgroundImageSelectionDiv.style.display = "grid";
         var backgroundImages = document.querySelectorAll(".backgroundImage");
         backgroundImages.forEach(function (img) {
@@ -124,12 +138,6 @@ if (window.location.pathname.endsWith("board.html")) {
         if (target.classList.contains("cancelEditBoardBtn")) {
             editBoardWindow.style.display = "none";
         }
-        if (target.classList.contains("editListBtn")) {
-            console.log("Edit List btn is clicked");
-        }
-        if (target.classList.contains("editCardBtn")) {
-            console.log("Edit Card btn is clicked");
-        }
     });
     boardContainer.addEventListener("keyup", function () {
         currentBoard.update();
@@ -152,4 +160,20 @@ if (window.location.pathname.endsWith("board.html")) {
             currentBoard.update();
         }
     });
+    // editProfileInfo.addEventListener("click", ()=>{
+    //   const userProfileInfoTitle = editProfileInfo.parentNode as HTMLElement;
+    //   const userProfileInfoText = userProfileInfoTitle.querySelector("ul") as HTMLElement;
+    //   const editUserInput = document.createElement("input");
+    //   editUserInput.type ="text";
+    //   editUserInput.value = userProfileInfoText.textContent!;
+    //   editUserInput.classList.add("editUserInput");
+    //   userProfileInfoTitle.parentNode?.replaceChild(editUserInput , userProfileInfoTitle);
+    //   editUserInput.focus();
+    //   editUserInput.addEventListener("keyup", (event)=>{
+    //     if(event.key === "Enter"){
+    //       userProfileInfoTitle.textContent = editUserInput.value.trim();
+    //       currentBoard.update();
+    //     }
+    //   })
+    // }) \\ not working !~!
 }

@@ -138,7 +138,8 @@ class List {
   constructor(
     public name: string,
     public cards: string[] = [],
-    public uid = Math.random().toString(36).slice(2)
+    public uid = Math.random().toString(36).slice(2),
+    public backColor: string = `#${randomColor()}`
   ) {}
 
   static createList(listName: string) {
@@ -164,16 +165,17 @@ class List {
     header.classList.add("boardContainer__main__list__header");
     header.setAttribute("id", `${this.name}_header`);
     header.innerHTML = `
-    <div class="listTitle" >
-      <h2>${this.name}</h3>
+    <div class="listTitle">
+      <h2>${this.name}</h2>
       <i class="fa-regular fa-pen-to-square editListBtn"></i>
       </div>
       <div class="boardContainer__main__list__header--addCard">
-      <textarea maxlength="20" class="newCardTextArea" cols="30" rows="2" placeholder="Task..."></textarea>
-      <button class="newCardBtn">New Card</button>
+        <textarea maxlength="30" class="newCardTextArea" cols="30" rows="2" placeholder="Task..."></textarea>
+        <button class="newCardBtn">New Card</button>
       </div>
     `;
     listContainer.appendChild(header);
+    header.style.backgroundColor = this.backColor;
     makeListFunctional(listContainer);
     boardContainer.insertBefore(listContainer, trashCanDiv);
     currentBoard.update();
@@ -198,7 +200,7 @@ const preMadeUserList: User[] = [
     "Gelberg",
     "male",
     "itaiG",
-    "12345",
+    "12345678",
     "itaiGel@gmail.com",
     "0541234567"
   ),

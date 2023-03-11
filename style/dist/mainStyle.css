@@ -13,12 +13,11 @@
   background: url("../../img/darkSunrise.jpg") no-repeat center/cover;
 }
 .mainpageContainer__main h1 {
-  font-size: 1.2rem;
-  color: whitesmoke;
-  box-shadow: 0 0 10px black;
-  background-color: rgba(0, 0, 0, 0.526);
-  padding: 0.3em;
-  border-radius: 10px;
+  background: linear-gradient(90deg, #edff00 0%, #ff9e00 69%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.7rem;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 .mainpageContainer__main__boards {
   margin-top: 1em;
@@ -29,8 +28,7 @@
 .mainpageContainer__main__boards h3 {
   display: inline;
   color: #fff;
-  font-size: 0.8rem;
-  text-decoration: underline;
+  font-size: 1.2rem;
   letter-spacing: 1px;
 }
 .mainpageContainer__main__boards__boardArea {

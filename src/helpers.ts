@@ -42,15 +42,6 @@ const insertAboveTask = (zone, mouseY) => {
   return closestTask;
 };
 
-function checkIfUserIsSignedIn() {
-  try {
-    if (!localStorage.getItem("currentUser")) {
-      window.location.href = "entryPage.html";
-    }
-  } catch (error) {
-    console.log(error);
-  }
-}
 
 function userListFromStorage() {
   const getLocalStorage = localStorage.getItem("signedUpUsers");
@@ -71,3 +62,5 @@ function checkIfEmailExists(email: string) {
   if (findEmail) return true;
   return false;
 }
+
+const randomColor = () => Math.floor(Math.random() * 16777215).toString(16);
