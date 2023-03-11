@@ -91,6 +91,8 @@ if (window.location.pathname.endsWith("board.html")) {
   
   addListBtn.addEventListener("click", () =>{
     List.createList(newListInput.value)
+    let successListMsg = `<i class="fa-solid fa-circle-check"></i> Add new List: ${newListInput.value}`;
+        notification(successListMsg)
   });
   
   editBoardBtn.addEventListener("click", () => {

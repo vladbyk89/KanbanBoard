@@ -218,6 +218,8 @@ function editList() {
         if (event.key === "Enter") {
             listTitle.replaceChild(listTitleText, editListInput);
             listTitleText.textContent = editListInput.value.trim();
+            var successListMsg = "<i class=\"fa-solid fa-circle-check\"></i> Add new List: " + newListInput.value;
+            notification(successListMsg);
             currentBoard.update();
         }
     });

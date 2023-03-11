@@ -147,12 +147,12 @@ var List = /** @class */ (function () {
         header.classList.add("boardContainer__main__list__header");
         header.setAttribute("id", this.name + "_header");
         header.innerHTML = "\n    <div class=\"listTitle\" >\n      <h2>" + this.name + "</h3>\n      <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n      </div>\n      <div class=\"boardContainer__main__list__header--addCard\">\n      <textarea maxlength=\"20\" class=\"newCardTextArea\" cols=\"30\" rows=\"2\" placeholder=\"Task...\"></textarea>\n      <button class=\"newCardBtn\">New Card</button>\n      </div>\n    ";
+        // let successListMsg = `<i class="fa-solid fa-circle-check"></i> Add new List: ${this.name}`;
+        // notification(successListMsg)
         listContainer.appendChild(header);
         makeListFunctional(listContainer);
         boardContainer.insertBefore(listContainer, trashCanDiv);
-        var successListMsg = "<i class=\"fa-solid fa-circle-check\"></i> Add new List: " + this.name;
         // notificationWithList("A new list has been created.");
-        notification(successListMsg);
         currentBoard.update();
         return listContainer;
     };

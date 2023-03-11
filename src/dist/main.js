@@ -72,6 +72,8 @@ if (window.location.pathname.endsWith("board.html")) {
     renderBoardInBoardPage();
     addListBtn.addEventListener("click", function () {
         List.createList(newListInput.value);
+        var successListMsg = "<i class=\"fa-solid fa-circle-check\"></i> Add new List: " + newListInput.value;
+        notification(successListMsg);
     });
     editBoardBtn.addEventListener("click", function () {
         currentBoard.edit(nameInputEle.value, imageDisplayedInEdit.src);

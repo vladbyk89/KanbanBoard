@@ -174,12 +174,12 @@ class List {
       <button class="newCardBtn">New Card</button>
       </div>
     `;
+    // let successListMsg = `<i class="fa-solid fa-circle-check"></i> Add new List: ${this.name}`;
+    // notification(successListMsg)
     listContainer.appendChild(header);
     makeListFunctional(listContainer);
     boardContainer.insertBefore(listContainer, trashCanDiv);
-    let successListMsg = `<i class="fa-solid fa-circle-check"></i> Add new List: ${this.name}`;
     // notificationWithList("A new list has been created.");
-    notification(successListMsg)
     currentBoard.update();
     return listContainer;
   }
