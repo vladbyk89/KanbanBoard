@@ -13,7 +13,9 @@ var passwordDisplayDiv = document.querySelector(".passwordDisplay");
 var recoveredPassword = document.querySelector("#recoveredPassword");
 //------------------ Main page elements -----------------//
 var profileWindow = document.querySelector(".profileWindow");
+var notifictionWindow = document.querySelector(".notifictionWindow");
 var profileDiv = document.querySelector(".profile");
+var notificationsDiv = document.querySelector(".notifications");
 var newBoardWindow = document.querySelector(".newBoardWindow");
 var boardArea = document.querySelector(".mainpageContainer__main__boards__boardArea");
 var backgroundImageSelectionDiv = document.querySelector(".backgroundSelectionDiv");
@@ -35,6 +37,7 @@ var editBoardWindow = document.querySelector(".editBoardWindow");
 var imageDisplayedInEdit = document.querySelector("#imageEditWindow");
 var trashCan = document.querySelector("#trash");
 var trashCanDiv = document.querySelector(".trashDiv");
+var noteBox = document.getElementById("notificationBox");
 //Buttons
 var addListBtn = document.querySelector("#addListBtn");
 var editBoardBtn = document.querySelector(".editBoardBtn");

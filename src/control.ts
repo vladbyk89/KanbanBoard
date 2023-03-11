@@ -103,17 +103,20 @@ function displayProfile(user: User) {
         </ul>
         `);
     }
-    return (profileDiv.innerHTML = `
-      <ul>
-        <h1>About you</h1>
-        <li>Name: EMPTY</li>
-        <li>Gender: EMPTY</li>
-        <li>Email: EMPTY</li>
-        <li>Phone Number: EMPTY</li>
-        <li>User Name: EMPTY</li>
-        <li>Password: EMPTY</li>
-      </ul>
-      `);
+  } catch (error) {
+    console.log(error);
+  }
+}
+function displayNotifictions() {
+  try {
+    const notifications = localStorage.getItem(`notifications`);
+    notifictionWindow.style.display = "flex";
+    if (notifictionWindow) {
+      return (notificationsDiv.innerHTML = `
+          <h1>Notifictions:</h1>
+          ${notifications}
+          `);
+    }
   } catch (error) {
     console.log(error);
   }
@@ -213,6 +216,14 @@ function makeListFunctional(listContainer: HTMLElement) {
     if (event.key === "Enter") {
       if (newCardTextArea.value.trim() !== "") {
         createCardElement(newCardTextArea.value.trim(), listContainer);
+        notification(
+          `<i class="fa-solid fa-circle-check"></i>Add new card: ${newCardTextArea.value}`
+        );
+        saveNotificationToLocalStorage(
+          newCardTextArea.value,
+          currentBoard,
+          currentUser
+        );
         newCardTextArea.value = "";
       }
     }
@@ -365,3 +376,38 @@ function drop(ev) {
 }
 
 
+function saveNotificationToLocalStorage(notification, board, user) {
+  let userNotifications = JSON.parse(
+    localStorage.getItem(`notifications`) || `[]`
+  );
+  userNotifications.push(notification);
+  localStorage.setItem(`notifications`, JSON.stringify(userNotifications));
+  let boardNotifications = JSON.parse(
+    localStorage.getItem(`notifications-board-${board.uid}`) || `[]`
+  );
+  boardNotifications.push(notification);
+  localStorage.setItem(
+    `notifications-board-${board.uid}`,
+    JSON.stringify(boardNotifications)
+  );
+}
+
+function notification(msg) {
+  let note = document.createElement("div");
+  note.classList.add("notification");
+  note.innerHTML = msg;
+  noteBox.appendChild(note);
+
+  if (msg.includes(`Delete`)) {
+    note.classList.add("Delete");
+  }
+  if (msg.includes(`List`)) {
+    note.classList.add("List");
+  }
+  if (msg.includes(`card`)) {
+    note.classList.add("card");
+  }
+  setTimeout(() => {
+    note.remove();
+  }, 6000);
+}

@@ -86,7 +86,7 @@ if (window.location.pathname.endsWith("board.html")) {
     });
     renderBoardInBoardPage();
     addListBtn.addEventListener("click", function () {
-        return List.createList(newListInput.value);
+        List.createList(newListInput.value);
     });
     editBoardBtn.addEventListener("click", function () {
         currentBoard.edit(nameInputEle.value, imageDisplayedInEdit.src);
@@ -130,6 +130,9 @@ if (window.location.pathname.endsWith("board.html")) {
             if (newCardTextArea.value == "")
                 return;
             createCardElement(newCardTextArea.value, listElement);
+            var successcardMsg = "<i class=\"fa-solid fa-circle-check\"></i>Add new card: " + newCardTextArea.value;
+            notification(successcardMsg);
+            saveNotificationToLocalStorage(newCardTextArea.value, currentBoard, currentUser);
             newCardTextArea.value = "";
         }
         if (target.classList.contains("cancelEditBoardBtn")) {
@@ -150,6 +153,9 @@ if (window.location.pathname.endsWith("board.html")) {
         var confirmDelete = confirm("Are you sure you want to delete?");
         if (confirmDelete) {
             var element = document.getElementById(event.dataTransfer.getData("Text"));
+            var successDeleteMsg = "<i class=\"fa-solid fa-circle-xmark\"></i> Delete - " + (element === null || element === void 0 ? void 0 : element.textContent);
+            notification(successDeleteMsg);
+            saveNotificationToLocalStorage(successDeleteMsg, currentBoard, currentUser);
             (_a = element === null || element === void 0 ? void 0 : element.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(element);
             currentBoard.update();
         }

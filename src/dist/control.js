@@ -84,7 +84,18 @@ function displayProfile(user) {
         if (user) {
             return (profileDiv.innerHTML = "\n        <ul>\n          <h1>About you:</h1>\n          <li>Name: " + user.firstName + " " + user.lastName + "</li>\n          <li>Gender: " + user.gender + "</li>\n          <li>Email: " + user.email + "</li>\n          <li>Phone Number: " + user.phoneNumber + "</li>\n          <li>User Name: " + user.userName + "</li>\n          <li>Password: " + user.password + "</li>\n        </ul>\n        ");
         }
-        return (profileDiv.innerHTML = "\n      <ul>\n        <h1>About you</h1>\n        <li>Name: EMPTY</li>\n        <li>Gender: EMPTY</li>\n        <li>Email: EMPTY</li>\n        <li>Phone Number: EMPTY</li>\n        <li>User Name: EMPTY</li>\n        <li>Password: EMPTY</li>\n      </ul>\n      ");
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+function displayNotifictions() {
+    try {
+        var notifications = localStorage.getItem("notifications");
+        notifictionWindow.style.display = "flex";
+        if (notifictionWindow) {
+            return (notificationsDiv.innerHTML = "\n          <h1>Notifictions:</h1>\n          " + notifications + "\n          ");
+        }
     }
     catch (error) {
         console.log(error);
@@ -171,6 +182,8 @@ function makeListFunctional(listContainer) {
         if (event.key === "Enter") {
             if (newCardTextArea.value.trim() !== "") {
                 createCardElement(newCardTextArea.value.trim(), listContainer);
+                notification("<i class=\"fa-solid fa-circle-check\"></i>Add new card: " + newCardTextArea.value);
+                saveNotificationToLocalStorage(newCardTextArea.value, currentBoard, currentUser);
                 newCardTextArea.value = "";
             }
         }
@@ -295,4 +308,30 @@ function drop(ev) {
     var el = document.getElementById(data);
     // el?.parentNode?.removeChild(el); => delete without Warning
     currentBoard.update();
+}
+function saveNotificationToLocalStorage(notification, board, user) {
+    var userNotifications = JSON.parse(localStorage.getItem("notifications") || "[]");
+    userNotifications.push(notification);
+    localStorage.setItem("notifications", JSON.stringify(userNotifications));
+    var boardNotifications = JSON.parse(localStorage.getItem("notifications-board-" + board.uid) || "[]");
+    boardNotifications.push(notification);
+    localStorage.setItem("notifications-board-" + board.uid, JSON.stringify(boardNotifications));
+}
+function notification(msg) {
+    var note = document.createElement("div");
+    note.classList.add("notification");
+    note.innerHTML = msg;
+    noteBox.appendChild(note);
+    if (msg.includes("Delete")) {
+        note.classList.add("Delete");
+    }
+    if (msg.includes("List")) {
+        note.classList.add("List");
+    }
+    if (msg.includes("card")) {
+        note.classList.add("card");
+    }
+    setTimeout(function () {
+        note.remove();
+    }, 6000);
 }

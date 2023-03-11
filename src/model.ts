@@ -8,6 +8,7 @@ class User {
     public email: string,
     public phoneNumber: string,
     public boardList: Board[] = [],
+    public notifiction: string[] = [],
     public uid: string = Math.random().toString(36).slice(2)
   ) {}
 
@@ -25,6 +26,7 @@ class User {
           obj.email,
           obj.phoneNumber,
           obj.boardList,
+          obj.notifiction,
           obj.uid
         );
       }
@@ -144,6 +146,13 @@ class List {
     if (newListInput.value == "") return;
     const newList = new List(listName);
     boardContainer.insertBefore(newList.createListElement(), trashCanDiv);
+    let successListMsg = `<i class="fa-solid fa-circle-check"></i> Add new List: ${newListInput.value}`;
+    notification(successListMsg);
+    saveNotificationToLocalStorage(
+      newListInput.value,
+      currentBoard,
+      currentUser
+    );
     newListInput.value = "";
   }
   createListElement() {
@@ -152,7 +161,6 @@ class List {
     listContainer.setAttribute("draggable", "true");
     listContainer.setAttribute("id", `${this.uid}`);
     listContainer.setAttribute("ondragstart", `drag(event)`);
-
     const header = document.createElement("div");
     header.classList.add("boardContainer__main__list__header");
     header.setAttribute("id", `${this.name}_header`);
@@ -171,6 +179,7 @@ class List {
     makeListFunctional(listContainer);
     boardContainer.insertBefore(listContainer, trashCanDiv);
     currentBoard.update();
+
     return listContainer;
   }
 }

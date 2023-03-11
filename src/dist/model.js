@@ -1,7 +1,8 @@
 var _a, _b, _c, _d;
 var User = /** @class */ (function () {
-    function User(firstName, lastName, gender, userName, password, email, phoneNumber, boardList, uid) {
+    function User(firstName, lastName, gender, userName, password, email, phoneNumber, boardList, notifiction, uid) {
         if (boardList === void 0) { boardList = []; }
+        if (notifiction === void 0) { notifiction = []; }
         if (uid === void 0) { uid = Math.random().toString(36).slice(2); }
         this.firstName = firstName;
         this.lastName = lastName;
@@ -11,6 +12,7 @@ var User = /** @class */ (function () {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.boardList = boardList;
+        this.notifiction = notifiction;
         this.uid = uid;
     }
     User.currentUserFromStorage = function () {
@@ -18,7 +20,7 @@ var User = /** @class */ (function () {
             var getUser = localStorage.getItem("currentUser");
             if (getUser) {
                 var obj = JSON.parse(getUser);
-                currentUser = new User(obj.firstName, obj.lastName, obj.gender, obj.userName, obj.password, obj.email, obj.phoneNumber, obj.boardList, obj.uid);
+                currentUser = new User(obj.firstName, obj.lastName, obj.gender, obj.userName, obj.password, obj.email, obj.phoneNumber, obj.boardList, obj.notifiction, obj.uid);
             }
         }
         catch (error) {
@@ -129,6 +131,9 @@ var List = /** @class */ (function () {
             return;
         var newList = new List(listName);
         boardContainer.insertBefore(newList.createListElement(), trashCanDiv);
+        var successListMsg = "<i class=\"fa-solid fa-circle-check\"></i> Add new List: " + newListInput.value;
+        notification(successListMsg);
+        saveNotificationToLocalStorage(newListInput.value, currentBoard, currentUser);
         newListInput.value = "";
     };
     List.prototype.createListElement = function () {

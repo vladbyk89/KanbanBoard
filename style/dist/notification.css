@@ -1,0 +1,114 @@
+#notificationBox {
+  position: absolute;
+  bottom: -2.5%;
+  right: -1%;
+  overflow: hidden;
+  color: #067be0;
+  text-align: center;
+  overflow-wrap: break-word;
+}
+
+.notification {
+  width: 18vw;
+  height: auto;
+  background-color: aliceblue;
+  font-size: 120%;
+  margin: 15% -10%;
+  box-shadow: 0 0 20px black;
+  overflow-wrap: break-word;
+  position: relative;
+  animation: moveleft 0.8s linear forwards;
+}
+@keyframes moveleft {
+  50% {
+    transform: translateX(50%);
+  }
+  0% {
+    transform: translateX(100%);
+  }
+}
+.notification .fa-solid .fa-circle-check {
+  margin-top: 8px;
+}
+
+.notification i {
+  margin: 0 20px;
+  font-size: 35px;
+  color: green;
+}
+
+.notification.Delete i {
+  color: #ff1100;
+}
+
+.notification::after {
+  content: "";
+  position: absolute;
+  left: 0%;
+  bottom: 0%;
+  width: 100%;
+  height: 15%;
+  background-color: green;
+  animation: timer 6s linear forwards;
+}
+
+@keyframes timer {
+  0% {
+    width: 0;
+  }
+  1% {
+    background-color: green;
+  }
+  70% {
+    background-color: orange;
+  }
+  100% {
+    background-color: red;
+  }
+}
+.notifictionWindow {
+  background-color: #0d0e0dd2;
+  color: wheat;
+  height: 90%;
+  width: 50%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  position: absolute;
+  padding: 2rem;
+  display: none;
+}
+.notifictionWindow .exitNotifictionsPage {
+  color: #56e603;
+}
+.notifictionWindow .editprofileBtn {
+  margin-top: 9%;
+  left: -15%;
+  color: #e62c03;
+}
+.notifictionWindow .signOutbtn {
+  position: absolute;
+  right: 0.5em;
+  bottom: 0.5em;
+  height: 5%;
+  font-size: 1rem;
+}
+.notifictionWindow i {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: 3rem;
+  cursor: pointer;
+}
+.notifictionWindow ul {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-around;
+  gap: 1rem;
+  font-size: 1.5rem;
+}
+.notifictionWindow ul li {
+  display: block;
+}
