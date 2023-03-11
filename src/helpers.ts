@@ -61,15 +61,13 @@ function userListFromStorage() {
   return [];
 }
 
-
 function uid() {
   return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
 
-
-function checkIfEmailExists(email:string){
+function checkIfEmailExists(email: string) {
   const userList = userListFromStorage();
-  const findEmail = userList.find(user => user.email === email)
-  if(findEmail) return true
-  return false
+  const findEmail = userList.find((user) => user.email === email);
+  if (findEmail) return true;
+  return false;
 }

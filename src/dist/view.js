@@ -37,6 +37,7 @@ var editBoardWindow = document.querySelector(".editBoardWindow");
 var imageDisplayedInEdit = document.querySelector("#imageEditWindow");
 var trashCan = document.querySelector("#trash");
 var trashCanDiv = document.querySelector(".trashDiv");
+var noteBox = document.getElementById("notificationBox");
 //Buttons
 var addListBtn = document.querySelector("#addListBtn");
 var editBoardBtn = document.querySelector(".editBoardBtn");

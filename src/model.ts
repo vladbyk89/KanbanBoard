@@ -1,12 +1,3 @@
-// class Notifictions{
-//   constructor(
-//     public nameList: string,
-//     public namecard: string,
-//     public nameDelete: string
-//   ){};
-// }
-
-
 class User {
   constructor(
     public firstName: string,
@@ -17,8 +8,9 @@ class User {
     public email: string,
     public phoneNumber: string,
     public boardList: Board[] = [],
+    public notifiction: string[] = [],
     public uid: string = Math.random().toString(36).slice(2)
-  ) {};
+  ) {}
 
   static currentUserFromStorage() {
     try {
@@ -34,6 +26,7 @@ class User {
           obj.email,
           obj.phoneNumber,
           obj.boardList,
+          obj.notifiction,
           obj.uid
         );
       }
@@ -152,6 +145,13 @@ class List {
     if (newListInput.value == "") return;
     const newList = new List(listName);
     boardContainer.insertBefore(newList.createListElement(), trashCanDiv);
+    let successListMsg = `<i class="fa-solid fa-circle-check"></i> Add new List: ${newListInput.value}`;
+    notification(successListMsg);
+    saveNotificationToLocalStorage(
+      newListInput.value,
+      currentBoard,
+      currentUser
+    );
     newListInput.value = "";
   }
   createListElement() {
@@ -160,7 +160,6 @@ class List {
     listContainer.setAttribute("draggable", "true");
     listContainer.setAttribute("id", `${this.uid}`);
     listContainer.setAttribute("ondragstart", `drag(event)`);
-    
     const header = document.createElement("div");
     header.classList.add("boardContainer__main__list__header");
     header.setAttribute("id", `${this.name}_header`);
@@ -174,13 +173,11 @@ class List {
       <button class="newCardBtn">New Card</button>
       </div>
     `;
-    // let successListMsg = `<i class="fa-solid fa-circle-check"></i> Add new List: ${this.name}`;
-    // notification(successListMsg)
     listContainer.appendChild(header);
     makeListFunctional(listContainer);
     boardContainer.insertBefore(listContainer, trashCanDiv);
-    // notificationWithList("A new list has been created.");
     currentBoard.update();
+
     return listContainer;
   }
 }
@@ -195,8 +192,8 @@ const preMadeUserList: User[] = [
     "12345678",
     "vladi@gmail.com",
     "0548155232"
-    ),
-    new User(
+  ),
+  new User(
     "Itai",
     "Gelberg",
     "male",

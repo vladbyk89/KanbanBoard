@@ -35,7 +35,9 @@ const notifictionWindow = document.querySelector(
   ".notifictionWindow"
 ) as HTMLDivElement;
 const profileDiv = document.querySelector(".profile") as HTMLDivElement;
-const notificationsDiv = document.querySelector(".notifications") as HTMLDivElement;
+const notificationsDiv = document.querySelector(
+  ".notifications"
+) as HTMLDivElement;
 const newBoardWindow = document.querySelector(
   ".newBoardWindow"
 ) as HTMLDivElement;
@@ -88,6 +90,7 @@ const imageDisplayedInEdit = document.querySelector(
 ) as HTMLImageElement;
 const trashCan = document.querySelector("#trash") as HTMLElement;
 const trashCanDiv = document.querySelector(".trashDiv") as HTMLDivElement;
+let noteBox = document.getElementById("notificationBox") as HTMLDivElement;
 
 //Buttons
 const addListBtn = document.querySelector("#addListBtn") as HTMLButtonElement;

@@ -5,15 +5,17 @@
   overflow: hidden;
   color: #067be0;
   text-align: center;
+  overflow-wrap: break-word;
 }
 
 .notification {
   width: 18vw;
-  height: 6vh;
+  height: auto;
   background-color: aliceblue;
   font-size: 120%;
   margin: 15% -10%;
   box-shadow: 0 0 20px black;
+  overflow-wrap: break-word;
   position: relative;
   animation: moveleft 0.8s linear forwards;
 }
