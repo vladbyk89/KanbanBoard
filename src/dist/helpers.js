@@ -26,16 +26,6 @@ var insertAboveTask = function (zone, mouseY) {
     });
     return closestTask;
 };
-function checkIfUserIsSignedIn() {
-    try {
-        if (!localStorage.getItem("currentUser")) {
-            window.location.href = "entryPage.html";
-        }
-    }
-    catch (error) {
-        console.log(error);
-    }
-}
 function userListFromStorage() {
     var getLocalStorage = localStorage.getItem("signedUpUsers");
     if (getLocalStorage) {

@@ -10,8 +10,9 @@ function handleSignUp(e: Event) {
     const email = this.elements.email.value;
     const phone = this.elements.phoneNumber.value;
     const arr = [gender, firstName, lastName, password, userName, email, phone];
-    const regex = /^[a-zA-Z0-9!@#$%\^&*)(+=._-]*$/
-    if (arr.some((ele) => !regex.test(ele))) return alert("Only English characters allowed");
+    const regex = /^[a-zA-Z0-9!@#$%\^&*)(+=._-]*$/;
+    if (arr.some((ele) => !regex.test(ele)))
+      return alert("Only English characters allowed");
     if (checkIfEmailExists(email))
       return alert("Email is alreay in the system");
     const newUser = new User(
@@ -76,7 +77,6 @@ function handleRecovery(e: Event) {
     if (!findUser) return alert("No such user exists");
     recoveredPassword.textContent = findUser.password;
     passwordDisplayDiv.style.display = "flex";
-    
   } catch (error) {
     console.log(error);
   }
@@ -150,6 +150,7 @@ function checkIfUserExists(userName: string, password: string) {
     console.log(error);
   }
 }
+
 
 function renderBoardsToMain(listOFBoards: Board[]) {
   try {
