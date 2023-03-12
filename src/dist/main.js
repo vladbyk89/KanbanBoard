@@ -154,4 +154,7 @@ if (window.location.pathname.endsWith("board.html")) {
             currentBoard.update();
         }
     });
+    trashCan.addEventListener('dragover', function (e) {
+        e.preventDefault();
+    });
 }

@@ -151,7 +151,7 @@ class List {
     listContainer.classList.add("boardContainer__main__list");
     listContainer.setAttribute("draggable", "true");
     listContainer.setAttribute("id", `${this.uid}`);
-    listContainer.setAttribute("ondragstart", `drag(event)`);
+    // listContainer.setAttribute("ondragstart", `drag(event)`);
 
     const header = document.createElement("div");
     header.classList.add("boardContainer__main__list__header");

@@ -141,7 +141,9 @@ function createBoard(boardName, boardImage) {
         if (currentUser.boardList.length === 10)
             return alert("maxinum amount of boards is 10");
         if (boardName) {
-            if (currentUser.boardList.find(function (board) { return board.name.toLocaleUpperCase() == boardName.toLocaleLowerCase(); }))
+            if (currentUser.boardList.find(function (board) {
+                return board.name.toLocaleUpperCase() == boardName.toLocaleLowerCase();
+            }))
                 return alert("There is already a board with that name");
             var newBoard = new Board(boardName, boardImage);
             updateUserBoardList(currentUser, newBoard);
@@ -157,7 +159,10 @@ function createBoard(boardName, boardImage) {
     }
 }
 function makeListFunctional(listContainer) {
-    listContainer.addEventListener("dragstart", function () {
+    listContainer.addEventListener("dragstart", function (ev) {
+        var target = ev.target;
+        if (ev.dataTransfer)
+            ev.dataTransfer.setData("Text", target.id);
         listContainer.classList.add("is-draggin");
     });
     listContainer.addEventListener("dragend", function () {
@@ -218,7 +223,6 @@ function createCardElement(cardName, list) {
     var card = document.createElement("div");
     card.classList.add("boardContainer__main__list__card");
     card.setAttribute("draggable", "true");
-    card.setAttribute("ondragstart", "drag(event)");
     card.setAttribute("id", "" + uid());
     card.innerHTML = "\n  <p>" + cardName + "</p>\n  <i class=\"fa-regular fa-pen-to-square editCardBtn\"></i>\n  ";
     var cardTitle = list.querySelector(".boardContainer__main__list__header");
@@ -245,7 +249,10 @@ function createCardElement(cardName, list) {
         editCardInput.focus();
         currentBoard.update();
     });
-    card.addEventListener("dragstart", function () {
+    card.addEventListener("dragstart", function (ev) {
+        var target = ev.target;
+        if (ev.dataTransfer)
+            ev.dataTransfer.setData("Text", target.id);
         card.classList.add("is-dragging");
     });
     card.addEventListener("dragend", function () {
@@ -270,17 +277,4 @@ function renderBoardInBoardPage() {
     catch (error) {
         console.log(error);
     }
-}
-function allowDrop(ev) {
-    ev.preventDefault();
-}
-function drag(ev) {
-    ev.dataTransfer.setData("Text", ev.target.id);
-}
-function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("Text");
-    var el = document.getElementById(data);
-    // el?.parentNode?.removeChild(el); => delete without Warning
-    currentBoard.update();
 }

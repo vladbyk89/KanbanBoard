@@ -136,7 +136,7 @@ var List = /** @class */ (function () {
         listContainer.classList.add("boardContainer__main__list");
         listContainer.setAttribute("draggable", "true");
         listContainer.setAttribute("id", "" + this.uid);
-        listContainer.setAttribute("ondragstart", "drag(event)");
+        // listContainer.setAttribute("ondragstart", `drag(event)`);
         var header = document.createElement("div");
         header.classList.add("boardContainer__main__list__header");
         header.setAttribute("id", this.name + "_header");

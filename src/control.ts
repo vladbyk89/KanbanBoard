@@ -178,7 +178,12 @@ function createBoard(boardName: string, boardImage: string) {
     if (currentUser.boardList.length === 10)
       return alert("maxinum amount of boards is 10");
     if (boardName) {
-      if (currentUser.boardList.find((board) => board.name.toLocaleUpperCase() == boardName.toLocaleLowerCase()))
+      if (
+        currentUser.boardList.find(
+          (board) =>
+            board.name.toLocaleUpperCase() == boardName.toLocaleLowerCase()
+        )
+      )
         return alert("There is already a board with that name");
       const newBoard = new Board(boardName, boardImage);
       updateUserBoardList(currentUser, newBoard);
@@ -192,7 +197,9 @@ function createBoard(boardName: string, boardImage: string) {
   }
 }
 function makeListFunctional(listContainer: HTMLElement) {
-  listContainer.addEventListener("dragstart", () => {
+  listContainer.addEventListener("dragstart", (ev) => {
+    const target = ev.target as HTMLElement;
+    if (ev.dataTransfer) ev.dataTransfer.setData("Text", target.id);
     listContainer.classList.add("is-draggin");
   });
   listContainer.addEventListener("dragend", () => {
@@ -265,7 +272,6 @@ function createCardElement(cardName: string, list: Element) {
   const card = document.createElement("div");
   card.classList.add("boardContainer__main__list__card");
   card.setAttribute("draggable", "true");
-  card.setAttribute("ondragstart", `drag(event)`);
   card.setAttribute("id", `${uid()}`);
   card.innerHTML = `
   <p>${cardName}</p>
@@ -306,7 +312,9 @@ function createCardElement(cardName: string, list: Element) {
     currentBoard.update();
   });
 
-  card.addEventListener("dragstart", () => {
+  card.addEventListener("dragstart", (ev) => {
+    const target = ev.target as HTMLElement;
+    if (ev.dataTransfer) ev.dataTransfer.setData("Text", target.id);
     card.classList.add("is-dragging");
   });
   card.addEventListener("dragend", () => {
@@ -336,16 +344,3 @@ function renderBoardInBoardPage() {
   }
 }
 
-function allowDrop(ev) {
-  ev.preventDefault();
-}
-function drag(ev) {
-  ev.dataTransfer.setData("Text", ev.target.id);
-}
-function drop(ev) {
-  ev.preventDefault();
-  const data = ev.dataTransfer.getData("Text");
-  const el = document.getElementById(data);
-  // el?.parentNode?.removeChild(el); => delete without Warning
-  currentBoard.update();
-}
