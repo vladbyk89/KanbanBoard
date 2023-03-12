@@ -102,18 +102,18 @@ if (window.location.pathname.endsWith("board.html")) {
             });
         });
     });
-    boardContainer.addEventListener("dragover", function (e) {
+    boardContainer.addEventListener("dragover", function (_a) {
+        var clientX = _a.clientX;
         var cardIsDragged = false;
         cards.forEach(function (card) {
-            if (card.classList.contains("is-dragging")) {
+            if (card.classList.contains("cardIsDragging")) {
                 cardIsDragged = true;
             }
         });
         if (cardIsDragged)
             return;
-        e.preventDefault();
-        var leftList = insertLeftOfLisk(boardContainer, e.clientX);
-        var curList = boardContainer.querySelector(".is-draggin");
+        var leftList = insertLeftOfLisk(boardContainer, clientX);
+        var curList = boardContainer.querySelector(".listIsDragging");
         if (!leftList) {
             boardContainer.insertBefore(curList, trashCanDiv);
         }
@@ -154,7 +154,7 @@ if (window.location.pathname.endsWith("board.html")) {
             currentBoard.update();
         }
     });
-    trashCan.addEventListener('dragover', function (e) {
+    trashCan.addEventListener("dragover", function (e) {
         e.preventDefault();
     });
 }

@@ -172,16 +172,7 @@ body {
   display: none;
 }
 
-.is-dragging {
-  scale: 1.05;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+.cardIsDragging, .listIsDragging {
+  scale: 0.9;
   background: rgba(50, 50, 50, 0.37);
-  color: white;
-}
-
-.dragover {
-  scale: 1.05;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
-  background: rgba(230, 12, 12, 0.37);
-  color: white;
 }

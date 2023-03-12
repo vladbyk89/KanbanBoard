@@ -160,13 +160,15 @@ function createBoard(boardName, boardImage) {
 }
 function makeListFunctional(listContainer) {
     listContainer.addEventListener("dragstart", function (ev) {
+        if (listContainer != ev.target)
+            return;
         var target = ev.target;
         if (ev.dataTransfer)
             ev.dataTransfer.setData("Text", target.id);
-        listContainer.classList.add("is-draggin");
+        listContainer.classList.add("listIsDragging");
     });
     listContainer.addEventListener("dragend", function () {
-        listContainer.classList.remove("is-draggin");
+        listContainer.classList.remove("listIsDragging");
     });
     listContainer.addEventListener("dragover", dragginCard);
     var editListBtn = listContainer.querySelector(".editListBtn");
@@ -185,7 +187,7 @@ function dragginCard(_a) {
     var clientY = _a.clientY;
     var cardIsDragged = false;
     cards.forEach(function (card) {
-        if (card.classList.contains("is-dragging")) {
+        if (card.classList.contains("cardIsDragging")) {
             cardIsDragged = true;
         }
     });
@@ -193,7 +195,7 @@ function dragginCard(_a) {
         return;
     // e.preventDefault();
     var bottomTask = insertAboveTask(this, clientY);
-    var curTask = document.querySelector(".is-dragging");
+    var curTask = document.querySelector(".cardIsDragging");
     if (!bottomTask) {
         this.appendChild(curTask);
     }
@@ -253,10 +255,10 @@ function createCardElement(cardName, list) {
         var target = ev.target;
         if (ev.dataTransfer)
             ev.dataTransfer.setData("Text", target.id);
-        card.classList.add("is-dragging");
+        card.classList.add("cardIsDragging");
     });
     card.addEventListener("dragend", function () {
-        card.classList.remove("is-dragging");
+        card.classList.remove("cardIsDragging");
     });
     currentBoard.update();
     // Add new card to cards variable

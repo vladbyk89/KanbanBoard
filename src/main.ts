@@ -127,19 +127,18 @@ if (window.location.pathname.endsWith("board.html")) {
     });
   });
 
-  boardContainer.addEventListener("dragover", (e) => {
+  boardContainer.addEventListener("dragover", ({ clientX }) => {
     let cardIsDragged = false;
     cards.forEach((card) => {
-      if (card.classList.contains("is-dragging")) {
+      if (card.classList.contains("cardIsDragging")) {
         cardIsDragged = true;
       }
     });
 
     if (cardIsDragged) return;
-    e.preventDefault();
 
-    const leftList = insertLeftOfLisk(boardContainer, e.clientX);
-    const curList = boardContainer.querySelector(".is-draggin") as HTMLElement;
+    const leftList = insertLeftOfLisk(boardContainer, clientX);
+    const curList = boardContainer.querySelector(".listIsDragging") as HTMLElement;
 
     if (!leftList) {
       boardContainer.insertBefore(curList, trashCanDiv);
@@ -187,7 +186,7 @@ if (window.location.pathname.endsWith("board.html")) {
       currentBoard.update();
     }
   });
-  trashCan.addEventListener('dragover', (e) => {
+  trashCan.addEventListener("dragover", (e) => {
     e.preventDefault();
-  })
+  });
 }

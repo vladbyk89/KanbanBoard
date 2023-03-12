@@ -1,6 +1,6 @@
 const insertLeftOfLisk = (zone: HTMLElement, mouseX: number) => {
   const staticLists = zone.querySelectorAll(
-    ".boardContainer__main__list:not(.is-dragging)"
+    ".boardContainer__main__list:not(.cardIsDragging)"
   );
 
   let closestTask: null | Element = null;
@@ -22,7 +22,7 @@ const insertLeftOfLisk = (zone: HTMLElement, mouseX: number) => {
 
 const insertAboveTask = (zone, mouseY) => {
   const staticCards = zone.querySelectorAll(
-    ".boardContainer__main__list__card:not(.is-dragging)"
+    ".boardContainer__main__list__card:not(.cardIsDragging)"
   );
 
   let closestTask = null;

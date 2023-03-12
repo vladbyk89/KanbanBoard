@@ -198,12 +198,13 @@ function createBoard(boardName: string, boardImage: string) {
 }
 function makeListFunctional(listContainer: HTMLElement) {
   listContainer.addEventListener("dragstart", (ev) => {
+    if(listContainer != ev.target) return
     const target = ev.target as HTMLElement;
     if (ev.dataTransfer) ev.dataTransfer.setData("Text", target.id);
-    listContainer.classList.add("is-draggin");
+    listContainer.classList.add("listIsDragging");
   });
   listContainer.addEventListener("dragend", () => {
-    listContainer.classList.remove("is-draggin");
+    listContainer.classList.remove("listIsDragging");
   });
 
   listContainer.addEventListener("dragover", dragginCard);
@@ -229,7 +230,7 @@ function makeListFunctional(listContainer: HTMLElement) {
 function dragginCard({ clientY }) {
   let cardIsDragged = false;
   cards.forEach((card) => {
-    if (card.classList.contains("is-dragging")) {
+    if (card.classList.contains("cardIsDragging")) {
       cardIsDragged = true;
     }
   });
@@ -237,7 +238,7 @@ function dragginCard({ clientY }) {
   // e.preventDefault();
 
   const bottomTask = insertAboveTask(this, clientY);
-  const curTask = document.querySelector(".is-dragging") as HTMLElement;
+  const curTask = document.querySelector(".cardIsDragging") as HTMLElement;
 
   if (!bottomTask) {
     this.appendChild(curTask);
@@ -315,10 +316,10 @@ function createCardElement(cardName: string, list: Element) {
   card.addEventListener("dragstart", (ev) => {
     const target = ev.target as HTMLElement;
     if (ev.dataTransfer) ev.dataTransfer.setData("Text", target.id);
-    card.classList.add("is-dragging");
+    card.classList.add("cardIsDragging");
   });
   card.addEventListener("dragend", () => {
-    card.classList.remove("is-dragging");
+    card.classList.remove("cardIsDragging");
   });
   currentBoard.update();
   // Add new card to cards variable
