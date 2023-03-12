@@ -1,7 +1,6 @@
 function handleSignUp(e: Event) {
   try {
     e.preventDefault();
-    // e.stopPropagation();
     const gender = this.elements.gender.value;
     const firstName = this.elements.firstName.value;
     const lastName = this.elements.lastName.value;
@@ -38,7 +37,7 @@ function handleSignUp(e: Event) {
     location.href = "index.html";
     this.reset();
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -56,7 +55,7 @@ function handleSignIn(e: Event) {
       alert("User does not exist.");
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -83,7 +82,7 @@ function handleRecovery(e: Event) {
     recoveredPassword.textContent = findUser.password;
     passwordDisplayDiv.style.display = "flex";
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -92,7 +91,7 @@ function displayProfile(user: User) {
     profileWindow.style.display = "flex";
     if (user) {
       return (profileDiv.innerHTML = `
-        <ul>
+        <ul id="edit li">
           <h1>About you:</h1>
           <li>Name: ${user.firstName} ${user.lastName}</li>
           <li>Gender: ${user.gender}</li>
@@ -104,21 +103,26 @@ function displayProfile(user: User) {
         `);
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 function displayNotifictions() {
   try {
-    const notifications = localStorage.getItem(`notifications`);
-    notifictionWindow.style.display = "flex";
-    if (notifictionWindow) {
+    const notifications = localStorage.getItem(
+      `notifications-${currentUser.uid}`
+    );
+    if (notifications) {
+      const notificationss = JSON.parse(notifications);
+      notifictionWindow.style.display = "flex";
       return (notificationsDiv.innerHTML = `
-          <h1>Notifictions:</h1>
-          ${notifications}
+      <ul>
+      <h3>notifications :</h3>
+      <li>${notificationss}</li>
+    </ul>
           `);
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -155,7 +159,7 @@ function checkIfUserExists(userName: string, password: string) {
       (user) => user.userName === userName && user.password === password
     );
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -172,7 +176,7 @@ function renderBoardsToMain(listOFBoards: Board[]) {
       })
       .join("");
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -181,7 +185,12 @@ function createBoard(boardName: string, boardImage: string) {
     if (currentUser.boardList.length === 10)
       return alert("maxinum amount of boards is 10");
     if (boardName) {
-      if (currentUser.boardList.find((board) => board.name.toLocaleUpperCase() == boardName.toLocaleLowerCase()))
+      if (
+        currentUser.boardList.find(
+          (board) =>
+            board.name.toLocaleUpperCase() == boardName.toLocaleLowerCase()
+        )
+      )
         return alert("There is already a board with that name");
       const newBoard = new Board(boardName, boardImage);
       updateUserBoardList(currentUser, newBoard);
@@ -191,7 +200,7 @@ function createBoard(boardName: string, boardImage: string) {
       alert("Board Name Is Missing");
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 function makeListFunctional(listContainer: HTMLElement) {
@@ -216,9 +225,6 @@ function makeListFunctional(listContainer: HTMLElement) {
     if (event.key === "Enter") {
       if (newCardTextArea.value.trim() !== "") {
         createCardElement(newCardTextArea.value.trim(), listContainer);
-        notification(
-          `<i class="fa-solid fa-circle-check"></i>Add new card: ${newCardTextArea.value}`
-        );
         saveNotificationToLocalStorage(
           newCardTextArea.value,
           currentBoard,
@@ -238,8 +244,6 @@ function dragginCard({ clientY }) {
     }
   });
   if (!cardIsDragged) return;
-  // e.preventDefault();
-
   const bottomTask = insertAboveTask(this, clientY);
   const curTask = document.querySelector(".is-dragging") as HTMLElement;
 
@@ -250,7 +254,6 @@ function dragginCard({ clientY }) {
   }
   currentBoard.update();
 }
-
 function editList() {
   const listTitle = this.parentNode as HTMLElement;
   const listTitleText = listTitle.querySelector("h2") as HTMLElement;
@@ -262,7 +265,6 @@ function editList() {
 
   listTitle.replaceChild(editListInput, listTitleText);
   editListInput.focus();
-
   editListInput.addEventListener("keyup", (event) => {
     if (event.key === "Enter") {
       listTitle.replaceChild(listTitleText, editListInput);
@@ -270,8 +272,7 @@ function editList() {
       currentBoard.update();
     }
   });
-
-  editListInput.addEventListener("blur",(event)=>{
+  editListInput.addEventListener("blur", (event) => {
     const newListTitle = document.createElement("h2");
     newListTitle.textContent = editListInput.value.trim();
     editListInput.replaceWith(newListTitle);
@@ -286,51 +287,44 @@ function createCardElement(cardName: string, list: Element) {
   card.setAttribute("ondragstart", `drag(event)`);
   card.setAttribute("id", `${uid()}`);
   card.innerHTML = `
-  <p>${cardName}</p>
+  <h2>${cardName}</h2>
   <i class="fa-regular fa-pen-to-square editCardBtn"></i>
   `;
   const cardTitle = list.querySelector(
     ".boardContainer__main__list__header"
   ) as HTMLDivElement;
   list.insertBefore(card, cardTitle.nextSibling);
-
   const editCardBtn = card.querySelector(".editCardBtn") as HTMLElement;
-
   editCardBtn.addEventListener("click", () => {
     const cardTitle = card.querySelector(
-      ".boardContainer__main__list__card > p"
+      ".boardContainer__main__list__card > h2"
     ) as HTMLElement;
     if (!cardTitle) {
       console.error("Card title element not found!");
       return;
     }
-
     const editCardInput = document.createElement("input");
 
     editCardInput.type = "text";
     editCardInput.value = cardTitle.textContent!;
     editCardInput.classList.add("editCardInput");
-
     editCardInput.addEventListener("keyup", (event) => {
       if (event.key === "Enter") {
-        const newCardTitle = document.createElement("p");
+        const newCardTitle = document.createElement("h2");
         newCardTitle.textContent = editCardInput.value.trim();
         editCardInput.replaceWith(newCardTitle);
       }
     });
-
-    editCardInput.addEventListener("blur",()=>{
-      const newCardTitle = document.createElement("p");
+    editCardInput.addEventListener("blur", () => {
+      const newCardTitle = document.createElement("h2");
       newCardTitle.textContent = editCardInput.value.trim();
       editCardInput.replaceWith(newCardTitle);
       currentBoard.update();
-    })
-
+    });
     cardTitle.replaceWith(editCardInput);
     editCardInput.focus();
     currentBoard.update();
   });
-
   card.addEventListener("dragstart", () => {
     card.classList.add("is-dragging");
   });
@@ -357,7 +351,7 @@ function renderBoardInBoardPage() {
       });
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 }
 
@@ -371,17 +365,19 @@ function drop(ev) {
   ev.preventDefault();
   const data = ev.dataTransfer.getData("Text");
   const el = document.getElementById(data);
-  // el?.parentNode?.removeChild(el); => delete without Warning
+  // el?.parentNode?.removeChild(el); => delete without Warning //
   currentBoard.update();
 }
 
-
 function saveNotificationToLocalStorage(notification, board, user) {
   let userNotifications = JSON.parse(
-    localStorage.getItem(`notifications`) || `[]`
+    localStorage.getItem(`notifications-${user.uid}`) || `[]`
   );
   userNotifications.push(notification);
-  localStorage.setItem(`notifications`, JSON.stringify(userNotifications));
+  localStorage.setItem(
+    `notifications-${user.uid}`,
+    JSON.stringify(userNotifications)
+  );
   let boardNotifications = JSON.parse(
     localStorage.getItem(`notifications-board-${board.uid}`) || `[]`
   );

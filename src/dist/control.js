@@ -1,7 +1,6 @@
 function handleSignUp(e) {
     try {
         e.preventDefault();
-        // e.stopPropagation();
         var gender = this.elements.gender.value;
         var firstName = this.elements.firstName.value;
         var lastName = this.elements.lastName.value;
@@ -29,7 +28,7 @@ function handleSignUp(e) {
         this.reset();
     }
     catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 function handleSignIn(e) {
@@ -47,7 +46,7 @@ function handleSignIn(e) {
         }
     }
     catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 function handleRecovery(e) {
@@ -75,30 +74,31 @@ function handleRecovery(e) {
         passwordDisplayDiv.style.display = "flex";
     }
     catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 function displayProfile(user) {
     try {
         profileWindow.style.display = "flex";
         if (user) {
-            return (profileDiv.innerHTML = "\n        <ul>\n          <h1>About you:</h1>\n          <li>Name: " + user.firstName + " " + user.lastName + "</li>\n          <li>Gender: " + user.gender + "</li>\n          <li>Email: " + user.email + "</li>\n          <li>Phone Number: " + user.phoneNumber + "</li>\n          <li>User Name: " + user.userName + "</li>\n          <li>Password: " + user.password + "</li>\n        </ul>\n        ");
+            return (profileDiv.innerHTML = "\n        <ul id=\"edit li\">\n          <h1>About you:</h1>\n          <li>Name: " + user.firstName + " " + user.lastName + "</li>\n          <li>Gender: " + user.gender + "</li>\n          <li>Email: " + user.email + "</li>\n          <li>Phone Number: " + user.phoneNumber + "</li>\n          <li>User Name: " + user.userName + "</li>\n          <li>Password: " + user.password + "</li>\n        </ul>\n        ");
         }
     }
     catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 function displayNotifictions() {
     try {
-        var notifications = localStorage.getItem("notifications");
-        notifictionWindow.style.display = "flex";
-        if (notifictionWindow) {
-            return (notificationsDiv.innerHTML = "\n          <h1>Notifictions:</h1>\n          " + notifications + "\n          ");
+        var notifications = localStorage.getItem("notifications-" + currentUser.uid);
+        if (notifications) {
+            var notificationss = JSON.parse(notifications);
+            notifictionWindow.style.display = "flex";
+            return (notificationsDiv.innerHTML = "\n      <ul>\n      <h3>notifications :</h3>\n      <li>" + notificationss + "</li>\n    </ul>\n          ");
         }
     }
     catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 function updateUserBoardList(userToUpdate, boardToUpdate) {
@@ -132,7 +132,7 @@ function checkIfUserExists(userName, password) {
         return userList.find(function (user) { return user.userName === userName && user.password === password; });
     }
     catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 function renderBoardsToMain(listOFBoards) {
@@ -144,7 +144,7 @@ function renderBoardsToMain(listOFBoards) {
             .join("");
     }
     catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 function createBoard(boardName, boardImage) {
@@ -152,7 +152,9 @@ function createBoard(boardName, boardImage) {
         if (currentUser.boardList.length === 10)
             return alert("maxinum amount of boards is 10");
         if (boardName) {
-            if (currentUser.boardList.find(function (board) { return board.name.toLocaleUpperCase() == boardName.toLocaleLowerCase(); }))
+            if (currentUser.boardList.find(function (board) {
+                return board.name.toLocaleUpperCase() == boardName.toLocaleLowerCase();
+            }))
                 return alert("There is already a board with that name");
             var newBoard = new Board(boardName, boardImage);
             updateUserBoardList(currentUser, newBoard);
@@ -164,7 +166,7 @@ function createBoard(boardName, boardImage) {
         }
     }
     catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 function makeListFunctional(listContainer) {
@@ -182,7 +184,6 @@ function makeListFunctional(listContainer) {
         if (event.key === "Enter") {
             if (newCardTextArea.value.trim() !== "") {
                 createCardElement(newCardTextArea.value.trim(), listContainer);
-                notification("<i class=\"fa-solid fa-circle-check\"></i>Add new card: " + newCardTextArea.value);
                 saveNotificationToLocalStorage(newCardTextArea.value, currentBoard, currentUser);
                 newCardTextArea.value = "";
             }
@@ -199,7 +200,6 @@ function dragginCard(_a) {
     });
     if (!cardIsDragged)
         return;
-    // e.preventDefault();
     var bottomTask = insertAboveTask(this, clientY);
     var curTask = document.querySelector(".is-dragging");
     if (!bottomTask) {
@@ -239,12 +239,12 @@ function createCardElement(cardName, list) {
     card.setAttribute("draggable", "true");
     card.setAttribute("ondragstart", "drag(event)");
     card.setAttribute("id", "" + uid());
-    card.innerHTML = "\n  <p>" + cardName + "</p>\n  <i class=\"fa-regular fa-pen-to-square editCardBtn\"></i>\n  ";
+    card.innerHTML = "\n  <h2>" + cardName + "</h2>\n  <i class=\"fa-regular fa-pen-to-square editCardBtn\"></i>\n  ";
     var cardTitle = list.querySelector(".boardContainer__main__list__header");
     list.insertBefore(card, cardTitle.nextSibling);
     var editCardBtn = card.querySelector(".editCardBtn");
     editCardBtn.addEventListener("click", function () {
-        var cardTitle = card.querySelector(".boardContainer__main__list__card > p");
+        var cardTitle = card.querySelector(".boardContainer__main__list__card > h2");
         if (!cardTitle) {
             console.error("Card title element not found!");
             return;
@@ -255,13 +255,13 @@ function createCardElement(cardName, list) {
         editCardInput.classList.add("editCardInput");
         editCardInput.addEventListener("keyup", function (event) {
             if (event.key === "Enter") {
-                var newCardTitle = document.createElement("p");
+                var newCardTitle = document.createElement("h2");
                 newCardTitle.textContent = editCardInput.value.trim();
                 editCardInput.replaceWith(newCardTitle);
             }
         });
         editCardInput.addEventListener("blur", function () {
-            var newCardTitle = document.createElement("p");
+            var newCardTitle = document.createElement("h2");
             newCardTitle.textContent = editCardInput.value.trim();
             editCardInput.replaceWith(newCardTitle);
             currentBoard.update();
@@ -293,7 +293,7 @@ function renderBoardInBoardPage() {
         });
     }
     catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 function allowDrop(ev) {
@@ -306,13 +306,13 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("Text");
     var el = document.getElementById(data);
-    // el?.parentNode?.removeChild(el); => delete without Warning
+    // el?.parentNode?.removeChild(el); => delete without Warning //
     currentBoard.update();
 }
 function saveNotificationToLocalStorage(notification, board, user) {
-    var userNotifications = JSON.parse(localStorage.getItem("notifications") || "[]");
+    var userNotifications = JSON.parse(localStorage.getItem("notifications-" + user.uid) || "[]");
     userNotifications.push(notification);
-    localStorage.setItem("notifications", JSON.stringify(userNotifications));
+    localStorage.setItem("notifications-" + user.uid, JSON.stringify(userNotifications));
     var boardNotifications = JSON.parse(localStorage.getItem("notifications-board-" + board.uid) || "[]");
     boardNotifications.push(notification);
     localStorage.setItem("notifications-board-" + board.uid, JSON.stringify(boardNotifications));

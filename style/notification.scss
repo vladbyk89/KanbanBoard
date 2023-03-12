@@ -65,48 +65,57 @@
 }
 
 .notifictionWindow {
-  background-color: #0d0e0dd2;
-  color: wheat;
-  height: 90%;
-  width: 50%;
-  display: flex;
+  position: fixed;
+  font-size: 1.5rem;
+  margin: 0 auto;
   text-align: center;
-  align-items: center;
-  position: absolute;
-  padding: 2rem;
+  color: #25243ae8;
   display: none;
+  background-color: aliceblue;
+  width: 20%;
+  height: 55%;
+  background-color: #fff;
+  box-shadow: 0.9rem 0.5rem 1rem 0.1rem rgb(75, 83, 72);
+  margin-top: -0.5%;
+  padding: 15px;
+  right: 5.5%;
+  overflow-y: auto;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
+
+  h3 {
+    overflow-wrap: break-word;
+    position: fixed;
+    background-color: #6e5652;
+    color: white;
+  }
+
   .exitNotifictionsPage {
-    color: #56e603;
+    color: #ff2600;
+    right: 8%;
+    position: fixed;
+    overflow-wrap: break-word;
   }
-  .editprofileBtn {
-    margin-top: 9%;
-    left: -15%;
-    color: #e62c03;
+  .fa-circle-check {
+    color: rgba(90, 226, 11, 0.61);
+    align-items: baseline;
   }
-  .signOutbtn {
-    position: absolute;
-    right: 0.5em;
-    bottom: 0.5em;
-    height: 5%;
-    font-size: 1rem;
-  }
-  i {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    font-size: 3rem;
-    cursor: pointer;
+  .fa-circle-xmark {
+    color: rgba(226, 25, 11, 0.61);
+    align-items: baseline;
   }
   ul {
-    height: 70vh;
     display: flex;
     flex-direction: column;
-    align-items: start;
-    justify-content: space-around;
+    overflow-wrap: break-word;
     gap: 1rem;
-    font-size: 1.5rem;
+
     li {
-      display: block;
+      margin-top: 25%;
+      overflow-wrap: break-word;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
     }
   }
 }

@@ -43,7 +43,7 @@ body {
         position: relative;
         display: flex;
         flex-direction: column;
-        padding: .3rem;
+        padding: 0.3rem;
         .listTitle {
           color: #fff;
           mix-blend-mode: difference;
@@ -52,14 +52,13 @@ body {
           align-items: center;
           text-align: center;
           padding: 0.5rem;
-          h2{
+          h2 {
             font-size: 1.1rem;
             width: 100%;
             overflow-wrap: break-word;
-
           }
           i {
-            margin-top: .5rem;
+            margin-top: 0.5rem;
           }
           i:hover {
             cursor: pointer;
@@ -100,7 +99,7 @@ body {
         border: 1px solid rgba(0, 0, 0, 0.131);
         background-color: whitesmoke;
         position: relative;
-        padding: .5rem;
+        padding: 0.5rem;
         height: auto;
         width: 100%;
         height: auto;
@@ -110,7 +109,9 @@ body {
         align-items: center;
         font-size: 0.8rem;
         border-radius: 3.3px;
-        p {
+        h2 {
+          font-size: 0.8rem;
+          font-weight: 200;
           width: 80%;
           overflow-wrap: break-word;
         }
@@ -130,7 +131,6 @@ body {
           left: 0;
           font-size: 1rem;
           padding: 5px;
-          // box-sizing: border-box;
           border: none;
           border-radius: 3px;
           z-index: 1;
