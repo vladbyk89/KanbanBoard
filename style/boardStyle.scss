@@ -30,6 +30,25 @@ body {
     justify-content: start;
     gap: 0.2rem;
     padding: 0.5rem;
+    &__trashDiv {
+      height: 100%;
+      display: flex;
+      align-items: start;
+      justify-content: center;
+      margin-left: auto;
+      width: 7rem;
+      padding-top: 1rem;
+      .fa-trash-can {
+        color: darkred;
+        text-shadow: 0 0 10px white;
+        font-size: 5rem;
+        transition: all 0.3s;
+      }
+
+      .fa-trash-can:hover {
+        transform: scale(1.2);
+      }
+    }
     &__list {
       background-color: #f6f6f6;
       width: 14vw;
@@ -43,7 +62,7 @@ body {
         position: relative;
         display: flex;
         flex-direction: column;
-        padding: .3rem;
+        padding: 0.3rem;
         .listTitle {
           color: #fff;
           mix-blend-mode: difference;
@@ -52,14 +71,13 @@ body {
           align-items: center;
           text-align: center;
           padding: 0.5rem;
-          h2{
+          h2 {
             font-size: 1.1rem;
             width: 100%;
             overflow-wrap: break-word;
-
           }
           i {
-            margin-top: .5rem;
+            margin-top: 0.5rem;
           }
           i:hover {
             cursor: pointer;
@@ -100,7 +118,7 @@ body {
         border: 1px solid rgba(0, 0, 0, 0.131);
         background-color: whitesmoke;
         position: relative;
-        padding: .5rem;
+        padding: 0.5rem;
         height: auto;
         width: 100%;
         height: auto;
@@ -130,7 +148,6 @@ body {
           left: 0;
           font-size: 1rem;
           padding: 5px;
-          // box-sizing: border-box;
           border: none;
           border-radius: 3px;
           z-index: 1;
@@ -155,37 +172,17 @@ body {
 .boardContainer::-webkit-scrollbar {
   display: none;
 }
+
 .is-dragging {
   scale: 1.05;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
   background: rgba(50, 50, 50, 0.37);
   color: white;
 }
+
 .dragover {
   scale: 1.05;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
   background: rgba(230, 12, 12, 0.37);
   color: white;
-}
-
-
-.trashDiv{
-  // border: 1px solid white;
-  height: 100%;
-  display: flex;
-  align-items: start;
-  justify-content: center;
-  margin-left: auto;
-  width: 7rem;
-  padding-top: 1rem;
-}
-.fa-trash-can{
-  color: darkred;
-  text-shadow: 0 0 10px white;
-  font-size: 5rem;
-  transition: all .3s;
-}
-
-.fa-trash-can:hover{
-  transform: scale(1.2);
 }

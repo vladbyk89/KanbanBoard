@@ -34,7 +34,7 @@ var cards = document.querySelectorAll(".boardContainer__main__list__card");
 var editBoardWindow = document.querySelector(".editBoardWindow");
 var imageDisplayedInEdit = document.querySelector("#imageEditWindow");
 var trashCan = document.querySelector("#trash");
-var trashCanDiv = document.querySelector(".trashDiv");
+var trashCanDiv = document.querySelector(".boardContainer__main__trashDiv");
 //Buttons
 var addListBtn = document.querySelector("#addListBtn");
 var editBoardBtn = document.querySelector(".editBoardBtn");

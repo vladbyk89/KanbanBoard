@@ -32,6 +32,24 @@ body {
   gap: 0.2rem;
   padding: 0.5rem;
 }
+.boardContainer__main__trashDiv {
+  height: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  margin-left: auto;
+  width: 7rem;
+  padding-top: 1rem;
+}
+.boardContainer__main__trashDiv .fa-trash-can {
+  color: darkred;
+  text-shadow: 0 0 10px white;
+  font-size: 5rem;
+  transition: all 0.3s;
+}
+.boardContainer__main__trashDiv .fa-trash-can:hover {
+  transform: scale(1.2);
+}
 .boardContainer__main__list {
   background-color: #f6f6f6;
   width: 14vw;
@@ -166,25 +184,4 @@ body {
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
   background: rgba(230, 12, 12, 0.37);
   color: white;
-}
-
-.trashDiv {
-  height: 100%;
-  display: flex;
-  align-items: start;
-  justify-content: center;
-  margin-left: auto;
-  width: 7rem;
-  padding-top: 1rem;
-}
-
-.fa-trash-can {
-  color: darkred;
-  text-shadow: 0 0 10px white;
-  font-size: 5rem;
-  transition: all 0.3s;
-}
-
-.fa-trash-can:hover {
-  transform: scale(1.2);
 }
