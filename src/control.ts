@@ -90,17 +90,78 @@ function displayProfile(user: User) {
   try {
     profileWindow.style.display = "flex";
     if (user) {
-      return (profileDiv.innerHTML = `
-        <ul id="edit li">
+      profileDiv.innerHTML = `
+        <ul>
           <h1>About you:</h1>
-          <li>Name: ${user.firstName} ${user.lastName}</li>
-          <li>Gender: ${user.gender}</li>
-          <li>Email: ${user.email}</li>
-          <li>Phone Number: ${user.phoneNumber}</li>
-          <li>User Name: ${user.userName}</li>
-          <li>Password: ${user.password}</li>
+          <li>Name: <span class="user-info">${user.firstName} ${user.lastName}</span>
+            <button class="editInfo">Edit</button>
+          </li>
+          <li>Gender: <span class="user-info">${user.gender}</span>
+            <button class="editInfo">Edit</button>
+          </li>
+          <li>Email: <span class="user-info">${user.email}</span>
+            <button class="editInfo">Edit</button>
+          </li>
+          <li>Phone Number: <span class="user-info">${user.phoneNumber}</span>
+            <button class="editInfo">Edit</button>
+          </li>
+          <li>User Name: <span class="user-info">${user.userName}</span>
+            <button class="editInfo">Edit</button>
+          </li>
+          <li>Password: <span class="user-info">${user.password}</span>
+            <button class="editInfo">Edit</button>
+          </li>
         </ul>
-        `);
+      `;
+      
+      const editProfileInfoBtns = document.querySelectorAll('.editInfo');
+
+      editProfileInfoBtns.forEach((editBoardBtn)=>{
+        editBoardBtn.addEventListener("click",()=>{
+          const userProfileInfoTitle = editBoardBtn.parentNode as HTMLElement;
+          const userProfileInfoText = userProfileInfoTitle.querySelector(".user-info") as HTMLElement;
+          const editprofileInput = document.createElement("input");
+
+          editprofileInput.type = "text";
+          editprofileInput.value = userProfileInfoText.textContent!;
+          editprofileInput.classList.add("editUserInput");
+
+          userProfileInfoTitle.replaceChild(editprofileInput, userProfileInfoText);
+          editprofileInput.focus();
+
+          const saveButton = document.createElement("button");
+          saveButton.textContent = "Save";
+          saveButton.classList.add("saveInfo");
+          userProfileInfoTitle.insertBefore(saveButton, editBoardBtn.nextSibling);
+
+          const cancelButton = document.createElement("button");
+          cancelButton.textContent = "Cancel";
+          cancelButton.classList.add("cancelEdit");
+          userProfileInfoTitle.insertBefore(cancelButton, editBoardBtn.nextSibling);
+
+          editBoardBtn.style.display = "none";
+
+          saveButton.addEventListener("click", () => {
+            const newContent = editprofileInput.value.trim();
+            userProfileInfoTitle.replaceChild(userProfileInfoText, editprofileInput);
+            userProfileInfoText.textContent = newContent;
+
+            editBoardBtn.style.display = "inline-block";
+            saveButton.remove();
+            cancelButton.remove();
+
+          });
+          saveNewInfoToLocalStorage(currentUser,editProfileInfoBtns)
+
+          cancelButton.addEventListener("click", () => {
+            userProfileInfoTitle.replaceChild(userProfileInfoText, editprofileInput);
+
+            editBoardBtn.style.display = "inline-block";
+            saveButton.remove();
+            cancelButton.remove();
+          });
+        });
+      });
     }
   } catch (error) {
     console.error(error);
