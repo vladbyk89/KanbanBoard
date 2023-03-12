@@ -162,7 +162,7 @@ class List {
       <i class="fa-regular fa-pen-to-square editListBtn"></i>
       </div>
       <div class="boardContainer__main__list__header--addCard">
-        <textarea maxlength="30" class="newCardTextArea" cols="30" rows="2" placeholder="Task..."></textarea>
+        <textarea maxlength="50" class="newCardTextArea" cols="30" rows="2" placeholder="Task..."></textarea>
         <button class="newCardBtn">New Card</button>
       </div>
     `;

@@ -72,16 +72,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  padding: 0.5rem;
 }
 .boardContainer__main__list__header .listTitle h2 {
   font-size: 1.1rem;
+  text-align: center;
   width: 100%;
   overflow-wrap: break-word;
 }
 .boardContainer__main__list__header .listTitle i {
   margin-top: 0.5rem;
+  margin-left: auto;
+  margin-bottom: 0.5rem;
 }
 .boardContainer__main__list__header .listTitle i:hover {
   cursor: pointer;
@@ -112,6 +113,8 @@ body {
   font-size: 0.8rem;
   padding: 0.3rem;
   border-radius: 3.3px;
+  resize: none;
+  overflow-y: hidden;
 }
 .boardContainer__main__list__header--addCard .newCardBtn {
   font-size: 0.7rem;

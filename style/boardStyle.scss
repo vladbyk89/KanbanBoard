@@ -69,15 +69,16 @@ body {
           display: flex;
           flex-direction: column;
           align-items: center;
-          text-align: center;
-          padding: 0.5rem;
           h2 {
             font-size: 1.1rem;
+            text-align: center;
             width: 100%;
             overflow-wrap: break-word;
           }
           i {
             margin-top: 0.5rem;
+            margin-left: auto;
+            margin-bottom: .5rem;
           }
           i:hover {
             cursor: pointer;
@@ -108,6 +109,8 @@ body {
             font-size: 0.8rem;
             padding: 0.3rem;
             border-radius: 3.3px;
+            resize: none;
+            overflow-y: hidden;
           }
           .newCardBtn {
             font-size: 0.7rem;
