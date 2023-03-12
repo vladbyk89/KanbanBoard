@@ -201,24 +201,5 @@ if (window.location.pathname.endsWith("board.html")) {
       currentBoard.update();
     }
   });
-
-  // editProfileInfo.addEventListener("click", ()=>{
-  //   const userProfileInfoTitle = editProfileInfo.parentNode as HTMLElement;
-  //   const userProfileInfoText = userProfileInfoTitle.querySelector("ul") as HTMLElement;
-  //   const editUserInput = document.createElement("input");
-  
-  //   editUserInput.type ="text";
-  //   editUserInput.value = userProfileInfoText.textContent!;
-  //   editUserInput.classList.add("editUserInput");
-  
-  //   userProfileInfoTitle.parentNode?.replaceChild(editUserInput , userProfileInfoTitle);
-  //   editUserInput.focus();
-  
-  //   editUserInput.addEventListener("keyup", (event)=>{
-  //     if(event.key === "Enter"){
-  //       userProfileInfoTitle.textContent = editUserInput.value.trim();
-  //       currentBoard.update();
-  //     }
-  //   })
-  // }) \\ not working !~!
 }
+

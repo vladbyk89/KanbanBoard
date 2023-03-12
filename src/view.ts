@@ -91,6 +91,7 @@ const imageDisplayedInEdit = document.querySelector(
 const trashCan = document.querySelector("#trash") as HTMLElement;
 const trashCanDiv = document.querySelector(".trashDiv") as HTMLDivElement;
 let noteBox = document.getElementById("notificationBox") as HTMLDivElement;
+const editInfoBtns = document.querySelectorAll(".editInfo");
 
 //Buttons
 const addListBtn = document.querySelector("#addListBtn") as HTMLButtonElement;
@@ -100,7 +101,7 @@ const editBoardBtn = document.querySelector(
 const updatedBoardImageBtn = document.querySelector(
   "#updatedBoardImageBtn"
 ) as HTMLButtonElement;
-const editProfileInfo = document.querySelector(".editprofileBtn") as HTMLButtonElement;
+// const editProfileInfo = document.querySelector(".editprofileBtn") as HTMLButtonElement;
 
 
 // Input
