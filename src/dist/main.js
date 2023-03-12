@@ -79,16 +79,20 @@ if (window.location.pathname.endsWith("index.html")) {
 }
 //---------------------- board.html ----------------------
 if (window.location.pathname.endsWith("board.html")) {
+    window.addEventListener("load", function () {
+        if (!localStorage.getItem("currentUser")) {
+            window.location.href = "entryPage.html";
+        }
+    });
     renderBoardInBoardPage();
     addListBtn.addEventListener("click", function () {
-        return List.createList(newListInput.value);
+        List.createList(newListInput.value);
     });
     editBoardBtn.addEventListener("click", function () {
         currentBoard.edit(nameInputEle.value, imageDisplayedInEdit.src);
         editBoardWindow.style.display = "none";
     });
     updatedBoardImageBtn.addEventListener("click", function () {
-        console.log("click");
         backgroundImageSelectionDiv.style.display = "grid";
         var backgroundImages = document.querySelectorAll(".backgroundImage");
         backgroundImages.forEach(function (img) {
@@ -126,16 +130,13 @@ if (window.location.pathname.endsWith("board.html")) {
             if (newCardTextArea.value == "")
                 return;
             createCardElement(newCardTextArea.value, listElement);
+            var successcardMsg = "<i class=\"fa-solid fa-circle-check\"></i>Add new card: " + newCardTextArea.value;
+            notification(successcardMsg);
+            saveNotificationToLocalStorage(successcardMsg, currentBoard, currentUser);
             newCardTextArea.value = "";
         }
         if (target.classList.contains("cancelEditBoardBtn")) {
             editBoardWindow.style.display = "none";
-        }
-        if (target.classList.contains("editListBtn")) {
-            console.log("Edit List btn is clicked");
-        }
-        if (target.classList.contains("editCardBtn")) {
-            console.log("Edit Card btn is clicked");
         }
     });
     boardContainer.addEventListener("keyup", function () {
@@ -152,6 +153,10 @@ if (window.location.pathname.endsWith("board.html")) {
         var confirmDelete = confirm("Are you sure you want to delete?");
         if (confirmDelete) {
             var element = document.getElementById(event.dataTransfer.getData("Text"));
+            var elementtext = element === null || element === void 0 ? void 0 : element.querySelector("h2");
+            var successDeleteMsg = "<i class=\"fa-solid fa-circle-xmark\"></i> Delete - " + (elementtext === null || elementtext === void 0 ? void 0 : elementtext.textContent);
+            notification(successDeleteMsg);
+            saveNotificationToLocalStorage(successDeleteMsg, currentBoard, currentUser);
             (_a = element === null || element === void 0 ? void 0 : element.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(element);
             currentBoard.update();
         }

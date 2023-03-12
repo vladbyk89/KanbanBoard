@@ -13,8 +13,7 @@ body {
   align-items: center;
 }
 
-
-h1{
+h1 {
   font-size: 2rem;
 }
 p {
@@ -27,7 +26,6 @@ p {
 span {
   font-size: 0.8rem;
 }
-
 
 .iconsArea {
   a {
@@ -70,8 +68,8 @@ span {
     opacity: 0;
     z-index: 1;
     overflow-y: auto;
-    input::placeholder{
-      font-size: .7rem;
+    input::placeholder {
+      font-size: 0.7rem;
     }
   }
   .overlayContainer {
@@ -147,9 +145,8 @@ span {
   }
 }
 
-
 @media screen and (max-width: 800px) {
-  html{
+  html {
     font-size: 12px;
-  }  
+  }
 }

@@ -97,11 +97,16 @@ if (window.location.pathname.endsWith("index.html")) {
 
 //---------------------- board.html ----------------------
 if (window.location.pathname.endsWith("board.html")) {
+  window.addEventListener("load", () => {
+    if (!localStorage.getItem("currentUser")) {
+      window.location.href = "entryPage.html";
+    }
+  });
   renderBoardInBoardPage();
 
-  addListBtn.addEventListener("click", () =>
-    List.createList(newListInput.value)
-  );
+  addListBtn.addEventListener("click", () => {
+    List.createList(newListInput.value);
+  });
 
   editBoardBtn.addEventListener("click", () => {
     currentBoard.edit(nameInputEle.value, imageDisplayedInEdit.src);
@@ -109,7 +114,6 @@ if (window.location.pathname.endsWith("board.html")) {
   });
 
   updatedBoardImageBtn.addEventListener("click", () => {
-    console.log("click");
     backgroundImageSelectionDiv.style.display = "grid";
 
     const backgroundImages = document.querySelectorAll(
@@ -156,16 +160,13 @@ if (window.location.pathname.endsWith("board.html")) {
       ) as HTMLTextAreaElement;
       if (newCardTextArea.value == "") return;
       createCardElement(newCardTextArea.value, listElement);
+      let successcardMsg = `<i class="fa-solid fa-circle-check"></i>Add new card: ${newCardTextArea.value}`;
+      notification(successcardMsg);
+      saveNotificationToLocalStorage(successcardMsg, currentBoard, currentUser);
       newCardTextArea.value = "";
     }
     if (target.classList.contains("cancelEditBoardBtn")) {
       editBoardWindow.style.display = "none";
-    }
-    if (target.classList.contains("editListBtn")) {
-      console.log("Edit List btn is clicked");
-    }
-    if (target.classList.contains("editCardBtn")) {
-      console.log("Edit Card btn is clicked");
     }
   });
 
@@ -184,6 +185,14 @@ if (window.location.pathname.endsWith("board.html")) {
     if (confirmDelete) {
       const element = document.getElementById(
         event.dataTransfer!.getData("Text")
+      );
+      const elementtext = element?.querySelector(`h2`);
+      let successDeleteMsg = `<i class="fa-solid fa-circle-xmark"></i> Delete - ${elementtext?.textContent}`;
+      notification(successDeleteMsg);
+      saveNotificationToLocalStorage(
+        successDeleteMsg,
+        currentBoard,
+        currentUser
       );
       element?.parentNode?.removeChild(element);
       currentBoard.update();

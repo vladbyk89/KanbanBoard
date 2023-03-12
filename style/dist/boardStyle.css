@@ -113,7 +113,9 @@ body {
   font-size: 0.8rem;
   border-radius: 3.3px;
 }
-.boardContainer__main__list__card p {
+.boardContainer__main__list__card h2 {
+  font-size: 0.8rem;
+  font-weight: 200;
   width: 80%;
   overflow-wrap: break-word;
 }
