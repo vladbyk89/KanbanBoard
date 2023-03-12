@@ -151,7 +151,6 @@ function displayProfile(user: User) {
             cancelButton.remove();
 
           });
-          saveNewInfoToLocalStorage(currentUser,editProfileInfoBtns)
 
           cancelButton.addEventListener("click", () => {
             userProfileInfoTitle.replaceChild(userProfileInfoText, editprofileInput);
@@ -286,11 +285,9 @@ function makeListFunctional(listContainer: HTMLElement) {
     if (event.key === "Enter") {
       if (newCardTextArea.value.trim() !== "") {
         createCardElement(newCardTextArea.value.trim(), listContainer);
-        saveNotificationToLocalStorage(
-          newCardTextArea.value,
-          currentBoard,
-          currentUser
-        );
+        let successcardMsg = `<i class="fa-solid fa-circle-check"></i>Add new card: ${newCardTextArea.value}`;
+        notification(successcardMsg);
+        saveNotificationToLocalStorage(successcardMsg, currentBoard, currentUser);
         newCardTextArea.value = "";
       }
     }
@@ -330,6 +327,9 @@ function editList() {
     if (event.key === "Enter") {
       listTitle.replaceChild(listTitleText, editListInput);
       listTitleText.textContent = editListInput.value.trim();
+      let successcardMsg = `<i class="fa-solid fa-circle-check"></i>New List Name: ${editListInput.value}`;
+      notification(successcardMsg);
+      saveNotificationToLocalStorage(successcardMsg, currentBoard, currentUser);
       currentBoard.update();
     }
   });
@@ -373,6 +373,9 @@ function createCardElement(cardName: string, list: Element) {
       if (event.key === "Enter") {
         const newCardTitle = document.createElement("h2");
         newCardTitle.textContent = editCardInput.value.trim();
+        let successcardMsg = `<i class="fa-solid fa-circle-check"></i>New Card Name: ${editCardInput.value}`;
+        notification(successcardMsg);
+        saveNotificationToLocalStorage(successcardMsg, currentBoard, currentUser);
         editCardInput.replaceWith(newCardTitle);
       }
     });

@@ -82,8 +82,8 @@ function displayProfile(user) {
         profileWindow.style.display = "flex";
         if (user) {
             profileDiv.innerHTML = "\n        <ul>\n          <h1>About you:</h1>\n          <li>Name: <span class=\"user-info\">" + user.firstName + " " + user.lastName + "</span>\n            <button class=\"editInfo\">Edit</button>\n          </li>\n          <li>Gender: <span class=\"user-info\">" + user.gender + "</span>\n            <button class=\"editInfo\">Edit</button>\n          </li>\n          <li>Email: <span class=\"user-info\">" + user.email + "</span>\n            <button class=\"editInfo\">Edit</button>\n          </li>\n          <li>Phone Number: <span class=\"user-info\">" + user.phoneNumber + "</span>\n            <button class=\"editInfo\">Edit</button>\n          </li>\n          <li>User Name: <span class=\"user-info\">" + user.userName + "</span>\n            <button class=\"editInfo\">Edit</button>\n          </li>\n          <li>Password: <span class=\"user-info\">" + user.password + "</span>\n            <button class=\"editInfo\">Edit</button>\n          </li>\n        </ul>\n      ";
-            var editProfileInfoBtns_1 = document.querySelectorAll('.editInfo');
-            editProfileInfoBtns_1.forEach(function (editBoardBtn) {
+            var editProfileInfoBtns = document.querySelectorAll('.editInfo');
+            editProfileInfoBtns.forEach(function (editBoardBtn) {
                 editBoardBtn.addEventListener("click", function () {
                     var userProfileInfoTitle = editBoardBtn.parentNode;
                     var userProfileInfoText = userProfileInfoTitle.querySelector(".user-info");
@@ -110,7 +110,6 @@ function displayProfile(user) {
                         saveButton.remove();
                         cancelButton.remove();
                     });
-                    saveNewInfoToLocalStorage(currentUser, editProfileInfoBtns_1);
                     cancelButton.addEventListener("click", function () {
                         userProfileInfoTitle.replaceChild(userProfileInfoText, editprofileInput);
                         editBoardBtn.style.display = "inline-block";
@@ -221,7 +220,9 @@ function makeListFunctional(listContainer) {
         if (event.key === "Enter") {
             if (newCardTextArea.value.trim() !== "") {
                 createCardElement(newCardTextArea.value.trim(), listContainer);
-                saveNotificationToLocalStorage(newCardTextArea.value, currentBoard, currentUser);
+                var successcardMsg = "<i class=\"fa-solid fa-circle-check\"></i>Add new card: " + newCardTextArea.value;
+                notification(successcardMsg);
+                saveNotificationToLocalStorage(successcardMsg, currentBoard, currentUser);
                 newCardTextArea.value = "";
             }
         }
@@ -260,6 +261,9 @@ function editList() {
         if (event.key === "Enter") {
             listTitle.replaceChild(listTitleText, editListInput);
             listTitleText.textContent = editListInput.value.trim();
+            var successcardMsg = "<i class=\"fa-solid fa-circle-check\"></i>New List Name: " + editListInput.value;
+            notification(successcardMsg);
+            saveNotificationToLocalStorage(successcardMsg, currentBoard, currentUser);
             currentBoard.update();
         }
     });
@@ -294,6 +298,9 @@ function createCardElement(cardName, list) {
             if (event.key === "Enter") {
                 var newCardTitle = document.createElement("h2");
                 newCardTitle.textContent = editCardInput.value.trim();
+                var successcardMsg = "<i class=\"fa-solid fa-circle-check\"></i>New Card Name: " + editCardInput.value;
+                notification(successcardMsg);
+                saveNotificationToLocalStorage(successcardMsg, currentBoard, currentUser);
                 editCardInput.replaceWith(newCardTitle);
             }
         });
@@ -372,9 +379,3 @@ function notification(msg) {
         note.remove();
     }, 6000);
 }
-function saveNewInfoToLocalStorage(editProfileInfoBtns, user) {
-    var userNewInfo = JSON.parse(localStorage.getItem("editProfileInfoBtns-" + user.handleSignUp) || "[]");
-    userNewInfo.push(editProfileInfoBtns);
-    localStorage.setItem("editProfileInfoBtns-" + user.handleSignUp, JSON.stringify(userNewInfo));
-}
-;
