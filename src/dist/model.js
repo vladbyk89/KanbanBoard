@@ -24,7 +24,7 @@ var User = /** @class */ (function () {
             }
         }
         catch (error) {
-            console.log(error);
+            console.error(error);
         }
     };
     User.setCurrentUser = function (userName) {
@@ -40,7 +40,7 @@ var User = /** @class */ (function () {
             }
         }
         catch (error) {
-            console.log(error);
+            console.error(error);
         }
     };
     return User;
@@ -65,7 +65,7 @@ var Board = /** @class */ (function () {
             }
         }
         catch (error) {
-            console.log(error);
+            console.error(error);
         }
     };
     Board.setCurrentBoard = function (boardName) {
@@ -74,7 +74,7 @@ var Board = /** @class */ (function () {
             localStorage.setItem("currentBoard", JSON.stringify(findBoard));
         }
         catch (error) {
-            console.log(error);
+            console.error(error);
         }
     };
     Board.deleteBoard = function (boardName) {
@@ -96,7 +96,7 @@ var Board = /** @class */ (function () {
             var listName = (_a = list.querySelector("h2")) === null || _a === void 0 ? void 0 : _a.innerHTML;
             var cardsArr = [];
             list
-                .querySelectorAll("p")
+                .querySelectorAll("h2")
                 .forEach(function (card) { return cardsArr.push(card.innerHTML); });
             var newList = new List(listName, Array.from(cardsArr));
             _this.lists.push(newList);
@@ -133,7 +133,7 @@ var List = /** @class */ (function () {
         boardContainer.insertBefore(newList.createListElement(), trashCanDiv);
         var successListMsg = "<i class=\"fa-solid fa-circle-check\"></i> Add new List: " + newListInput.value;
         notification(successListMsg);
-        saveNotificationToLocalStorage(newListInput.value, currentBoard, currentUser);
+        saveNotificationToLocalStorage(successListMsg, currentBoard, currentUser);
         newListInput.value = "";
     };
     List.prototype.createListElement = function () {

@@ -103,7 +103,6 @@ const updatedBoardImageBtn = document.querySelector(
 ) as HTMLButtonElement;
 // const editProfileInfo = document.querySelector(".editprofileBtn") as HTMLButtonElement;
 
-
 // Input
 const newListInput = document.querySelector(
   "#newListInput"

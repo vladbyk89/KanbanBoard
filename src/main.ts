@@ -162,11 +162,7 @@ if (window.location.pathname.endsWith("board.html")) {
       createCardElement(newCardTextArea.value, listElement);
       let successcardMsg = `<i class="fa-solid fa-circle-check"></i>Add new card: ${newCardTextArea.value}`;
       notification(successcardMsg);
-      saveNotificationToLocalStorage(
-        newCardTextArea.value,
-        currentBoard,
-        currentUser
-      );
+      saveNotificationToLocalStorage(successcardMsg, currentBoard, currentUser);
       newCardTextArea.value = "";
     }
     if (target.classList.contains("cancelEditBoardBtn")) {
@@ -190,7 +186,8 @@ if (window.location.pathname.endsWith("board.html")) {
       const element = document.getElementById(
         event.dataTransfer!.getData("Text")
       );
-      let successDeleteMsg = `<i class="fa-solid fa-circle-xmark"></i> Delete - ${element?.textContent}`;
+      const elementtext = element?.querySelector(`h2`);
+      let successDeleteMsg = `<i class="fa-solid fa-circle-xmark"></i> Delete - ${elementtext?.textContent}`;
       notification(successDeleteMsg);
       saveNotificationToLocalStorage(
         successDeleteMsg,
@@ -202,4 +199,3 @@ if (window.location.pathname.endsWith("board.html")) {
     }
   });
 }
-

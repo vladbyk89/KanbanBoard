@@ -132,7 +132,7 @@ if (window.location.pathname.endsWith("board.html")) {
             createCardElement(newCardTextArea.value, listElement);
             var successcardMsg = "<i class=\"fa-solid fa-circle-check\"></i>Add new card: " + newCardTextArea.value;
             notification(successcardMsg);
-            saveNotificationToLocalStorage(newCardTextArea.value, currentBoard, currentUser);
+            saveNotificationToLocalStorage(successcardMsg, currentBoard, currentUser);
             newCardTextArea.value = "";
         }
         if (target.classList.contains("cancelEditBoardBtn")) {
@@ -153,7 +153,8 @@ if (window.location.pathname.endsWith("board.html")) {
         var confirmDelete = confirm("Are you sure you want to delete?");
         if (confirmDelete) {
             var element = document.getElementById(event.dataTransfer.getData("Text"));
-            var successDeleteMsg = "<i class=\"fa-solid fa-circle-xmark\"></i> Delete - " + (element === null || element === void 0 ? void 0 : element.textContent);
+            var elementtext = element === null || element === void 0 ? void 0 : element.querySelector("h2");
+            var successDeleteMsg = "<i class=\"fa-solid fa-circle-xmark\"></i> Delete - " + (elementtext === null || elementtext === void 0 ? void 0 : elementtext.textContent);
             notification(successDeleteMsg);
             saveNotificationToLocalStorage(successDeleteMsg, currentBoard, currentUser);
             (_a = element === null || element === void 0 ? void 0 : element.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(element);

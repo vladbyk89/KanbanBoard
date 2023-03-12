@@ -31,7 +31,7 @@ class User {
         );
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -47,7 +47,7 @@ class User {
         }
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 }
@@ -76,7 +76,7 @@ class Board {
         );
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -87,7 +87,7 @@ class Board {
       );
       localStorage.setItem("currentBoard", JSON.stringify(findBoard));
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -112,7 +112,7 @@ class Board {
       const listName = list.querySelector("h2")?.innerHTML as string;
       const cardsArr: string[] = [];
       list
-        .querySelectorAll("p")
+        .querySelectorAll("h2")
         .forEach((card) => cardsArr.push(card.innerHTML));
       const newList = new List(listName, Array.from(cardsArr));
       this.lists.push(newList);
@@ -148,11 +148,7 @@ class List {
     boardContainer.insertBefore(newList.createListElement(), trashCanDiv);
     let successListMsg = `<i class="fa-solid fa-circle-check"></i> Add new List: ${newListInput.value}`;
     notification(successListMsg);
-    saveNotificationToLocalStorage(
-      newListInput.value,
-      currentBoard,
-      currentUser
-    );
+    saveNotificationToLocalStorage(successListMsg, currentBoard, currentUser);
     newListInput.value = "";
   }
   createListElement() {

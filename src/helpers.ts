@@ -42,7 +42,6 @@ const insertAboveTask = (zone, mouseY) => {
   return closestTask;
 };
 
-
 function userListFromStorage() {
   const getLocalStorage = localStorage.getItem("signedUpUsers");
   if (getLocalStorage) {
