@@ -173,7 +173,7 @@ body {
   display: none;
 }
 
-.cardIsDragging, .listIsDragging {
+.isDragging {
   scale: .9;
   background: rgba(50, 50, 50, 0.37);
 }

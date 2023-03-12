@@ -1,5 +1,5 @@
 var insertLeftOfLisk = function (zone, mouseX) {
-    var staticLists = zone.querySelectorAll(".boardContainer__main__list:not(.cardIsDragging)");
+    var staticLists = zone.querySelectorAll(".boardContainer__main__list:not(.isDragging)");
     var closestTask = null;
     var closestOffset = Number.NEGATIVE_INFINITY;
     staticLists.forEach(function (list) {
@@ -13,7 +13,7 @@ var insertLeftOfLisk = function (zone, mouseX) {
     return closestTask;
 };
 var insertAboveTask = function (zone, mouseY) {
-    var staticCards = zone.querySelectorAll(".boardContainer__main__list__card:not(.cardIsDragging)");
+    var staticCards = zone.querySelectorAll(".boardContainer__main__list__card:not(.isDragging)");
     var closestTask = null;
     var closestOffset = Number.NEGATIVE_INFINITY;
     staticCards.forEach(function (card) {

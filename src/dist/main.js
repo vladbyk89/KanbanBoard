@@ -106,14 +106,14 @@ if (window.location.pathname.endsWith("board.html")) {
         var clientX = _a.clientX;
         var cardIsDragged = false;
         cards.forEach(function (card) {
-            if (card.classList.contains("cardIsDragging")) {
+            if (card.classList.contains("isDragging")) {
                 cardIsDragged = true;
             }
         });
         if (cardIsDragged)
             return;
         var leftList = insertLeftOfLisk(boardContainer, clientX);
-        var curList = boardContainer.querySelector(".listIsDragging");
+        var curList = boardContainer.querySelector(".isDragging");
         if (!leftList) {
             boardContainer.insertBefore(curList, trashCanDiv);
         }
@@ -144,17 +144,15 @@ if (window.location.pathname.endsWith("board.html")) {
             List.createList(newListInput.value);
         }
     });
-    trashCan.addEventListener("drop", function (event) {
-        var _a;
-        event.preventDefault();
+    trashCan.addEventListener("drop", function () {
         var confirmDelete = confirm("Are you sure you want to delete?");
         if (confirmDelete) {
-            var element = document.getElementById(event.dataTransfer.getData("Text"));
-            (_a = element === null || element === void 0 ? void 0 : element.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(element);
+            var element = document.querySelector(".isDragging");
+            element.remove();
             currentBoard.update();
         }
     });
-    trashCan.addEventListener("dragover", function (e) {
-        e.preventDefault();
+    document.addEventListener("dragover", function (event) {
+        event.preventDefault();
     });
 }

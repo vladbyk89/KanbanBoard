@@ -130,7 +130,7 @@ if (window.location.pathname.endsWith("board.html")) {
   boardContainer.addEventListener("dragover", ({ clientX }) => {
     let cardIsDragged = false;
     cards.forEach((card) => {
-      if (card.classList.contains("cardIsDragging")) {
+      if (card.classList.contains("isDragging")) {
         cardIsDragged = true;
       }
     });
@@ -138,7 +138,7 @@ if (window.location.pathname.endsWith("board.html")) {
     if (cardIsDragged) return;
 
     const leftList = insertLeftOfLisk(boardContainer, clientX);
-    const curList = boardContainer.querySelector(".listIsDragging") as HTMLElement;
+    const curList = boardContainer.querySelector(".isDragging") as HTMLElement;
 
     if (!leftList) {
       boardContainer.insertBefore(curList, trashCanDiv);
@@ -175,18 +175,15 @@ if (window.location.pathname.endsWith("board.html")) {
     }
   });
 
-  trashCan.addEventListener("drop", (event) => {
-    event.preventDefault();
+  trashCan.addEventListener("drop", () => {
     const confirmDelete = confirm("Are you sure you want to delete?");
     if (confirmDelete) {
-      const element = document.getElementById(
-        event.dataTransfer!.getData("Text")
-      );
-      element?.parentNode?.removeChild(element);
+      const element = document.querySelector(".isDragging") as HTMLDivElement;
+      element.remove();
       currentBoard.update();
     }
   });
-  trashCan.addEventListener("dragover", (e) => {
-    e.preventDefault();
+  document.addEventListener("dragover", (event) => {
+    event.preventDefault();
   });
 }

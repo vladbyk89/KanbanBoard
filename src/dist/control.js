@@ -84,7 +84,6 @@ function displayProfile(user) {
         if (user) {
             return (profileDiv.innerHTML = "\n        <ul>\n          <h1>About you:</h1>\n          <li>Name: " + user.firstName + " " + user.lastName + "</li>\n          <li>Gender: " + user.gender + "</li>\n          <li>Email: " + user.email + "</li>\n          <li>Phone Number: " + user.phoneNumber + "</li>\n          <li>User Name: " + user.userName + "</li>\n          <li>Password: " + user.password + "</li>\n        </ul>\n        ");
         }
-        return (profileDiv.innerHTML = "\n      <ul>\n        <h1>About you</h1>\n        <li>Name: EMPTY</li>\n        <li>Gender: EMPTY</li>\n        <li>Email: EMPTY</li>\n        <li>Phone Number: EMPTY</li>\n        <li>User Name: EMPTY</li>\n        <li>Password: EMPTY</li>\n      </ul>\n      ");
     }
     catch (error) {
         console.log(error);
@@ -159,110 +158,124 @@ function createBoard(boardName, boardImage) {
     }
 }
 function makeListFunctional(listContainer) {
-    listContainer.addEventListener("dragstart", function (ev) {
-        if (listContainer != ev.target)
-            return;
-        var target = ev.target;
-        if (ev.dataTransfer)
-            ev.dataTransfer.setData("Text", target.id);
-        listContainer.classList.add("listIsDragging");
-    });
-    listContainer.addEventListener("dragend", function () {
-        listContainer.classList.remove("listIsDragging");
-    });
-    listContainer.addEventListener("dragover", dragginCard);
-    var editListBtn = listContainer.querySelector(".editListBtn");
-    editListBtn.addEventListener("click", editList);
-    var newCardTextArea = listContainer.querySelector(".newCardTextArea");
-    newCardTextArea.addEventListener("keyup", function (event) {
-        if (event.key === "Enter") {
-            if (newCardTextArea.value.trim() !== "") {
-                createCardElement(newCardTextArea.value.trim(), listContainer);
-                newCardTextArea.value = "";
+    try {
+        listContainer.addEventListener("dragstart", function (ev) {
+            if (listContainer != ev.target)
+                return;
+            listContainer.classList.add("isDragging");
+        });
+        listContainer.addEventListener("dragend", function () {
+            listContainer.classList.remove("isDragging");
+        });
+        listContainer.addEventListener("dragover", dragginCard);
+        var editListBtn = listContainer.querySelector(".editListBtn");
+        editListBtn.addEventListener("click", editList);
+        var newCardTextArea_1 = listContainer.querySelector(".newCardTextArea");
+        newCardTextArea_1.addEventListener("keyup", function (event) {
+            if (event.key === "Enter") {
+                if (newCardTextArea_1.value.trim() !== "") {
+                    createCardElement(newCardTextArea_1.value.trim(), listContainer);
+                    newCardTextArea_1.value = "";
+                }
             }
-        }
-    });
+        });
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
 function dragginCard(_a) {
     var clientY = _a.clientY;
-    var cardIsDragged = false;
-    cards.forEach(function (card) {
-        if (card.classList.contains("cardIsDragging")) {
-            cardIsDragged = true;
-        }
-    });
-    if (!cardIsDragged)
-        return;
-    // e.preventDefault();
-    var bottomTask = insertAboveTask(this, clientY);
-    var curTask = document.querySelector(".cardIsDragging");
-    if (!bottomTask) {
-        this.appendChild(curTask);
-    }
-    else {
-        this.insertBefore(curTask, bottomTask);
-    }
-    currentBoard.update();
-}
-function editList() {
-    var listTitle = this.parentNode;
-    var listTitleText = listTitle.querySelector("h2");
-    var editListInput = document.createElement("input");
-    editListInput.type = "text";
-    editListInput.value = listTitleText.textContent;
-    editListInput.classList.add("editListInput");
-    listTitle.replaceChild(editListInput, listTitleText);
-    editListInput.focus();
-    editListInput.addEventListener("keyup", function (event) {
-        if (event.key === "Enter") {
-            listTitle.replaceChild(listTitleText, editListInput);
-            listTitleText.textContent = editListInput.value.trim();
-            currentBoard.update();
-        }
-    });
-}
-function createCardElement(cardName, list) {
-    var card = document.createElement("div");
-    card.classList.add("boardContainer__main__list__card");
-    card.setAttribute("draggable", "true");
-    card.setAttribute("id", "" + uid());
-    card.innerHTML = "\n  <p>" + cardName + "</p>\n  <i class=\"fa-regular fa-pen-to-square editCardBtn\"></i>\n  ";
-    var cardTitle = list.querySelector(".boardContainer__main__list__header");
-    list.insertBefore(card, cardTitle.nextSibling);
-    var editCardBtn = card.querySelector(".editCardBtn");
-    editCardBtn.addEventListener("click", function () {
-        var cardTitle = card.querySelector(".boardContainer__main__list__card > p");
-        if (!cardTitle) {
-            console.error("Card title element not found!");
-            return;
-        }
-        var editCardInput = document.createElement("input");
-        editCardInput.type = "text";
-        editCardInput.value = cardTitle.textContent;
-        editCardInput.classList.add("editCardInput");
-        editCardInput.addEventListener("keyup", function (event) {
-            if (event.key === "Enter") {
-                var newCardTitle = document.createElement("p");
-                newCardTitle.textContent = editCardInput.value.trim();
-                editCardInput.replaceWith(newCardTitle);
+    try {
+        var cardIsDragged_1 = false;
+        cards.forEach(function (card) {
+            if (card.classList.contains("isDragging")) {
+                cardIsDragged_1 = true;
             }
         });
-        cardTitle.replaceWith(editCardInput);
-        editCardInput.focus();
+        if (!cardIsDragged_1)
+            return;
+        // e.preventDefault();
+        var bottomTask = insertAboveTask(this, clientY);
+        var curTask = document.querySelector(".isDragging");
+        if (!bottomTask) {
+            this.appendChild(curTask);
+        }
+        else {
+            this.insertBefore(curTask, bottomTask);
+        }
         currentBoard.update();
-    });
-    card.addEventListener("dragstart", function (ev) {
-        var target = ev.target;
-        if (ev.dataTransfer)
-            ev.dataTransfer.setData("Text", target.id);
-        card.classList.add("cardIsDragging");
-    });
-    card.addEventListener("dragend", function () {
-        card.classList.remove("cardIsDragging");
-    });
-    currentBoard.update();
-    // Add new card to cards variable
-    cards = document.querySelectorAll(".boardContainer__main__list__card");
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+function editList() {
+    try {
+        var listTitle_1 = this.parentNode;
+        var listTitleText_1 = listTitle_1.querySelector("h2");
+        var editListInput_1 = document.createElement("input");
+        editListInput_1.type = "text";
+        editListInput_1.value = listTitleText_1.textContent;
+        editListInput_1.classList.add("editListInput");
+        listTitle_1.replaceChild(editListInput_1, listTitleText_1);
+        editListInput_1.focus();
+        editListInput_1.addEventListener("keyup", function (event) {
+            if (event.key === "Enter") {
+                listTitle_1.replaceChild(listTitleText_1, editListInput_1);
+                listTitleText_1.textContent = editListInput_1.value.trim();
+                currentBoard.update();
+            }
+        });
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+function createCardElement(cardName, list) {
+    try {
+        var card_1 = document.createElement("div");
+        card_1.classList.add("boardContainer__main__list__card");
+        card_1.setAttribute("draggable", "true");
+        card_1.setAttribute("id", "" + uid());
+        card_1.innerHTML = "\n    <p>" + cardName + "</p>\n    <i class=\"fa-regular fa-pen-to-square editCardBtn\"></i>\n    ";
+        var cardTitle = list.querySelector(".boardContainer__main__list__header");
+        list.insertBefore(card_1, cardTitle.nextSibling);
+        var editCardBtn = card_1.querySelector(".editCardBtn");
+        editCardBtn.addEventListener("click", function () {
+            var cardTitle = card_1.querySelector(".boardContainer__main__list__card > p");
+            if (!cardTitle) {
+                console.error("Card title element not found!");
+                return;
+            }
+            var editCardInput = document.createElement("input");
+            editCardInput.type = "text";
+            editCardInput.value = cardTitle.textContent;
+            editCardInput.classList.add("editCardInput");
+            editCardInput.addEventListener("keyup", function (event) {
+                if (event.key === "Enter") {
+                    var newCardTitle = document.createElement("p");
+                    newCardTitle.textContent = editCardInput.value.trim();
+                    editCardInput.replaceWith(newCardTitle);
+                }
+            });
+            cardTitle.replaceWith(editCardInput);
+            editCardInput.focus();
+            currentBoard.update();
+        });
+        card_1.addEventListener("dragstart", function (ev) {
+            card_1.classList.add("isDragging");
+        });
+        card_1.addEventListener("dragend", function () {
+            card_1.classList.remove("isDragging");
+        });
+        currentBoard.update();
+        // Add new card to cards variable
+        cards = document.querySelectorAll(".boardContainer__main__list__card");
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
 function renderBoardInBoardPage() {
     try {
