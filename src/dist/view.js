@@ -38,11 +38,12 @@ var imageDisplayedInEdit = document.querySelector("#imageEditWindow");
 var trashCan = document.querySelector("#trash");
 var trashCanDiv = document.querySelector(".trashDiv");
 var noteBox = document.getElementById("notificationBox");
+var editInfoBtns = document.querySelectorAll(".editInfo");
 //Buttons
 var addListBtn = document.querySelector("#addListBtn");
 var editBoardBtn = document.querySelector(".editBoardBtn");
 var updatedBoardImageBtn = document.querySelector("#updatedBoardImageBtn");
-var editProfileInfo = document.querySelector(".editprofileBtn");
+// const editProfileInfo = document.querySelector(".editprofileBtn") as HTMLButtonElement;
 // Input
 var newListInput = document.querySelector("#newListInput");
 var nameInputEle = document.querySelector("#updatedBoardName");

@@ -81,7 +81,44 @@ function displayProfile(user) {
     try {
         profileWindow.style.display = "flex";
         if (user) {
-            return (profileDiv.innerHTML = "\n        <ul id=\"edit li\">\n          <h1>About you:</h1>\n          <li>Name: " + user.firstName + " " + user.lastName + "</li>\n          <li>Gender: " + user.gender + "</li>\n          <li>Email: " + user.email + "</li>\n          <li>Phone Number: " + user.phoneNumber + "</li>\n          <li>User Name: " + user.userName + "</li>\n          <li>Password: " + user.password + "</li>\n        </ul>\n        ");
+            profileDiv.innerHTML = "\n        <ul>\n          <h1>About you:</h1>\n          <li>Name: <span class=\"user-info\">" + user.firstName + " " + user.lastName + "</span>\n            <button class=\"editInfo\">Edit</button>\n          </li>\n          <li>Gender: <span class=\"user-info\">" + user.gender + "</span>\n            <button class=\"editInfo\">Edit</button>\n          </li>\n          <li>Email: <span class=\"user-info\">" + user.email + "</span>\n            <button class=\"editInfo\">Edit</button>\n          </li>\n          <li>Phone Number: <span class=\"user-info\">" + user.phoneNumber + "</span>\n            <button class=\"editInfo\">Edit</button>\n          </li>\n          <li>User Name: <span class=\"user-info\">" + user.userName + "</span>\n            <button class=\"editInfo\">Edit</button>\n          </li>\n          <li>Password: <span class=\"user-info\">" + user.password + "</span>\n            <button class=\"editInfo\">Edit</button>\n          </li>\n        </ul>\n      ";
+            var editProfileInfoBtns_1 = document.querySelectorAll('.editInfo');
+            editProfileInfoBtns_1.forEach(function (editBoardBtn) {
+                editBoardBtn.addEventListener("click", function () {
+                    var userProfileInfoTitle = editBoardBtn.parentNode;
+                    var userProfileInfoText = userProfileInfoTitle.querySelector(".user-info");
+                    var editprofileInput = document.createElement("input");
+                    editprofileInput.type = "text";
+                    editprofileInput.value = userProfileInfoText.textContent;
+                    editprofileInput.classList.add("editUserInput");
+                    userProfileInfoTitle.replaceChild(editprofileInput, userProfileInfoText);
+                    editprofileInput.focus();
+                    var saveButton = document.createElement("button");
+                    saveButton.textContent = "Save";
+                    saveButton.classList.add("saveInfo");
+                    userProfileInfoTitle.insertBefore(saveButton, editBoardBtn.nextSibling);
+                    var cancelButton = document.createElement("button");
+                    cancelButton.textContent = "Cancel";
+                    cancelButton.classList.add("cancelEdit");
+                    userProfileInfoTitle.insertBefore(cancelButton, editBoardBtn.nextSibling);
+                    editBoardBtn.style.display = "none";
+                    saveButton.addEventListener("click", function () {
+                        var newContent = editprofileInput.value.trim();
+                        userProfileInfoTitle.replaceChild(userProfileInfoText, editprofileInput);
+                        userProfileInfoText.textContent = newContent;
+                        editBoardBtn.style.display = "inline-block";
+                        saveButton.remove();
+                        cancelButton.remove();
+                    });
+                    saveNewInfoToLocalStorage(currentUser, editProfileInfoBtns_1);
+                    cancelButton.addEventListener("click", function () {
+                        userProfileInfoTitle.replaceChild(userProfileInfoText, editprofileInput);
+                        editBoardBtn.style.display = "inline-block";
+                        saveButton.remove();
+                        cancelButton.remove();
+                    });
+                });
+            });
         }
     }
     catch (error) {
@@ -335,3 +372,9 @@ function notification(msg) {
         note.remove();
     }, 6000);
 }
+function saveNewInfoToLocalStorage(editProfileInfoBtns, user) {
+    var userNewInfo = JSON.parse(localStorage.getItem("editProfileInfoBtns-" + user.handleSignUp) || "[]");
+    userNewInfo.push(editProfileInfoBtns);
+    localStorage.setItem("editProfileInfoBtns-" + user.handleSignUp, JSON.stringify(userNewInfo));
+}
+;
