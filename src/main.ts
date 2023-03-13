@@ -186,8 +186,7 @@ if (window.location.pathname.endsWith("board.html")) {
       const element = document.getElementById(
         event.dataTransfer!.getData("Text")
       );
-      const elementtext = element?.querySelector(`h2`);
-      let successDeleteMsg = `<i class="fa-solid fa-circle-xmark"></i> Delete - ${elementtext?.textContent}`;
+      let successDeleteMsg = `<i class="fa-solid fa-circle-xmark"></i> Delete - ${(element?.textContent)}`;
       notification(successDeleteMsg);
       saveNotificationToLocalStorage(
         successDeleteMsg,

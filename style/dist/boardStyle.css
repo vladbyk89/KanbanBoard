@@ -96,7 +96,8 @@ body {
   border-radius: 3.3px;
 }
 .boardContainer__main__list__header--addCard .newCardBtn {
-  font-size: 0.7rem;
+  font-size: 1.2rem;
+  color: black;
 }
 .boardContainer__main__list__card {
   border: 1px solid rgba(0, 0, 0, 0.131);

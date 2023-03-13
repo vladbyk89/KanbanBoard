@@ -109,7 +109,7 @@ class Board {
       ".boardContainer__main__list"
     );
     listElements.forEach((list) => {
-      const listName = list.querySelector("h2")?.innerHTML as string;
+      const listName = list.querySelector("h1")?.innerHTML as string;
       const cardsArr: string[] = [];
       list
         .querySelectorAll("h2")
@@ -162,12 +162,12 @@ class List {
     header.setAttribute("id", `${this.name}_header`);
     header.innerHTML = `
     <div class="listTitle">
-      <h2>${this.name}</h2>
+      <h1>${this.name}</h1>
       <i class="fa-regular fa-pen-to-square editListBtn"></i>
       </div>
       <div class="boardContainer__main__list__header--addCard">
         <textarea maxlength="30" class="newCardTextArea" cols="30" rows="2" placeholder="Task..."></textarea>
-        <button class="newCardBtn">New Card</button>
+        <button class="newCardBtn" title="Add Card">+</button>
       </div>
     `;
     listContainer.appendChild(header);

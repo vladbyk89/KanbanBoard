@@ -93,7 +93,7 @@ var Board = /** @class */ (function () {
         var listElements = boardContainer.querySelectorAll(".boardContainer__main__list");
         listElements.forEach(function (list) {
             var _a;
-            var listName = (_a = list.querySelector("h2")) === null || _a === void 0 ? void 0 : _a.innerHTML;
+            var listName = (_a = list.querySelector("h1")) === null || _a === void 0 ? void 0 : _a.innerHTML;
             var cardsArr = [];
             list
                 .querySelectorAll("h2")
@@ -145,7 +145,7 @@ var List = /** @class */ (function () {
         var header = document.createElement("div");
         header.classList.add("boardContainer__main__list__header");
         header.setAttribute("id", this.name + "_header");
-        header.innerHTML = "\n    <div class=\"listTitle\">\n      <h2>" + this.name + "</h2>\n      <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n      </div>\n      <div class=\"boardContainer__main__list__header--addCard\">\n        <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"2\" placeholder=\"Task...\"></textarea>\n        <button class=\"newCardBtn\">New Card</button>\n      </div>\n    ";
+        header.innerHTML = "\n    <div class=\"listTitle\">\n      <h1>" + this.name + "</h1>\n      <i class=\"fa-regular fa-pen-to-square editListBtn\"></i>\n      </div>\n      <div class=\"boardContainer__main__list__header--addCard\">\n        <textarea maxlength=\"30\" class=\"newCardTextArea\" cols=\"30\" rows=\"2\" placeholder=\"Task...\"></textarea>\n        <button class=\"newCardBtn\" title=\"Add Card\">+</button>\n      </div>\n    ";
         listContainer.appendChild(header);
         header.style.backgroundColor = this.backColor;
         makeListFunctional(listContainer);
