@@ -81,43 +81,43 @@ function displayProfile(user) {
     try {
         profileWindow.style.display = "flex";
         if (user) {
-            profileDiv.innerHTML = "\n        <ul>\n          <h1>About you:</h1>\n          <li>Name: <span class=\"user-info\">" + user.firstName + " " + user.lastName + "</span>\n            <button class=\"editInfo\">Edit</button>\n          </li>\n          <li>Gender: <span class=\"user-info\">" + user.gender + "</span>\n            <button class=\"editInfo\">Edit</button>\n          </li>\n          <li>Email: <span class=\"user-info\">" + user.email + "</span>\n            <button class=\"editInfo\">Edit</button>\n          </li>\n          <li>Phone Number: <span class=\"user-info\">" + user.phoneNumber + "</span>\n            <button class=\"editInfo\">Edit</button>\n          </li>\n          <li>User Name: <span class=\"user-info\">" + user.userName + "</span>\n            <button class=\"editInfo\">Edit</button>\n          </li>\n          <li>Password: <span class=\"user-info\">" + user.password + "</span>\n            <button class=\"editInfo\">Edit</button>\n          </li>\n        </ul>\n      ";
-            var editProfileInfoBtns = document.querySelectorAll('.editInfo');
-            editProfileInfoBtns.forEach(function (editBoardBtn) {
-                editBoardBtn.addEventListener("click", function () {
-                    var userProfileInfoTitle = editBoardBtn.parentNode;
-                    var userProfileInfoText = userProfileInfoTitle.querySelector(".user-info");
-                    var editprofileInput = document.createElement("input");
-                    editprofileInput.type = "text";
-                    editprofileInput.value = userProfileInfoText.textContent;
-                    editprofileInput.classList.add("editUserInput");
-                    userProfileInfoTitle.replaceChild(editprofileInput, userProfileInfoText);
-                    editprofileInput.focus();
-                    var saveButton = document.createElement("button");
-                    saveButton.textContent = "Save";
-                    saveButton.classList.add("saveInfo");
-                    userProfileInfoTitle.insertBefore(saveButton, editBoardBtn.nextSibling);
-                    var cancelButton = document.createElement("button");
-                    cancelButton.textContent = "Cancel";
-                    cancelButton.classList.add("cancelEdit");
-                    userProfileInfoTitle.insertBefore(cancelButton, editBoardBtn.nextSibling);
-                    editBoardBtn.style.display = "none";
-                    saveButton.addEventListener("click", function () {
-                        var newContent = editprofileInput.value.trim();
-                        userProfileInfoTitle.replaceChild(userProfileInfoText, editprofileInput);
-                        userProfileInfoText.textContent = newContent;
-                        editBoardBtn.style.display = "inline-block";
-                        saveButton.remove();
-                        cancelButton.remove();
-                    });
-                    cancelButton.addEventListener("click", function () {
-                        userProfileInfoTitle.replaceChild(userProfileInfoText, editprofileInput);
-                        editBoardBtn.style.display = "inline-block";
-                        saveButton.remove();
-                        cancelButton.remove();
-                    });
-                });
-            });
+            profileDiv.innerHTML = "\n        <ul>\n          <h1>About you:</h1>\n          <li>Name: <span class=\"user-info\">" + user.firstName + " " + user.lastName + "</span>\n          </li>\n          <li>Gender: <span class=\"user-info\">" + user.gender + "</span>\n          </li>\n          <li>Email: <span class=\"user-info\">" + user.email + "</span>\n          </li>\n          <li>Phone Number: <span class=\"user-info\">" + user.phoneNumber + "</span>\n          </li>\n          <li>User Name: <span class=\"user-info\">" + user.userName + "</span>\n          </li>\n          <li>Password: <span class=\"user-info\">" + user.password + "</span>\n          </li>\n        </ul>\n      ";
+            // const editProfileInfoBtns = document.querySelectorAll('.editInfo');
+            // editProfileInfoBtns.forEach((editBoardBtn)=>{
+            //   editBoardBtn.addEventListener("click",()=>{
+            //     const userProfileInfoTitle = editBoardBtn.parentNode as HTMLElement;
+            //     const userProfileInfoText = userProfileInfoTitle.querySelector(".user-info") as HTMLElement;
+            //     const editprofileInput = document.createElement("input");
+            //     editprofileInput.type = "text";
+            //     editprofileInput.value = userProfileInfoText.textContent!;
+            //     editprofileInput.classList.add("editUserInput");
+            //     userProfileInfoTitle.replaceChild(editprofileInput, userProfileInfoText);
+            //     editprofileInput.focus();
+            //     const saveButton = document.createElement("button");
+            //     saveButton.textContent = "Save";
+            //     saveButton.classList.add("saveInfo");
+            //     userProfileInfoTitle.insertBefore(saveButton, editBoardBtn.nextSibling);
+            //     const cancelButton = document.createElement("button");
+            //     cancelButton.textContent = "Cancel";
+            //     cancelButton.classList.add("cancelEdit");
+            //     userProfileInfoTitle.insertBefore(cancelButton, editBoardBtn.nextSibling);
+            //     editBoardBtn.style.display = "none";
+            //     saveButton.addEventListener("click", () => {
+            //       const newContent = editprofileInput.value.trim();
+            //       userProfileInfoTitle.replaceChild(userProfileInfoText, editprofileInput);
+            //       userProfileInfoText.textContent = newContent;
+            //       editBoardBtn.style.display = "inline-block";
+            //       saveButton.remove();
+            //       cancelButton.remove();
+            //     });
+            //     cancelButton.addEventListener("click", () => {
+            //       userProfileInfoTitle.replaceChild(userProfileInfoText, editprofileInput);
+            //       editBoardBtn.style.display = "inline-block";
+            //       saveButton.remove();
+            //       cancelButton.remove();
+            //     });
+            //   });
+            // });
         }
     }
     catch (error) {

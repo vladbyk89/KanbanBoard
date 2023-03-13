@@ -167,7 +167,7 @@ class List {
       </div>
       <div class="boardContainer__main__list__header--addCard">
         <textarea maxlength="30" class="newCardTextArea" cols="30" rows="2" placeholder="Task..."></textarea>
-        <button class="newCardBtn">New Card</button>
+        <button class="newCardBtn" title="Add Card">+</button>
       </div>
     `;
     listContainer.appendChild(header);
